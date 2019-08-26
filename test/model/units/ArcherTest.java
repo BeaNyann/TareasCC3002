@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test set for the Archer unit.
  *
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  * @since 1.0
  */
 public class ArcherTest extends AbstractTestUnit {
@@ -38,7 +38,7 @@ public class ArcherTest extends AbstractTestUnit {
   @Override
   public void equipBowTest() {
     assertNull(archer.getEquippedItem());
-    archer.equipItem(bow);
+    archer.equipBow(bow);
     assertEquals(bow, archer.getEquippedItem());
   }
 }

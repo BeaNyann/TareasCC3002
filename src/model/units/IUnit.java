@@ -1,7 +1,8 @@
 package model.units;
 
 import java.util.List;
-import model.items.IEquipableItem;
+
+import model.items.*;
 import model.map.Location;
 
 /**
@@ -10,18 +11,10 @@ import model.map.Location;
  * The signature of all the common methods that a unit can execute are defined here. All units
  * except some special ones can carry at most 3 weapons.
  *
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  * @since 1.0
  */
 public interface IUnit {
-
-  /**
-   * Sets the currently equipped item of this unit.
-   *
-   * @param item
-   *     the item to equip
-   */
-  void equipItem(IEquipableItem item);
 
   /**
    * @return hit points of the unit
@@ -65,4 +58,17 @@ public interface IUnit {
    * If the other location is out of this unit's movement range, the unit doesn't move.
    */
   void moveTo(Location targetLocation);
+
+  void equipAxe(Axe axe);
+
+  void equipBow(Bow bow);
+
+  void equipMagicBook(MagicBook magicbook);
+
+  void equipSpear(Spear spear);
+
+  void equipStaff(Staff staff);
+
+  void equipSword(Sword sword);
 }
+

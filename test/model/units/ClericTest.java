@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
 
 /**
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  */
 public class ClericTest extends AbstractTestUnit {
 
@@ -32,7 +32,7 @@ public class ClericTest extends AbstractTestUnit {
   @Override
   public void equipStaffTest() {
     assertNull(cleric.getEquippedItem());
-    cleric.equipItem(staff);
+    cleric.equipStaff(staff);
     assertEquals(staff, cleric.getEquippedItem());
   }
 }

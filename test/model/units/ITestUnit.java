@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Interface that defines the common behaviour of all the test for the units classes
  *
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  * @since 1.0
  */
 public interface ITestUnit {
@@ -50,10 +50,20 @@ public interface ITestUnit {
   /**
    * Tries to equip a weapon to the alpaca and verifies that it was not equipped
    *
-   * @param item
+   * @param axe
    *     to be equipped
    */
-  void checkEquippedItem(IEquipableItem item);
+  void checkEquippedAxe(Axe axe);
+
+  void checkEquippedBow(Bow bow);
+
+  void checkEquippedMagicBook(MagicBook magicbook);
+
+  void checkEquippedSpear(Spear spear);
+
+  void checkEquippedStaff(Staff staff);
+
+  void checkEquippedSword(Sword sword);
 
   /**
    * @return the test axe
@@ -92,7 +102,12 @@ public interface ITestUnit {
    */
   Bow getBow();
 
-  /**
+  @Test
+  void equipMagicBookTest();
+
+  MagicBook getMagicBook();
+
+    /**
    * Checks if the unit moves correctly
    */
   @Test

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
 
 /**
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  */
 public class FighterTest extends AbstractTestUnit {
 
@@ -35,7 +35,7 @@ public class FighterTest extends AbstractTestUnit {
   @Override
   public void equipAxeTest() {
     assertNull(fighter.getEquippedItem());
-    fighter.equipItem(axe);
+    fighter.equipAxe(axe);
     assertEquals(axe, fighter.getEquippedItem());
   }
 }

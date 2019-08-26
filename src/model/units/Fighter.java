@@ -8,7 +8,7 @@ import model.map.Location;
  * This class represents a fighter type unit.
  * A fighter is a unit that can only use axe type weapons.
  *
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  * @since 1.0
  */
 public class Fighter extends AbstractUnit {
@@ -21,13 +21,11 @@ public class Fighter extends AbstractUnit {
   /**
    * Sets the currently equipped item of this unit.
    *
-   * @param item
+   * @param axe
    *     the item to equip
    */
   @Override
-  public void equipItem(final IEquipableItem item) {
-    if (item instanceof Axe) {
-      equippedItem = item;
-    }
+  public void equipAxe(final Axe axe) {
+    equippedItem = axe;
   }
 }

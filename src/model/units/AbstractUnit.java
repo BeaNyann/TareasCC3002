@@ -5,7 +5,8 @@ import static java.lang.Math.min;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import model.items.IEquipableItem;
+
+import model.items.*;
 import model.map.Location;
 
 /**
@@ -15,7 +16,7 @@ import model.map.Location;
  * game, but that contains the implementation of some of the methods that are common for most
  * units.
  *
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  * @since 1.0
  */
 public abstract class AbstractUnit implements IUnit {
@@ -88,4 +89,16 @@ public abstract class AbstractUnit implements IUnit {
       setLocation(targetLocation);
     }
   }
+  @Override
+  public void equipAxe(Axe axe){}
+  @Override
+  public void equipBow(Bow bow){}
+  @Override
+  public void equipMagicBook(MagicBook magicbook){}
+  @Override
+  public void equipSpear(Spear spear){}
+  @Override
+  public void equipStaff(Staff staff){}
+  @Override
+  public void equipSword(Sword sword){}
 }

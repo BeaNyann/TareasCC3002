@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  * @since 1.0
  */
 public abstract class AbstractTestUnit implements ITestUnit {
@@ -23,6 +23,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   protected Sword sword;
   protected Staff staff;
   protected Spear spear;
+  protected MagicBook magicbook;
 
   @Override
   public void setTargetAlpaca() {
@@ -67,6 +68,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     this.spear = new Spear("Spear", 10, 1, 2);
     this.staff = new Staff("Staff", 10, 1, 2);
     this.bow = new Bow("Bow", 10, 2, 3);
+    this.magicbook = new MagicBook("MagicBook", 10, 1, 2);
   }
 
   /**
@@ -88,28 +90,61 @@ public abstract class AbstractTestUnit implements ITestUnit {
   public abstract IUnit getTestUnit();
 
   /**
-   * Checks if the axe is equipped correctly to the unit
-   */
-  @Override
-  @Test
-  public void equipAxeTest() {
-    assertNull(getTestUnit().getEquippedItem());
-    checkEquippedItem(getAxe());
-  }
-
-  /**
    * Tries to equip a weapon to the alpaca and verifies that it was not equipped
    *
    * @param item
    *     to be equipped
    */
   @Override
-  public void checkEquippedItem(IEquipableItem item) {
+  public void checkEquippedAxe(Axe axe) {
     assertNull(getTestUnit().getEquippedItem());
-    getTestUnit().equipItem(item);
+    getTestUnit().equipAxe(axe);
     assertNull(getTestUnit().getEquippedItem());
   }
 
+  @Override
+  public void checkEquippedBow(Bow bow) {
+    assertNull(getTestUnit().getEquippedItem());
+    getTestUnit().equipBow(bow);
+    assertNull(getTestUnit().getEquippedItem());
+  }
+
+  @Override
+  public void checkEquippedMagicBook(MagicBook magicbook) {
+    assertNull(getTestUnit().getEquippedItem());
+    getTestUnit().equipMagicBook(magicbook);
+    assertNull(getTestUnit().getEquippedItem());
+  }
+
+  @Override
+  public void checkEquippedSpear(Spear spear) {
+    assertNull(getTestUnit().getEquippedItem());
+    getTestUnit().equipSpear(spear);
+    assertNull(getTestUnit().getEquippedItem());
+  }
+
+  @Override
+  public void checkEquippedStaff(Staff staff) {
+    assertNull(getTestUnit().getEquippedItem());
+    getTestUnit().equipStaff(staff);
+    assertNull(getTestUnit().getEquippedItem());
+  }
+
+  @Override
+  public void checkEquippedSword(Sword sword) {
+    assertNull(getTestUnit().getEquippedItem());
+    getTestUnit().equipSword(sword);
+    assertNull(getTestUnit().getEquippedItem());
+  }
+
+  /**
+   * Checks if the axe is equipped correctly to the unit
+   */
+  @Override
+  @Test
+  public void equipAxeTest() {
+    checkEquippedAxe(getAxe());
+  }
   /**
    * @return the test axe
    */
@@ -121,7 +156,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void equipSwordTest() {
-    checkEquippedItem(getSword());
+    checkEquippedSword(getSword());
   }
 
   /**
@@ -135,7 +170,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void equipSpearTest() {
-    checkEquippedItem(getSpear());
+    checkEquippedSpear(getSpear());
   }
 
   /**
@@ -149,7 +184,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void equipStaffTest() {
-    checkEquippedItem(getStaff());
+    checkEquippedStaff(getStaff());
   }
 
   /**
@@ -163,7 +198,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void equipBowTest() {
-    checkEquippedItem(getBow());
+    checkEquippedBow(getBow());
   }
 
   /**
@@ -173,6 +208,21 @@ public abstract class AbstractTestUnit implements ITestUnit {
   public Bow getBow() {
     return bow;
   }
+
+  @Override
+  @Test
+  public void equipMagicBookTest() {
+    checkEquippedMagicBook(getMagicBook());
+  }
+
+  /**
+   * @return the test magicbook
+   */
+  @Override
+  public MagicBook getMagicBook() {
+    return magicbook;
+  }
+
 
   /**
    * Checks if the unit moves correctly

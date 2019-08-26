@@ -9,7 +9,7 @@ import model.map.Location;
  * This are a special kind of unit that can carry an unlimited amount of items but can't use any of
  * them.
  *
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  * @since 1.0
  */
 public class Alpaca extends AbstractUnit {
@@ -28,15 +28,4 @@ public class Alpaca extends AbstractUnit {
       final IEquipableItem... items) {
     super(hitPoints, movement, location, Integer.MAX_VALUE, items);
   }
-
-  /**
-   * {@inheritDoc}
-   * <p>
-   * The <i>Alpaca</i> cannot equip any item.
-   */
-  @Override
-  public void equipItem(final IEquipableItem item) {
-    // Method body intentionally left empty
-  }
-
 }

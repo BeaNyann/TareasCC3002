@@ -3,7 +3,7 @@ package model.units;
 /**
  * Test set for the alpaca unit
  *
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  * @since 1.0
  */
 public class AlpacaTest extends AbstractTestUnit {

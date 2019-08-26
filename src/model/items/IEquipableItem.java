@@ -8,7 +8,7 @@ import model.units.IUnit;
  * The signature for all the common methods of the weapons are defined here. Every weapon have a
  * base damage and is strong or weak against other type of weapons.
  *
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  * @since 1.0
  */
 public interface IEquipableItem {
@@ -25,6 +25,7 @@ public interface IEquipableItem {
    * @return the unit that has currently equipped this item
    */
   IUnit getOwner();
+  void setOwner(IUnit unit);
 
   /**
    * @return the name of the item

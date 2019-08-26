@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  */
 public class SwordMasterTest extends AbstractTestUnit {
 
@@ -29,7 +29,7 @@ public class SwordMasterTest extends AbstractTestUnit {
   @Override
   public void equipSwordTest() {
     assertNull(swordMaster.getEquippedItem());
-    swordMaster.equipItem(sword);
+    swordMaster.equipSword(sword);
     assertEquals(sword, swordMaster.getEquippedItem());
   }
 }

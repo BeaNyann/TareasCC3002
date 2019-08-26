@@ -9,7 +9,7 @@ import model.map.Location;
  * <p>
  * This kind of unit <b>can only use bows</b>.
  *
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  * @since 1.0
  */
 public class Archer extends AbstractUnit {
@@ -36,13 +36,11 @@ public class Archer extends AbstractUnit {
    * <p>
    * The <i>Archer</i> can <b>only equip Bows</b>.
    *
-   * @param item
+   * @param bow
    *     the item to equip
    */
   @Override
-  public void equipItem(final IEquipableItem item) {
-    if (item instanceof Bow) {
-      equippedItem = item;
-    }
+  public void equipBow(final Bow bow) {
+      equippedItem = bow;
   }
 }

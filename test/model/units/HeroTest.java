@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
 
 /**
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  */
 public class HeroTest extends AbstractTestUnit {
 
@@ -32,7 +32,7 @@ public class HeroTest extends AbstractTestUnit {
   @Test
   public void equipSpearTest() {
     assertNull(hero.getEquippedItem());
-    hero.equipItem(spear);
+    hero.equipSpear(spear);
     assertEquals(spear, hero.getEquippedItem());
   }
 }
