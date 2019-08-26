@@ -32,9 +32,11 @@ public class SorcererTest extends AbstractTestUnit {
      */
     @Test
     @Override
-    public void equipMagicBookTest() {
+    public void equipUnequipMagicBookTest() {
         assertNull(sorcerer.getEquippedItem());
         sorcerer.equipMagicBook(magicbook);
         assertEquals(magicbook, sorcerer.getEquippedItem());
+        sorcerer.unequipItem();
+        assertNull(sorcerer.getEquippedItem());
     }
 }

@@ -77,7 +77,8 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void constructorTest() {
-    assertEquals(50, getTestUnit().getCurrentHitPoints());
+    assertEquals(50, getTestUnit().getMaxHitPoints());
+    assertEquals(getTestUnit().getMaxHitPoints(),getTestUnit().getCurrentHitPoints());
     assertEquals(2, getTestUnit().getMovement());
     assertEquals(new Location(0, 0), getTestUnit().getLocation());
     assertTrue(getTestUnit().getItems().isEmpty());
@@ -92,7 +93,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   /**
    * Tries to equip a weapon to the alpaca and verifies that it was not equipped
    *
-   * @param item
+   * @param axe
    *     to be equipped
    */
   @Override
@@ -142,7 +143,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
    */
   @Override
   @Test
-  public void equipAxeTest() {
+  public void equipUnequipAxeTest() {
     checkEquippedAxe(getAxe());
   }
   /**
@@ -155,7 +156,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
 
   @Override
   @Test
-  public void equipSwordTest() {
+  public void equipUnequipSwordTest() {
     checkEquippedSword(getSword());
   }
 
@@ -169,7 +170,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
 
   @Override
   @Test
-  public void equipSpearTest() {
+  public void equipUnequipSpearTest() {
     checkEquippedSpear(getSpear());
   }
 
@@ -183,7 +184,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
 
   @Override
   @Test
-  public void equipStaffTest() {
+  public void equipUnequipStaffTest() {
     checkEquippedStaff(getStaff());
   }
 
@@ -197,7 +198,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
 
   @Override
   @Test
-  public void equipBowTest() {
+  public void equipUnequipBowTest() {
     checkEquippedBow(getBow());
   }
 
@@ -211,7 +212,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
 
   @Override
   @Test
-  public void equipMagicBookTest() {
+  public void equipUnequipMagicBookTest() {
     checkEquippedMagicBook(getMagicBook());
   }
 
@@ -235,6 +236,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
 
     getTestUnit().moveTo(getField().getCell(0, 2));
     assertEquals(new Location(0, 2), getTestUnit().getLocation());
+    assertNull(getField().getCell(0, 0).getUnit());
 
     getField().getCell(0, 1).setUnit(getTargetAlpaca());
     getTestUnit().moveTo(getField().getCell(0, 1));

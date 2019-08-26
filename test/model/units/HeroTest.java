@@ -30,9 +30,11 @@ public class HeroTest extends AbstractTestUnit {
 
   @Override
   @Test
-  public void equipSpearTest() {
+  public void equipUnequipSpearTest() {
     assertNull(hero.getEquippedItem());
     hero.equipSpear(spear);
     assertEquals(spear, hero.getEquippedItem());
+    hero.unequipItem();
+    assertNull(hero.getEquippedItem());
   }
 }

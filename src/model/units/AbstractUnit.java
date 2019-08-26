@@ -21,8 +21,9 @@ import model.map.Location;
  */
 public abstract class AbstractUnit implements IUnit {
 
-  protected final List<IEquipableItem> items = new ArrayList<>();
-  private final int currentHitPoints;
+  protected List<IEquipableItem> items = new ArrayList<>();
+  private int currentHitPoints;
+  private final int MaxHitPoints;
   private final int movement;
   protected IEquipableItem equippedItem;
   private Location location;
@@ -41,15 +42,22 @@ public abstract class AbstractUnit implements IUnit {
    */
   protected AbstractUnit(final int hitPoints, final int movement,
       final Location location, final int maxItems, final IEquipableItem... items) {
-    this.currentHitPoints = hitPoints;
+    this.MaxHitPoints = hitPoints;
+    this.currentHitPoints = this.MaxHitPoints;
     this.movement = movement;
     this.location = location;
+    location.setUnit(this);
     this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
   }
 
   @Override
   public int getCurrentHitPoints() {
     return currentHitPoints;
+  }
+
+  @Override
+  public int getMaxHitPoints() {
+    return MaxHitPoints;
   }
 
   @Override
@@ -63,8 +71,9 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   @Override
-  public void setEquippedItem(final IEquipableItem item) {
-    this.equippedItem = item;
+  public void unequipItem() {
+    getEquippedItem().setOwner(null);
+    equippedItem = null;
   }
 
   @Override
@@ -86,7 +95,9 @@ public abstract class AbstractUnit implements IUnit {
   public void moveTo(final Location targetLocation) {
     if (getLocation().distanceTo(targetLocation) <= getMovement()
         && targetLocation.getUnit() == null) {
+      getLocation().removeUnit();
       setLocation(targetLocation);
+      targetLocation.setUnit(this);
     }
   }
   @Override

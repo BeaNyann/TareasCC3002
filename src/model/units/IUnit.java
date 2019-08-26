@@ -21,7 +21,9 @@ public interface IUnit {
    */
   int getCurrentHitPoints();
 
-  /**
+    int getMaxHitPoints();
+
+    /**
    * @return the items carried by this unit
    */
   List<IEquipableItem> getItems();
@@ -31,11 +33,7 @@ public interface IUnit {
    */
   IEquipableItem getEquippedItem();
 
-  /**
-   * @param item
-   *     the item to be equipped
-   */
-  void setEquippedItem(IEquipableItem item);
+  void unequipItem();
 
   /**
    * @return the current location of the unit

@@ -1,12 +1,11 @@
 package model.map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import model.units.Alpaca;
+import model.units.IUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Ignacio Slater Muñoz
@@ -19,12 +18,14 @@ class LocationTest {
       locationA0,
       locationB0,
       locationA1;
+  private IUnit unit;
 
   @BeforeEach
   void setUp() {
     locationA0 = new Location(0, 0);
     locationB0 = new Location(1, 0);
     locationA1 = new Location(0, 1);
+    unit = new Alpaca(50, 2, locationA0);
   }
 
   /**
@@ -105,5 +106,14 @@ class LocationTest {
     locationA0.removeNeighbour(locationB0);
     assertEquals(1, locationA0.getNeighbours().size());
     assertFalse(locationA0.getNeighbours().contains(locationB0));
+  }
+
+  @Test
+  public void testUnitLocated(){
+    assertEquals(unit, locationA0.getUnit());
+    locationA0.removeUnit();
+    assertNull(locationA0.getUnit());
+    locationA1.setUnit(unit);
+    assertEquals(unit,locationA1.getUnit());
   }
 }

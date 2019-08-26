@@ -174,4 +174,7 @@ public class Location {
     return column;
   }
 
+  public void removeUnit() {
+    this.unit = null;
+  }
 }

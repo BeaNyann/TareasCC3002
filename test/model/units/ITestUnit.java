@@ -45,7 +45,7 @@ public interface ITestUnit {
    * Checks if the axe is equipped correctly to the unit
    */
   @Test
-  void equipAxeTest();
+  void equipUnequipAxeTest();
 
   /**
    * Tries to equip a weapon to the alpaca and verifies that it was not equipped
@@ -71,7 +71,7 @@ public interface ITestUnit {
   Axe getAxe();
 
   @Test
-  void equipSwordTest();
+  void equipUnequipSwordTest();
 
   /**
    * @return the test sword
@@ -79,7 +79,7 @@ public interface ITestUnit {
   Sword getSword();
 
   @Test
-  void equipSpearTest();
+  void equipUnequipSpearTest();
 
   /**
    * @return the test spear
@@ -87,7 +87,7 @@ public interface ITestUnit {
   Spear getSpear();
 
   @Test
-  void equipStaffTest();
+  void equipUnequipStaffTest();
 
   /**
    * @return the test staff
@@ -95,7 +95,7 @@ public interface ITestUnit {
   Staff getStaff();
 
   @Test
-  void equipBowTest();
+  void equipUnequipBowTest();
 
   /**
    * @return the test bow
@@ -103,7 +103,7 @@ public interface ITestUnit {
   Bow getBow();
 
   @Test
-  void equipMagicBookTest();
+  void equipUnequipMagicBookTest();
 
   MagicBook getMagicBook();
 
