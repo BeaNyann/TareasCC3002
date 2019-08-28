@@ -61,4 +61,16 @@ public abstract class AbstractItem implements IEquipableItem {
     return maxRange;
   }
 
+  @Override
+  public boolean equals(Object obj){
+    if(obj instanceof IEquipableItem){
+      if(((IEquipableItem) obj).getName() == this.getName() &&
+              ((IEquipableItem)obj).getPower() == this.getPower() &&
+              ((IEquipableItem)obj).getMinRange() == this.getMinRange() &&
+              ((IEquipableItem)obj).getMaxRange() == this.getMaxRange()){
+        return true;
+      }
+    }
+    return false;
+  }
 }

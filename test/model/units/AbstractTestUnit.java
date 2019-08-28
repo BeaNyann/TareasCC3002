@@ -10,6 +10,9 @@ import model.map.Location;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Beatriz Graboloza
  * @since 1.0
@@ -224,6 +227,56 @@ public abstract class AbstractTestUnit implements ITestUnit {
     return magicbook;
   }
 
+  @Override
+  @Test
+  public void testGiveObj(){
+    IUnit unit = getTestUnit();
+    IUnit unit2 = new Archer(50, 2, field.getCell(0, 1), bow);
+    unit2.giveObj(unit,bow);
+    assertNull(unit2.getItems());
+    assertEquals(bow,unit.getItems().get(0));
+  }
+  @Override
+  @Test
+  public void testFarGiveObj(){
+    IUnit unit = getTestUnit();
+    IUnit unit2 = new Archer(50, 2, field.getCell(1, 1), bow);
+    unit2.giveObj(unit,bow);
+    assertNull(unit.getItems());
+    assertEquals(bow,unit2.getItems().get(0));
+  }
+
+  @Override
+  @Test
+  public void testGiveNotHavingObj() {
+    IUnit unit = getTestUnit();
+    IUnit unit2 = new Archer(50, 2, field.getCell(0, 1));
+    unit2.giveObj(unit, bow);
+    assertNull(unit.getItems());
+    assertNull(unit2.getItems());
+  }
+
+  @Override
+  @Test
+  public void testRecieveNoSpaceObj() {
+    IUnit unit = new Archer(50, 2, field.getCell(0, 0), staff, axe, spear);
+    IUnit unit2 = new Archer(50, 2, field.getCell(0, 1),bow);
+    unit2.giveObj(unit, bow);
+    assertEquals(bow,unit2.getItems().get(0));
+    List<IEquipableItem> list = new ArrayList<>();
+    list.add(staff);
+    list.add(axe);
+    list.add(spear);
+    assertEquals(list,unit2.getItems());
+  }
+
+  @Override
+  @Test
+  public void testRecieveObj(){
+    IUnit unit = getTestUnit();
+    unit.recieveObj(bow);
+    assertEquals(bow,unit.getItems().get(0));
+  }
 
   /**
    * Checks if the unit moves correctly
