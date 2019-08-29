@@ -21,6 +21,7 @@ import model.map.Location;
  */
 public abstract class AbstractUnit implements IUnit {
 
+  private final int maxItems;
   protected List<IEquipableItem> items = new ArrayList<>();
   private int currentHitPoints;
   private final int MaxHitPoints;
@@ -31,23 +32,20 @@ public abstract class AbstractUnit implements IUnit {
   /**
    * Creates a new Unit.
    *
-   * @param hitPoints
-   *     the maximum amount of damage a unit can sustain
-   * @param movement
-   *     the number of panels a unit can move
-   * @param location
-   *     the current position of this unit on the map
-   * @param maxItems
-   *     maximum amount of items this unit can carry
+   * @param hitPoints the maximum amount of damage a unit can sustain
+   * @param movement  the number of panels a unit can move
+   * @param location  the current position of this unit on the map
+   * @param maxItems  maximum amount of items this unit can carry
    */
   protected AbstractUnit(final int hitPoints, final int movement,
-      final Location location, final int maxItems, final IEquipableItem... items) {
+                         final Location location, final int maxItems, final IEquipableItem... items) {
     this.MaxHitPoints = hitPoints;
     this.currentHitPoints = this.MaxHitPoints;
     this.movement = movement;
     this.location = location;
     location.setUnit(this);
     this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
+    this.maxItems = maxItems;
   }
 
   @Override
@@ -94,22 +92,63 @@ public abstract class AbstractUnit implements IUnit {
   @Override
   public void moveTo(final Location targetLocation) {
     if (getLocation().distanceTo(targetLocation) <= getMovement()
-        && targetLocation.getUnit() == null) {
+            && targetLocation.getUnit() == null) {
       getLocation().removeUnit();
       setLocation(targetLocation);
       targetLocation.setUnit(this);
     }
   }
+
   @Override
-  public void equipAxe(Axe axe){}
+  public void equipAxe(Axe axe) {
+  }
+
   @Override
-  public void equipBow(Bow bow){}
+  public void equipBow(Bow bow) {
+  }
+
   @Override
-  public void equipMagicBook(MagicBook magicbook){}
+  public void equipMagicBook(MagicBook magicbook) {
+  }
+
   @Override
-  public void equipSpear(Spear spear){}
+  public void equipSpear(Spear spear) {
+  }
+
   @Override
-  public void equipStaff(Staff staff){}
+  public void equipStaff(Staff staff) {
+  }
+
   @Override
-  public void equipSword(Sword sword){}
+  public void equipSword(Sword sword) {
+  }
+
+  @Override
+  public void giveObj(IUnit unit, IEquipableItem item) {
+    if (this.items.contains(item) && unit.getLocation().distanceTo(this.location) == 1) {
+      boolean X = unit.receiveObj(item);
+      if (X) {
+        this.removeItem(item);
+      }
+    }
+  }
+
+  @Override
+  public boolean receiveObj(IEquipableItem item) {
+    if (this.items.size() < this.maxItems) {
+      this.addItem(item);
+      return true;
+    }
+    return false;
+  }
+
+  @Override
+  public void addItem(IEquipableItem item){
+    this.items.add(item);
+  }
+
+  @Override
+  public void removeItem(IEquipableItem item){
+    this.items.remove(item);
+  }
 }

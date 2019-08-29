@@ -233,7 +233,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     IUnit unit = getTestUnit();
     IUnit unit2 = new Archer(50, 2, field.getCell(0, 1), bow);
     unit2.giveObj(unit,bow);
-    assertNull(unit2.getItems());
+    assertTrue(unit2.getItems().isEmpty());
     assertEquals(bow,unit.getItems().get(0));
   }
   @Override
@@ -242,7 +242,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     IUnit unit = getTestUnit();
     IUnit unit2 = new Archer(50, 2, field.getCell(1, 1), bow);
     unit2.giveObj(unit,bow);
-    assertNull(unit.getItems());
+    assertTrue(unit.getItems().isEmpty());
     assertEquals(bow,unit2.getItems().get(0));
   }
 
@@ -252,8 +252,8 @@ public abstract class AbstractTestUnit implements ITestUnit {
     IUnit unit = getTestUnit();
     IUnit unit2 = new Archer(50, 2, field.getCell(0, 1));
     unit2.giveObj(unit, bow);
-    assertNull(unit.getItems());
-    assertNull(unit2.getItems());
+    assertTrue(unit.getItems().isEmpty());
+    assertTrue(unit2.getItems().isEmpty());
   }
 
   @Override
@@ -267,15 +267,29 @@ public abstract class AbstractTestUnit implements ITestUnit {
     list.add(staff);
     list.add(axe);
     list.add(spear);
-    assertEquals(list,unit2.getItems());
+    assertEquals(list,unit.getItems());
   }
 
   @Override
   @Test
-  public void testRecieveObj(){
+  public void testReceiveObj(){
     IUnit unit = getTestUnit();
-    unit.recieveObj(bow);
+    boolean X = unit.receiveObj(bow);
     assertEquals(bow,unit.getItems().get(0));
+    assertEquals(true,X);
+  }
+
+  @Override
+  @Test
+  public void testAddRemoveObj(){
+    IUnit unit = getTestUnit();
+    assertTrue(unit.getItems().isEmpty());
+    unit.addItem(bow);
+    assertEquals(bow,unit.getItems().get(0));
+    unit.removeItem(axe);
+    assertEquals(bow,unit.getItems().get(0));
+    unit.removeItem(bow);
+    assertTrue(unit.getItems().isEmpty());
   }
 
   /**

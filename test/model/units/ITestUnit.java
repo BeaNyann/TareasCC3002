@@ -107,7 +107,25 @@ public interface ITestUnit {
 
   MagicBook getMagicBook();
 
-    /**
+  @Test
+  void testGiveObj();
+
+  @Test
+  void testFarGiveObj();
+
+  @Test
+  void testGiveNotHavingObj();
+
+  @Test
+  void testRecieveNoSpaceObj();
+
+  @Test
+    void testReceiveObj();
+
+  @Test
+  void testAddRemoveObj();
+
+  /**
    * Checks if the unit moves correctly
    */
   @Test

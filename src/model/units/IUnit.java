@@ -68,5 +68,13 @@ public interface IUnit {
   void equipStaff(Staff staff);
 
   void equipSword(Sword sword);
+
+  boolean receiveObj(IEquipableItem item);
+
+  void giveObj(IUnit unit, IEquipableItem item);
+
+  void addItem(IEquipableItem item);
+
+  void removeItem(IEquipableItem item);
 }
 
