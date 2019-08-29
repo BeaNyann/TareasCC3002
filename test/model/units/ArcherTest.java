@@ -53,7 +53,6 @@ public class ArcherTest extends AbstractTestUnit {
     archer.equipBow(bow);
     assertNull(archer.getEquippedItem());
   }
-
   @Test
   @Override
   public void FailEquipUnequipStaffTest(){
@@ -66,7 +65,6 @@ public class ArcherTest extends AbstractTestUnit {
     archer.equipStaff(staff);
     assertNull(archer.getEquippedItem());
   }
-
   @Test
   @Override
   public void FailEquipUnequipAxeTest(){
@@ -79,7 +77,6 @@ public class ArcherTest extends AbstractTestUnit {
     archer.equipAxe(axe);
     assertNull(archer.getEquippedItem());
   }
-
   @Test
   @Override
   public void FailEquipUnequipSpearTest(){
@@ -92,7 +89,6 @@ public class ArcherTest extends AbstractTestUnit {
     archer.equipSpear(spear);
     assertNull(archer.getEquippedItem());
   }
-
   @Test
   @Override
   public void FailEquipUnequipMagicBookTest(){
@@ -105,7 +101,6 @@ public class ArcherTest extends AbstractTestUnit {
     archer.equipMagicBook(magicbook);
     assertNull(archer.getEquippedItem());
   }
-
   @Test
   @Override
   public void FailEquipUnequipSwordTest(){
@@ -118,4 +113,16 @@ public class ArcherTest extends AbstractTestUnit {
     archer.equipSword(sword);
     assertNull(archer.getEquippedItem());
   }
+
+  @Test
+  @Override
+  public void testAttackAlpaca() {
+    Alpaca alpaca = getTargetAlpaca();
+    archer.attack(alpaca);
+    assertEquals(50, alpaca.getCurrentHitPoints());
+    archer.equipBow(bow);
+    archer.attack(alpaca);
+    assertEquals(40, alpaca.getCurrentHitPoints());
+  }
+
 }

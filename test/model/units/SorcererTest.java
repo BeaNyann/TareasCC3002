@@ -30,7 +30,7 @@ public class SorcererTest extends AbstractTestUnit {
     /**
      * Checks if the axe is equipped correctly to the unit
      */
-
+    @Test
     @Override
     public void equipUnequipMagicBookTest() {
         assertNull(sorcerer.getEquippedItem());
@@ -40,7 +40,7 @@ public class SorcererTest extends AbstractTestUnit {
         sorcerer.unequipItem();
         assertNull(sorcerer.getEquippedItem());
     }
-
+    @Test
     @Override
     public void FailEquipUnequipMagicBookTest(){
         assertNull(sorcerer.getEquippedItem());
@@ -49,7 +49,7 @@ public class SorcererTest extends AbstractTestUnit {
         sorcerer.equipMagicBook(magicbook);
         assertNull(sorcerer.getEquippedItem());
     }
-
+    @Test
     @Override
     public void FailEquipUnequipBowTest(){
         assertNull(sorcerer.getEquippedItem());
@@ -61,7 +61,7 @@ public class SorcererTest extends AbstractTestUnit {
         sorcerer.equipBow(bow);
         assertNull(sorcerer.getEquippedItem());
     }
-
+    @Test
     @Override
     public void FailEquipUnequipStaffTest(){
         assertNull(sorcerer.getEquippedItem());
@@ -73,7 +73,7 @@ public class SorcererTest extends AbstractTestUnit {
         sorcerer.equipStaff(staff);
         assertNull(sorcerer.getEquippedItem());
     }
-
+    @Test
     @Override
     public void FailEquipUnequipAxeTest(){
         assertNull(sorcerer.getEquippedItem());
@@ -85,7 +85,7 @@ public class SorcererTest extends AbstractTestUnit {
         sorcerer.equipAxe(axe);
         assertNull(sorcerer.getEquippedItem());
     }
-
+    @Test
     @Override
     public void FailEquipUnequipSpearTest(){
         assertNull(sorcerer.getEquippedItem());
@@ -97,7 +97,7 @@ public class SorcererTest extends AbstractTestUnit {
         sorcerer.equipSpear(spear);
         assertNull(sorcerer.getEquippedItem());
     }
-
+    @Test
     @Override
     public void FailEquipUnequipSwordTest(){
         assertNull(sorcerer.getEquippedItem());
@@ -108,5 +108,16 @@ public class SorcererTest extends AbstractTestUnit {
         sorcerer.addItem(sword);
         sorcerer.equipSword(sword);
         assertNull(sorcerer.getEquippedItem());
+    }
+
+    @Test
+    @Override
+    public void testAttackAlpaca() {
+        Alpaca alpaca = getTargetAlpaca();
+        sorcerer.attack(alpaca);
+        assertEquals(50, alpaca.getCurrentHitPoints());
+        sorcerer.equipMagicBook(magicbook);
+        sorcerer.attack(alpaca);
+        assertEquals(40, alpaca.getCurrentHitPoints());
     }
 }

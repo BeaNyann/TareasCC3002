@@ -28,6 +28,7 @@ public class HeroTest extends AbstractTestUnit {
     return hero;
   }
 
+  @Test
   @Override
   public void equipUnequipSpearTest() {
     assertNull(hero.getEquippedItem());
@@ -37,7 +38,7 @@ public class HeroTest extends AbstractTestUnit {
     hero.unequipItem();
     assertNull(hero.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipSpearTest(){
     assertNull(hero.getEquippedItem());
@@ -46,7 +47,7 @@ public class HeroTest extends AbstractTestUnit {
     hero.equipSpear(spear);
     assertNull(hero.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipBowTest(){
     assertNull(hero.getEquippedItem());
@@ -58,7 +59,7 @@ public class HeroTest extends AbstractTestUnit {
     hero.equipBow(bow);
     assertNull(hero.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipStaffTest(){
     assertNull(hero.getEquippedItem());
@@ -70,7 +71,7 @@ public class HeroTest extends AbstractTestUnit {
     hero.equipStaff(staff);
     assertNull(hero.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipAxeTest(){
     assertNull(hero.getEquippedItem());
@@ -82,7 +83,7 @@ public class HeroTest extends AbstractTestUnit {
     hero.equipAxe(axe);
     assertNull(hero.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipMagicBookTest(){
     assertNull(hero.getEquippedItem());
@@ -94,7 +95,7 @@ public class HeroTest extends AbstractTestUnit {
     hero.equipMagicBook(magicbook);
     assertNull(hero.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipSwordTest(){
     assertNull(hero.getEquippedItem());
@@ -105,5 +106,16 @@ public class HeroTest extends AbstractTestUnit {
     hero.addItem(sword);
     hero.equipSword(sword);
     assertNull(hero.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void testAttackAlpaca() {
+    Alpaca alpaca = getTargetAlpaca();
+    hero.attack(alpaca);
+    assertEquals(50, alpaca.getCurrentHitPoints());
+    hero.equipSpear(spear);
+    hero.attack(alpaca);
+    assertEquals(40, alpaca.getCurrentHitPoints());
   }
 }

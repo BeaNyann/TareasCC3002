@@ -153,4 +153,10 @@ public abstract class AbstractUnit implements IUnit {
   public void removeItem(IEquipableItem item){
     this.items.remove(item);
   }
+
+  public void attack(IUnit unit){
+    if(this.equippedItem!=null){
+      //this.equippedItem.attackWith(unit???xdd)
+    }
+  }
 }

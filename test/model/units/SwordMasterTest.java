@@ -27,7 +27,7 @@ public class SwordMasterTest extends AbstractTestUnit {
   public IUnit getTestUnit() {
     return swordMaster;
   }
-
+  @Test
   @Override
   public void equipUnequipSwordTest() {
     assertNull(swordMaster.getEquippedItem());
@@ -37,7 +37,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     swordMaster.unequipItem();
     assertNull(swordMaster.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipSwordTest(){
     assertNull(swordMaster.getEquippedItem());
@@ -46,7 +46,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     swordMaster.equipSword(sword);
     assertNull(swordMaster.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipBowTest(){
     assertNull(swordMaster.getEquippedItem());
@@ -58,7 +58,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     swordMaster.equipBow(bow);
     assertNull(swordMaster.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipStaffTest(){
     assertNull(swordMaster.getEquippedItem());
@@ -70,7 +70,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     swordMaster.equipStaff(staff);
     assertNull(swordMaster.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipAxeTest(){
     assertNull(swordMaster.getEquippedItem());
@@ -82,7 +82,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     swordMaster.equipAxe(axe);
     assertNull(swordMaster.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipSpearTest(){
     assertNull(swordMaster.getEquippedItem());
@@ -94,7 +94,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     swordMaster.equipSpear(spear);
     assertNull(swordMaster.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipMagicBookTest(){
     assertNull(swordMaster.getEquippedItem());
@@ -105,5 +105,16 @@ public class SwordMasterTest extends AbstractTestUnit {
     swordMaster.addItem(magicbook);
     swordMaster.equipMagicBook(magicbook);
     assertNull(swordMaster.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void testAttackAlpaca() {
+    Alpaca alpaca = getTargetAlpaca();
+    swordMaster.attack(alpaca);
+    assertEquals(50, alpaca.getCurrentHitPoints());
+    swordMaster.equipSword(sword);
+    swordMaster.attack(alpaca);
+    assertEquals(40, alpaca.getCurrentHitPoints());
   }
 }

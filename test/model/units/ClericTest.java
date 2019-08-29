@@ -28,7 +28,7 @@ public class ClericTest extends AbstractTestUnit {
     return cleric;
   }
 
-
+  @Test
   @Override
   public void equipUnequipStaffTest() {
     assertNull(cleric.getEquippedItem());
@@ -38,7 +38,7 @@ public class ClericTest extends AbstractTestUnit {
     cleric.unequipItem();
     assertNull(cleric.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipBowTest(){
     assertNull(cleric.getEquippedItem());
@@ -50,8 +50,7 @@ public class ClericTest extends AbstractTestUnit {
     cleric.equipBow(bow);
     assertNull(cleric.getEquippedItem());
   }
-
-
+  @Test
   @Override
   public void FailEquipUnequipStaffTest(){
     assertNull(cleric.getEquippedItem());
@@ -60,7 +59,7 @@ public class ClericTest extends AbstractTestUnit {
     cleric.equipStaff(staff);
     assertNull(cleric.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipAxeTest(){
     assertNull(cleric.getEquippedItem());
@@ -72,7 +71,7 @@ public class ClericTest extends AbstractTestUnit {
     cleric.equipAxe(axe);
     assertNull(cleric.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipSpearTest(){
     assertNull(cleric.getEquippedItem());
@@ -84,7 +83,7 @@ public class ClericTest extends AbstractTestUnit {
     cleric.equipSpear(spear);
     assertNull(cleric.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipMagicBookTest(){
     assertNull(cleric.getEquippedItem());
@@ -96,7 +95,7 @@ public class ClericTest extends AbstractTestUnit {
     cleric.equipMagicBook(magicbook);
     assertNull(cleric.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipSwordTest(){
     assertNull(cleric.getEquippedItem());
@@ -107,5 +106,16 @@ public class ClericTest extends AbstractTestUnit {
     cleric.addItem(sword);
     cleric.equipSword(sword);
     assertNull(cleric.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void testAttackAlpaca() {
+    Alpaca alpaca = getTargetAlpaca();
+    cleric.attack(alpaca);
+    assertEquals(50, alpaca.getCurrentHitPoints());
+    cleric.equipStaff(staff);
+    cleric.attack(alpaca);
+    assertEquals(40, alpaca.getCurrentHitPoints());
   }
 }

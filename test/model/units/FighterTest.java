@@ -31,7 +31,7 @@ public class FighterTest extends AbstractTestUnit {
   /**
    * Checks if the axe is equipped correctly to the unit
    */
-
+  @Test
   @Override
   public void equipUnequipAxeTest() {
     assertNull(fighter.getEquippedItem());
@@ -41,7 +41,7 @@ public class FighterTest extends AbstractTestUnit {
     fighter.unequipItem();
     assertNull(fighter.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipAxeTest(){
     assertNull(fighter.getEquippedItem());
@@ -50,7 +50,7 @@ public class FighterTest extends AbstractTestUnit {
     fighter.equipAxe(axe);
     assertNull(fighter.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipBowTest(){
     assertNull(fighter.getEquippedItem());
@@ -62,7 +62,7 @@ public class FighterTest extends AbstractTestUnit {
     fighter.equipBow(bow);
     assertNull(fighter.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipStaffTest(){
     assertNull(fighter.getEquippedItem());
@@ -74,7 +74,7 @@ public class FighterTest extends AbstractTestUnit {
     fighter.equipStaff(staff);
     assertNull(fighter.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipSpearTest(){
     assertNull(fighter.getEquippedItem());
@@ -86,7 +86,7 @@ public class FighterTest extends AbstractTestUnit {
     fighter.equipSpear(spear);
     assertNull(fighter.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipMagicBookTest(){
     assertNull(fighter.getEquippedItem());
@@ -98,7 +98,7 @@ public class FighterTest extends AbstractTestUnit {
     fighter.equipMagicBook(magicbook);
     assertNull(fighter.getEquippedItem());
   }
-
+  @Test
   @Override
   public void FailEquipUnequipSwordTest(){
     assertNull(fighter.getEquippedItem());
@@ -109,6 +109,17 @@ public class FighterTest extends AbstractTestUnit {
     fighter.addItem(sword);
     fighter.equipSword(sword);
     assertNull(fighter.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void testAttackAlpaca() {
+    Alpaca alpaca = getTargetAlpaca();
+    fighter.attack(alpaca);
+    assertEquals(50, alpaca.getCurrentHitPoints());
+    fighter.equipAxe(axe);
+    fighter.attack(alpaca);
+    assertEquals(40, alpaca.getCurrentHitPoints());
   }
 
 }
