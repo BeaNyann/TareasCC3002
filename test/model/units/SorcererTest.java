@@ -30,13 +30,83 @@ public class SorcererTest extends AbstractTestUnit {
     /**
      * Checks if the axe is equipped correctly to the unit
      */
-    @Test
+
     @Override
     public void equipUnequipMagicBookTest() {
         assertNull(sorcerer.getEquippedItem());
+        sorcerer.addItem(magicbook);
         sorcerer.equipMagicBook(magicbook);
         assertEquals(magicbook, sorcerer.getEquippedItem());
         sorcerer.unequipItem();
+        assertNull(sorcerer.getEquippedItem());
+    }
+
+    @Override
+    public void FailEquipUnequipMagicBookTest(){
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.unequipItem();
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.equipMagicBook(magicbook);
+        assertNull(sorcerer.getEquippedItem());
+    }
+
+    @Override
+    public void FailEquipUnequipBowTest(){
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.unequipItem();
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.equipBow(bow);
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.addItem(bow);
+        sorcerer.equipBow(bow);
+        assertNull(sorcerer.getEquippedItem());
+    }
+
+    @Override
+    public void FailEquipUnequipStaffTest(){
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.unequipItem();
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.equipStaff(staff);
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.addItem(staff);
+        sorcerer.equipStaff(staff);
+        assertNull(sorcerer.getEquippedItem());
+    }
+
+    @Override
+    public void FailEquipUnequipAxeTest(){
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.unequipItem();
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.equipAxe(axe);
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.addItem(axe);
+        sorcerer.equipAxe(axe);
+        assertNull(sorcerer.getEquippedItem());
+    }
+
+    @Override
+    public void FailEquipUnequipSpearTest(){
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.unequipItem();
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.equipSpear(spear);
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.addItem(spear);
+        sorcerer.equipSpear(spear);
+        assertNull(sorcerer.getEquippedItem());
+    }
+
+    @Override
+    public void FailEquipUnequipSwordTest(){
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.unequipItem();
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.equipSword(sword);
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.addItem(sword);
+        sorcerer.equipSword(sword);
         assertNull(sorcerer.getEquippedItem());
     }
 }

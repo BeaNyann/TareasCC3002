@@ -70,8 +70,10 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public void unequipItem() {
-    getEquippedItem().setOwner(null);
-    equippedItem = null;
+    if(getEquippedItem()!= null){
+      getEquippedItem().setOwner(null);
+      equippedItem = null;
+    }
   }
 
   @Override

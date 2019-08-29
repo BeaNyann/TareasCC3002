@@ -28,4 +28,10 @@ public class Alpaca extends AbstractUnit {
       final IEquipableItem... items) {
     super(hitPoints, movement, location, Integer.MAX_VALUE, items);
   }
+
+  @Override
+  public boolean receiveObj(IEquipableItem item) {
+    this.addItem(item);
+    return true;
+  }
 }

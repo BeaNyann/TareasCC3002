@@ -19,4 +19,25 @@ public class AlpacaTest extends AbstractTestUnit {
   public Alpaca getTestUnit() {
     return alpaca;
   }
+
+  @Override
+  public void testRecieveNoSpaceObj() {}
+
+  @Override
+  public void FailEquipUnequipSpearTest() {}
+
+  @Override
+  public void FailEquipUnequipMagicBookTest() {}
+
+  @Override
+  public void FailEquipUnequipBowTest() {}
+
+  @Override
+  public void FailEquipUnequipSwordTest() {}
+
+  @Override
+  public void FailEquipUnequipStaffTest() {}
+
+  @Override
+  public void FailEquipUnequipAxeTest() {}
 }

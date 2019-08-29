@@ -34,6 +34,8 @@ public class Cleric extends AbstractUnit {
    */
   @Override
   public void equipStaff(final Staff staff) {
-    equippedItem = staff;
+    if(this.items.contains(staff)){
+      equippedItem = staff;
+    }
   }
 }

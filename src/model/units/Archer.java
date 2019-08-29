@@ -41,6 +41,8 @@ public class Archer extends AbstractUnit {
    */
   @Override
   public void equipBow(final Bow bow) {
+    if(this.items.contains(bow)){
       equippedItem = bow;
+    }
   }
 }

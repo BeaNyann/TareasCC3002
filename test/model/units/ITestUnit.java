@@ -108,6 +108,24 @@ public interface ITestUnit {
   MagicBook getMagicBook();
 
   @Test
+  void FailEquipUnequipSpearTest();
+
+  @Test
+  void FailEquipUnequipMagicBookTest();
+
+  @Test
+  void FailEquipUnequipBowTest();
+
+  @Test
+  void FailEquipUnequipSwordTest();
+
+  @Test
+  void FailEquipUnequipStaffTest();
+
+  @Test
+  void FailEquipUnequipAxeTest();
+
+  @Test
   void testGiveObj();
 
   @Test

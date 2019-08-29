@@ -29,12 +29,81 @@ public class HeroTest extends AbstractTestUnit {
   }
 
   @Override
-  @Test
   public void equipUnequipSpearTest() {
     assertNull(hero.getEquippedItem());
+    hero.addItem(spear);
     hero.equipSpear(spear);
     assertEquals(spear, hero.getEquippedItem());
     hero.unequipItem();
+    assertNull(hero.getEquippedItem());
+  }
+
+  @Override
+  public void FailEquipUnequipSpearTest(){
+    assertNull(hero.getEquippedItem());
+    hero.unequipItem();
+    assertNull(hero.getEquippedItem());
+    hero.equipSpear(spear);
+    assertNull(hero.getEquippedItem());
+  }
+
+  @Override
+  public void FailEquipUnequipBowTest(){
+    assertNull(hero.getEquippedItem());
+    hero.unequipItem();
+    assertNull(hero.getEquippedItem());
+    hero.equipBow(bow);
+    assertNull(hero.getEquippedItem());
+    hero.addItem(bow);
+    hero.equipBow(bow);
+    assertNull(hero.getEquippedItem());
+  }
+
+  @Override
+  public void FailEquipUnequipStaffTest(){
+    assertNull(hero.getEquippedItem());
+    hero.unequipItem();
+    assertNull(hero.getEquippedItem());
+    hero.equipStaff(staff);
+    assertNull(hero.getEquippedItem());
+    hero.addItem(staff);
+    hero.equipStaff(staff);
+    assertNull(hero.getEquippedItem());
+  }
+
+  @Override
+  public void FailEquipUnequipAxeTest(){
+    assertNull(hero.getEquippedItem());
+    hero.unequipItem();
+    assertNull(hero.getEquippedItem());
+    hero.equipAxe(axe);
+    assertNull(hero.getEquippedItem());
+    hero.addItem(axe);
+    hero.equipAxe(axe);
+    assertNull(hero.getEquippedItem());
+  }
+
+  @Override
+  public void FailEquipUnequipMagicBookTest(){
+    assertNull(hero.getEquippedItem());
+    hero.unequipItem();
+    assertNull(hero.getEquippedItem());
+    hero.equipMagicBook(magicbook);
+    assertNull(hero.getEquippedItem());
+    hero.addItem(magicbook);
+    hero.equipMagicBook(magicbook);
+    assertNull(hero.getEquippedItem());
+  }
+
+  @Override
+  public void FailEquipUnequipSwordTest(){
+    assertNull(hero.getEquippedItem());
+    hero.unequipItem();
+    assertNull(hero.getEquippedItem());
+    hero.equipSword(sword);
+    assertNull(hero.getEquippedItem());
+    hero.addItem(sword);
+    hero.equipSword(sword);
     assertNull(hero.getEquippedItem());
   }
 }

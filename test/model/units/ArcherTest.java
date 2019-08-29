@@ -38,9 +38,84 @@ public class ArcherTest extends AbstractTestUnit {
   @Override
   public void equipUnequipBowTest() {
     assertNull(archer.getEquippedItem());
+    archer.addItem(bow);
     archer.equipBow(bow);
     assertEquals(bow, archer.getEquippedItem());
     archer.unequipItem();
+    assertNull(archer.getEquippedItem());
+  }
+  @Test
+  @Override
+  public void FailEquipUnequipBowTest(){
+    assertNull(archer.getEquippedItem());
+    archer.unequipItem();
+    assertNull(archer.getEquippedItem());
+    archer.equipBow(bow);
+    assertNull(archer.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void FailEquipUnequipStaffTest(){
+    assertNull(archer.getEquippedItem());
+    archer.unequipItem();
+    assertNull(archer.getEquippedItem());
+    archer.equipStaff(staff);
+    assertNull(archer.getEquippedItem());
+    archer.addItem(staff);
+    archer.equipStaff(staff);
+    assertNull(archer.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void FailEquipUnequipAxeTest(){
+    assertNull(archer.getEquippedItem());
+    archer.unequipItem();
+    assertNull(archer.getEquippedItem());
+    archer.equipAxe(axe);
+    assertNull(archer.getEquippedItem());
+    archer.addItem(axe);
+    archer.equipAxe(axe);
+    assertNull(archer.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void FailEquipUnequipSpearTest(){
+    assertNull(archer.getEquippedItem());
+    archer.unequipItem();
+    assertNull(archer.getEquippedItem());
+    archer.equipSpear(spear);
+    assertNull(archer.getEquippedItem());
+    archer.addItem(spear);
+    archer.equipSpear(spear);
+    assertNull(archer.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void FailEquipUnequipMagicBookTest(){
+    assertNull(archer.getEquippedItem());
+    archer.unequipItem();
+    assertNull(archer.getEquippedItem());
+    archer.equipMagicBook(magicbook);
+    assertNull(archer.getEquippedItem());
+    archer.addItem(magicbook);
+    archer.equipMagicBook(magicbook);
+    assertNull(archer.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void FailEquipUnequipSwordTest(){
+    assertNull(archer.getEquippedItem());
+    archer.unequipItem();
+    assertNull(archer.getEquippedItem());
+    archer.equipSword(sword);
+    assertNull(archer.getEquippedItem());
+    archer.addItem(sword);
+    archer.equipSword(sword);
     assertNull(archer.getEquippedItem());
   }
 }

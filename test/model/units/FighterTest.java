@@ -31,13 +31,84 @@ public class FighterTest extends AbstractTestUnit {
   /**
    * Checks if the axe is equipped correctly to the unit
    */
-  @Test
+
   @Override
   public void equipUnequipAxeTest() {
     assertNull(fighter.getEquippedItem());
+    fighter.addItem(axe);
     fighter.equipAxe(axe);
     assertEquals(axe, fighter.getEquippedItem());
     fighter.unequipItem();
     assertNull(fighter.getEquippedItem());
   }
+
+  @Override
+  public void FailEquipUnequipAxeTest(){
+    assertNull(fighter.getEquippedItem());
+    fighter.unequipItem();
+    assertNull(fighter.getEquippedItem());
+    fighter.equipAxe(axe);
+    assertNull(fighter.getEquippedItem());
+  }
+
+  @Override
+  public void FailEquipUnequipBowTest(){
+    assertNull(fighter.getEquippedItem());
+    fighter.unequipItem();
+    assertNull(fighter.getEquippedItem());
+    fighter.equipBow(bow);
+    assertNull(fighter.getEquippedItem());
+    fighter.addItem(bow);
+    fighter.equipBow(bow);
+    assertNull(fighter.getEquippedItem());
+  }
+
+  @Override
+  public void FailEquipUnequipStaffTest(){
+    assertNull(fighter.getEquippedItem());
+    fighter.unequipItem();
+    assertNull(fighter.getEquippedItem());
+    fighter.equipStaff(staff);
+    assertNull(fighter.getEquippedItem());
+    fighter.addItem(staff);
+    fighter.equipStaff(staff);
+    assertNull(fighter.getEquippedItem());
+  }
+
+  @Override
+  public void FailEquipUnequipSpearTest(){
+    assertNull(fighter.getEquippedItem());
+    fighter.unequipItem();
+    assertNull(fighter.getEquippedItem());
+    fighter.equipSpear(spear);
+    assertNull(fighter.getEquippedItem());
+    fighter.addItem(spear);
+    fighter.equipSpear(spear);
+    assertNull(fighter.getEquippedItem());
+  }
+
+  @Override
+  public void FailEquipUnequipMagicBookTest(){
+    assertNull(fighter.getEquippedItem());
+    fighter.unequipItem();
+    assertNull(fighter.getEquippedItem());
+    fighter.equipMagicBook(magicbook);
+    assertNull(fighter.getEquippedItem());
+    fighter.addItem(magicbook);
+    fighter.equipMagicBook(magicbook);
+    assertNull(fighter.getEquippedItem());
+  }
+
+  @Override
+  public void FailEquipUnequipSwordTest(){
+    assertNull(fighter.getEquippedItem());
+    fighter.unequipItem();
+    assertNull(fighter.getEquippedItem());
+    fighter.equipSword(sword);
+    assertNull(fighter.getEquippedItem());
+    fighter.addItem(sword);
+    fighter.equipSword(sword);
+    assertNull(fighter.getEquippedItem());
+  }
+
 }
