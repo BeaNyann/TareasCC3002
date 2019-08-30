@@ -35,7 +35,7 @@ public interface IEquipableItem {
   /**
    * @return the power of the item
    */
-  int getPower();
+  double getPower();
 
   /**
    * @return the minimum range of the item
@@ -49,5 +49,16 @@ public interface IEquipableItem {
 
   void attackWith(IUnit unit);
 
-  void weAttackedBy(IEquipableItem item); //TODO ponle a cada item su wea
+  void weAttackedBySword(Sword sword);
+
+  void weAttackedByStaff(Staff staff);
+
+  void weAttackedBySpear(Spear spear);
+
+  void weAttackedByMagicBook(MagicBook magicbook);
+
+  void weAttackedByBow(Bow bow);
+
+  void weAttackedByAxe(Axe axe);
+
 }

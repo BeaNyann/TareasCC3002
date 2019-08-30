@@ -1,5 +1,6 @@
 package model.units;
 
+import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 import java.util.ArrayList;
@@ -23,8 +24,8 @@ public abstract class AbstractUnit implements IUnit {
 
   private final int maxItems;
   protected List<IEquipableItem> items = new ArrayList<>();
-  private int currentHitPoints;
-  private final int MaxHitPoints;
+  private double currentHitPoints;
+  private final double MaxHitPoints;
   private final int movement;
   protected IEquipableItem equippedItem;
   private Location location;
@@ -49,12 +50,12 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   @Override
-  public int getCurrentHitPoints() {
+  public double getCurrentHitPoints() {
     return currentHitPoints;
   }
 
   @Override
-  public int getMaxHitPoints() {
+  public double getMaxHitPoints() {
     return MaxHitPoints;
   }
 
@@ -164,31 +165,76 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public void attackedByAxe(Axe axe) {
-    this.getEquippedItem().weAttackedBy(axe);
+    if(this.getEquippedItem() != null){
+      this.getEquippedItem().weAttackedByAxe(axe);
+    }
+    else{
+      this.setNormalDamage(axe.getPower());
+    }
   }
 
   @Override
   public void attackedByBow(Bow bow) {
-    this.getEquippedItem().weAttackedBy(bow);
+    if(this.getEquippedItem() != null){
+      this.getEquippedItem().weAttackedByBow(bow);
+    }
+    else{
+      this.setNormalDamage(bow.getPower());
+    }
   }
 
   @Override
   public void attackedByMagicBook(MagicBook magicbook) {
-    this.getEquippedItem().weAttackedBy(magicbook);
+    if(this.getEquippedItem() != null){
+      this.getEquippedItem().weAttackedByMagicBook(magicbook);
+    }
+    else{
+      this.setNormalDamage(magicbook.getPower());
+    }
   }
 
   @Override
   public void attackedBySpear(Spear spear) {
-    this.getEquippedItem().weAttackedBy(spear);
+    if(this.getEquippedItem() != null){
+      this.getEquippedItem().weAttackedBySpear(spear);
+    }
+    else{
+      this.setNormalDamage(spear.getPower());
+    }
   }
 
   @Override
   public void attackedByStaff(Staff staff) {
-    this.getEquippedItem().weAttackedBy(staff);
+    if(this.getEquippedItem() != null){
+      this.getEquippedItem().weAttackedByStaff(staff);
+    }
+    else{
+      this.setNormalDamage(staff.getPower());
+    }
   }
 
   @Override
   public void attackedBySword(Sword sword) {
-    this.getEquippedItem().weAttackedBy(sword);
+    if(this.getEquippedItem() != null){
+      this.getEquippedItem().weAttackedBySword(sword);
+    }
+    else{
+      this.setNormalDamage(sword.getPower());
+    }
+  }
+
+  @Override
+  public void setNormalDamage(double power) {
+    this.currentHitPoints = max(0,this.currentHitPoints - power);
+  }
+
+  @Override
+  public void setBigDamage(double power) {
+    this.currentHitPoints = max(0,this.currentHitPoints-1.5*power);
+  }
+
+  @Override
+  public void setSmallDamage(double power) {
+    this.currentHitPoints = min(max(0,this.currentHitPoints-(power-20)),this.currentHitPoints);
   }
 }

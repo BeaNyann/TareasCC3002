@@ -11,7 +11,7 @@ import model.units.IUnit;
 public abstract class AbstractItem implements IEquipableItem {
 
   private final String name;
-  private final int power;
+  private final double power;
   protected int maxRange;
   protected int minRange;
   private IUnit owner;
@@ -24,7 +24,7 @@ public abstract class AbstractItem implements IEquipableItem {
    * @param minRange the minimum range of the item
    * @param maxRange the maximum range of the item
    */
-  public AbstractItem(final String name, final int power, final int minRange, final int maxRange) {
+  public AbstractItem(final String name, final double power, final int minRange, final int maxRange) {
     this.name = name;
     this.power = power;
     this.minRange = Math.max(minRange, 1);
@@ -47,7 +47,7 @@ public abstract class AbstractItem implements IEquipableItem {
   }
 
   @Override
-  public int getPower() {
+  public double getPower() {
     return power;
   }
 
@@ -72,5 +72,35 @@ public abstract class AbstractItem implements IEquipableItem {
       }
     }
     return false;
+  }
+
+  @Override
+  public void weAttackedBySword(Sword sword) {
+    this.getOwner().setNormalDamage(sword.getPower());
+  }
+
+  @Override
+  public void weAttackedByStaff(Staff staff) {
+    this.getOwner().setNormalDamage(staff.getPower());
+  }
+
+  @Override
+  public void weAttackedBySpear(Spear spear) {
+    this.getOwner().setNormalDamage(spear.getPower());
+  }
+
+  @Override
+  public void weAttackedByMagicBook(MagicBook magicbook) {
+    this.getOwner().setNormalDamage(magicbook.getPower());
+  }
+
+  @Override
+  public void weAttackedByBow(Bow bow) {
+    this.getOwner().setNormalDamage(bow.getPower());
+  }
+
+  @Override
+  public void weAttackedByAxe(Axe axe) {
+    this.getOwner().setNormalDamage(axe.getPower());
   }
 }

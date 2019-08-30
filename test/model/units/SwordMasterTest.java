@@ -113,6 +113,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     Alpaca alpaca = getTargetAlpaca();
     swordMaster.attack(alpaca);
     assertEquals(50, alpaca.getCurrentHitPoints());
+    swordMaster.addItem(sword);
     swordMaster.equipSword(sword);
     swordMaster.attack(alpaca);
     assertEquals(40, alpaca.getCurrentHitPoints());

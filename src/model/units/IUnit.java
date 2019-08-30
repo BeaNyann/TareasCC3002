@@ -19,9 +19,9 @@ public interface IUnit {
   /**
    * @return hit points of the unit
    */
-  int getCurrentHitPoints();
+  double getCurrentHitPoints();
 
-    int getMaxHitPoints();
+    double getMaxHitPoints();
 
     /**
    * @return the items carried by this unit
@@ -88,6 +88,13 @@ public interface IUnit {
   void attackedByStaff(Staff staff);
 
   void attackedBySword(Sword sword);
+
+  void setNormalDamage(double power);
+
+  void setBigDamage(double power);
+
+  void setSmallDamage(double power);
+
 
 }
 

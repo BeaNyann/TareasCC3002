@@ -117,6 +117,7 @@ public class FighterTest extends AbstractTestUnit {
     Alpaca alpaca = getTargetAlpaca();
     fighter.attack(alpaca);
     assertEquals(50, alpaca.getCurrentHitPoints());
+    fighter.addItem(axe);
     fighter.equipAxe(axe);
     fighter.attack(alpaca);
     assertEquals(40, alpaca.getCurrentHitPoints());

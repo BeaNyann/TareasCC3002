@@ -114,6 +114,7 @@ public class ClericTest extends AbstractTestUnit {
     Alpaca alpaca = getTargetAlpaca();
     cleric.attack(alpaca);
     assertEquals(50, alpaca.getCurrentHitPoints());
+    cleric.addItem(staff);
     cleric.equipStaff(staff);
     cleric.attack(alpaca);
     assertEquals(40, alpaca.getCurrentHitPoints());

@@ -38,4 +38,29 @@ public class MagicBook extends AbstractItem {
     public void attackWith(IUnit unit) {
         unit.attackedByMagicBook(this);
     }
+
+    @Override
+    public void weAttackedBySword(Sword sword) {
+        this.getOwner().setBigDamage(sword.getPower());
+    }
+
+    @Override
+    public void weAttackedByStaff(Staff staff) {
+        this.getOwner().setBigDamage(staff.getPower());
+    }
+
+    @Override
+    public void weAttackedBySpear(Spear spear) {
+        this.getOwner().setBigDamage(spear.getPower());
+    }
+
+    @Override
+    public void weAttackedByBow(Bow bow) {
+        this.getOwner().setBigDamage(bow.getPower());
+    }
+
+    @Override
+    public void weAttackedByAxe(Axe axe) {
+        this.getOwner().setBigDamage(axe.getPower());
+    }
 }

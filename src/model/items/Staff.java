@@ -37,4 +37,9 @@ public class Staff extends AbstractItem {
   public void attackWith(IUnit unit) {
     unit.attackedByStaff(this);
   }
+
+  @Override
+  public void weAttackedByMagicBook(MagicBook magicbook) {
+    this.getOwner().setBigDamage(magicbook.getPower());
+  }
 }

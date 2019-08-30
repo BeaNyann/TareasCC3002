@@ -38,4 +38,9 @@ public class Bow extends AbstractItem {
   public void attackWith(IUnit unit) {
     unit.attackedByBow(this);
   }
+
+  @Override
+  public void weAttackedByMagicBook(MagicBook magicbook) {
+    this.getOwner().setBigDamage(magicbook.getPower());
+  }
 }

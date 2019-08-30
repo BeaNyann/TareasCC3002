@@ -38,4 +38,18 @@ public class Sword extends AbstractItem {
     unit.attackedBySword(this);
   }
 
+  @Override
+  public void weAttackedBySpear(Spear spear) {
+    this.getOwner().setBigDamage(spear.getPower());
+  }
+
+  @Override
+  public void weAttackedByMagicBook(MagicBook magicbook) {
+    this.getOwner().setBigDamage(magicbook.getPower());
+  }
+
+  @Override
+  public void weAttackedByAxe(Axe axe) {
+    this.getOwner().setSmallDamage(axe.getPower());
+  }
 }

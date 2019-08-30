@@ -114,6 +114,7 @@ public class HeroTest extends AbstractTestUnit {
     Alpaca alpaca = getTargetAlpaca();
     hero.attack(alpaca);
     assertEquals(50, alpaca.getCurrentHitPoints());
+    hero.addItem(spear);
     hero.equipSpear(spear);
     hero.attack(alpaca);
     assertEquals(40, alpaca.getCurrentHitPoints());

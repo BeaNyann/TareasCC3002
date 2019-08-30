@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.map.Location;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -120,7 +121,11 @@ public class ArcherTest extends AbstractTestUnit {
     Alpaca alpaca = getTargetAlpaca();
     archer.attack(alpaca);
     assertEquals(50, alpaca.getCurrentHitPoints());
+    archer.addItem(bow);
     archer.equipBow(bow);
+    archer.attack(alpaca);
+    assertEquals(50, alpaca.getCurrentHitPoints());
+    archer.moveTo(field.getCell(0,1));
     archer.attack(alpaca);
     assertEquals(40, alpaca.getCurrentHitPoints());
   }

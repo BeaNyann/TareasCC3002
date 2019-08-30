@@ -116,6 +116,7 @@ public class SorcererTest extends AbstractTestUnit {
         Alpaca alpaca = getTargetAlpaca();
         sorcerer.attack(alpaca);
         assertEquals(50, alpaca.getCurrentHitPoints());
+        sorcerer.addItem(magicbook);
         sorcerer.equipMagicBook(magicbook);
         sorcerer.attack(alpaca);
         assertEquals(40, alpaca.getCurrentHitPoints());
