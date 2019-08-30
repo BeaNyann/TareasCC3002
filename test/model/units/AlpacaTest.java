@@ -24,6 +24,24 @@ public class AlpacaTest extends AbstractTestUnit {
   public void testRecieveNoSpaceObj() {}
 
   @Override
+  public void testAttackArcher() {}
+
+  @Override
+  public void testAttackCleric() {}
+
+  @Override
+  public void testAttackFighter() {}
+
+  @Override
+  public void testAttackHero() {}
+
+  @Override
+  public void testAttackSorcerer() {}
+
+  @Override
+  public void testAttackSwordMaster() {}
+
+  @Override
   public void testAttackAlpaca() {}
 
   @Override

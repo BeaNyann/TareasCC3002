@@ -160,6 +160,24 @@ public interface ITestUnit {
   Alpaca getTargetAlpaca();
 
   @Test
+  void testAttackArcher();
+
+  @Test
+  void testAttackCleric();
+
+  @Test
+  void testAttackFighter();
+
+  @Test
+  void testAttackHero();
+
+  @Test
+  void testAttackSorcerer();
+
+  @Test
+  void testAttackSwordMaster();
+
+  @Test
   void testAttackAlpaca();
 }
 

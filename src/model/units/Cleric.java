@@ -38,4 +38,7 @@ public class Cleric extends AbstractUnit {
       equippedItem = staff;
     }
   }
+
+  @Override
+  public void attack(IUnit unit) {}
 }

@@ -118,4 +118,40 @@ public class SwordMasterTest extends AbstractTestUnit {
     swordMaster.attack(alpaca);
     assertEquals(40, alpaca.getCurrentHitPoints());
   }
+
+  @Test
+  @Override
+  public void testAttackArcher() {
+//TODO this
+  }
+
+  @Test
+  @Override
+  public void testAttackCleric() {
+
+  }
+
+  @Test
+  @Override
+  public void testAttackFighter() {
+
+  }
+
+  @Test
+  @Override
+  public void testAttackHero() {
+
+  }
+
+  @Test
+  @Override
+  public void testAttackSorcerer() {
+
+  }
+
+  @Test
+  @Override
+  public void testAttackSwordMaster() {
+
+  }
 }

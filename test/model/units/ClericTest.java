@@ -71,6 +71,7 @@ public class ClericTest extends AbstractTestUnit {
     cleric.equipAxe(axe);
     assertNull(cleric.getEquippedItem());
   }
+
   @Test
   @Override
   public void FailEquipUnequipSpearTest(){
@@ -108,15 +109,25 @@ public class ClericTest extends AbstractTestUnit {
     assertNull(cleric.getEquippedItem());
   }
 
-  @Test
   @Override
-  public void testAttackAlpaca() {
-    Alpaca alpaca = getTargetAlpaca();
-    cleric.attack(alpaca);
-    assertEquals(50, alpaca.getCurrentHitPoints());
-    cleric.addItem(staff);
-    cleric.equipStaff(staff);
-    cleric.attack(alpaca);
-    assertEquals(40, alpaca.getCurrentHitPoints());
-  }
+  public void testAttackAlpaca() {}
+
+  @Override
+  public void testAttackArcher() {}
+
+  @Override
+  public void testAttackCleric() {}
+
+  @Override
+  public void testAttackFighter() {}
+
+  @Override
+  public void testAttackHero() {}
+
+  @Override
+  public void testAttackSorcerer() {}
+
+  @Override
+  public void testAttackSwordMaster() {}
+
 }

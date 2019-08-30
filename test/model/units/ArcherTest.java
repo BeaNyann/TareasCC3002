@@ -78,6 +78,7 @@ public class ArcherTest extends AbstractTestUnit {
     archer.equipAxe(axe);
     assertNull(archer.getEquippedItem());
   }
+
   @Test
   @Override
   public void FailEquipUnequipSpearTest(){
@@ -130,4 +131,99 @@ public class ArcherTest extends AbstractTestUnit {
     assertEquals(40, alpaca.getCurrentHitPoints());
   }
 
+  @Test
+  @Override
+  public void testAttackArcher() {
+    Archer archer2 = new Archer(50, 2, field.getCell(1,0));
+    archer.attack(archer2);
+    assertEquals(50, archer2.getCurrentHitPoints());
+    archer.addItem(bow);
+    archer.equipBow(bow);
+    archer.attack(archer2);
+    assertEquals(50, archer2.getCurrentHitPoints());
+    archer.moveTo(field.getCell(0,1));
+    archer.attack(archer2);
+    assertEquals(40, archer2.getCurrentHitPoints());
+  }
+
+  @Test
+  @Override
+  public void testAttackCleric() {
+    Cleric cleric = new Cleric(50, 2, field.getCell(1,0));
+    archer.attack(cleric);
+    assertEquals(50, cleric.getCurrentHitPoints());
+    archer.addItem(bow);
+    archer.equipBow(bow);
+    archer.attack(cleric);
+    assertEquals(50, cleric.getCurrentHitPoints());
+    archer.moveTo(field.getCell(0,1));
+    archer.attack(cleric);
+    assertEquals(40, cleric.getCurrentHitPoints());
+  }
+
+  @Test
+  @Override
+  public void testAttackFighter() {
+    Fighter fighter = new Fighter(50, 2, field.getCell(1,0));
+    archer.attack(fighter);
+    assertEquals(50, fighter.getCurrentHitPoints());
+    archer.addItem(bow);
+    archer.equipBow(bow);
+    archer.attack(fighter);
+    assertEquals(50, fighter.getCurrentHitPoints());
+    archer.moveTo(field.getCell(0,1));
+    archer.attack(fighter);
+    assertEquals(40, fighter.getCurrentHitPoints());
+  }
+
+  @Test
+  @Override
+  public void testAttackHero() {
+    Hero hero = new Hero(50, 2, field.getCell(1,0));
+    archer.attack(hero);
+    assertEquals(50, hero.getCurrentHitPoints());
+    archer.addItem(bow);
+    archer.equipBow(bow);
+    archer.attack(hero);
+    assertEquals(50, hero.getCurrentHitPoints());
+    archer.moveTo(field.getCell(0,1));
+    archer.attack(hero);
+    assertEquals(40, hero.getCurrentHitPoints());
+  }
+
+  @Test
+  @Override
+  public void testAttackSorcerer() {
+    Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,0));
+    archer.attack(sorcerer);
+    assertEquals(50, sorcerer.getCurrentHitPoints());
+    archer.addItem(bow);
+    archer.equipBow(bow);
+    archer.attack(sorcerer);
+    assertEquals(50, sorcerer.getCurrentHitPoints());
+    archer.moveTo(field.getCell(0,1));
+    archer.attack(sorcerer);
+    assertEquals(40, sorcerer.getCurrentHitPoints());
+    sorcerer.addItem(magicbook);
+    sorcerer.equipMagicBook(magicbook);
+    archer.attack(sorcerer);
+    assertEquals(20, sorcerer.getCurrentHitPoints());
+
+    //TODO arreglar este test, y pos por ende todos los que no son de normal (?)
+  }
+
+  @Test
+  @Override
+  public void testAttackSwordMaster() {
+    SwordMaster swordMaster = new SwordMaster(50, 2, field.getCell(1,0));
+    archer.attack(swordMaster);
+    assertEquals(50, swordMaster.getCurrentHitPoints());
+    archer.addItem(bow);
+    archer.equipBow(bow);
+    archer.attack(swordMaster);
+    assertEquals(50, swordMaster.getCurrentHitPoints());
+    archer.moveTo(field.getCell(0,1));
+    archer.attack(swordMaster);
+    assertEquals(40, swordMaster.getCurrentHitPoints());
+  }
 }
