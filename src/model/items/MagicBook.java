@@ -33,4 +33,9 @@ public class MagicBook extends AbstractItem {
         this.setOwner(unit);
 
     }
+
+    @Override
+    public void attackWith(IUnit unit) {
+        unit.attackedByMagicBook(this);
+    }
 }

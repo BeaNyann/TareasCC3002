@@ -46,4 +46,8 @@ public interface IEquipableItem {
    * @return the maximum range of the item
    */
   int getMaxRange();
+
+  void attackWith(IUnit unit);
+
+  void weAttackedBy(IEquipableItem item); //TODO ponle a cada item su wea
 }

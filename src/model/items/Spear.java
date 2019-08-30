@@ -29,4 +29,9 @@ public class Spear extends AbstractItem {
     unit.equipSpear(this);
     this.setOwner(unit);
   }
+
+  @Override
+  public void attackWith(IUnit unit) {
+    unit.attackedBySpear(this);
+  }
 }

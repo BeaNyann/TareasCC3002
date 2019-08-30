@@ -33,4 +33,9 @@ public class Axe extends AbstractItem {
     unit.equipAxe(this);
     this.setOwner(unit);
   }
+
+  @Override
+  public void attackWith(IUnit unit) {
+    unit.attackedByAxe(this);
+  }
 }

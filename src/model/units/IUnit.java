@@ -76,5 +76,18 @@ public interface IUnit {
   void addItem(IEquipableItem item);
 
   void removeItem(IEquipableItem item);
+
+  void attackedByAxe(Axe axe);
+
+  void attackedByBow(Bow bow);
+
+  void attackedByMagicBook(MagicBook magicBook);
+
+  void attackedBySpear(Spear spear);
+
+  void attackedByStaff(Staff staff);
+
+  void attackedBySword(Sword sword);
+
 }
 

@@ -155,8 +155,40 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   public void attack(IUnit unit){
-    if(this.equippedItem!=null){
-      //this.equippedItem.attackWith(unit???xdd)
+    if(this.equippedItem!=null &&
+            this.getEquippedItem().getMinRange() <= this.getLocation().distanceTo(unit.getLocation()) &&
+            this.getLocation().distanceTo(unit.getLocation()) <= this.getEquippedItem().getMaxRange()){
+      this.equippedItem.attackWith(unit);
     }
+  }
+
+  @Override
+  public void attackedByAxe(Axe axe) {
+    this.getEquippedItem().weAttackedBy(axe);
+  }
+
+  @Override
+  public void attackedByBow(Bow bow) {
+    this.getEquippedItem().weAttackedBy(bow);
+  }
+
+  @Override
+  public void attackedByMagicBook(MagicBook magicbook) {
+    this.getEquippedItem().weAttackedBy(magicbook);
+  }
+
+  @Override
+  public void attackedBySpear(Spear spear) {
+    this.getEquippedItem().weAttackedBy(spear);
+  }
+
+  @Override
+  public void attackedByStaff(Staff staff) {
+    this.getEquippedItem().weAttackedBy(staff);
+  }
+
+  @Override
+  public void attackedBySword(Sword sword) {
+    this.getEquippedItem().weAttackedBy(sword);
   }
 }
