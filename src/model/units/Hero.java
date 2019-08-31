@@ -37,6 +37,7 @@ public class Hero extends AbstractUnit {
   public void equipSpear(final Spear spear) {
     if(this.items.contains(spear)) {
       equippedItem = spear;
+      spear.setOwner(this);
     }
   }
 }

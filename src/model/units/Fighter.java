@@ -28,6 +28,7 @@ public class Fighter extends AbstractUnit {
   public void equipAxe(final Axe axe) {
     if(this.items.contains(axe)){
       equippedItem = axe;
+      axe.setOwner(this);
     }
   }
 }

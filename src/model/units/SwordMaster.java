@@ -29,6 +29,7 @@ public class SwordMaster extends AbstractUnit {
   public void equipSword(final Sword sword) {
     if(this.items.contains(sword)) {
       equippedItem = sword;
+      sword.setOwner(this);
     }
   }
 }

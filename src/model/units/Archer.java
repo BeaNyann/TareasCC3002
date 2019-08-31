@@ -43,6 +43,7 @@ public class Archer extends AbstractUnit {
   public void equipBow(final Bow bow) {
     if(this.items.contains(bow)){
       equippedItem = bow;
+      bow.setOwner(this);
     }
   }
 }

@@ -31,7 +31,6 @@ public class Axe extends AbstractItem {
   @Override
   public void equipTo(final IUnit unit) {
     unit.equipAxe(this);
-    this.setOwner(unit);
   }
 
   @Override

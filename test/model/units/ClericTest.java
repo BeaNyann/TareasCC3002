@@ -33,7 +33,7 @@ public class ClericTest extends AbstractTestUnit {
   public void equipUnequipStaffTest() {
     assertNull(cleric.getEquippedItem());
     cleric.addItem(staff);
-    cleric.equipStaff(staff);
+    staff.equipTo(cleric);
     assertEquals(staff, cleric.getEquippedItem());
     cleric.unequipItem();
     assertNull(cleric.getEquippedItem());
@@ -44,10 +44,10 @@ public class ClericTest extends AbstractTestUnit {
     assertNull(cleric.getEquippedItem());
     cleric.unequipItem();
     assertNull(cleric.getEquippedItem());
-    cleric.equipBow(bow);
+    bow.equipTo(cleric);
     assertNull(cleric.getEquippedItem());
     cleric.addItem(bow);
-    cleric.equipBow(bow);
+    bow.equipTo(cleric);
     assertNull(cleric.getEquippedItem());
   }
   @Test
@@ -56,7 +56,7 @@ public class ClericTest extends AbstractTestUnit {
     assertNull(cleric.getEquippedItem());
     cleric.unequipItem();
     assertNull(cleric.getEquippedItem());
-    cleric.equipStaff(staff);
+    staff.equipTo(cleric);
     assertNull(cleric.getEquippedItem());
   }
   @Test
@@ -65,10 +65,10 @@ public class ClericTest extends AbstractTestUnit {
     assertNull(cleric.getEquippedItem());
     cleric.unequipItem();
     assertNull(cleric.getEquippedItem());
-    cleric.equipAxe(axe);
+    axe.equipTo(cleric);
     assertNull(cleric.getEquippedItem());
     cleric.addItem(axe);
-    cleric.equipAxe(axe);
+    axe.equipTo(cleric);
     assertNull(cleric.getEquippedItem());
   }
 
@@ -78,10 +78,10 @@ public class ClericTest extends AbstractTestUnit {
     assertNull(cleric.getEquippedItem());
     cleric.unequipItem();
     assertNull(cleric.getEquippedItem());
-    cleric.equipSpear(spear);
+    spear.equipTo(cleric);
     assertNull(cleric.getEquippedItem());
     cleric.addItem(spear);
-    cleric.equipSpear(spear);
+    spear.equipTo(cleric);
     assertNull(cleric.getEquippedItem());
   }
   @Test
@@ -90,10 +90,10 @@ public class ClericTest extends AbstractTestUnit {
     assertNull(cleric.getEquippedItem());
     cleric.unequipItem();
     assertNull(cleric.getEquippedItem());
-    cleric.equipMagicBook(magicbook);
+    magicbook.equipTo(cleric);
     assertNull(cleric.getEquippedItem());
     cleric.addItem(magicbook);
-    cleric.equipMagicBook(magicbook);
+    magicbook.equipTo(cleric);
     assertNull(cleric.getEquippedItem());
   }
   @Test
@@ -102,10 +102,10 @@ public class ClericTest extends AbstractTestUnit {
     assertNull(cleric.getEquippedItem());
     cleric.unequipItem();
     assertNull(cleric.getEquippedItem());
-    cleric.equipSword(sword);
+    sword.equipTo(cleric);
     assertNull(cleric.getEquippedItem());
     cleric.addItem(sword);
-    cleric.equipSword(sword);
+    sword.equipTo(cleric);
     assertNull(cleric.getEquippedItem());
   }
 

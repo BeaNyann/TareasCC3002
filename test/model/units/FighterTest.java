@@ -36,7 +36,7 @@ public class FighterTest extends AbstractTestUnit {
   public void equipUnequipAxeTest() {
     assertNull(fighter.getEquippedItem());
     fighter.addItem(axe);
-    fighter.equipAxe(axe);
+    axe.equipTo(fighter);
     assertEquals(axe, fighter.getEquippedItem());
     fighter.unequipItem();
     assertNull(fighter.getEquippedItem());
@@ -47,7 +47,7 @@ public class FighterTest extends AbstractTestUnit {
     assertNull(fighter.getEquippedItem());
     fighter.unequipItem();
     assertNull(fighter.getEquippedItem());
-    fighter.equipAxe(axe);
+    axe.equipTo(fighter);
     assertNull(fighter.getEquippedItem());
   }
   @Test
@@ -56,10 +56,10 @@ public class FighterTest extends AbstractTestUnit {
     assertNull(fighter.getEquippedItem());
     fighter.unequipItem();
     assertNull(fighter.getEquippedItem());
-    fighter.equipBow(bow);
+    bow.equipTo(fighter);
     assertNull(fighter.getEquippedItem());
     fighter.addItem(bow);
-    fighter.equipBow(bow);
+    bow.equipTo(fighter);
     assertNull(fighter.getEquippedItem());
   }
   @Test
@@ -68,10 +68,10 @@ public class FighterTest extends AbstractTestUnit {
     assertNull(fighter.getEquippedItem());
     fighter.unequipItem();
     assertNull(fighter.getEquippedItem());
-    fighter.equipStaff(staff);
+    staff.equipTo(fighter);
     assertNull(fighter.getEquippedItem());
     fighter.addItem(staff);
-    fighter.equipStaff(staff);
+    staff.equipTo(fighter);
     assertNull(fighter.getEquippedItem());
   }
   @Test
@@ -80,10 +80,10 @@ public class FighterTest extends AbstractTestUnit {
     assertNull(fighter.getEquippedItem());
     fighter.unequipItem();
     assertNull(fighter.getEquippedItem());
-    fighter.equipSpear(spear);
+    spear.equipTo(fighter);
     assertNull(fighter.getEquippedItem());
     fighter.addItem(spear);
-    fighter.equipSpear(spear);
+    spear.equipTo(fighter);
     assertNull(fighter.getEquippedItem());
   }
   @Test
@@ -92,10 +92,10 @@ public class FighterTest extends AbstractTestUnit {
     assertNull(fighter.getEquippedItem());
     fighter.unequipItem();
     assertNull(fighter.getEquippedItem());
-    fighter.equipMagicBook(magicbook);
+    magicbook.equipTo(fighter);
     assertNull(fighter.getEquippedItem());
     fighter.addItem(magicbook);
-    fighter.equipMagicBook(magicbook);
+    magicbook.equipTo(fighter);
     assertNull(fighter.getEquippedItem());
   }
   @Test
@@ -104,10 +104,10 @@ public class FighterTest extends AbstractTestUnit {
     assertNull(fighter.getEquippedItem());
     fighter.unequipItem();
     assertNull(fighter.getEquippedItem());
-    fighter.equipSword(sword);
+    sword.equipTo(fighter);
     assertNull(fighter.getEquippedItem());
     fighter.addItem(sword);
-    fighter.equipSword(sword);
+    sword.equipTo(fighter);
     assertNull(fighter.getEquippedItem());
   }
 
@@ -118,7 +118,7 @@ public class FighterTest extends AbstractTestUnit {
     fighter.attack(alpaca);
     assertEquals(50, alpaca.getCurrentHitPoints());
     fighter.addItem(axe);
-    fighter.equipAxe(axe);
+    axe.equipTo(fighter);
     fighter.attack(alpaca);
     assertEquals(40, alpaca.getCurrentHitPoints());
   }
@@ -126,37 +126,88 @@ public class FighterTest extends AbstractTestUnit {
   @Test
   @Override
   public void testAttackArcher() {
-//TODO this
+    Archer archer = new Archer(50, 2, field.getCell(1,0));
+    fighter.attack(archer);
+    assertEquals(50, archer.getCurrentHitPoints());
+    fighter.addItem(axe);
+    axe.equipTo(fighter);
+    fighter.attack(archer);
+    assertEquals(40, archer.getCurrentHitPoints());
   }
 
   @Test
   @Override
   public void testAttackCleric() {
-
+    Cleric cleric = new Cleric(50, 2, field.getCell(1,0));
+    fighter.attack(cleric);
+    assertEquals(50, cleric.getCurrentHitPoints());
+    fighter.addItem(axe);
+    axe.equipTo(fighter);
+    fighter.attack(cleric);
+    assertEquals(40, cleric.getCurrentHitPoints());
   }
 
   @Test
   @Override
   public void testAttackFighter() {
-
+    Fighter fighter2 = new Fighter(50, 2, field.getCell(1,0));
+    fighter.attack(fighter2);
+    assertEquals(50, fighter2.getCurrentHitPoints());
+    fighter.addItem(axe);
+    axe.equipTo(fighter);
+    fighter.attack(fighter2);
+    assertEquals(40, fighter2.getCurrentHitPoints());
   }
 
   @Test
   @Override
   public void testAttackHero() {
-
+    Hero hero = new Hero(50, 2, field.getCell(1,0));
+    fighter.attack(hero);
+    assertEquals(50, hero.getCurrentHitPoints());
+    fighter.addItem(axe);
+    axe.equipTo(fighter);
+    fighter.attack(hero);
+    assertEquals(40, hero.getCurrentHitPoints());
+    hero.addItem(spear);
+    spear.equipTo(hero);
+    fighter.attack(hero);
+    assertEquals(25,hero.getCurrentHitPoints());
+    //TODO siento que falta ver que pasa si le quito más de toda la vida que tiene
   }
 
   @Test
   @Override
   public void testAttackSorcerer() {
-
+    Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,0));
+    fighter.attack(sorcerer);
+    assertEquals(50, sorcerer.getCurrentHitPoints());
+    fighter.addItem(axe);
+    axe.equipTo(fighter);
+    fighter.attack(sorcerer);
+    assertEquals(40, sorcerer.getCurrentHitPoints());
+    sorcerer.addItem(magicbook);
+    magicbook.equipTo(sorcerer);
+    fighter.attack(sorcerer);
+    assertEquals(25,sorcerer.getCurrentHitPoints());
+    //TODO siento que falta ver que pasa si le quito más de toda la vida que tiene
   }
 
   @Test
   @Override
   public void testAttackSwordMaster() {
-
+    SwordMaster swordMaster = new SwordMaster(50, 2, field.getCell(1,0));
+    fighter.attack(swordMaster);
+    assertEquals(50, swordMaster.getCurrentHitPoints());
+    fighter.addItem(axe);
+    axe.equipTo(fighter);
+    fighter.attack(swordMaster);
+    assertEquals(40, swordMaster.getCurrentHitPoints());
+    swordMaster.addItem(sword);
+    sword.equipTo(swordMaster);
+    fighter.attack(swordMaster);
+    assertEquals(40,swordMaster.getCurrentHitPoints());
+    //TODO, darle ataque suficiente para que si haga algo
   }
 
 }

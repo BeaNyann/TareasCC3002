@@ -32,7 +32,7 @@ public class SwordMasterTest extends AbstractTestUnit {
   public void equipUnequipSwordTest() {
     assertNull(swordMaster.getEquippedItem());
     swordMaster.addItem(sword);
-    swordMaster.equipSword(sword);
+    sword.equipTo(swordMaster);
     assertEquals(sword, swordMaster.getEquippedItem());
     swordMaster.unequipItem();
     assertNull(swordMaster.getEquippedItem());
@@ -43,7 +43,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     assertNull(swordMaster.getEquippedItem());
     swordMaster.unequipItem();
     assertNull(swordMaster.getEquippedItem());
-    swordMaster.equipSword(sword);
+    sword.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
   }
   @Test
@@ -52,10 +52,10 @@ public class SwordMasterTest extends AbstractTestUnit {
     assertNull(swordMaster.getEquippedItem());
     swordMaster.unequipItem();
     assertNull(swordMaster.getEquippedItem());
-    swordMaster.equipBow(bow);
+    bow.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
     swordMaster.addItem(bow);
-    swordMaster.equipBow(bow);
+    bow.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
   }
   @Test
@@ -64,10 +64,10 @@ public class SwordMasterTest extends AbstractTestUnit {
     assertNull(swordMaster.getEquippedItem());
     swordMaster.unequipItem();
     assertNull(swordMaster.getEquippedItem());
-    swordMaster.equipStaff(staff);
+    staff.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
     swordMaster.addItem(staff);
-    swordMaster.equipStaff(staff);
+    staff.equipTo(swordMaster);;
     assertNull(swordMaster.getEquippedItem());
   }
   @Test
@@ -76,10 +76,10 @@ public class SwordMasterTest extends AbstractTestUnit {
     assertNull(swordMaster.getEquippedItem());
     swordMaster.unequipItem();
     assertNull(swordMaster.getEquippedItem());
-    swordMaster.equipAxe(axe);
+    axe.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
     swordMaster.addItem(axe);
-    swordMaster.equipAxe(axe);
+    axe.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
   }
   @Test
@@ -88,10 +88,10 @@ public class SwordMasterTest extends AbstractTestUnit {
     assertNull(swordMaster.getEquippedItem());
     swordMaster.unequipItem();
     assertNull(swordMaster.getEquippedItem());
-    swordMaster.equipSpear(spear);
+    spear.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
     swordMaster.addItem(spear);
-    swordMaster.equipSpear(spear);
+    spear.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
   }
   @Test
@@ -100,10 +100,10 @@ public class SwordMasterTest extends AbstractTestUnit {
     assertNull(swordMaster.getEquippedItem());
     swordMaster.unequipItem();
     assertNull(swordMaster.getEquippedItem());
-    swordMaster.equipMagicBook(magicbook);
+    magicbook.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
     swordMaster.addItem(magicbook);
-    swordMaster.equipMagicBook(magicbook);
+    magicbook.equipTo(swordMaster);;
     assertNull(swordMaster.getEquippedItem());
   }
 
@@ -114,7 +114,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     swordMaster.attack(alpaca);
     assertEquals(50, alpaca.getCurrentHitPoints());
     swordMaster.addItem(sword);
-    swordMaster.equipSword(sword);
+    sword.equipTo(swordMaster);
     swordMaster.attack(alpaca);
     assertEquals(40, alpaca.getCurrentHitPoints());
   }
@@ -122,36 +122,87 @@ public class SwordMasterTest extends AbstractTestUnit {
   @Test
   @Override
   public void testAttackArcher() {
-//TODO this
+    Archer archer = new Archer(50,2,field.getCell(1,0));
+    swordMaster.attack(archer);
+    assertEquals(50, archer.getCurrentHitPoints());
+    swordMaster.addItem(sword);
+    sword.equipTo(swordMaster);
+    swordMaster.attack(archer);
+    assertEquals(40, archer.getCurrentHitPoints());
   }
 
   @Test
   @Override
   public void testAttackCleric() {
-
+    Cleric cleric = new Cleric(50,2,field.getCell(1,0));
+    swordMaster.attack(cleric);
+    assertEquals(50, cleric.getCurrentHitPoints());
+    swordMaster.addItem(sword);
+    sword.equipTo(swordMaster);
+    swordMaster.attack(cleric);
+    assertEquals(40, cleric.getCurrentHitPoints());
   }
 
   @Test
   @Override
   public void testAttackFighter() {
-
+    Fighter fighter = new Fighter(50, 2, field.getCell(1,0));
+    swordMaster.attack(fighter);
+    assertEquals(50, fighter.getCurrentHitPoints());
+    swordMaster.addItem(sword);
+    sword.equipTo(swordMaster);
+    swordMaster.attack(fighter);
+    assertEquals(40, fighter.getCurrentHitPoints());
+    fighter.addItem(axe);
+    axe.equipTo(fighter);
+    swordMaster.attack(fighter);
+    assertEquals(25,fighter.getCurrentHitPoints());
+    //TODO siento que falta ver que pasa si le quito más de toda la vida que tiene
   }
 
   @Test
   @Override
   public void testAttackHero() {
-
+    Hero hero = new Hero(50, 2, field.getCell(1,0));
+    swordMaster.attack(hero);
+    assertEquals(50, hero.getCurrentHitPoints());
+    swordMaster.addItem(sword);
+    sword.equipTo(swordMaster);
+    swordMaster.attack(hero);
+    assertEquals(40, hero.getCurrentHitPoints());
+    hero.addItem(spear);
+    spear.equipTo(hero);
+    swordMaster.attack(hero);
+    assertEquals(40,hero.getCurrentHitPoints());
+    //TODO, darle ataque suficiente para que si haga algo
   }
 
   @Test
   @Override
   public void testAttackSorcerer() {
-
+    Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,0));
+    swordMaster.attack(sorcerer);
+    assertEquals(50, sorcerer.getCurrentHitPoints());
+    swordMaster.addItem(sword);
+    sword.equipTo(swordMaster);
+    swordMaster.attack(sorcerer);
+    assertEquals(40, sorcerer.getCurrentHitPoints());
+    sorcerer.addItem(magicbook);
+    magicbook.equipTo(sorcerer);
+    swordMaster.attack(sorcerer);
+    assertEquals(25,sorcerer.getCurrentHitPoints());
+    //TODO siento que falta ver que pasa si le quito más de toda la vida que tiene
   }
 
   @Test
   @Override
   public void testAttackSwordMaster() {
-
+    SwordMaster swordMaster2 = new SwordMaster(50,2,field.getCell(1,0));
+    swordMaster.attack(swordMaster2);
+    assertEquals(50, swordMaster2.getCurrentHitPoints());
+    swordMaster.addItem(sword);
+    sword.equipTo(swordMaster);
+    swordMaster.attack(swordMaster2);
+    assertEquals(40, swordMaster2.getCurrentHitPoints());
   }
 }

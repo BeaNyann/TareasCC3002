@@ -30,8 +30,6 @@ public class MagicBook extends AbstractItem {
     @Override
     public void equipTo(final IUnit unit) {
         unit.equipMagicBook(this);
-        this.setOwner(unit);
-
     }
 
     @Override
