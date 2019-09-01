@@ -220,8 +220,9 @@ public class ArcherTest extends AbstractTestUnit {
     magicbook.equipTo(sorcerer);
     archer.attack(sorcerer);
     assertEquals(25, sorcerer.getCurrentHitPoints());
-
-    //TODO arreglar este test, y pos por ende todos los que no son de normal (?)
+    archer.attack(sorcerer); //le quedan 10 de vida
+    archer.attack(sorcerer); //la resta da -5
+    assertEquals(0,sorcerer.getCurrentHitPoints());
   }
 
   @Test

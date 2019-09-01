@@ -3,6 +3,8 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.items.Axe;
+import model.items.Spear;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -186,7 +188,9 @@ public class FighterTest extends AbstractTestUnit {
     spear.equipTo(hero);
     fighter.attack(hero);
     assertEquals(25,hero.getCurrentHitPoints());
-    //TODO siento que falta ver que pasa si le quito más de toda la vida que tiene
+    fighter.attack(hero); //le quedan 10 de vida
+    fighter.attack(hero); //la resta da -5
+    assertEquals(0,hero.getCurrentHitPoints());
   }
 
   @Test
@@ -203,7 +207,9 @@ public class FighterTest extends AbstractTestUnit {
     magicbook.equipTo(sorcerer);
     fighter.attack(sorcerer);
     assertEquals(25,sorcerer.getCurrentHitPoints());
-    //TODO siento que falta ver que pasa si le quito más de toda la vida que tiene
+    fighter.attack(sorcerer); //le quedan 10 de vida
+    fighter.attack(sorcerer); //la resta da -5
+    assertEquals(0,sorcerer.getCurrentHitPoints());
   }
 
   @Test
@@ -220,7 +226,14 @@ public class FighterTest extends AbstractTestUnit {
     sword.equipTo(swordMaster);
     fighter.attack(swordMaster);
     assertEquals(40,swordMaster.getCurrentHitPoints());
-    //TODO, darle ataque suficiente para que si haga algo
+    Axe axe2 = new Axe("axe2",40,1,2);
+    fighter.addItem(axe2);
+    axe2.equipTo(fighter);
+    assertEquals(axe2,fighter.getEquippedItem());
+    assertEquals(fighter,axe2.getOwner());
+    assertNull(axe.getOwner());
+    fighter.attack(swordMaster);
+    assertEquals(20,swordMaster.getCurrentHitPoints());
   }
 
 }

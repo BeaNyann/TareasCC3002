@@ -1,5 +1,6 @@
 package model.units;
 
+import model.items.Sword;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -169,7 +170,9 @@ public class SwordMasterTest extends AbstractTestUnit {
     axe.equipTo(fighter);
     swordMaster.attack(fighter);
     assertEquals(25,fighter.getCurrentHitPoints());
-    //TODO siento que falta ver que pasa si le quito más de toda la vida que tiene
+    swordMaster.attack(fighter); //le quedan 10 de vida
+    swordMaster.attack(fighter); //la resta da -5
+    assertEquals(0,fighter.getCurrentHitPoints());
   }
 
   @Test
@@ -186,7 +189,14 @@ public class SwordMasterTest extends AbstractTestUnit {
     spear.equipTo(hero);
     swordMaster.attack(hero);
     assertEquals(40,hero.getCurrentHitPoints());
-    //TODO, darle ataque suficiente para que si haga algo
+    Sword sword2 = new Sword("sword2",40,1,2);
+    swordMaster.addItem(sword2);
+    sword2.equipTo(swordMaster);
+    assertEquals(sword2,swordMaster.getEquippedItem());
+    assertEquals(swordMaster,sword2.getOwner());
+    assertNull(sword.getOwner());
+    swordMaster.attack(hero);
+    assertEquals(20,hero.getCurrentHitPoints());
   }
 
   @Test
@@ -203,7 +213,9 @@ public class SwordMasterTest extends AbstractTestUnit {
     magicbook.equipTo(sorcerer);
     swordMaster.attack(sorcerer);
     assertEquals(25,sorcerer.getCurrentHitPoints());
-    //TODO siento que falta ver que pasa si le quito más de toda la vida que tiene
+    swordMaster.attack(sorcerer); //le quedan 10 de vida
+    swordMaster.attack(sorcerer); //la resta da -5
+    assertEquals(0,sorcerer.getCurrentHitPoints());
   }
 
   @Test

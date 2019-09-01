@@ -27,6 +27,9 @@ public class Sorcerer extends AbstractUnit {
   @Override
   public void equipMagicBook(final MagicBook magicbook) {
     if(this.items.contains(magicbook)) {
+      if(equippedItem!=null){
+        equippedItem.setOwner(null);
+      }
       equippedItem = magicbook;
       magicbook.setOwner(this);
     }

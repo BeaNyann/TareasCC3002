@@ -35,6 +35,9 @@ public class Cleric extends AbstractUnit {
   @Override
   public void equipStaff(final Staff staff) {
     if(this.items.contains(staff)){
+      if(equippedItem!=null){
+        equippedItem.setOwner(null);
+      }
       equippedItem = staff;
       staff.setOwner(this);
     }

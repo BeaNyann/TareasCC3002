@@ -148,7 +148,9 @@ public class SorcererTest extends AbstractTestUnit {
         bow.equipTo(archer);
         sorcerer.attack(archer);
         assertEquals(25,archer.getCurrentHitPoints());
-        //TODO siento que falta ver que pasa si le quito más de toda la vida que tiene
+        sorcerer.attack(archer); //le quedan 10 de vida
+        sorcerer.attack(archer); //la resta da -5
+        assertEquals(0,archer.getCurrentHitPoints());
     }
 
     @Test
@@ -165,7 +167,9 @@ public class SorcererTest extends AbstractTestUnit {
         staff.equipTo(cleric);
         sorcerer.attack(cleric);
         assertEquals(25,cleric.getCurrentHitPoints());
-        //TODO siento que falta ver que pasa si le quito más de toda la vida que tiene
+        sorcerer.attack(cleric); //le quedan 10 de vida
+        sorcerer.attack(cleric); //la resta da -5
+        assertEquals(0,cleric.getCurrentHitPoints());
     }
 
     @Test
@@ -182,7 +186,9 @@ public class SorcererTest extends AbstractTestUnit {
         axe.equipTo(fighter);
         sorcerer.attack(fighter);
         assertEquals(25,fighter.getCurrentHitPoints());
-        //TODO siento que falta ver que pasa si le quito más de toda la vida que tiene
+        sorcerer.attack(fighter); //le quedan 10 de vida
+        sorcerer.attack(fighter); //la resta da -5
+        assertEquals(0,fighter.getCurrentHitPoints());
     }
 
     @Test
@@ -199,7 +205,9 @@ public class SorcererTest extends AbstractTestUnit {
         spear.equipTo(hero);
         sorcerer.attack(hero);
         assertEquals(25,hero.getCurrentHitPoints());
-        //TODO siento que falta ver que pasa si le quito más de toda la vida que tiene
+        sorcerer.attack(hero); //le quedan 10 de vida
+        sorcerer.attack(hero); //la resta da -5
+        assertEquals(0,hero.getCurrentHitPoints());
     }
 
     @Test
@@ -228,6 +236,8 @@ public class SorcererTest extends AbstractTestUnit {
         sword.equipTo(swordMaster);
         sorcerer.attack(swordMaster);
         assertEquals(25,swordMaster.getCurrentHitPoints());
-        //TODO siento que falta ver que pasa si le quito más de toda la vida que tiene
+        sorcerer.attack(swordMaster); //le quedan 10 de vida
+        sorcerer.attack(swordMaster); //la resta da -5
+        assertEquals(0,swordMaster.getCurrentHitPoints());
     }
 }
