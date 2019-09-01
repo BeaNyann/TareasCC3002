@@ -156,7 +156,6 @@ public abstract class AbstractUnit implements IUnit {
       this.unequipItem();
     }
     this.items.remove(item);
-    //TODO testear lo que agregué de que esté equipado... y el intercambio en general creo
   }
 
   public void attack(IUnit unit){
