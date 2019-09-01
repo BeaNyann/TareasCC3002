@@ -85,6 +85,18 @@ public class SorcererTest extends AbstractTestUnit {
         axe.equipTo(sorcerer);
         assertNull(sorcerer.getEquippedItem());
     }
+
+    @Override
+    public void testRemoveEquippedObj() {
+        sorcerer.addItem(magicbook);
+        magicbook.equipTo(sorcerer);
+        assertEquals(sorcerer,magicbook.getOwner());
+        assertEquals(magicbook,sorcerer.equippedItem);
+        sorcerer.removeItem(magicbook);
+        assertNull(sorcerer.getEquippedItem());
+        assertNull(magicbook.getOwner());
+    }
+
     @Test
     @Override
     public void FailEquipUnequipSpearTest(){

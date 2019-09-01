@@ -74,6 +74,18 @@ public class ClericTest extends AbstractTestUnit {
 
   @Test
   @Override
+  public void testRemoveEquippedObj() {
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    assertEquals(cleric,staff.getOwner());
+    assertEquals(staff,cleric.equippedItem);
+    cleric.removeItem(staff);
+    assertNull(cleric.getEquippedItem());
+    assertNull(staff.getOwner());
+  }
+
+  @Test
+  @Override
   public void FailEquipUnequipSpearTest(){
     assertNull(cleric.getEquippedItem());
     cleric.unequipItem();

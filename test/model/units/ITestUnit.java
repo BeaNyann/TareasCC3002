@@ -143,7 +143,10 @@ public interface ITestUnit {
   @Test
   void testAddRemoveObj();
 
-  /**
+    @Test
+    void testRemoveEquippedObj();
+
+    /**
    * Checks if the unit moves correctly
    */
   @Test

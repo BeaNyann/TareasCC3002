@@ -24,6 +24,9 @@ public class AlpacaTest extends AbstractTestUnit {
   public void testRecieveNoSpaceObj() {}
 
   @Override
+  public void testRemoveEquippedObj() {}
+
+  @Override
   public void testAttackArcher() {}
 
   @Override
@@ -61,4 +64,6 @@ public class AlpacaTest extends AbstractTestUnit {
 
   @Override
   public void FailEquipUnequipAxeTest() {}
+
+
 }

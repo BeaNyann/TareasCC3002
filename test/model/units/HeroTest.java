@@ -83,6 +83,18 @@ public class HeroTest extends AbstractTestUnit {
     axe.equipTo(hero);
     assertNull(hero.getEquippedItem());
   }
+
+  @Override
+  public void testRemoveEquippedObj() {
+    hero.addItem(spear);
+    spear.equipTo(hero);
+    assertEquals(hero,spear.getOwner());
+    assertEquals(spear,hero.equippedItem);
+    hero.removeItem(spear);
+    assertNull(hero.getEquippedItem());
+    assertNull(spear.getOwner());
+  }
+
   @Test
   @Override
   public void FailEquipUnequipMagicBookTest(){

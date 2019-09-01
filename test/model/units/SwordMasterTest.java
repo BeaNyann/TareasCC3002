@@ -82,6 +82,18 @@ public class SwordMasterTest extends AbstractTestUnit {
     axe.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
   }
+
+  @Override
+  public void testRemoveEquippedObj() {
+    swordMaster.addItem(sword);
+    sword.equipTo(swordMaster);
+    assertEquals(swordMaster,sword.getOwner());
+    assertEquals(sword,swordMaster.equippedItem);
+    swordMaster.removeItem(sword);
+    assertNull(swordMaster.getEquippedItem());
+    assertNull(sword.getOwner());
+  }
+
   @Test
   @Override
   public void FailEquipUnequipSpearTest(){

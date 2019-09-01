@@ -50,6 +50,19 @@ public class FighterTest extends AbstractTestUnit {
     axe.equipTo(fighter);
     assertNull(fighter.getEquippedItem());
   }
+
+  @Test
+  @Override
+  public void testRemoveEquippedObj() {
+    fighter.addItem(axe);
+    axe.equipTo(fighter);
+    assertEquals(fighter,axe.getOwner());
+    assertEquals(axe,fighter.equippedItem);
+    fighter.removeItem(axe);
+    assertNull(fighter.getEquippedItem());
+    assertNull(axe.getOwner());
+  }
+
   @Test
   @Override
   public void FailEquipUnequipBowTest(){
