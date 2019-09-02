@@ -57,7 +57,9 @@ public interface ITestUnit {
 
   void checkEquippedBow(Bow bow);
 
-  void checkEquippedMagicBook(MagicBook magicbook);
+  void checkEquippedDarkMagicBook(DarkMagicBook darkMagicBook);
+  void checkEquippedLightMagicBook(LightMagicBook lightMagicBook);
+  void checkEquippedSpiritMagicBook(SpiritMagicBook spiritMagicBook);
 
   void checkEquippedSpear(Spear spear);
 
@@ -103,15 +105,27 @@ public interface ITestUnit {
   Bow getBow();
 
   @Test
-  void equipUnequipMagicBookTest();
+  void equipUnequipDarkMagicBookTest();
+  @Test
+  void equipUnequipLightMagicBookTest();
+  @Test
+  void equipUnequipSpiritMagicBookTest();
 
-  MagicBook getMagicBook();
+  DarkMagicBook getDarkMagicBook();
+  LightMagicBook getLightMagicBook();
+  SpiritMagicBook getSpiritMagicBook();
 
   @Test
   void FailEquipUnequipSpearTest();
 
   @Test
-  void FailEquipUnequipMagicBookTest();
+  void FailEquipUnequipDarkMagicBookTest();
+
+  @Test
+  void FailEquipUnequipLightMagicBookTest();
+
+  @Test
+  void FailEquipUnequipSpiritMagicBookTest();
 
   @Test
   void FailEquipUnequipBowTest();
@@ -143,8 +157,8 @@ public interface ITestUnit {
   @Test
   void testAddRemoveObj();
 
-    @Test
-    void testRemoveEquippedObj();
+  @Test
+  void testRemoveEquippedObj();
 
     /**
    * Checks if the unit moves correctly
@@ -175,7 +189,13 @@ public interface ITestUnit {
   void testAttackHero();
 
   @Test
-  void testAttackSorcerer();
+  void testAttackDarkSorcerer();
+
+  @Test
+  void testAttackLightSorcerer();
+
+  @Test
+  void testAttackSpiritSorcerer();
 
   @Test
   void testAttackSwordMaster();

@@ -26,7 +26,9 @@ public abstract class AbstractTestUnit implements ITestUnit {
   protected Sword sword;
   protected Staff staff;
   protected Spear spear;
-  protected MagicBook magicbook;
+  protected DarkMagicBook darkMagicBook;
+  protected LightMagicBook lightMagicBook;
+  protected SpiritMagicBook spiritMagicBook;
 
   @Override
   public void setTargetAlpaca() {
@@ -71,7 +73,9 @@ public abstract class AbstractTestUnit implements ITestUnit {
     this.spear = new Spear("Spear", 10, 1, 2);
     this.staff = new Staff("Staff", 10, 1, 2);
     this.bow = new Bow("Bow", 10, 2, 3);
-    this.magicbook = new MagicBook("MagicBook", 10, 1, 2);
+    this.darkMagicBook = new DarkMagicBook("DarkMagicBook", 10, 1, 2);
+    this.lightMagicBook = new LightMagicBook("LightMagicBook", 10, 1, 2);
+    this.spiritMagicBook = new SpiritMagicBook("SpiritMagicBook", 10, 1, 2);
   }
 
   /**
@@ -113,9 +117,23 @@ public abstract class AbstractTestUnit implements ITestUnit {
   }
 
   @Override
-  public void checkEquippedMagicBook(MagicBook magicbook) {
+  public void checkEquippedDarkMagicBook(DarkMagicBook darkMagicBook) {
     assertNull(getTestUnit().getEquippedItem());
-    getTestUnit().equipMagicBook(magicbook);
+    getTestUnit().equipDarkMagicBook(darkMagicBook);
+    assertNull(getTestUnit().getEquippedItem());
+  }
+
+  @Override
+  public void checkEquippedLightMagicBook(LightMagicBook lightMagicBook) {
+    assertNull(getTestUnit().getEquippedItem());
+    getTestUnit().equipLightMagicBook(lightMagicBook);
+    assertNull(getTestUnit().getEquippedItem());
+  }
+
+  @Override
+  public void checkEquippedSpiritMagicBook(SpiritMagicBook spiritMagicBook) {
+    assertNull(getTestUnit().getEquippedItem());
+    getTestUnit().equipSpiritMagicBook(spiritMagicBook);
     assertNull(getTestUnit().getEquippedItem());
   }
 
@@ -215,16 +233,38 @@ public abstract class AbstractTestUnit implements ITestUnit {
 
   @Override
   @Test
-  public void equipUnequipMagicBookTest() {
-    checkEquippedMagicBook(getMagicBook());
+  public void equipUnequipDarkMagicBookTest() {
+    checkEquippedDarkMagicBook(getDarkMagicBook());
+  }
+
+  @Override
+  @Test
+  public void equipUnequipLightMagicBookTest() {
+    checkEquippedLightMagicBook(getLightMagicBook());
+  }
+
+  @Override
+  @Test
+  public void equipUnequipSpiritMagicBookTest() {
+    checkEquippedSpiritMagicBook(getSpiritMagicBook());
   }
 
   /**
    * @return the test magicbook
    */
   @Override
-  public MagicBook getMagicBook() {
-    return magicbook;
+  public DarkMagicBook getDarkMagicBook() {
+    return darkMagicBook;
+  }
+
+  @Override
+  public LightMagicBook getLightMagicBook() {
+    return lightMagicBook;
+  }
+
+  @Override
+  public SpiritMagicBook getSpiritMagicBook() {
+    return spiritMagicBook;
   }
 
   @Override

@@ -61,7 +61,11 @@ public interface IUnit {
 
   void equipBow(Bow bow);
 
-  void equipMagicBook(MagicBook magicbook);
+  void equipDarkMagicBook(DarkMagicBook darkMagicBook);
+
+  void equipLightMagicBook(LightMagicBook lightMagicBook);
+
+  void equipSpiritMagicBook(SpiritMagicBook spiritMagicBook);
 
   void equipSpear(Spear spear);
 
@@ -81,7 +85,11 @@ public interface IUnit {
 
   void attackedByBow(Bow bow);
 
-  void attackedByMagicBook(MagicBook magicBook);
+  void attackedByDarkMagicBook(DarkMagicBook darkMagicBook);
+
+  void attackedByLightMagicBook(LightMagicBook lightMagicBook);
+
+  void attackedBySpiritMagicBook(SpiritMagicBook spiritMagicBook);
 
   void attackedBySpear(Spear spear);
 

@@ -98,14 +98,40 @@ public class HeroTest extends AbstractTestUnit {
 
   @Test
   @Override
-  public void FailEquipUnequipMagicBookTest(){
+  public void FailEquipUnequipSpiritMagicBookTest(){
     assertNull(hero.getEquippedItem());
     hero.unequipItem();
     assertNull(hero.getEquippedItem());
-    magicbook.equipTo(hero);
+    spiritMagicBook.equipTo(hero);
     assertNull(hero.getEquippedItem());
-    hero.addItem(magicbook);
-    magicbook.equipTo(hero);
+    hero.addItem(spiritMagicBook);
+    spiritMagicBook.equipTo(hero);
+    assertNull(hero.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void FailEquipUnequipDarkMagicBookTest(){
+    assertNull(hero.getEquippedItem());
+    hero.unequipItem();
+    assertNull(hero.getEquippedItem());
+    darkMagicBook.equipTo(hero);
+    assertNull(hero.getEquippedItem());
+    hero.addItem(darkMagicBook);
+    darkMagicBook.equipTo(hero);
+    assertNull(hero.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void FailEquipUnequipLightMagicBookTest(){
+    assertNull(hero.getEquippedItem());
+    hero.unequipItem();
+    assertNull(hero.getEquippedItem());
+    lightMagicBook.equipTo(hero);
+    assertNull(hero.getEquippedItem());
+    hero.addItem(lightMagicBook);
+    lightMagicBook.equipTo(hero);
     assertNull(hero.getEquippedItem());
   }
   @Test
@@ -196,7 +222,7 @@ public class HeroTest extends AbstractTestUnit {
 
   @Test
   @Override
-  public void testAttackSorcerer() {
+  public void testAttackDarkSorcerer() {
     Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,0));
     hero.attack(sorcerer);
     assertEquals(50, sorcerer.getCurrentHitPoints());
@@ -204,8 +230,46 @@ public class HeroTest extends AbstractTestUnit {
     spear.equipTo(hero);
     hero.attack(sorcerer);
     assertEquals(40, sorcerer.getCurrentHitPoints());
-    sorcerer.addItem(magicbook);
-    magicbook.equipTo(sorcerer);
+    sorcerer.addItem(darkMagicBook);
+    darkMagicBook.equipTo(sorcerer);
+    hero.attack(sorcerer);
+    assertEquals(25,sorcerer.getCurrentHitPoints());
+    hero.attack(sorcerer); //le quedan 10 de vida
+    hero.attack(sorcerer); //la resta da -5
+    assertEquals(0,sorcerer.getCurrentHitPoints());
+  }
+
+  @Test
+  @Override
+  public void testAttackLightSorcerer() {
+    Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,0));
+    hero.attack(sorcerer);
+    assertEquals(50, sorcerer.getCurrentHitPoints());
+    hero.addItem(spear);
+    spear.equipTo(hero);
+    hero.attack(sorcerer);
+    assertEquals(40, sorcerer.getCurrentHitPoints());
+    sorcerer.addItem(lightMagicBook);
+    lightMagicBook.equipTo(sorcerer);
+    hero.attack(sorcerer);
+    assertEquals(25,sorcerer.getCurrentHitPoints());
+    hero.attack(sorcerer); //le quedan 10 de vida
+    hero.attack(sorcerer); //la resta da -5
+    assertEquals(0,sorcerer.getCurrentHitPoints());
+  }
+
+  @Test
+  @Override
+  public void testAttackSpiritSorcerer() {
+    Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,0));
+    hero.attack(sorcerer);
+    assertEquals(50, sorcerer.getCurrentHitPoints());
+    hero.addItem(spear);
+    spear.equipTo(hero);
+    hero.attack(sorcerer);
+    assertEquals(40, sorcerer.getCurrentHitPoints());
+    sorcerer.addItem(spiritMagicBook);
+    spiritMagicBook.equipTo(sorcerer);
     hero.attack(sorcerer);
     assertEquals(25,sorcerer.getCurrentHitPoints());
     hero.attack(sorcerer); //le quedan 10 de vida

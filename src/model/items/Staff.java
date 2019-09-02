@@ -36,7 +36,15 @@ public class Staff extends AbstractItem {
   public void attackWith(IUnit unit) {}
 
   @Override
-  public void weAttackedByMagicBook(MagicBook magicbook) {
-    this.getOwner().setBigDamage(magicbook.getPower());
+  public void weAttackedByDarkMagicBook(DarkMagicBook darkMagicBook) {
+    this.getOwner().setBigDamage(darkMagicBook.getPower());
+  }
+  @Override
+  public void weAttackedByLightMagicBook(LightMagicBook lightMagicBook) {
+    this.getOwner().setBigDamage(lightMagicBook.getPower());
+  }
+  @Override
+  public void weAttackedBySpiritMagicBook(SpiritMagicBook spiritMagicBook) {
+    this.getOwner().setBigDamage(spiritMagicBook.getPower());
   }
 }

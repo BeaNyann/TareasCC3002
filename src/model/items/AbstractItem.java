@@ -88,10 +88,20 @@ public abstract class AbstractItem implements IEquipableItem {
   public void weAttackedBySpear(Spear spear) {
     this.getOwner().setNormalDamage(spear.getPower());
   }
+//TODO cambiar lo de getowner
+  @Override
+  public void weAttackedByDarkMagicBook(DarkMagicBook darkMagicBook) {
+    this.getOwner().setNormalDamage(darkMagicBook.getPower());
+  }
 
   @Override
-  public void weAttackedByMagicBook(MagicBook magicbook) {
-    this.getOwner().setNormalDamage(magicbook.getPower());
+  public void weAttackedByLightMagicBook(LightMagicBook lightMagicBook) {
+    this.getOwner().setNormalDamage(lightMagicBook.getPower());
+  }
+
+  @Override
+  public void weAttackedBySpiritMagicBook(SpiritMagicBook spiritMagicBook) {
+    this.getOwner().setNormalDamage(spiritMagicBook.getPower());
   }
 
   @Override

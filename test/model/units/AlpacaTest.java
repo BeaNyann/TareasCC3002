@@ -39,7 +39,13 @@ public class AlpacaTest extends AbstractTestUnit {
   public void testAttackHero() {}
 
   @Override
-  public void testAttackSorcerer() {}
+  public void testAttackDarkSorcerer() {}
+
+  @Override
+  public void testAttackLightSorcerer() {}
+
+  @Override
+  public void testAttackSpiritSorcerer() {}
 
   @Override
   public void testAttackSwordMaster() {}
@@ -51,7 +57,11 @@ public class AlpacaTest extends AbstractTestUnit {
   public void FailEquipUnequipSpearTest() {}
 
   @Override
-  public void FailEquipUnequipMagicBookTest() {}
+  public void FailEquipUnequipDarkMagicBookTest() {}
+  @Override
+  public void FailEquipUnequipLightMagicBookTest() {}
+  @Override
+  public void FailEquipUnequipSpiritMagicBookTest() {}
 
   @Override
   public void FailEquipUnequipBowTest() {}

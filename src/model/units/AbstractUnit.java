@@ -111,10 +111,6 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   @Override
-  public void equipMagicBook(MagicBook magicbook) {
-  }
-
-  @Override
   public void equipSpear(Spear spear) {
   }
 
@@ -124,6 +120,18 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public void equipSword(Sword sword) {
+  }
+
+  @Override
+  public void equipDarkMagicBook(DarkMagicBook darkMagicBook) {
+  }
+
+  @Override
+  public void equipLightMagicBook(LightMagicBook lightMagicBook) {
+  }
+
+  @Override
+  public void equipSpiritMagicBook(SpiritMagicBook spiritMagicBook) {
   }
 
   @Override
@@ -187,12 +195,32 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   @Override
-  public void attackedByMagicBook(MagicBook magicbook) {
+  public void attackedByDarkMagicBook(DarkMagicBook darkMagicBook) {
     if(this.getEquippedItem() != null){
-      this.getEquippedItem().weAttackedByMagicBook(magicbook);
+      this.getEquippedItem().weAttackedByDarkMagicBook(darkMagicBook);
     }
     else{
-      this.setNormalDamage(magicbook.getPower());
+      this.setNormalDamage(darkMagicBook.getPower());
+    }
+  }
+
+  @Override
+  public void attackedByLightMagicBook(LightMagicBook lightMagicBook) {
+    if(this.getEquippedItem() != null){
+      this.getEquippedItem().weAttackedByLightMagicBook(lightMagicBook);
+    }
+    else{
+      this.setNormalDamage(lightMagicBook.getPower());
+    }
+  }
+
+  @Override
+  public void attackedBySpiritMagicBook(SpiritMagicBook spiritMagicBook) {
+    if(this.getEquippedItem() != null){
+      this.getEquippedItem().weAttackedBySpiritMagicBook(spiritMagicBook);
+    }
+    else{
+      this.setNormalDamage(spiritMagicBook.getPower());
     }
   }
 

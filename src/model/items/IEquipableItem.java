@@ -55,7 +55,11 @@ public interface IEquipableItem {
 
   void weAttackedBySpear(Spear spear);
 
-  void weAttackedByMagicBook(MagicBook magicbook);
+  void weAttackedByDarkMagicBook(DarkMagicBook darkMagicBook);
+
+  void weAttackedByLightMagicBook(LightMagicBook lightMagicBook);
+
+  void weAttackedBySpiritMagicBook(SpiritMagicBook spiritMagicBook);
 
   void weAttackedByBow(Bow bow);
 

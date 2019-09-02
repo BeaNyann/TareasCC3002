@@ -98,14 +98,40 @@ public class ClericTest extends AbstractTestUnit {
   }
   @Test
   @Override
-  public void FailEquipUnequipMagicBookTest(){
+  public void FailEquipUnequipDarkMagicBookTest(){
     assertNull(cleric.getEquippedItem());
     cleric.unequipItem();
     assertNull(cleric.getEquippedItem());
-    magicbook.equipTo(cleric);
+    darkMagicBook.equipTo(cleric);
     assertNull(cleric.getEquippedItem());
-    cleric.addItem(magicbook);
-    magicbook.equipTo(cleric);
+    cleric.addItem(darkMagicBook);
+    darkMagicBook.equipTo(cleric);
+    assertNull(cleric.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void FailEquipUnequipLightMagicBookTest(){
+    assertNull(cleric.getEquippedItem());
+    cleric.unequipItem();
+    assertNull(cleric.getEquippedItem());
+    lightMagicBook.equipTo(cleric);
+    assertNull(cleric.getEquippedItem());
+    cleric.addItem(lightMagicBook);
+    lightMagicBook.equipTo(cleric);
+    assertNull(cleric.getEquippedItem());
+  }
+
+  @Test
+  @Override
+  public void FailEquipUnequipSpiritMagicBookTest(){
+    assertNull(cleric.getEquippedItem());
+    cleric.unequipItem();
+    assertNull(cleric.getEquippedItem());
+    spiritMagicBook.equipTo(cleric);
+    assertNull(cleric.getEquippedItem());
+    cleric.addItem(spiritMagicBook);
+    spiritMagicBook.equipTo(cleric);
     assertNull(cleric.getEquippedItem());
   }
   @Test
@@ -137,7 +163,13 @@ public class ClericTest extends AbstractTestUnit {
   public void testAttackHero() {}
 
   @Override
-  public void testAttackSorcerer() {}
+  public void testAttackDarkSorcerer() {}
+
+  @Override
+  public void testAttackLightSorcerer() {}
+
+  @Override
+  public void testAttackSpiritSorcerer() {}
 
   @Override
   public void testAttackSwordMaster() {}

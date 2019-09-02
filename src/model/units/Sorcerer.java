@@ -1,7 +1,6 @@
 package model.units;
 
-import model.items.IEquipableItem;
-import model.items.MagicBook;
+import model.items.*;
 import model.map.Location;
 
 /**
@@ -21,17 +20,51 @@ public class Sorcerer extends AbstractUnit {
   /**
    * Sets the currently equipped item of this unit.
    *
-   * @param magicbook
+   * @param darkMagicBook
    *     the item to equip
    */
   @Override
-  public void equipMagicBook(final MagicBook magicbook) {
-    if(this.items.contains(magicbook)) {
+  public void equipDarkMagicBook(final DarkMagicBook darkMagicBook) {
+    if(this.items.contains(darkMagicBook)) {
       if(equippedItem!=null){
         equippedItem.setOwner(null);
       }
-      equippedItem = magicbook;
-      magicbook.setOwner(this);
+      equippedItem = darkMagicBook;
+      darkMagicBook.setOwner(this);
+    }
+  }
+
+  /**
+   * Sets the currently equipped item of this unit.
+   *
+   * @param lightMagicBook
+   *     the item to equip
+   */
+  @Override
+  public void equipLightMagicBook(final LightMagicBook lightMagicBook) {
+    if(this.items.contains(lightMagicBook)) {
+      if(equippedItem!=null){
+        equippedItem.setOwner(null);
+      }
+      equippedItem = lightMagicBook;
+      lightMagicBook.setOwner(this);
+    }
+  }
+
+  /**
+   * Sets the currently equipped item of this unit.
+   *
+   * @param spiritMagicBook
+   *     the item to equip
+   */
+  @Override
+  public void equipSpiritMagicBook(final SpiritMagicBook spiritMagicBook) {
+    if(this.items.contains(spiritMagicBook)) {
+      if(equippedItem!=null){
+        equippedItem.setOwner(null);
+      }
+      equippedItem = spiritMagicBook;
+      spiritMagicBook.setOwner(this);
     }
   }
 }
