@@ -178,7 +178,6 @@ public abstract class AbstractUnit implements IUnit {
             this.getEquippedItem().getMinRange() <= this.getLocation().distanceTo(unit.getLocation()) &&
             this.getLocation().distanceTo(unit.getLocation()) <= this.getEquippedItem().getMaxRange() &&
             this.getCurrentHitPoints()> 0) {
-      //TODO testear lo de la vida
       this.equippedItem.attackWith(unit);
     }
   }

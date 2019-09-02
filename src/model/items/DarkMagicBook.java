@@ -1,15 +1,23 @@
 package model.items;
 
 import model.units.IUnit;
-
+/**
+ * This class represents a <i>DarkMagicBook</i> type item.
+ * <p>
+ * DarkMagicBooks are strong against all the not-Magic weapons and against SpiritMagicBooks
+ * but weak against LightMagicBooks.
+ *
+ * @author Beatriz Graboloza
+ * @since 1.0
+ */
 public class DarkMagicBook extends AbstractItem {
     /**
-     * Constructor for a default item without any special behaviour.
+     * Creates a new DarkMagicBook item.
      *
-     * @param name     the name of the item
-     * @param power    the power of the item (this could be the amount of damage or healing the item does)
-     * @param minRange the minimum range of the item
-     * @param maxRange the maximum range of the item
+     * @param name     the name of the DarkMagicBook.
+     * @param power    the base damage of the DarkMagicBook.
+     * @param minRange the minimum range of the DarkMagicBook.
+     * @param maxRange the maximum range of the DarkMagicBook.
      */
     public DarkMagicBook(String name, double power, int minRange, int maxRange) {
         super(name, power, minRange, maxRange);

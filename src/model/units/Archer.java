@@ -7,7 +7,7 @@ import model.map.Location;
 /**
  * This class represents an <i>Archer</i> type unit.
  * <p>
- * This kind of unit <b>can only use bows</b>.
+ * An <i>Archer</i> is a unit that <b>can only use Bow type weapons</b>.
  *
  * @author Beatriz Graboloza
  * @since 1.0
@@ -15,20 +15,16 @@ import model.map.Location;
 public class Archer extends AbstractUnit {
 
   /**
-   * Creates a new archer
+   * Creates a new Archer unit.
    *
-   * @param hitPoints
-   *     maximum hit points of the unit
-   * @param movement
-   *     the amount of cells this unit can move
-   * @param position
-   *     the initial position of this unit
-   * @param items
-   *     the items carried by this unit
+   * @param hitPoints   the amount of damage this unit can receive.
+   * @param movement    the amount of cells this unit can move.
+   * @param location    current position of the unit.
+   * @param items       the items carried by this unit.
    */
-  public Archer(final int hitPoints, final int movement, final Location position,
+  public Archer(final int hitPoints, final int movement, final Location location,
       final IEquipableItem... items) {
-    super(hitPoints, movement, position, 3, items);
+    super(hitPoints, movement, location, 3, items);
   }
 
   /**

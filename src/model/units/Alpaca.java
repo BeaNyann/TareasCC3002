@@ -15,14 +15,11 @@ import model.map.Location;
 public class Alpaca extends AbstractUnit {
 
   /**
-   * Creates a new Alpaca.
+   * Creates a new Alpaca unit.
    *
-   * @param hitPoints
-   *     the amount of damage this unit can receive
-   * @param movement
-   *     number of cells the unit can move
-   * @param location
-   *     current position of the unit
+   * @param hitPoints   the amount of damage this unit can receive.
+   * @param movement    the amount of cells this unit can move.
+   * @param location    current position of the unit.
    */
   public Alpaca(final int hitPoints, final int movement, final Location location,
       final IEquipableItem... items) {

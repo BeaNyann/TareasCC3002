@@ -4,14 +4,22 @@ import model.items.*;
 import model.map.Location;
 
 /**
- * This class represents a sorcerer type unit.
- * A Sorcerer is a unit that can only use magic book type weapons.
+ * This class represents a <i>Sorcerer</i> type unit.
+ * <p>
+ * A <i>Sorcerer</i> is a unit that <b>can only use MagicBook type weapons</b>.
  *
  * @author Beatriz Graboloza
  * @since 1.0
  */
 public class Sorcerer extends AbstractUnit {
-
+  /**
+   * Creates a new Sorcerer unit.
+   *
+   * @param hitPoints   the amount of damage this unit can receive.
+   * @param movement    the amount of cells this unit can move.
+   * @param location    current position of the unit.
+   * @param items       the items carried by this unit.
+   */
   public Sorcerer(final int hitPoints, final int movement, final Location location,
                   IEquipableItem... items) {
     super(hitPoints, movement, location, 3, items);

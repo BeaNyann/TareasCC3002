@@ -3,26 +3,22 @@ package model.items;
 import model.units.IUnit;
 
 /**
- * This class represents an Axe.
+ * This class represents an <i>Axe</i> type item.
  * <p>
- * Axes are strong against spears but weak against swords.
+ * Axes are strong against Spears and MagicBooks but weak against Swords.
  *
- * @author IBeatriz Graboloza
+ * @author Beatriz Graboloza
  * @since 1.0
  */
 public class Axe extends AbstractItem {
 
   /**
-   * Creates a new Axe item
+   * Creates a new Axe item.
    *
-   * @param name
-   *     the name of the Axe
-   * @param power
-   *     the damage of the axe
-   * @param minRange
-   *     the minimum range of the axe
-   * @param maxRange
-   *     the maximum range of the axe
+   * @param name      the name of the Axe.
+   * @param power     the base damage of the Axe.
+   * @param minRange  the minimum range of the Axe.
+   * @param maxRange  the maximum range of the Axe.
    */
   public Axe(final String name, final int power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange);

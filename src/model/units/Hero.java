@@ -5,9 +5,10 @@ import model.items.Spear;
 import model.map.Location;
 
 /**
- * A <i>Hero</i> is a special kind of unit, the player that defeats this unit wins the game.
+ * This class represents a <i>Hero</i> type unit.
  * <p>
- * This unit <b>can only use spear weapons</b>.
+ * A <i>Hero</i> is a unit that <b>can only use Spear type weapons</b>.
+ * This is a special kind of unit, the player that defeats this unit wins the game.
  *
  * @author Beatriz Graboloza
  * @since 1.0
@@ -15,12 +16,12 @@ import model.map.Location;
 public class Hero extends AbstractUnit {
 
   /**
-   * Creates a new Unit.
+   * Creates a new Hero unit.
    *
-   * @param hitPoints
-   *     the maximum amount of damage a unit can sustain
-   * @param movement
-   *     the number of panels a unit can move
+   * @param hitPoints   the amount of damage this unit can receive.
+   * @param movement    the amount of cells this unit can move.
+   * @param location    current position of the unit.
+   * @param items       the items carried by this unit.
    */
   public Hero(final int hitPoints, final int movement, final Location location,
       IEquipableItem... items) {

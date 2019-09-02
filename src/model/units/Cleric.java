@@ -5,8 +5,10 @@ import model.items.Staff;
 import model.map.Location;
 
 /**
- * This class represents a cleric type unit. A cleric can only use staff type weapons, which means
- * that it can receive attacks but can't counter attack any of those.
+ * This class represents a <i>Cleric</i> type unit.
+ * <p>
+ * A <i>Cleric</i> is a unit that <b>can only use Staff type weapons</b>.
+ * Which means that it can receive attacks but can't counter attack any of those.
  *
  * @author Beatriz Graboloza
  * @since 1.0
@@ -14,12 +16,12 @@ import model.map.Location;
 public class Cleric extends AbstractUnit {
 
   /**
-   * Creates a new Unit.
+   * Creates a new Cleric unit.
    *
-   * @param hitPoints
-   *     the maximum amount of damage a unit can sustain
-   * @param movement
-   *     the number of panels a unit can move
+   * @param hitPoints   the amount of damage this unit can receive.
+   * @param movement    the amount of cells this unit can move.
+   * @param location    current position of the unit.
+   * @param items       the items carried by this unit.
    */
   public Cleric(final int hitPoints, final int movement, final Location location,
       IEquipableItem... items) {
