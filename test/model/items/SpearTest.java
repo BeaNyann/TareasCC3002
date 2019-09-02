@@ -3,6 +3,10 @@ package model.items;
 import model.map.Location;
 import model.units.Hero;
 import model.units.IUnit;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test set for spears
@@ -63,5 +67,19 @@ public class SpearTest extends AbstractTestItem {
   @Override
   public IUnit getTestUnit() {
     return hero;
+  }
+
+  @Test
+  @Override
+  public void equippedToOverloadTest() {
+    Hero hero2 = new Hero(10, 5, new Location(0, 0));
+    hero2.addItem(javelin);
+    hero.addItem(javelin);
+    assertTrue(hero.getItems().isEmpty());
+    javelin.equipTo(hero2);
+    javelin.equipTo(hero);
+    assertNull(hero.getEquippedItem());
+    assertEquals(hero2,javelin.getUser());
+    assertEquals(javelin,hero2.getEquippedItem());
   }
 }

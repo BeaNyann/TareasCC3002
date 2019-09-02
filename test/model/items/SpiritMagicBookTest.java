@@ -3,10 +3,14 @@ package model.items;
 import model.map.Location;
 import model.units.IUnit;
 import model.units.Sorcerer;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SpiritMagicBookTest extends AbstractTestItem {
     private SpiritMagicBook spiritMagicBook;
-    private SpiritMagicBook wrongSpiritMagicbook;
+    private SpiritMagicBook spiritMagicbook;
     private Sorcerer sorcerer;
 
     /**
@@ -26,7 +30,7 @@ public class SpiritMagicBookTest extends AbstractTestItem {
      */
     @Override
     public void setWrongRangeItem() {
-        wrongSpiritMagicbook = new SpiritMagicBook("Wrong Spirit Magic Book", 0, -1, -2);
+        spiritMagicbook = new SpiritMagicBook("Wrong Spirit Magic Book", 0, -1, -2);
     }
 
     /**
@@ -39,7 +43,7 @@ public class SpiritMagicBookTest extends AbstractTestItem {
 
     @Override
     public IEquipableItem getWrongTestItem() {
-        return wrongSpiritMagicbook;
+        return spiritMagicbook;
     }
 
     /**
@@ -56,6 +60,20 @@ public class SpiritMagicBookTest extends AbstractTestItem {
     @Override
     public IUnit getTestUnit() {
         return sorcerer;
+    }
+
+    @Test
+    @Override
+    public void equippedToOverloadTest() {
+        Sorcerer sorcerer2 = new Sorcerer(10, 5, new Location(0, 0));
+        sorcerer2.addItem(spiritMagicbook);
+        sorcerer.addItem(spiritMagicbook);
+        assertTrue(sorcerer.getItems().isEmpty());
+        spiritMagicbook.equipTo(sorcerer2);
+        spiritMagicbook.equipTo(sorcerer);
+        assertNull(sorcerer.getEquippedItem());
+        assertEquals(sorcerer2, spiritMagicbook.getUser());
+        assertEquals(spiritMagicbook,sorcerer2.getEquippedItem());
     }
 }
 

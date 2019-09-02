@@ -3,7 +3,6 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import model.map.Location;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -84,11 +83,11 @@ public class ArcherTest extends AbstractTestUnit {
   public void testRemoveEquippedObj() {
     archer.addItem(bow);
     bow.equipTo(archer);
-    assertEquals(archer,bow.getOwner());
+    assertEquals(archer,bow.getUser());
     assertEquals(bow,archer.equippedItem);
     archer.removeItem(bow);
     assertNull(archer.getEquippedItem());
-    assertNull(bow.getOwner());
+    assertNull(bow.getUser());
   }
 
   @Test

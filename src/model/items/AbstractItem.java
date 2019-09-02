@@ -14,7 +14,8 @@ public abstract class AbstractItem implements IEquipableItem {
   private final double power;
   protected int maxRange;
   protected int minRange;
-  private IUnit owner;
+  private IUnit user;
+  private IUnit onInventory;
 
   /**
    * Constructor for a default item without any special behaviour.
@@ -32,13 +33,23 @@ public abstract class AbstractItem implements IEquipableItem {
   }
 
   @Override
-  public IUnit getOwner() {
-    return owner;
+  public IUnit getUser() {
+    return user;
   }
 
   @Override
-  public void setOwner(IUnit owner) {
-    this.owner = owner;
+  public void setUser(IUnit owner) {
+    this.user = owner;
+  }
+
+  @Override
+  public IUnit getOnInventory() {
+    return onInventory;
+  }
+
+  @Override
+  public void setOnInventory(IUnit onInventory) {
+    this.onInventory = onInventory;
   }
 
   @Override
@@ -76,41 +87,41 @@ public abstract class AbstractItem implements IEquipableItem {
 
   @Override
   public void weAttackedBySword(Sword sword) {
-    this.getOwner().setNormalDamage(sword.getPower());
+    this.getUser().setNormalDamage(sword.getPower());
   }
 
   @Override
   public void weAttackedByStaff(Staff staff) {
-    this.getOwner().setNormalDamage(staff.getPower());
+    this.getUser().setNormalDamage(staff.getPower());
   }
 
   @Override
   public void weAttackedBySpear(Spear spear) {
-    this.getOwner().setNormalDamage(spear.getPower());
+    this.getUser().setNormalDamage(spear.getPower());
   }
-//TODO cambiar lo de getowner
+
   @Override
   public void weAttackedByDarkMagicBook(DarkMagicBook darkMagicBook) {
-    this.getOwner().setNormalDamage(darkMagicBook.getPower());
+    this.getUser().setNormalDamage(darkMagicBook.getPower());
   }
 
   @Override
   public void weAttackedByLightMagicBook(LightMagicBook lightMagicBook) {
-    this.getOwner().setNormalDamage(lightMagicBook.getPower());
+    this.getUser().setNormalDamage(lightMagicBook.getPower());
   }
 
   @Override
   public void weAttackedBySpiritMagicBook(SpiritMagicBook spiritMagicBook) {
-    this.getOwner().setNormalDamage(spiritMagicBook.getPower());
+    this.getUser().setNormalDamage(spiritMagicBook.getPower());
   }
 
   @Override
   public void weAttackedByBow(Bow bow) {
-    this.getOwner().setNormalDamage(bow.getPower());
+    this.getUser().setNormalDamage(bow.getPower());
   }
 
   @Override
   public void weAttackedByAxe(Axe axe) {
-    this.getOwner().setNormalDamage(axe.getPower());
+    this.getUser().setNormalDamage(axe.getPower());
   }
 }

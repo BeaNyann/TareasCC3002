@@ -106,12 +106,15 @@ public abstract class AbstractTestItem {
    */
   @Test
   public void equippedToTest() {
-    assertNull(getTestItem().getOwner());
+    assertNull(getTestItem().getUser());
     IUnit unit = getTestUnit();
     unit.addItem(getTestItem());
     getTestItem().equipTo(unit);
-    assertEquals(unit, getTestItem().getOwner());
+    assertEquals(unit, getTestItem().getUser());
   }
+
+  @Test
+  public void equippedToOverloadTest(){}
 
   /**
    * @return a unit that can equip the item being tested

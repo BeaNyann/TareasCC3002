@@ -24,8 +24,12 @@ public interface IEquipableItem {
   /**
    * @return the unit that has currently equipped this item
    */
-  IUnit getOwner();
-  void setOwner(IUnit unit);
+  IUnit getUser();
+  void setUser(IUnit unit);
+
+  IUnit getOnInventory();
+
+  void setOnInventory(IUnit onInventory);
 
   /**
    * @return the name of the item

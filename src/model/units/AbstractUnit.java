@@ -72,7 +72,7 @@ public abstract class AbstractUnit implements IUnit {
   @Override
   public void unequipItem() {
     if(getEquippedItem()!= null){
-      getEquippedItem().setOwner(null);
+      getEquippedItem().setUser(null);
       equippedItem = null;
     }
   }
@@ -147,6 +147,7 @@ public abstract class AbstractUnit implements IUnit {
   @Override
   public boolean receiveObj(IEquipableItem item) {
     if (this.items.size() < this.maxItems) {
+      item.setOnInventory(null);
       this.addItem(item);
       return true;
     }
@@ -155,22 +156,41 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public void addItem(IEquipableItem item){
-    this.items.add(item);
+    if(item.getOnInventory()==null) {
+      this.items.add(item);
+      item.setOnInventory(this);
+    }
   }
 
   @Override
   public void removeItem(IEquipableItem item){
-    if(this.getEquippedItem()==item){
-      this.unequipItem();
+    if(this.items.contains(item)) {
+      if (this.getEquippedItem() == item) {
+        this.unequipItem();
+      }
+      this.items.remove(item);
     }
-    this.items.remove(item);
+  }
+
+  @Override
+  public void counterAttack(IUnit unit){
+    if(this.equippedItem!=null &&
+            this.getEquippedItem().getMinRange() <= this.getLocation().distanceTo(unit.getLocation()) &&
+            this.getLocation().distanceTo(unit.getLocation()) <= this.getEquippedItem().getMaxRange() &&
+            this.getCurrentHitPoints()> 0) {
+      //TODO testear lo de la vida
+      this.equippedItem.attackWith(unit);
+    }
   }
 
   public void attack(IUnit unit){
     if(this.equippedItem!=null &&
             this.getEquippedItem().getMinRange() <= this.getLocation().distanceTo(unit.getLocation()) &&
-            this.getLocation().distanceTo(unit.getLocation()) <= this.getEquippedItem().getMaxRange()){
+            this.getLocation().distanceTo(unit.getLocation()) <= this.getEquippedItem().getMaxRange() &&
+            this.getCurrentHitPoints()> 0) {
+      //TODO testear lo de la vida
       this.equippedItem.attackWith(unit);
+      unit.counterAttack(this);
     }
   }
 

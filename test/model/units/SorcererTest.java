@@ -137,25 +137,25 @@ public class SorcererTest extends AbstractTestUnit {
     public void testRemoveEquippedObj() {
         sorcerer.addItem(darkMagicBook);
         darkMagicBook.equipTo(sorcerer);
-        assertEquals(sorcerer,darkMagicBook.getOwner());
+        assertEquals(sorcerer,darkMagicBook.getUser());
         assertEquals(darkMagicBook,sorcerer.equippedItem);
         sorcerer.removeItem(darkMagicBook);
         assertNull(sorcerer.getEquippedItem());
-        assertNull(darkMagicBook.getOwner());
+        assertNull(darkMagicBook.getUser());
         sorcerer.addItem(lightMagicBook);
         lightMagicBook.equipTo(sorcerer);
-        assertEquals(sorcerer,lightMagicBook.getOwner());
+        assertEquals(sorcerer,lightMagicBook.getUser());
         assertEquals(lightMagicBook,sorcerer.equippedItem);
         sorcerer.removeItem(lightMagicBook);
         assertNull(sorcerer.getEquippedItem());
-        assertNull(lightMagicBook.getOwner());
+        assertNull(lightMagicBook.getUser());
         sorcerer.addItem(spiritMagicBook);
         spiritMagicBook.equipTo(sorcerer);
-        assertEquals(sorcerer,spiritMagicBook.getOwner());
+        assertEquals(sorcerer,spiritMagicBook.getUser());
         assertEquals(spiritMagicBook,sorcerer.equippedItem);
         sorcerer.removeItem(spiritMagicBook);
         assertNull(sorcerer.getEquippedItem());
-        assertNull(spiritMagicBook.getOwner());
+        assertNull(spiritMagicBook.getUser());
     }
 
     @Test
@@ -464,7 +464,7 @@ public class SorcererTest extends AbstractTestUnit {
         sorcerer.attack(sorcerer2);
         assertEquals(40, sorcerer2.getCurrentHitPoints());
         LightMagicBook lightMagicBook2 = new LightMagicBook("lightMagicBook2",10,1,2);
-        sorcerer2.addItem(lightMagicBook2); //TODO se le puede asignar el mismo obj a dos units?xd, lo agrego aca, ´pq yolo, una unidad muerta esta declarada muerta? tengo que restringir las weas si tiene 0 de vida?
+        sorcerer2.addItem(lightMagicBook2); //TODO una unidad muerta esta declarada muerta? tengo que restringir las weas si tiene 0 de vida?
         lightMagicBook2.equipTo(sorcerer2);
         sorcerer.attack(sorcerer2);
         assertEquals(30, sorcerer2.getCurrentHitPoints());
@@ -532,7 +532,7 @@ public class SorcererTest extends AbstractTestUnit {
         sorcerer.attack(sorcerer2);
         assertEquals(40, sorcerer2.getCurrentHitPoints());
         DarkMagicBook darkMagicBook2 = new DarkMagicBook("darkMagicBook",10,1,2);
-        sorcerer2.addItem(darkMagicBook2); //TODO se le puede asignar el mismo obj a dos units?xd, lo agrego aca, ´pq yolo, una unidad muerta esta declarada muerta? tengo que restringir las weas si tiene 0 de vida?
+        sorcerer2.addItem(darkMagicBook2); //TODO una unidad muerta esta declarada muerta? tengo que restringir las weas si tiene 0 de vida?
         darkMagicBook2.equipTo(sorcerer2);
         sorcerer.attack(sorcerer2);
         assertEquals(30, sorcerer2.getCurrentHitPoints());
@@ -602,7 +602,7 @@ public class SorcererTest extends AbstractTestUnit {
         sorcerer.attack(sorcerer2);
         assertEquals(40, sorcerer2.getCurrentHitPoints());
         SpiritMagicBook spiritMagicBook2 = new SpiritMagicBook("spiriMagicBook2", 10, 1, 2);
-        sorcerer2.addItem(spiritMagicBook2); //TODO se le puede asignar el mismo obj a dos units?xd, lo agrego aca, ´pq yolo, una unidad muerta esta declarada muerta? tengo que restringir las weas si tiene 0 de vida?
+        sorcerer2.addItem(spiritMagicBook2); //una unidad muerta esta declarada muerta? tengo que restringir las weas si tiene 0 de vida?
         spiritMagicBook2.equipTo(sorcerer2);
         sorcerer.attack(sorcerer2);
         assertEquals(30, sorcerer2.getCurrentHitPoints());

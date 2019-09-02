@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import model.items.Axe;
-import model.items.Spear;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -58,11 +57,11 @@ public class FighterTest extends AbstractTestUnit {
   public void testRemoveEquippedObj() {
     fighter.addItem(axe);
     axe.equipTo(fighter);
-    assertEquals(fighter,axe.getOwner());
+    assertEquals(fighter,axe.getUser());
     assertEquals(axe,fighter.equippedItem);
     fighter.removeItem(axe);
     assertNull(fighter.getEquippedItem());
-    assertNull(axe.getOwner());
+    assertNull(axe.getUser());
   }
 
   @Test
@@ -294,8 +293,8 @@ public class FighterTest extends AbstractTestUnit {
     fighter.addItem(axe2);
     axe2.equipTo(fighter);
     assertEquals(axe2,fighter.getEquippedItem());
-    assertEquals(fighter,axe2.getOwner());
-    assertNull(axe.getOwner());
+    assertEquals(fighter,axe2.getUser());
+    assertNull(axe.getUser());
     fighter.attack(swordMaster);
     assertEquals(20,swordMaster.getCurrentHitPoints());
   }

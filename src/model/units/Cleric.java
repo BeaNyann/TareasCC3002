@@ -36,10 +36,10 @@ public class Cleric extends AbstractUnit {
   public void equipStaff(final Staff staff) {
     if(this.items.contains(staff)){
       if(equippedItem!=null){
-        equippedItem.setOwner(null);
+        equippedItem.setUser(null);
       }
       equippedItem = staff;
-      staff.setOwner(this);
+      staff.setUser(this);
     }
   }
 

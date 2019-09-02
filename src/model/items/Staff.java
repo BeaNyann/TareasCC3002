@@ -29,7 +29,9 @@ public class Staff extends AbstractItem {
   }
   @Override
   public void equipTo(final IUnit unit) {
-    unit.equipStaff(this);
+    if(this.getUser()==null) {
+      unit.equipStaff(this);
+    }
   }
 
   @Override
@@ -37,14 +39,14 @@ public class Staff extends AbstractItem {
 
   @Override
   public void weAttackedByDarkMagicBook(DarkMagicBook darkMagicBook) {
-    this.getOwner().setBigDamage(darkMagicBook.getPower());
+    this.getUser().setBigDamage(darkMagicBook.getPower());
   }
   @Override
   public void weAttackedByLightMagicBook(LightMagicBook lightMagicBook) {
-    this.getOwner().setBigDamage(lightMagicBook.getPower());
+    this.getUser().setBigDamage(lightMagicBook.getPower());
   }
   @Override
   public void weAttackedBySpiritMagicBook(SpiritMagicBook spiritMagicBook) {
-    this.getOwner().setBigDamage(spiritMagicBook.getPower());
+    this.getUser().setBigDamage(spiritMagicBook.getPower());
   }
 }

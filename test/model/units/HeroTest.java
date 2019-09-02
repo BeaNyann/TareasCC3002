@@ -89,11 +89,11 @@ public class HeroTest extends AbstractTestUnit {
   public void testRemoveEquippedObj() {
     hero.addItem(spear);
     spear.equipTo(hero);
-    assertEquals(hero,spear.getOwner());
+    assertEquals(hero,spear.getUser());
     assertEquals(spear,hero.equippedItem);
     hero.removeItem(spear);
     assertNull(hero.getEquippedItem());
-    assertNull(spear.getOwner());
+    assertNull(spear.getUser());
   }
 
   @Test
@@ -201,8 +201,8 @@ public class HeroTest extends AbstractTestUnit {
     hero.addItem(spear2);
     spear2.equipTo(hero);
     assertEquals(spear2,hero.getEquippedItem());
-    assertEquals(hero,spear2.getOwner());
-    assertNull(spear.getOwner());
+    assertEquals(hero,spear2.getUser());
+    assertNull(spear.getUser());
     hero.attack(fighter);
     assertEquals(20,fighter.getCurrentHitPoints());
 

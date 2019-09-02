@@ -3,6 +3,10 @@ package model.items;
 import model.map.Location;
 import model.units.IUnit;
 import model.units.Sorcerer;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LightMagicBookTest extends AbstractTestItem{
     private LightMagicBook lightMagicBook;
@@ -56,6 +60,20 @@ public class LightMagicBookTest extends AbstractTestItem{
     @Override
     public IUnit getTestUnit() {
         return sorcerer;
+    }
+
+    @Test
+    @Override
+    public void equippedToOverloadTest() {
+        Sorcerer sorcerer2 = new Sorcerer(10, 5, new Location(0, 0));
+        sorcerer2.addItem(lightMagicBook);
+        sorcerer.addItem(lightMagicBook);
+        assertTrue(sorcerer.getItems().isEmpty());
+        lightMagicBook.equipTo(sorcerer2);
+        lightMagicBook.equipTo(sorcerer);
+        assertNull(sorcerer.getEquippedItem());
+        assertEquals(sorcerer2,lightMagicBook.getUser());
+        assertEquals(lightMagicBook,sorcerer2.getEquippedItem());
     }
 }
 

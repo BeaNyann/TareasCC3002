@@ -19,7 +19,9 @@ public class LightMagicBook extends AbstractItem{
 
     @Override
     public void equipTo(IUnit unit) {
-        unit.equipLightMagicBook(this);
+        if(this.getUser()==null) {
+            unit.equipLightMagicBook(this);
+        }
     }
 
     @Override
@@ -29,36 +31,36 @@ public class LightMagicBook extends AbstractItem{
 
     @Override
     public void weAttackedBySword(Sword sword) {
-        this.getOwner().setBigDamage(sword.getPower());
+        this.getUser().setBigDamage(sword.getPower());
     }
 
     @Override
     public void weAttackedByStaff(Staff staff) {
-        this.getOwner().setBigDamage(staff.getPower());
+        this.getUser().setBigDamage(staff.getPower());
     }
 
     @Override
     public void weAttackedBySpear(Spear spear) {
-        this.getOwner().setBigDamage(spear.getPower());
+        this.getUser().setBigDamage(spear.getPower());
     }
 
     @Override
     public void weAttackedByBow(Bow bow) {
-        this.getOwner().setBigDamage(bow.getPower());
+        this.getUser().setBigDamage(bow.getPower());
     }
 
     @Override
     public void weAttackedByAxe(Axe axe) {
-        this.getOwner().setBigDamage(axe.getPower());
+        this.getUser().setBigDamage(axe.getPower());
     }
 
     @Override
     public void weAttackedByDarkMagicBook(DarkMagicBook darkMagicBook) {
-        this.getOwner().setSmallDamage(darkMagicBook.getPower());
+        this.getUser().setSmallDamage(darkMagicBook.getPower());
     }
 
     @Override
     public void weAttackedBySpiritMagicBook(SpiritMagicBook spiritMagicBook) {
-        this.getOwner().setBigDamage(spiritMagicBook.getPower());
+        this.getUser().setBigDamage(spiritMagicBook.getPower());
     }
 }

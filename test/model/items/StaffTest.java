@@ -3,6 +3,10 @@ package model.items;
 import model.map.Location;
 import model.units.Cleric;
 import model.units.IUnit;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test set for staffs
@@ -63,5 +67,19 @@ public class StaffTest extends AbstractTestItem {
   @Override
   public IUnit getTestUnit() {
     return cleric;
+  }
+
+  @Test
+  @Override
+  public void equippedToOverloadTest() {
+    Cleric cleric2 = new Cleric(10, 5, new Location(0, 0));
+    cleric2.addItem(staff);
+    cleric.addItem(staff);
+    assertTrue(cleric.getItems().isEmpty());
+    staff.equipTo(cleric2);
+    staff.equipTo(cleric);
+    assertNull(cleric.getEquippedItem());
+    assertEquals(cleric2,staff.getUser());
+    assertEquals(staff,cleric2.getEquippedItem());
   }
 }

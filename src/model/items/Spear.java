@@ -26,7 +26,9 @@ public class Spear extends AbstractItem {
 
   @Override
   public void equipTo(final IUnit unit) {
-    unit.equipSpear(this);
+    if(this.getUser()==null) {
+      unit.equipSpear(this);
+    }
   }
 
   @Override
@@ -36,24 +38,24 @@ public class Spear extends AbstractItem {
 
   @Override
   public void weAttackedBySword(Sword sword) {
-    this.getOwner().setSmallDamage(sword.getPower());
+    this.getUser().setSmallDamage(sword.getPower());
   }
 
   @Override
   public void weAttackedByDarkMagicBook(DarkMagicBook darkMagicBook) {
-    this.getOwner().setBigDamage(darkMagicBook.getPower());
+    this.getUser().setBigDamage(darkMagicBook.getPower());
   }
   @Override
   public void weAttackedByLightMagicBook(LightMagicBook lightMagicBook) {
-    this.getOwner().setBigDamage(lightMagicBook.getPower());
+    this.getUser().setBigDamage(lightMagicBook.getPower());
   }
   @Override
   public void weAttackedBySpiritMagicBook(SpiritMagicBook spiritMagicBook) {
-    this.getOwner().setBigDamage(spiritMagicBook.getPower());
+    this.getUser().setBigDamage(spiritMagicBook.getPower());
   }
 
   @Override
   public void weAttackedByAxe(Axe axe) {
-    this.getOwner().setBigDamage(axe.getPower());
+    this.getUser().setBigDamage(axe.getPower());
   }
 }

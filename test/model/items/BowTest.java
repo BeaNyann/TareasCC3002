@@ -1,11 +1,11 @@
 package model.items;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import model.map.Location;
 import model.units.Archer;
 import model.units.IUnit;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test set for bows
@@ -76,5 +76,19 @@ public class BowTest extends AbstractTestItem {
   @Override
   public IUnit getTestUnit() {
     return archer;
+  }
+
+  @Test
+  @Override
+  public void equippedToOverloadTest() {
+    Archer archer2 = new Archer(10, 5, new Location(0, 0));
+    archer2.addItem(bow);
+    archer.addItem(bow);
+    assertTrue(archer.getItems().isEmpty());
+    bow.equipTo(archer2);
+    bow.equipTo(archer);
+    assertNull(archer.getEquippedItem());
+    assertEquals(archer2,bow.getUser());
+    assertEquals(bow,archer2.getEquippedItem());
   }
 }

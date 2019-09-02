@@ -103,6 +103,6 @@ public interface IUnit {
 
   void setSmallDamage(double power);
 
-
+  void counterAttack(IUnit unit);
 }
 

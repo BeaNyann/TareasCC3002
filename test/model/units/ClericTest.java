@@ -77,11 +77,11 @@ public class ClericTest extends AbstractTestUnit {
   public void testRemoveEquippedObj() {
     cleric.addItem(staff);
     staff.equipTo(cleric);
-    assertEquals(cleric,staff.getOwner());
+    assertEquals(cleric,staff.getUser());
     assertEquals(staff,cleric.equippedItem);
     cleric.removeItem(staff);
     assertNull(cleric.getEquippedItem());
-    assertNull(staff.getOwner());
+    assertNull(staff.getUser());
   }
 
   @Test

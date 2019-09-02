@@ -3,6 +3,10 @@ package model.items;
 import model.map.Location;
 import model.units.Fighter;
 import model.units.IUnit;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test set for Axes
@@ -57,5 +61,19 @@ class AxeTest extends AbstractTestItem {
   @Override
   public IUnit getTestUnit() {
     return fighter;
+  }
+
+  @Test
+  @Override
+  public void equippedToOverloadTest() {
+    Fighter fighter2 = new Fighter(10, 5, new Location(0, 0));
+    fighter2.addItem(axe);
+    fighter.addItem(axe);
+    assertTrue(fighter.getItems().isEmpty());
+    axe.equipTo(fighter2);
+    axe.equipTo(fighter);
+    assertNull(fighter.getEquippedItem());
+    assertEquals(fighter2,axe.getUser());
+    assertEquals(axe,fighter2.getEquippedItem());
   }
 }

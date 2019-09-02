@@ -27,10 +27,10 @@ public class Sorcerer extends AbstractUnit {
   public void equipDarkMagicBook(final DarkMagicBook darkMagicBook) {
     if(this.items.contains(darkMagicBook)) {
       if(equippedItem!=null){
-        equippedItem.setOwner(null);
+        equippedItem.setUser(null);
       }
       equippedItem = darkMagicBook;
-      darkMagicBook.setOwner(this);
+      darkMagicBook.setUser(this);
     }
   }
 
@@ -44,10 +44,10 @@ public class Sorcerer extends AbstractUnit {
   public void equipLightMagicBook(final LightMagicBook lightMagicBook) {
     if(this.items.contains(lightMagicBook)) {
       if(equippedItem!=null){
-        equippedItem.setOwner(null);
+        equippedItem.setUser(null);
       }
       equippedItem = lightMagicBook;
-      lightMagicBook.setOwner(this);
+      lightMagicBook.setUser(this);
     }
   }
 
@@ -61,10 +61,10 @@ public class Sorcerer extends AbstractUnit {
   public void equipSpiritMagicBook(final SpiritMagicBook spiritMagicBook) {
     if(this.items.contains(spiritMagicBook)) {
       if(equippedItem!=null){
-        equippedItem.setOwner(null);
+        equippedItem.setUser(null);
       }
       equippedItem = spiritMagicBook;
-      spiritMagicBook.setOwner(this);
+      spiritMagicBook.setUser(this);
     }
   }
 }
