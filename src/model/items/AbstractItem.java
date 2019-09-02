@@ -91,11 +91,6 @@ public abstract class AbstractItem implements IEquipableItem {
   }
 
   @Override
-  public void weAttackedByStaff(Staff staff) {
-    this.getUser().setNormalDamage(staff.getPower());
-  }
-
-  @Override
   public void weAttackedBySpear(Spear spear) {
     this.getUser().setNormalDamage(spear.getPower());
   }

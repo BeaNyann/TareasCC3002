@@ -1,5 +1,9 @@
 package model.units;
 
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * Test set for the alpaca unit
  *
@@ -26,32 +30,108 @@ public class AlpacaTest extends AbstractTestUnit {
   @Override
   public void testRemoveEquippedObj() {}
 
+  @Test
   @Override
-  public void testAttackArcher() {}
+  public void testAttackArcher() {
+    Archer archer = new Archer(50,2,field.getCell(0, 0));
+    alpaca.attack(archer);
+    assertEquals(50,archer.getCurrentHitPoints());
+    assertEquals(50,alpaca.getCurrentHitPoints());
+  }
+  @Test
+  @Override
+  public void testAttackCleric() {
+    Cleric cleric2 = new Cleric(50,2,field.getCell(0, 0));
+    alpaca.attack(cleric2);
+    assertEquals(50,cleric2.getCurrentHitPoints());
+    assertEquals(50,alpaca.getCurrentHitPoints());
 
+  }
+  @Test
   @Override
-  public void testAttackCleric() {}
+  public void testAttackFighter() {
+    Fighter fighter = new Fighter(50,2,field.getCell(0, 0));
+    alpaca.attack(fighter);
+    assertEquals(50,fighter.getCurrentHitPoints());
+    assertEquals(50,alpaca.getCurrentHitPoints());
+  }
+  @Test
+  @Override
+  public void testAttackHero() {
+    Hero hero = new Hero(50,2,field.getCell(0, 0));
+    alpaca.attack(hero);
+    assertEquals(50,hero.getCurrentHitPoints());
+    assertEquals(50,alpaca.getCurrentHitPoints());
+  }
+  @Test
+  @Override
+  public void testAttackDarkSorcerer() {
+    Sorcerer sorcerer = new Sorcerer(50,2,field.getCell(0, 0));
+    sorcerer.addItem(darkMagicBook);
+    darkMagicBook.equipTo(sorcerer);
+    alpaca.attack(sorcerer);
+    assertEquals(50,sorcerer.getCurrentHitPoints());
+    assertEquals(50,alpaca.getCurrentHitPoints());
+  }
+  @Test
+  @Override
+  public void testAttackLightSorcerer() {
+    Sorcerer sorcerer = new Sorcerer(50,2,field.getCell(0, 0));
+    sorcerer.addItem(lightMagicBook);
+    lightMagicBook.equipTo(sorcerer);
+    alpaca.attack(sorcerer);
+    assertEquals(50,sorcerer.getCurrentHitPoints());
+    assertEquals(50,alpaca.getCurrentHitPoints());
+  }
+  @Test
+  @Override
+  public void testAttackSpiritSorcerer() {
+    Sorcerer sorcerer = new Sorcerer(50,2,field.getCell(0, 0));
+    sorcerer.addItem(spiritMagicBook);
+    spiritMagicBook.equipTo(sorcerer);
+    alpaca.attack(sorcerer);
+    assertEquals(50,sorcerer.getCurrentHitPoints());
+    assertEquals(50,alpaca.getCurrentHitPoints());
+  }
+  @Test
+  @Override
+  public void testAttackSwordMaster() {
+    SwordMaster swordMaster = new SwordMaster(50,2,field.getCell(0, 0));
+    alpaca.attack(swordMaster);
+    assertEquals(50,swordMaster.getCurrentHitPoints());
+    assertEquals(50,alpaca.getCurrentHitPoints());
+  }
+  @Test
+  @Override
+  public void testAttackAlpaca() {
+    Alpaca alpaca = getTargetAlpaca();
+    alpaca.attack(alpaca);
+    assertEquals(50, alpaca.getCurrentHitPoints());
+    assertEquals(50, alpaca.getCurrentHitPoints());
+  }
+  @Test
+  @Override
+  public void testAttackFarArcher() {
+    Archer archer = new Archer(50, 2, field.getCell(1,0));
+    archer.moveTo(field.getCell(1,1));
+    archer.moveTo(field.getCell(2,2));
+    alpaca.attack(archer);
+    assertEquals(50, archer.getCurrentHitPoints());
+    assertEquals(50, alpaca.getCurrentHitPoints());
+  }
 
+  @Test
   @Override
-  public void testAttackFighter() {}
-
-  @Override
-  public void testAttackHero() {}
-
-  @Override
-  public void testAttackDarkSorcerer() {}
-
-  @Override
-  public void testAttackLightSorcerer() {}
-
-  @Override
-  public void testAttackSpiritSorcerer() {}
-
-  @Override
-  public void testAttackSwordMaster() {}
-
-  @Override
-  public void testAttackAlpaca() {}
+  public void testAttackWithOutLife() {
+    Alpaca alpaca = new Alpaca(5,2,field.getCell(0,0));
+    Hero hero = new Hero(50,2,field.getCell(1,0));
+    hero.addItem(spear);
+    spear.equipTo(hero);
+    hero.attack(alpaca);
+    assertEquals(0,alpaca.getCurrentHitPoints());
+    alpaca.attack(hero);
+    assertEquals(50,hero.getCurrentHitPoints());
+  }
 
   @Override
   public void FailEquipUnequipSpearTest() {}

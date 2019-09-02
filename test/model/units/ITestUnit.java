@@ -50,15 +50,16 @@ public interface ITestUnit {
   /**
    * Tries to equip a weapon to the alpaca and verifies that it was not equipped
    *
-   * @param axe
-   *     to be equipped
+   * @param axe to be equipped
    */
   void checkEquippedAxe(Axe axe);
 
   void checkEquippedBow(Bow bow);
 
   void checkEquippedDarkMagicBook(DarkMagicBook darkMagicBook);
+
   void checkEquippedLightMagicBook(LightMagicBook lightMagicBook);
+
   void checkEquippedSpiritMagicBook(SpiritMagicBook spiritMagicBook);
 
   void checkEquippedSpear(Spear spear);
@@ -106,13 +107,17 @@ public interface ITestUnit {
 
   @Test
   void equipUnequipDarkMagicBookTest();
+
   @Test
   void equipUnequipLightMagicBookTest();
+
   @Test
   void equipUnequipSpiritMagicBookTest();
 
   DarkMagicBook getDarkMagicBook();
+
   LightMagicBook getLightMagicBook();
+
   SpiritMagicBook getSpiritMagicBook();
 
   @Test
@@ -152,7 +157,7 @@ public interface ITestUnit {
   void testRecieveNoSpaceObj();
 
   @Test
-    void testReceiveObj();
+  void testReceiveObj();
 
   @Test
   void testAddRemoveObj();
@@ -160,7 +165,7 @@ public interface ITestUnit {
   @Test
   void testRemoveEquippedObj();
 
-    /**
+  /**
    * Checks if the unit moves correctly
    */
   @Test
@@ -202,6 +207,13 @@ public interface ITestUnit {
 
   @Test
   void testAttackAlpaca();
+
+  @Test
+  void testAttackFarArcher();
+
+  @Test
+  void testAttackWithOutLife();
 }
+
 
 

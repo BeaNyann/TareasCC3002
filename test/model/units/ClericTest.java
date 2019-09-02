@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.items.Staff;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -37,6 +38,13 @@ public class ClericTest extends AbstractTestUnit {
     assertEquals(staff, cleric.getEquippedItem());
     cleric.unequipItem();
     assertNull(cleric.getEquippedItem());
+    Staff staff2 = new Staff("staff2",10,1,2);
+    cleric.addItem(staff2);
+    staff.equipTo(cleric);
+    staff2.equipTo(cleric);
+    assertEquals(staff2,cleric.getEquippedItem());
+    assertNull(staff.getUser());
+    assertEquals(cleric,staff2.getUser());
   }
   @Test
   @Override
@@ -146,32 +154,125 @@ public class ClericTest extends AbstractTestUnit {
     sword.equipTo(cleric);
     assertNull(cleric.getEquippedItem());
   }
+  @Test
+  @Override
+  public void testAttackAlpaca() {
+    Alpaca alpaca = getTargetAlpaca();
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    cleric.attack(alpaca);
+    assertEquals(50,alpaca.getCurrentHitPoints());
+    assertEquals(50,cleric.getCurrentHitPoints());
+  }
 
   @Override
-  public void testAttackAlpaca() {}
+  public void testAttackFarArcher() {
+    Archer archer = new Archer(50,2,field.getCell(1, 1));
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    cleric.attack(archer);
+    assertEquals(50,archer.getCurrentHitPoints());
+    assertEquals(50,cleric.getCurrentHitPoints());
+  }
+  @Test
+  @Override
+  public void testAttackWithOutLife() {
+    Cleric cleric = new Cleric(5,2,field.getCell(0,0));
+    Hero hero = new Hero(50,2,field.getCell(1,0));
+    hero.addItem(spear);
+    spear.equipTo(hero);
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    hero.attack(cleric);
+    assertEquals(0,cleric.getCurrentHitPoints());
+    cleric.attack(hero);
+    assertEquals(50,hero.getCurrentHitPoints());
+  }
+
+  @Test
+  @Override
+  public void testAttackArcher() {
+    Archer archer = new Archer(50,2,field.getCell(0, 1));
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    cleric.attack(archer);
+    assertEquals(50,archer.getCurrentHitPoints());
+    assertEquals(50,cleric.getCurrentHitPoints());
+  }
+  @Test
+  @Override
+  public void testAttackCleric() {
+    Cleric cleric2 = new Cleric(50,2,field.getCell(0, 1));
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    cleric.attack(cleric2);
+    assertEquals(50,cleric2.getCurrentHitPoints());
+    assertEquals(50,cleric.getCurrentHitPoints());
+  }
+  @Test
+  @Override
+  public void testAttackFighter() {
+    Fighter fighter = new Fighter(50,2,field.getCell(0, 1));
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    cleric.attack(fighter);
+    assertEquals(50,fighter.getCurrentHitPoints());
+    assertEquals(50,cleric.getCurrentHitPoints());
+  }
 
   @Override
-  public void testAttackArcher() {}
+  public void testAttackHero() {
+    Hero hero = new Hero(50,2,field.getCell(0, 1));
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    cleric.attack(hero);
+    assertEquals(50,hero.getCurrentHitPoints());
+    assertEquals(50,cleric.getCurrentHitPoints());
+  }
+  @Test
+  @Override
+  public void testAttackDarkSorcerer() {
+    Sorcerer sorcerer = new Sorcerer(50,2,field.getCell(0, 1));
+    sorcerer.addItem(darkMagicBook);
+    darkMagicBook.equipTo(sorcerer);
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    cleric.attack(sorcerer);
+    assertEquals(50,sorcerer.getCurrentHitPoints());
+    assertEquals(50,cleric.getCurrentHitPoints());
+  }
 
   @Override
-  public void testAttackCleric() {}
+  public void testAttackLightSorcerer() {
+    Sorcerer sorcerer = new Sorcerer(50,2,field.getCell(0, 1));
+    sorcerer.addItem(lightMagicBook);
+    lightMagicBook.equipTo(sorcerer);
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    cleric.attack(sorcerer);
+    assertEquals(50,sorcerer.getCurrentHitPoints());
+    assertEquals(50,cleric.getCurrentHitPoints());
+  }
 
   @Override
-  public void testAttackFighter() {}
+  public void testAttackSpiritSorcerer() {
+    Sorcerer sorcerer = new Sorcerer(50,2,field.getCell(0, 1));
+    sorcerer.addItem(spiritMagicBook);
+    spiritMagicBook.equipTo(sorcerer);
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    cleric.attack(sorcerer);
+    assertEquals(50,sorcerer.getCurrentHitPoints());
+    assertEquals(50,cleric.getCurrentHitPoints());
+  }
 
   @Override
-  public void testAttackHero() {}
-
-  @Override
-  public void testAttackDarkSorcerer() {}
-
-  @Override
-  public void testAttackLightSorcerer() {}
-
-  @Override
-  public void testAttackSpiritSorcerer() {}
-
-  @Override
-  public void testAttackSwordMaster() {}
-
+  public void testAttackSwordMaster() {
+    SwordMaster swordMaster = new SwordMaster(50,2,field.getCell(0, 1));
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    cleric.attack(swordMaster);
+    assertEquals(50,swordMaster.getCurrentHitPoints());
+    assertEquals(50,cleric.getCurrentHitPoints());
+  }
 }

@@ -188,7 +188,6 @@ public abstract class AbstractUnit implements IUnit {
             this.getEquippedItem().getMinRange() <= this.getLocation().distanceTo(unit.getLocation()) &&
             this.getLocation().distanceTo(unit.getLocation()) <= this.getEquippedItem().getMaxRange() &&
             this.getCurrentHitPoints()> 0) {
-      //TODO testear lo de la vida
       this.equippedItem.attackWith(unit);
       unit.counterAttack(this);
     }
@@ -251,16 +250,6 @@ public abstract class AbstractUnit implements IUnit {
     }
     else{
       this.setNormalDamage(spear.getPower());
-    }
-  }
-
-  @Override
-  public void attackedByStaff(Staff staff) {
-    if(this.getEquippedItem() != null){
-      this.getEquippedItem().weAttackedByStaff(staff);
-    }
-    else{
-      this.setNormalDamage(staff.getPower());
     }
   }
 

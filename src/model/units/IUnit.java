@@ -93,8 +93,6 @@ public interface IUnit {
 
   void attackedBySpear(Spear spear);
 
-  void attackedByStaff(Staff staff);
-
   void attackedBySword(Sword sword);
 
   void setNormalDamage(double power);

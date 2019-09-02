@@ -35,11 +35,6 @@ public class LightMagicBook extends AbstractItem{
     }
 
     @Override
-    public void weAttackedByStaff(Staff staff) {
-        this.getUser().setBigDamage(staff.getPower());
-    }
-
-    @Override
     public void weAttackedBySpear(Spear spear) {
         this.getUser().setBigDamage(spear.getPower());
     }
