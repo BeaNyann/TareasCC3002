@@ -17,13 +17,16 @@ import model.map.Location;
 public interface IUnit {
 
   /**
-   * @return hit points of the unit
+   * @return current hit points of the unit.
    */
   double getCurrentHitPoints();
 
-    double getMaxHitPoints();
+  /**
+   * @return the maximum hit points of the unit.
+   */
+  double getMaxHitPoints();
 
-    /**
+  /**
    * @return the items carried by this unit
    */
   List<IEquipableItem> getItems();

@@ -9,7 +9,7 @@ import java.util.*;
  * of the graph is 1.
  * Since all cells of the map should be reachable, the graph must be connected.
  *
- * @author Ignacio Slater Muñoz
+ * @author Beatrix Graboloza
  * @since 1.0
  */
 public class Field {
@@ -21,10 +21,8 @@ public class Field {
   /**
    * Add cells to the map.
    *
-   * @param connectAll
-   *     a flag that indicates if all the cells should be connected to it's neighbours
-   * @param cells
-   *     the locations that are going to be added to the map
+   * @param connectAll  a flag that indicates if all the cells should be connected to it's neighbours.
+   * @param cells       the locations that are going to be added to the map.
    */
   public void addCells(final boolean connectAll, final Location... cells) {
     for (Location cell : cells) {
@@ -39,21 +37,19 @@ public class Field {
   }
 
   /**
-   * Adds a cell to the map
+   * Adds a cell to the map.
    *
-   * @param cell
-   *     the location to be added
+   * @param cell  the location to be added.
    */
   private void addCell(final Location cell) {
     map.put(cell.toString(), cell);
   }
 
   /**
-   * Gets the possible adjacent cells to a given cell
+   * Gets the possible adjacent cells to a given cell.
    *
-   * @param cell
-   *     the location of the current cell
-   * @return an array of the adjacent cells
+   * @param cell  the location of the current cell.
+   * @return      an array of the adjacent cells.
    */
   private Location[] getAdjacentCells(final Location cell) {
     int row = cell.getRow(),
@@ -62,19 +58,21 @@ public class Field {
         getCell(row, col + 1)};
   }
 
+
   /**
-   * Creates a connection between 2 cells
+   * Creates a connection between 2 cells.
+   *
+   * @param cell1 the fist cell to connect.
+   * @param cell2 the second cell to connect.
    */
   private void addConnection(Location cell1, Location cell2) {
     cell1.addNeighbour(cell2);
   }
 
   /**
-   * @param row
-   *     the row of the cell
-   * @param col
-   *     the column of the cell
-   * @return the Location that represents the cell at (row, col)
+   * @param   row the row of the cell.
+   * @param   col the column of the cell.
+   * @return  the Location that represents the cell at (row, col).
    */
   public Location getCell(final int row, final int col) {
     String id = generateID(row, col);
@@ -82,13 +80,11 @@ public class Field {
   }
 
   /**
-   * Creates a map key from a row and a column
+   * Creates a map key from a row and a column.
    *
-   * @param row
-   *     the row of the cell
-   * @param col
-   *     the column of the cell
-   * @return a string of the form (row, col)
+   * @param   row the row of the cell.
+   * @param   col the column of the cell.
+   * @return  a string of the form (row, col).
    */
   private String generateID(final int row, final int col) {
     builder.setLength(0);
@@ -96,6 +92,9 @@ public class Field {
     return builder.toString();
   }
 
+  /**
+   * @return a copy of the map.
+   */
   public Map<String, Location> getMap() {
     return Map.copyOf(map);
   }
@@ -103,7 +102,7 @@ public class Field {
   /**
    * Checks if the map is connected using BFS.
    *
-   * @return true if the map is connected, false otherwise.
+   * @return <code>true</code> if the map is connected, <code>false</code> otherwise.
    */
   public boolean isConnected() {
     Set<Location> visitedNodes = new HashSet<>();
@@ -125,8 +124,12 @@ public class Field {
     return false;
   }
 
+
   /**
-   * Removes a connection from two locations of the field
+   * Removes a connection from two locations of the field.
+   *
+   * @param cell1 the first cell to remove the connection.
+   * @param cell2 the second cell to remove the connection.
    */
   public void removeConnection(final Location cell1, final Location cell2) {
     if (cell1.getNeighbours().size() > 1 && cell2.getNeighbours().size() > 1) {
@@ -135,7 +138,11 @@ public class Field {
   }
 
   /**
-   * Checks if two cells of the map are connected
+   * Checks if two cells of the map are connected.
+   *
+   * @param   cell1 the first cell to check the connection.
+   * @param   cell2 the second cell to check the connection.
+   * @return  True if both cells are connected, False otherwise.
    */
   public boolean checkConnection(final Location cell1, final Location cell2) {
     return cell1.isNeighbour(cell2);

@@ -16,7 +16,7 @@ import model.units.IUnit;
  * chess one, but for simplicity, it will be assumed that the distance between any node and it's
  * neighbours will be always 1.
  *
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  * @since 1.0
  */
 public class Location {
@@ -30,10 +30,8 @@ public class Location {
   /**
    * Creates a new location of the game map.
    *
-   * @param row
-   *     a char representing a row in the map
-   * @param column
-   *     an int representing the column in the map
+   * @param row a char representing a row in the map.
+   * @param column an int representing the column in the map.
    */
   public Location(final int row, final int column) {
     this.row = row;
@@ -47,9 +45,8 @@ public class Location {
    * Two locations are equal when their id's match. It is assumed that there can't be 2 locations
    * with the same id in the game.
    *
-   * @param other
-   *     the object to compare this location to
-   * @return <code>true</code> if the id's match; <code>false</code> otherwise
+   * @param other the object to compare this location to.
+   * @return      <code>true</code> if the id's match; <code>false</code> otherwise.
    */
   @Override
   public boolean equals(final Object other) {
@@ -57,16 +54,18 @@ public class Location {
         && column == ((Location) other).column;
   }
 
+  /**
+   * @return the location id as a string.
+   */
   @Override
   public String toString() {
     return id;
   }
 
   /**
-   * Sets a location as adjacent to this one
+   * Sets a location as adjacent to this one.
    *
-   * @param neighbour
-   *     the location to be added
+   * @param neighbour the location to be added.
    */
   public void addNeighbour(final Location neighbour) {
     neighbour.addTo(this);
@@ -74,28 +73,26 @@ public class Location {
   }
 
   /**
-   * Adds this location as a neighbour to another
+   * Adds this location as a neighbour to another.
    *
-   * @param location
-   *     location to add this as neighbour
+   * @param location location to add this as neighbour.
    */
   protected void addTo(final Location location) {
     location.neighbours.add(this);
   }
 
   /**
-   * Checks if a cell is adjacent to this one
+   * Checks if a cell is adjacent to this one.
    *
-   * @param otherLocation
-   *     the cell to be checked
-   * @return <code>true</code> if the two locations are adjacent; <code>false</code> otherwise
+   * @param otherLocation the cell to be checked.
+   * @return <code>true</code> if the two locations are adjacent; <code>false</code> otherwise.
    */
   boolean isNeighbour(final Location otherLocation) {
     return neighbours.contains(otherLocation);
   }
 
   /**
-   * @return the unit currently located in this cell
+   * @return the unit currently located in this cell.
    */
   public IUnit getUnit() {
     return unit;
@@ -104,18 +101,16 @@ public class Location {
   /**
    * Setter for the unit contained in this location.
    *
-   * @param unit
-   *     the unit to be placed in this cell
+   * @param unit the unit to be placed in this cell.
    */
   public void setUnit(final IUnit unit) {
     this.unit = unit;
   }
 
   /**
-   * Removes a reighbour from this location.
+   * Removes a neighbour from this location.
    *
-   * @param neighbour
-   *     the neighbour to be removed
+   * @param neighbour the neighbour to be removed.
    */
   public void removeNeighbour(final Location neighbour) {
     neighbours.remove(neighbour);
@@ -123,27 +118,26 @@ public class Location {
   }
 
   /**
-   * @return a hash set of this location adjacent cells
+   * @return a hash set of this location adjacent cells.
    */
   public Set<Location> getNeighbours() {
     return Set.copyOf(neighbours);
   }
 
   /**
-   * Calculates the distance from this location to another
+   * Calculates the distance from this location to another.
    *
-   * @param otherNode
-   *     the other location
-   * @return the length of the shortest path to the other location
+   * @param otherNode the other location.
+   * @return          the length of the shortest path to the other location.
    */
   public double distanceTo(final Location otherNode) {
     return shortestPathTo(otherNode, new HashSet<>());
   }
 
   /**
-   * Gets the shortest path to another node storing a set of already visited nodes
+   * Gets the shortest path to another node storing a set of already visited nodes.
    *
-   * @return the distance between the nodes
+   * @return the distance between the nodes.
    */
   private double shortestPathTo(final Location otherNode, final Set<Location> visited) {
     if (otherNode.equals(this)) {
@@ -161,19 +155,22 @@ public class Location {
   }
 
   /**
-   * @return the row of the current location
+   * @return the row of the current location.
    */
   public int getRow() {
     return row;
   }
 
   /**
-   * @return the column of the current location
+   * @return the column of the current location.
    */
   public int getColumn() {
     return column;
   }
 
+  /**
+   * Remove a unit from the current location.
+   */
   public void removeUnit() {
     this.unit = null;
   }
