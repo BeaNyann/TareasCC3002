@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test set for the field component of the game model.
  *
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  * @since 1.0
  */
 class FieldTest {
@@ -42,10 +42,8 @@ class FieldTest {
   /**
    * Checks for the connections of a cell
    *
-   * @param row
-   *     the number that identifies the row of the cell
-   * @param col
-   *     the number that identifies the column of the cell
+   * @param row the number that identifies the row of the cell.
+   * @param col the number that identifies the column of the cell.
    */
   private void checkConnections(final int row, final int col) {
     Location[] neighbours = new Location[]{new Location(row - 1, col), new Location(row + 1, col),
