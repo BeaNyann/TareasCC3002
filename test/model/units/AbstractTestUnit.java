@@ -85,7 +85,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Test
   public void constructorTest() {
     assertEquals(50, getTestUnit().getMaxHitPoints());
-    assertEquals(getTestUnit().getMaxHitPoints(), getTestUnit().getCurrentHitPoints());
+    assertEquals(getTestUnit().getMaxHitPoints(), getTestUnit().getCurrentHitPoints(),1E-6);
     assertEquals(2, getTestUnit().getMovement());
     assertEquals(new Location(0, 0), getTestUnit().getLocation());
     assertTrue(getTestUnit().getItems().isEmpty());
@@ -320,7 +320,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     IUnit unit = getTestUnit();
     boolean X = unit.receiveObj(bow);
     assertEquals(bow, unit.getItems().get(0));
-    assertEquals(true, X);
+    assertTrue(X);
   }
 
   @Override

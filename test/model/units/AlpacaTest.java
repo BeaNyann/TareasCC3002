@@ -35,16 +35,16 @@ public class AlpacaTest extends AbstractTestUnit {
   public void testAttackArcher() {
     Archer archer = new Archer(50,2,field.getCell(0, 0));
     alpaca.attack(archer);
-    assertEquals(50,archer.getCurrentHitPoints());
-    assertEquals(50,alpaca.getCurrentHitPoints());
+    assertEquals(50,archer.getCurrentHitPoints(),1E-6);
+    assertEquals(50,alpaca.getCurrentHitPoints(),1E-6);
   }
   @Test
   @Override
   public void testAttackCleric() {
     Cleric cleric2 = new Cleric(50,2,field.getCell(0, 0));
     alpaca.attack(cleric2);
-    assertEquals(50,cleric2.getCurrentHitPoints());
-    assertEquals(50,alpaca.getCurrentHitPoints());
+    assertEquals(50,cleric2.getCurrentHitPoints(),1E-6);
+    assertEquals(50,alpaca.getCurrentHitPoints(),1E-6);
 
   }
   @Test
@@ -52,16 +52,16 @@ public class AlpacaTest extends AbstractTestUnit {
   public void testAttackFighter() {
     Fighter fighter = new Fighter(50,2,field.getCell(0, 0));
     alpaca.attack(fighter);
-    assertEquals(50,fighter.getCurrentHitPoints());
-    assertEquals(50,alpaca.getCurrentHitPoints());
+    assertEquals(50,fighter.getCurrentHitPoints(),1E-6);
+    assertEquals(50,alpaca.getCurrentHitPoints(),1E-6);
   }
   @Test
   @Override
   public void testAttackHero() {
     Hero hero = new Hero(50,2,field.getCell(0, 0));
     alpaca.attack(hero);
-    assertEquals(50,hero.getCurrentHitPoints());
-    assertEquals(50,alpaca.getCurrentHitPoints());
+    assertEquals(50,hero.getCurrentHitPoints(),1E-6);
+    assertEquals(50,alpaca.getCurrentHitPoints(),1E-6);
   }
   @Test
   @Override
@@ -70,8 +70,8 @@ public class AlpacaTest extends AbstractTestUnit {
     sorcerer.addItem(darkMagicBook);
     darkMagicBook.equipTo(sorcerer);
     alpaca.attack(sorcerer);
-    assertEquals(50,sorcerer.getCurrentHitPoints());
-    assertEquals(50,alpaca.getCurrentHitPoints());
+    assertEquals(50,sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(50,alpaca.getCurrentHitPoints(),1E-6);
   }
   @Test
   @Override
@@ -80,8 +80,8 @@ public class AlpacaTest extends AbstractTestUnit {
     sorcerer.addItem(lightMagicBook);
     lightMagicBook.equipTo(sorcerer);
     alpaca.attack(sorcerer);
-    assertEquals(50,sorcerer.getCurrentHitPoints());
-    assertEquals(50,alpaca.getCurrentHitPoints());
+    assertEquals(50,sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(50,alpaca.getCurrentHitPoints(),1E-6);
   }
   @Test
   @Override
@@ -90,24 +90,24 @@ public class AlpacaTest extends AbstractTestUnit {
     sorcerer.addItem(spiritMagicBook);
     spiritMagicBook.equipTo(sorcerer);
     alpaca.attack(sorcerer);
-    assertEquals(50,sorcerer.getCurrentHitPoints());
-    assertEquals(50,alpaca.getCurrentHitPoints());
+    assertEquals(50,sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(50,alpaca.getCurrentHitPoints(),1E-6);
   }
   @Test
   @Override
   public void testAttackSwordMaster() {
     SwordMaster swordMaster = new SwordMaster(50,2,field.getCell(0, 0));
     alpaca.attack(swordMaster);
-    assertEquals(50,swordMaster.getCurrentHitPoints());
-    assertEquals(50,alpaca.getCurrentHitPoints());
+    assertEquals(50,swordMaster.getCurrentHitPoints(),1E-6);
+    assertEquals(50,alpaca.getCurrentHitPoints(),1E-6);
   }
   @Test
   @Override
   public void testAttackAlpaca() {
     Alpaca alpaca = getTargetAlpaca();
     alpaca.attack(alpaca);
-    assertEquals(50, alpaca.getCurrentHitPoints());
-    assertEquals(50, alpaca.getCurrentHitPoints());
+    assertEquals(50, alpaca.getCurrentHitPoints(),1E-6);
+    assertEquals(50, alpaca.getCurrentHitPoints(),1E-6);
   }
   @Test
   @Override
@@ -116,8 +116,8 @@ public class AlpacaTest extends AbstractTestUnit {
     archer.moveTo(field.getCell(1,1));
     archer.moveTo(field.getCell(2,2));
     alpaca.attack(archer);
-    assertEquals(50, archer.getCurrentHitPoints());
-    assertEquals(50, alpaca.getCurrentHitPoints());
+    assertEquals(50, archer.getCurrentHitPoints(),1E-6);
+    assertEquals(50, alpaca.getCurrentHitPoints(),1E-6);
   }
 
   @Test
@@ -128,9 +128,9 @@ public class AlpacaTest extends AbstractTestUnit {
     hero.addItem(spear);
     spear.equipTo(hero);
     hero.attack(alpaca);
-    assertEquals(0,alpaca.getCurrentHitPoints());
+    assertEquals(0,alpaca.getCurrentHitPoints(),1E-6);
     alpaca.attack(hero);
-    assertEquals(50,hero.getCurrentHitPoints());
+    assertEquals(50,hero.getCurrentHitPoints(),1E-6);
   }
 
   @Override

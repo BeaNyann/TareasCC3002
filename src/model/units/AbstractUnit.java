@@ -49,26 +49,41 @@ public abstract class AbstractUnit implements IUnit {
     this.maxItems = maxItems;
   }
 
+  /**
+   * @return current hit points of the unit.
+   */
   @Override
   public double getCurrentHitPoints() {
     return currentHitPoints;
   }
 
+  /**
+   * @return the maximum hit points of the unit.
+   */
   @Override
   public double getMaxHitPoints() {
     return MaxHitPoints;
   }
 
+  /**
+   * @return the items carried by this unit.
+   */
   @Override
   public List<IEquipableItem> getItems() {
     return List.copyOf(items);
   }
 
+  /**
+   * @return the currently equipped item.
+   */
   @Override
   public IEquipableItem getEquippedItem() {
     return equippedItem;
   }
 
+  /**
+   * Unequip the item to the unit.
+   */
   @Override
   public void unequipItem() {
     if(getEquippedItem()!= null){
@@ -77,21 +92,39 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * @return the current location of the unit.
+   */
   @Override
   public Location getLocation() {
     return location;
   }
 
+  /**
+   * Sets a new location for this unit.
+   *
+   * @param location the location where the unit will be set.
+   */
   @Override
   public void setLocation(final Location location) {
     this.location = location;
   }
 
+  /**
+   * @return the number of cells this unit can move.
+   */
   @Override
   public int getMovement() {
     return movement;
   }
 
+  /**
+   * Moves this unit to another location.
+   * <p>
+   * If the other location is out of this unit's movement range, the unit doesn't move.
+   *
+   * @param targetLocation the location where to move the unit.
+   */
   @Override
   public void moveTo(final Location targetLocation) {
     if (getLocation().distanceTo(targetLocation) <= getMovement()
@@ -102,37 +135,78 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * Equip an axe to this unit.
+   *
+   * @param axe the axe to equip.
+   */
   @Override
   public void equipAxe(Axe axe) {
   }
 
+  /**
+   * Equip a bow to this unit.
+   *
+   * @param bow the bow to equip.
+   */
   @Override
   public void equipBow(Bow bow) {
   }
 
+  /**
+   * Equip a spear to this unit.
+   *
+   * @param spear the spear to equip.
+   */
   @Override
   public void equipSpear(Spear spear) {
   }
 
+  /**
+   * Equip a staff to this unit.
+   *
+   * @param staff the staff to equip.
+   */
   @Override
   public void equipStaff(Staff staff) {
   }
 
+  /**
+   * Equip a sword to this unit.
+   *
+   * @param sword the sword to equip.
+   */
   @Override
   public void equipSword(Sword sword) {
   }
 
+  /**
+   * Equip a dark magic book to this unit.
+   *
+   * @param darkMagicBook the dark magic book to equip.
+   */
   @Override
   public void equipDarkMagicBook(DarkMagicBook darkMagicBook) {
   }
 
+  /**
+   * Equip a light magic book to this unit.
+   *
+   * @param lightMagicBook the light magic book to equip.
+   */
   @Override
   public void equipLightMagicBook(LightMagicBook lightMagicBook) {
   }
 
+  /**
+   * Equip a spirit magic book to this unit.
+   *
+   * @param spiritMagicBook the spirit magic book to equip.
+   */
   @Override
   public void equipSpiritMagicBook(SpiritMagicBook spiritMagicBook) {
   }
+
 
   @Override
   public void giveObj(IUnit unit, IEquipableItem item) {

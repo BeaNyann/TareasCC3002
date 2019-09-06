@@ -63,7 +63,7 @@ public abstract class AbstractTestItem {
   @Test
   public void constructorTest() {
     assertEquals(getExpectedName(), getTestItem().getName());
-    assertEquals(getExpectedBasePower(), getTestItem().getPower());
+    assertEquals(getExpectedBasePower(), getTestItem().getPower(),1E-6);
     assertEquals(getExpectedMinRange(), getTestItem().getMinRange());
     assertEquals(getExpectedMaxRange(), getTestItem().getMaxRange());
   }

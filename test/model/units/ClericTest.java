@@ -161,8 +161,8 @@ public class ClericTest extends AbstractTestUnit {
     cleric.addItem(staff);
     staff.equipTo(cleric);
     cleric.attack(alpaca);
-    assertEquals(50,alpaca.getCurrentHitPoints());
-    assertEquals(50,cleric.getCurrentHitPoints());
+    assertEquals(50,alpaca.getCurrentHitPoints(),1E-6);
+    assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
 
   @Override
@@ -171,8 +171,8 @@ public class ClericTest extends AbstractTestUnit {
     cleric.addItem(staff);
     staff.equipTo(cleric);
     cleric.attack(archer);
-    assertEquals(50,archer.getCurrentHitPoints());
-    assertEquals(50,cleric.getCurrentHitPoints());
+    assertEquals(50,archer.getCurrentHitPoints(),1E-6);
+    assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
   @Test
   @Override
@@ -184,9 +184,9 @@ public class ClericTest extends AbstractTestUnit {
     cleric.addItem(staff);
     staff.equipTo(cleric);
     hero.attack(cleric);
-    assertEquals(0,cleric.getCurrentHitPoints());
+    assertEquals(0,cleric.getCurrentHitPoints(),1E-6);
     cleric.attack(hero);
-    assertEquals(50,hero.getCurrentHitPoints());
+    assertEquals(50,hero.getCurrentHitPoints(),1E-6);
   }
 
   @Test
@@ -196,8 +196,8 @@ public class ClericTest extends AbstractTestUnit {
     cleric.addItem(staff);
     staff.equipTo(cleric);
     cleric.attack(archer);
-    assertEquals(50,archer.getCurrentHitPoints());
-    assertEquals(50,cleric.getCurrentHitPoints());
+    assertEquals(50,archer.getCurrentHitPoints(),1E-6);
+    assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
   @Test
   @Override
@@ -206,8 +206,8 @@ public class ClericTest extends AbstractTestUnit {
     cleric.addItem(staff);
     staff.equipTo(cleric);
     cleric.attack(cleric2);
-    assertEquals(50,cleric2.getCurrentHitPoints());
-    assertEquals(50,cleric.getCurrentHitPoints());
+    assertEquals(50,cleric2.getCurrentHitPoints(),1E-6);
+    assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
   @Test
   @Override
@@ -216,8 +216,8 @@ public class ClericTest extends AbstractTestUnit {
     cleric.addItem(staff);
     staff.equipTo(cleric);
     cleric.attack(fighter);
-    assertEquals(50,fighter.getCurrentHitPoints());
-    assertEquals(50,cleric.getCurrentHitPoints());
+    assertEquals(50,fighter.getCurrentHitPoints(),1E-6);
+    assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
 
   @Override
@@ -226,8 +226,8 @@ public class ClericTest extends AbstractTestUnit {
     cleric.addItem(staff);
     staff.equipTo(cleric);
     cleric.attack(hero);
-    assertEquals(50,hero.getCurrentHitPoints());
-    assertEquals(50,cleric.getCurrentHitPoints());
+    assertEquals(50,hero.getCurrentHitPoints(),1E-6);
+    assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
   @Test
   @Override
@@ -238,8 +238,8 @@ public class ClericTest extends AbstractTestUnit {
     cleric.addItem(staff);
     staff.equipTo(cleric);
     cleric.attack(sorcerer);
-    assertEquals(50,sorcerer.getCurrentHitPoints());
-    assertEquals(50,cleric.getCurrentHitPoints());
+    assertEquals(50,sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
 
   @Override
@@ -250,8 +250,8 @@ public class ClericTest extends AbstractTestUnit {
     cleric.addItem(staff);
     staff.equipTo(cleric);
     cleric.attack(sorcerer);
-    assertEquals(50,sorcerer.getCurrentHitPoints());
-    assertEquals(50,cleric.getCurrentHitPoints());
+    assertEquals(50,sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
 
   @Override
@@ -262,8 +262,8 @@ public class ClericTest extends AbstractTestUnit {
     cleric.addItem(staff);
     staff.equipTo(cleric);
     cleric.attack(sorcerer);
-    assertEquals(50,sorcerer.getCurrentHitPoints());
-    assertEquals(50,cleric.getCurrentHitPoints());
+    assertEquals(50,sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
 
   @Override
@@ -272,7 +272,7 @@ public class ClericTest extends AbstractTestUnit {
     cleric.addItem(staff);
     staff.equipTo(cleric);
     cleric.attack(swordMaster);
-    assertEquals(50,swordMaster.getCurrentHitPoints());
-    assertEquals(50,cleric.getCurrentHitPoints());
+    assertEquals(50,swordMaster.getCurrentHitPoints(),1E-6);
+    assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
 }

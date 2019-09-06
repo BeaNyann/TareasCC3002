@@ -68,7 +68,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     staff.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
     swordMaster.addItem(staff);
-    staff.equipTo(swordMaster);;
+    staff.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
   }
   @Test
@@ -116,7 +116,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     darkMagicBook.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
     swordMaster.addItem(darkMagicBook);
-    darkMagicBook.equipTo(swordMaster);;
+    darkMagicBook.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
   }
 
@@ -129,7 +129,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     lightMagicBook.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
     swordMaster.addItem(lightMagicBook);
-    lightMagicBook.equipTo(swordMaster);;
+    lightMagicBook.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
   }
 
@@ -142,7 +142,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     spiritMagicBook.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
     swordMaster.addItem(spiritMagicBook);
-    spiritMagicBook.equipTo(swordMaster);;
+    spiritMagicBook.equipTo(swordMaster);
     assertNull(swordMaster.getEquippedItem());
   }
 
@@ -151,11 +151,11 @@ public class SwordMasterTest extends AbstractTestUnit {
   public void testAttackAlpaca() {
     Alpaca alpaca = getTargetAlpaca();
     swordMaster.attack(alpaca);
-    assertEquals(50, alpaca.getCurrentHitPoints());
+    assertEquals(50, alpaca.getCurrentHitPoints(),1E-6);
     swordMaster.addItem(sword);
     sword.equipTo(swordMaster);
     swordMaster.attack(alpaca);
-    assertEquals(40, alpaca.getCurrentHitPoints());
+    assertEquals(40, alpaca.getCurrentHitPoints(),1E-6);
   }
 
   @Override
@@ -167,8 +167,8 @@ public class SwordMasterTest extends AbstractTestUnit {
     archer.moveTo(field.getCell(1,1));
     archer.moveTo(field.getCell(2,2));
     swordMaster.attack(archer);
-    assertEquals(40, archer.getCurrentHitPoints());
-    assertEquals(50, swordMaster.getCurrentHitPoints());
+    assertEquals(40, archer.getCurrentHitPoints(),1E-6);
+    assertEquals(50, swordMaster.getCurrentHitPoints(),1E-6);
   }
 
   @Override
@@ -180,9 +180,9 @@ public class SwordMasterTest extends AbstractTestUnit {
     swordMaster.addItem(axe);
     axe.equipTo(swordMaster);
     archer.attack(swordMaster);
-    assertEquals(0,swordMaster.getCurrentHitPoints());
+    assertEquals(0,swordMaster.getCurrentHitPoints(),1E-6);
     swordMaster.attack(archer);
-    assertEquals(50,archer.getCurrentHitPoints());
+    assertEquals(50,archer.getCurrentHitPoints(),1E-6);
   }
 
   @Test
@@ -190,17 +190,17 @@ public class SwordMasterTest extends AbstractTestUnit {
   public void testAttackArcher() {
     Archer archer = new Archer(50,2,field.getCell(1,0));
     swordMaster.attack(archer);
-    assertEquals(50, archer.getCurrentHitPoints());
+    assertEquals(50, archer.getCurrentHitPoints(),1E-6);
     swordMaster.addItem(sword);
     sword.equipTo(swordMaster);
     swordMaster.attack(archer);
-    assertEquals(40, archer.getCurrentHitPoints());
+    assertEquals(40, archer.getCurrentHitPoints(),1E-6);
     archer.addItem(bow);
     bow.equipTo(archer);
     archer.moveTo(field.getCell(1,1));
     swordMaster.attack(archer);
-    assertEquals(30, archer.getCurrentHitPoints());
-    assertEquals(40,swordMaster.getCurrentHitPoints());
+    assertEquals(30, archer.getCurrentHitPoints(),1E-6);
+    assertEquals(40,swordMaster.getCurrentHitPoints(),1E-6);
   }
 
   @Test
@@ -208,11 +208,11 @@ public class SwordMasterTest extends AbstractTestUnit {
   public void testAttackCleric() {
     Cleric cleric = new Cleric(50,2,field.getCell(1,0));
     swordMaster.attack(cleric);
-    assertEquals(50, cleric.getCurrentHitPoints());
+    assertEquals(50, cleric.getCurrentHitPoints(),1E-6);
     swordMaster.addItem(sword);
     sword.equipTo(swordMaster);
     swordMaster.attack(cleric);
-    assertEquals(40, cleric.getCurrentHitPoints());
+    assertEquals(40, cleric.getCurrentHitPoints(),1E-6);
   }
 
   @Test
@@ -220,21 +220,21 @@ public class SwordMasterTest extends AbstractTestUnit {
   public void testAttackFighter() {
     Fighter fighter = new Fighter(50, 2, field.getCell(1,0));
     swordMaster.attack(fighter);
-    assertEquals(50, fighter.getCurrentHitPoints());
+    assertEquals(50, fighter.getCurrentHitPoints(),1E-6);
     swordMaster.addItem(sword);
     sword.equipTo(swordMaster);
     swordMaster.attack(fighter);
-    assertEquals(40, fighter.getCurrentHitPoints());
+    assertEquals(40, fighter.getCurrentHitPoints(),1E-6);
     fighter.addItem(axe);
     axe.equipTo(fighter);
     swordMaster.attack(fighter);
-    assertEquals(25,fighter.getCurrentHitPoints());
-    assertEquals(50,swordMaster.getCurrentHitPoints());
+    assertEquals(25,fighter.getCurrentHitPoints(),1E-6);
+    assertEquals(50,swordMaster.getCurrentHitPoints(),1E-6);
     swordMaster.attack(fighter); //le quedan 10 de vida
-    assertEquals(50,swordMaster.getCurrentHitPoints());
+    assertEquals(50,swordMaster.getCurrentHitPoints(),1E-6);
     swordMaster.attack(fighter); //la resta da -5
-    assertEquals(0,fighter.getCurrentHitPoints());
-    assertEquals(50,swordMaster.getCurrentHitPoints());
+    assertEquals(0,fighter.getCurrentHitPoints(),1E-6);
+    assertEquals(50,swordMaster.getCurrentHitPoints(),1E-6);
   }
 
   @Test
@@ -242,16 +242,16 @@ public class SwordMasterTest extends AbstractTestUnit {
   public void testAttackHero() {
     Hero hero = new Hero(50, 2, field.getCell(1,0));
     swordMaster.attack(hero);
-    assertEquals(50, hero.getCurrentHitPoints());
+    assertEquals(50, hero.getCurrentHitPoints(),1E-6);
     swordMaster.addItem(sword);
     sword.equipTo(swordMaster);
     swordMaster.attack(hero);
-    assertEquals(40, hero.getCurrentHitPoints());
+    assertEquals(40, hero.getCurrentHitPoints(),1E-6);
     hero.addItem(spear);
     spear.equipTo(hero);
     swordMaster.attack(hero);
-    assertEquals(35,swordMaster.getCurrentHitPoints());
-    assertEquals(40,hero.getCurrentHitPoints());
+    assertEquals(35,swordMaster.getCurrentHitPoints(),1E-6);
+    assertEquals(40,hero.getCurrentHitPoints(),1E-6);
     Sword sword2 = new Sword("sword2",40,1,2);
     swordMaster.addItem(sword2);
     sword2.equipTo(swordMaster);
@@ -259,8 +259,8 @@ public class SwordMasterTest extends AbstractTestUnit {
     assertEquals(swordMaster,sword2.getUser());
     assertNull(sword.getUser());
     swordMaster.attack(hero);
-    assertEquals(20,hero.getCurrentHitPoints());
-    assertEquals(20,swordMaster.getCurrentHitPoints());
+    assertEquals(20,hero.getCurrentHitPoints(),1E-6);
+    assertEquals(20,swordMaster.getCurrentHitPoints(),1E-6);
   }
 
   @Test
@@ -268,21 +268,21 @@ public class SwordMasterTest extends AbstractTestUnit {
   public void testAttackDarkSorcerer() {
     Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,0));
     swordMaster.attack(sorcerer);
-    assertEquals(50, sorcerer.getCurrentHitPoints());
+    assertEquals(50, sorcerer.getCurrentHitPoints(),1E-6);
     swordMaster.addItem(sword);
     sword.equipTo(swordMaster);
     swordMaster.attack(sorcerer);
-    assertEquals(40, sorcerer.getCurrentHitPoints());
+    assertEquals(40, sorcerer.getCurrentHitPoints(),1E-6);
     sorcerer.addItem(darkMagicBook);
     darkMagicBook.equipTo(sorcerer);
     swordMaster.attack(sorcerer);
-    assertEquals(25,sorcerer.getCurrentHitPoints());
-    assertEquals(35,swordMaster.getCurrentHitPoints());
+    assertEquals(25,sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(35,swordMaster.getCurrentHitPoints(),1E-6);
     swordMaster.attack(sorcerer); //le quedan 10 de vida
-    assertEquals(20,swordMaster.getCurrentHitPoints());
+    assertEquals(20,swordMaster.getCurrentHitPoints(),1E-6);
     swordMaster.attack(sorcerer); //la resta da -5
-    assertEquals(0,sorcerer.getCurrentHitPoints());
-    assertEquals(20,swordMaster.getCurrentHitPoints());
+    assertEquals(0,sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(20,swordMaster.getCurrentHitPoints(),1E-6);
   }
 
   @Test
@@ -290,21 +290,21 @@ public class SwordMasterTest extends AbstractTestUnit {
   public void testAttackLightSorcerer() {
     Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,0));
     swordMaster.attack(sorcerer);
-    assertEquals(50, sorcerer.getCurrentHitPoints());
+    assertEquals(50, sorcerer.getCurrentHitPoints(),1E-6);
     swordMaster.addItem(sword);
     sword.equipTo(swordMaster);
     swordMaster.attack(sorcerer);
-    assertEquals(40, sorcerer.getCurrentHitPoints());
+    assertEquals(40, sorcerer.getCurrentHitPoints(),1E-6);
     sorcerer.addItem(lightMagicBook);
     lightMagicBook.equipTo(sorcerer);
     swordMaster.attack(sorcerer);
-    assertEquals(25,sorcerer.getCurrentHitPoints());
-    assertEquals(35,swordMaster.getCurrentHitPoints());
+    assertEquals(25,sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(35,swordMaster.getCurrentHitPoints(),1E-6);
     swordMaster.attack(sorcerer); //le quedan 10 de vida
-    assertEquals(20,swordMaster.getCurrentHitPoints());
+    assertEquals(20,swordMaster.getCurrentHitPoints(),1E-6);
     swordMaster.attack(sorcerer); //la resta da -5
-    assertEquals(0,sorcerer.getCurrentHitPoints());
-    assertEquals(20,swordMaster.getCurrentHitPoints());
+    assertEquals(0,sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(20,swordMaster.getCurrentHitPoints(),1E-6);
   }
 
   @Test
@@ -312,21 +312,21 @@ public class SwordMasterTest extends AbstractTestUnit {
   public void testAttackSpiritSorcerer() {
     Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,0));
     swordMaster.attack(sorcerer);
-    assertEquals(50, sorcerer.getCurrentHitPoints());
+    assertEquals(50, sorcerer.getCurrentHitPoints(),1E-6);
     swordMaster.addItem(sword);
     sword.equipTo(swordMaster);
     swordMaster.attack(sorcerer);
-    assertEquals(40, sorcerer.getCurrentHitPoints());
+    assertEquals(40, sorcerer.getCurrentHitPoints(),1E-6);
     sorcerer.addItem(spiritMagicBook);
     spiritMagicBook.equipTo(sorcerer);
     swordMaster.attack(sorcerer);
-    assertEquals(25,sorcerer.getCurrentHitPoints());
-    assertEquals(35,swordMaster.getCurrentHitPoints());
+    assertEquals(25,sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(35,swordMaster.getCurrentHitPoints(),1E-6);
     swordMaster.attack(sorcerer); //le quedan 10 de vida
-    assertEquals(20,swordMaster.getCurrentHitPoints());
+    assertEquals(20,swordMaster.getCurrentHitPoints(),1E-6);
     swordMaster.attack(sorcerer); //la resta da -5
-    assertEquals(0,sorcerer.getCurrentHitPoints());
-    assertEquals(20,swordMaster.getCurrentHitPoints());
+    assertEquals(0,sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(20,swordMaster.getCurrentHitPoints(),1E-6);
   }
 
   @Test
@@ -334,17 +334,17 @@ public class SwordMasterTest extends AbstractTestUnit {
   public void testAttackSwordMaster() {
     SwordMaster swordMaster2 = new SwordMaster(50,2,field.getCell(1,0));
     swordMaster.attack(swordMaster2);
-    assertEquals(50, swordMaster2.getCurrentHitPoints());
+    assertEquals(50, swordMaster2.getCurrentHitPoints(),1E-6);
     swordMaster.addItem(sword);
     sword.equipTo(swordMaster);
     swordMaster.attack(swordMaster2);
-    assertEquals(40, swordMaster2.getCurrentHitPoints());
+    assertEquals(40, swordMaster2.getCurrentHitPoints(),1E-6);
     Sword sword2 = new Sword("sword2",10,1,2);
     swordMaster2.addItem(sword2);
     sword2.equipTo(swordMaster2);
     swordMaster.attack(swordMaster2);
     //por el contraataque
-    assertEquals(30,swordMaster2.getCurrentHitPoints());
-    assertEquals(40,swordMaster.getCurrentHitPoints());
+    assertEquals(30,swordMaster2.getCurrentHitPoints(),1E-6);
+    assertEquals(40,swordMaster.getCurrentHitPoints(),1E-6);
   }
 }

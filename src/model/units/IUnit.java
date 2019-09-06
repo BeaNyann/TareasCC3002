@@ -27,83 +27,179 @@ public interface IUnit {
   double getMaxHitPoints();
 
   /**
-   * @return the items carried by this unit
+   * @return the items carried by this unit.
    */
   List<IEquipableItem> getItems();
 
   /**
-   * @return the currently equipped item
+   * @return the currently equipped item.
    */
   IEquipableItem getEquippedItem();
 
+  /**
+   * Unequip the item to the unit.
+   */
   void unequipItem();
 
   /**
-   * @return the current location of the unit
+   * @return the current location of the unit.
    */
   Location getLocation();
 
+
   /**
-   * Sets a new location for this unit,
+   * Sets a new location for this unit.
+   *
+   * @param location the location where the unit will be set.
    */
   void setLocation(final Location location);
 
   /**
-   * @return the number of cells this unit can move
+   * @return the number of cells this unit can move.
    */
   int getMovement();
+
 
   /**
    * Moves this unit to another location.
    * <p>
    * If the other location is out of this unit's movement range, the unit doesn't move.
+   *
+   * @param targetLocation the location where to move the unit.
    */
   void moveTo(Location targetLocation);
 
+  /**
+   * Equip an axe to this unit.
+   *
+   * @param axe the axe to equip.
+   */
   void equipAxe(Axe axe);
 
+  /**
+   * Equip a bow to this unit.
+   *
+   * @param bow the bow to equip.
+   */
   void equipBow(Bow bow);
 
+  /**
+   * Equip a dark magic book to this unit.
+   *
+   * @param darkMagicBook the dark magic book to equip.
+   */
   void equipDarkMagicBook(DarkMagicBook darkMagicBook);
 
+  /**
+   * Equip a light magic book to this unit.
+   *
+   * @param lightMagicBook the light magic book to equip.
+   */
   void equipLightMagicBook(LightMagicBook lightMagicBook);
 
+  /**
+   * Equip a spirit magic book to this unit.
+   *
+   * @param spiritMagicBook the spirit magic book to equip.
+   */
   void equipSpiritMagicBook(SpiritMagicBook spiritMagicBook);
 
+  /**
+   * Equip a spear to this unit.
+   *
+   * @param spear the spear to equip.
+   */
   void equipSpear(Spear spear);
 
+  /**
+   * Equip a staff to this unit.
+   *
+   * @param staff the staff to equip.
+   */
   void equipStaff(Staff staff);
 
+  /**
+   * Equip a sword to this unit.
+   *
+   * @param sword the sword to equip.
+   */
   void equipSword(Sword sword);
 
+  /**
+   * @param item
+   * @return
+   */
   boolean receiveObj(IEquipableItem item);
 
+  /**
+   * @param unit
+   * @param item
+   */
   void giveObj(IUnit unit, IEquipableItem item);
 
+  /**
+   * @param item
+   */
   void addItem(IEquipableItem item);
 
+  /**
+   * @param item
+   */
   void removeItem(IEquipableItem item);
 
+  /**
+   * @param axe
+   */
   void attackedByAxe(Axe axe);
 
+  /**
+   * @param bow
+   */
   void attackedByBow(Bow bow);
 
+  /**
+   * @param darkMagicBook
+   */
   void attackedByDarkMagicBook(DarkMagicBook darkMagicBook);
 
+  /**
+   * @param lightMagicBook
+   */
   void attackedByLightMagicBook(LightMagicBook lightMagicBook);
 
+  /**
+   * @param spiritMagicBook
+   */
   void attackedBySpiritMagicBook(SpiritMagicBook spiritMagicBook);
 
+  /**
+   * @param spear
+   */
   void attackedBySpear(Spear spear);
 
+  /**
+   * @param sword
+   */
   void attackedBySword(Sword sword);
 
+  /**
+   * @param power
+   */
   void setNormalDamage(double power);
 
+  /**
+   * @param power
+   */
   void setBigDamage(double power);
 
+  /**
+   * @param power
+   */
   void setSmallDamage(double power);
 
+  /**
+   * @param unit
+   */
   void counterAttack(IUnit unit);
 }
 
