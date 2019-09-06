@@ -48,7 +48,7 @@ public class SpiritMagicBook extends AbstractItem {
     }
 
     /**
-     * Send a message to this spirit magic book´s unit with de type of damage it received.
+     * Send a message to this spirit magic book´s unit with the big damage it received.
      *
      * @param sword the sword with which this spirit magic book's unit is being attacked.
      */
@@ -58,7 +58,7 @@ public class SpiritMagicBook extends AbstractItem {
     }
 
     /**
-     * Send a message to this spirit magic book´s unit with de type of damage it received.
+     * Send a message to this spirit magic book´s unit with the big damage it received.
      *
      * @param spear the spear with which this spirit magic book's unit is being attacked.
      */
@@ -68,7 +68,7 @@ public class SpiritMagicBook extends AbstractItem {
     }
 
     /**
-     * Send a message to this spirit magic book´s unit with de type of damage it received.
+     * Send a message to this spirit magic book´s unit with the big damage it received.
      *
      * @param bow the bow with which this spirit magic book's unit is being attacked.
      */
@@ -78,7 +78,7 @@ public class SpiritMagicBook extends AbstractItem {
     }
 
     /**
-     * Send a message to this spirit magic book´s unit with de type of damage it received.
+     * Send a message to this spirit magic book´s unit with the big damage it received.
      *
      * @param axe the axe with which this spirit magic book's unit is being attacked.
      */
@@ -88,7 +88,7 @@ public class SpiritMagicBook extends AbstractItem {
     }
 
     /**
-     * Send a message to this spirit magic book´s unit with de type of damage it received.
+     * Send a message to this spirit magic book´s unit with the big damage it received.
      *
      * @param darkMagicBook the dark magic book with which this spirit magic book's unit is being attacked.
      */
@@ -98,7 +98,7 @@ public class SpiritMagicBook extends AbstractItem {
     }
 
     /**
-     * Send a message to this spirit magic book´s unit with de type of damage it received.
+     * Send a message to this spirit magic book´s unit with the small damage it received.
      *
      * @param lightMagicBook the light magic book with which this spirit magic book's unit is being attacked.
      */

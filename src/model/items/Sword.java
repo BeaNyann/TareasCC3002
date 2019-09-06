@@ -47,7 +47,7 @@ public class Sword extends AbstractItem {
   }
 
   /**
-   * Send a message to this sword´s unit with de type of damage it received.
+   * Send a message to this sword´s unit with the big damage it received.
    *
    * @param spear the spear with which this sword's unit is being attacked.
    */
@@ -57,7 +57,7 @@ public class Sword extends AbstractItem {
   }
 
   /**
-   * Send a message to this sword´s unit with de type of damage it received.
+   * Send a message to this sword´s unit with the big damage it received.
    *
    * @param darkMagicBook the dark magic book with which this sword's unit is being attacked.
    */
@@ -67,7 +67,7 @@ public class Sword extends AbstractItem {
   }
 
   /**
-   * Send a message to this sword´s unit with de type of damage it received.
+   * Send a message to this sword´s unit with the big damage it received.
    *
    * @param lightMagicBook the light magic book with which this sword's unit is being attacked.
    */
@@ -77,7 +77,7 @@ public class Sword extends AbstractItem {
   }
 
   /**
-   * Send a message to this sword´s unit with de type of damage it received.
+   * Send a message to this sword´s unit with the big damage it received.
    *
    * @param spiritMagicBook the spirit magic book with which this sword's unit is being attacked.
    */
@@ -87,7 +87,7 @@ public class Sword extends AbstractItem {
   }
 
   /**
-   * Send a message to this sword´s unit with de type of damage it received.
+   * Send a message to this sword´s unit with the small damage it received.
    *
    * @param axe the axe with which this item's sword is being attacked.
    */

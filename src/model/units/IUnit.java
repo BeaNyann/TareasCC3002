@@ -129,7 +129,7 @@ public interface IUnit {
    * The unit receive an item, it is only received if the unit has space enough.
    *
    * @param   item the item to receive.
-   * @return  <code>true</code> the unit receive the object (if it has space enough), <code>false</code> otherwise.
+   * @return  <code>true</code> if the unit receive the object (if it has space enough), <code>false</code> otherwise.
    */
   boolean receiveObj(IEquipableItem item);
 
@@ -142,67 +142,100 @@ public interface IUnit {
   void giveObj(IUnit unit, IEquipableItem item);
 
   /**
-   * @param item
+   * Add a item to the unit´s inventory.
+   *
+   * @param item the item to add to the unit.
    */
   void addItem(IEquipableItem item);
 
   /**
-   * @param item
+   * Remove a item from the unit´s inventory.
+   *
+   * @param item the item to remove from a unit.
    */
   void removeItem(IEquipableItem item);
 
   /**
-   * @param axe
+   * Send a message to this unit´s item with the axe that is attacking.
+   * If this unit doesnt have any item, it received a normal damage.
+   *
+   * @param axe the axe which attacks the unit.
    */
   void attackedByAxe(Axe axe);
 
   /**
-   * @param bow
+   * Send a message to this unit´s item with the bow that is attacking.
+   * If this unit doesnt have any item, it received a normal damage.
+   *
+   * @param bow the bow which attacks the unit.
    */
   void attackedByBow(Bow bow);
 
   /**
-   * @param darkMagicBook
+   * Send a message to this unit´s item with the dark magic book that is attacking.
+   * If this unit doesnt have any item, it received a normal damage.
+   *
+   * @param darkMagicBook the dark magic book which attacks the unit.
    */
   void attackedByDarkMagicBook(DarkMagicBook darkMagicBook);
 
   /**
-   * @param lightMagicBook
+   * Send a message to this unit´s item with the light magic book that is attacking.
+   * If this unit doesnt have any item, it received a normal damage.
+   *
+   * @param lightMagicBook the light magic book which attacks the unit.
    */
   void attackedByLightMagicBook(LightMagicBook lightMagicBook);
 
   /**
-   * @param spiritMagicBook
+   * Send a message to this unit´s item with the spirit magic book that is attacking.
+   * If this unit doesnt have any item, it received a normal damage.
+   *
+   * @param spiritMagicBook the spirit magic book which attacks the unit.
    */
   void attackedBySpiritMagicBook(SpiritMagicBook spiritMagicBook);
 
   /**
-   * @param spear
+   * Send a message to this unit´s item with the spear that is attacking.
+   * If this unit doesnt have any item, it received a normal damage.
+   *
+   * @param spear the spear which attacks the unit.
    */
   void attackedBySpear(Spear spear);
 
   /**
-   * @param sword
+   * Send a message to this unit´s item with the sword that is attacking.
+   * If this unit doesnt have any item, it received a normal damage.
+   *
+   * @param sword the sword which attacks the unit.
    */
   void attackedBySword(Sword sword);
 
   /**
-   * @param power
+   * Discount the corresponding normal damage to the unit´s hit points.
+   *
+   * @param power the base power of the weapon that attacks the unit.
    */
   void setNormalDamage(double power);
 
   /**
-   * @param power
+   * Discount the corresponding big damage to the unit´s hit points.
+   *
+   * @param power the base power of the weapon that attacks the unit.
    */
   void setBigDamage(double power);
 
   /**
-   * @param power
+   * Discount the corresponding small damage to the unit´s hit points.
+   *
+   * @param power the base power of the weapon that attacks the unit.
    */
   void setSmallDamage(double power);
 
   /**
-   * @param unit
+   * Send a message to this unit´s item with the target unit to the counter attack.
+   *
+   * @param unit the unit that is going to receive the counter attack.
    */
   void counterAttack(IUnit unit);
 }

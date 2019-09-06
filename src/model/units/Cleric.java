@@ -30,9 +30,10 @@ public class Cleric extends AbstractUnit {
 
   /**
    * Sets the currently equipped item of this unit.
+   * <p>
+   * The <i>Cleric</i> can <b>only equip Staffs</b>.
    *
-   * @param staff
-   *     the item to equip
+   * @param staff the staff to equip.
    */
   @Override
   public void equipStaff(final Staff staff) {
@@ -45,6 +46,11 @@ public class Cleric extends AbstractUnit {
     }
   }
 
+  /**
+   * The cleric cannot attack other units.
+   *
+   * @param unit the unit that is going to be attacked.
+   */
   @Override
   public void attack(IUnit unit) {}
 }

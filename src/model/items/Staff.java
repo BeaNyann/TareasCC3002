@@ -45,7 +45,7 @@ public class Staff extends AbstractItem {
   public void attackWith(IUnit unit) {}
 
   /**
-   * Send a message to this staff´s unit with de type of damage it received.
+   * Send a message to this staff´s unit with the big damage it received.
    *
    * @param darkMagicBook the dark magic book with which this staff's unit is being attacked.
    */
@@ -55,7 +55,7 @@ public class Staff extends AbstractItem {
   }
 
   /**
-   * Send a message to this staff´s unit with de type of damage it received.
+   * Send a message to this staff´s unit with the big damage it received.
    *
    * @param lightMagicBook the light magic book with which this staff's unit is being attacked.
    */
@@ -65,7 +65,7 @@ public class Staff extends AbstractItem {
   }
 
   /**
-   * Send a message to this staff´s unit with de type of damage it received.
+   * Send a message to this staff´s unit with the big damage it received.
    *
    * @param spiritMagicBook the spirit magic book with which this staff's unit is being attacked.
    */

@@ -51,7 +51,7 @@ public class Bow extends AbstractItem {
   }
 
   /**
-   * Send a message to this bow´s unit with de type of damage it received.
+   * Send a message to this bow´s unit with the big damage it received.
    *
    * @param darkMagicBook the dark magic book with which this bow's unit is being attacked.
    */
@@ -61,7 +61,7 @@ public class Bow extends AbstractItem {
   }
 
   /**
-   * Send a message to this bow´s unit with de type of damage it received.
+   * Send a message to this bow´s unit with the big damage it received.
    *
    * @param lightMagicBook the light magic book with which this bow's unit is being attacked.
    */
@@ -71,7 +71,7 @@ public class Bow extends AbstractItem {
   }
 
   /**
-   * Send a message to this bow´s unit with de type of damage it received.
+   * Send a message to this bow´s unit with the big damage it received.
    *
    * @param spiritMagicBook the spirit magic book with which this bow's unit is being attacked.
    */

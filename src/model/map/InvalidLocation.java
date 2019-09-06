@@ -32,4 +32,6 @@ public class InvalidLocation extends Location {
   @Override
   protected void addTo(final Location location) {
   }
+
+  //TODO testea estos metodos
 }

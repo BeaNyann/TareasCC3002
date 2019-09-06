@@ -29,9 +29,10 @@ public class Fighter extends AbstractUnit {
 
   /**
    * Sets the currently equipped item of this unit.
+   * <p>
+   * The <i>Fighter</i> can <b>only equip Axes</b>.
    *
-   * @param axe
-   *     the item to equip
+   * @param axe the axe to equip.
    */
   @Override
   public void equipAxe(final Axe axe) {

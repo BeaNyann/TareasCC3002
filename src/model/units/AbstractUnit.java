@@ -228,7 +228,7 @@ public abstract class AbstractUnit implements IUnit {
    * The unit receive an item, it is only received if the unit has space enough.
    *
    * @param   item the item to receive.
-   * @return  <code>true</code> the unit receive the object (if it has space enough), <code>false</code> otherwise.
+   * @return  <code>true</code> if the unit receive the object (if it has space enough), <code>false</code> otherwise.
    */
   @Override
   public boolean receiveObj(IEquipableItem item) {
@@ -240,6 +240,11 @@ public abstract class AbstractUnit implements IUnit {
     return false;
   }
 
+  /**
+   * Add a item to the unit´s inventory.
+   *
+   * @param item the item to add to the unit.
+   */
   @Override
   public void addItem(IEquipableItem item){
     if(item.getOnInventory()==null) {
@@ -248,6 +253,11 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * Remove a item from the unit´s inventory
+   *
+   * @param item the item to remove from a unit.
+   */
   @Override
   public void removeItem(IEquipableItem item){
     if(this.items.contains(item)) {
@@ -258,6 +268,11 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * Send a message to this unit´s item with the target unit to the counter attack.
+   *
+   * @param unit the unit that is going to receive the counter attack.
+   */
   @Override
   public void counterAttack(IUnit unit){
     if(this.equippedItem!=null &&
@@ -268,6 +283,11 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * Send a message to this unit´s item to attack the target unit.
+   *
+   * @param unit the unit that is going to be attacked.
+   */
   public void attack(IUnit unit){
     if(this.equippedItem!=null &&
             this.getEquippedItem().getMinRange() <= this.getLocation().distanceTo(unit.getLocation()) &&
@@ -278,6 +298,12 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * Send a message to this unit´s item with the axe that is attacking.
+   * If this unit doesnt have any item, it received a normal damage.
+   *
+   * @param axe the axe which attacks the unit.
+   */
   @Override
   public void attackedByAxe(Axe axe) {
     if(this.getEquippedItem() != null){
@@ -288,6 +314,12 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * Send a message to this unit´s item with the bow that is attacking.
+   * If this unit doesnt have any item, it received a normal damage.
+   *
+   * @param bow the bow which attacks the unit.
+   */
   @Override
   public void attackedByBow(Bow bow) {
     if(this.getEquippedItem() != null){
@@ -298,6 +330,12 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * Send a message to this unit´s item with the dark magic book that is attacking.
+   * If this unit doesnt have any item, it received a normal damage.
+   *
+   * @param darkMagicBook the dark magic book which attacks the unit.
+   */
   @Override
   public void attackedByDarkMagicBook(DarkMagicBook darkMagicBook) {
     if(this.getEquippedItem() != null){
@@ -308,6 +346,12 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * Send a message to this unit´s item with the light magic book that is attacking.
+   * If this unit doesnt have any item, it received a normal damage.
+   *
+   * @param lightMagicBook the light magic book which attacks the unit.
+   */
   @Override
   public void attackedByLightMagicBook(LightMagicBook lightMagicBook) {
     if(this.getEquippedItem() != null){
@@ -318,6 +362,12 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * Send a message to this unit´s item with the spirit magic book that is attacking.
+   * If this unit doesnt have any item, it received a normal damage.
+   *
+   * @param spiritMagicBook the spirit magic book which attacks the unit.
+   */
   @Override
   public void attackedBySpiritMagicBook(SpiritMagicBook spiritMagicBook) {
     if(this.getEquippedItem() != null){
@@ -328,6 +378,12 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * Send a message to this unit´s item with the spear that is attacking.
+   * If this unit doesnt have any item, it received a normal damage.
+   *
+   * @param spear the spear which attacks the unit.
+   */
   @Override
   public void attackedBySpear(Spear spear) {
     if(this.getEquippedItem() != null){
@@ -338,6 +394,12 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * Send a message to this unit´s item with the sword that is attacking.
+   * If this unit doesnt have any item, it received a normal damage.
+   *
+   * @param sword the sword which attacks the unit.
+   */
   @Override
   public void attackedBySword(Sword sword) {
     if(this.getEquippedItem() != null){
@@ -348,16 +410,31 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * Discount the corresponding normal damage to the unit´s hit points.
+   *
+   * @param power the base power of the weapon that attacks the unit.
+   */
   @Override
   public void setNormalDamage(double power) {
     this.currentHitPoints = max(0,this.currentHitPoints - power);
   }
 
+  /**
+   * Discount the corresponding big damage to the unit´s hit points.
+   *
+   * @param power the base power of the weapon that attacks the unit.
+   */
   @Override
   public void setBigDamage(double power) {
     this.currentHitPoints = max(0,this.currentHitPoints-1.5*power);
   }
 
+  /**
+   * Discount the corresponding small damage to the unit´s hit points.
+   *
+   * @param power the base power of the weapon that attacks the unit.
+   */
   @Override
   public void setSmallDamage(double power) {
     this.currentHitPoints = min(max(0,this.currentHitPoints-(power-20)),this.currentHitPoints);

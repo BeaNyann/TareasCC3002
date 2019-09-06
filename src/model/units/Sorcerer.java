@@ -27,9 +27,10 @@ public class Sorcerer extends AbstractUnit {
 
   /**
    * Sets the currently equipped item of this unit.
+   * <p>
+   * The <i>Sorcerer</i> can <b>only equip Magic Books</b>.
    *
-   * @param darkMagicBook
-   *     the item to equip
+   * @param darkMagicBook the dark magic book to equip.
    */
   @Override
   public void equipDarkMagicBook(final DarkMagicBook darkMagicBook) {
@@ -44,9 +45,10 @@ public class Sorcerer extends AbstractUnit {
 
   /**
    * Sets the currently equipped item of this unit.
+   * <p>
+   * The <i>Sorcerer</i> can <b>only equip Magic Books</b>.
    *
-   * @param lightMagicBook
-   *     the item to equip
+   * @param lightMagicBook the light magic book to equip.
    */
   @Override
   public void equipLightMagicBook(final LightMagicBook lightMagicBook) {
@@ -61,9 +63,10 @@ public class Sorcerer extends AbstractUnit {
 
   /**
    * Sets the currently equipped item of this unit.
+   * <p>
+   * The <i>Sorcerer</i> can <b>only equip Magic Books</b>.
    *
-   * @param spiritMagicBook
-   *     the item to equip
+   * @param spiritMagicBook the spirit magic book to equip.
    */
   @Override
   public void equipSpiritMagicBook(final SpiritMagicBook spiritMagicBook) {

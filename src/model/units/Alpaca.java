@@ -26,6 +26,13 @@ public class Alpaca extends AbstractUnit {
     super(hitPoints, movement, location, Integer.MAX_VALUE, items);
   }
 
+  /**
+   * The unit receive an item, it is only received if the unit has space enough.
+   * The alpaca always has space enough.
+   *
+   * @param   item the item to receive.
+   * @return  <code>true</code> always.
+   */
   @Override
   public boolean receiveObj(IEquipableItem item) {
     this.addItem(item);

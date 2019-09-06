@@ -72,49 +72,49 @@ public interface IEquipableItem {
   void attackWith(IUnit unit);
 
   /**
-   * Send a message to this item´s unit with de type of damage it received.
+   * Send a message to this item´s unit with the type of damage it received.
    *
    * @param sword the sword with which this item's unit is being attacked.
    */
   void weAttackedBySword(Sword sword);
 
   /**
-   * Send a message to this item´s unit with de type of damage it received.
+   * Send a message to this item´s unit with the type of damage it received.
    *
    * @param spear the spear with which this item's unit is being attacked.
    */
   void weAttackedBySpear(Spear spear);
 
   /**
-   * Send a message to this item´s unit with de type of damage it received.
+   * Send a message to this item´s unit with the type of damage it received.
    *
    * @param darkMagicBook the dark magic book with which this item's unit is being attacked.
    */
   void weAttackedByDarkMagicBook(DarkMagicBook darkMagicBook);
 
   /**
-   * Send a message to this item´s unit with de type of damage it received.
+   * Send a message to this item´s unit with the type of damage it received.
    *
    * @param lightMagicBook the light magic book with which this item's unit is being attacked.
    */
   void weAttackedByLightMagicBook(LightMagicBook lightMagicBook);
 
   /**
-   * Send a message to this item´s unit with de type of damage it received.
+   * Send a message to this item´s unit with the type of damage it received.
    *
    * @param spiritMagicBook the spirit magic book with which this item's unit is being attacked.
    */
   void weAttackedBySpiritMagicBook(SpiritMagicBook spiritMagicBook);
 
   /**
-   * Send a message to this item´s unit with de type of damage it received.
+   * Send a message to this item´s unit with the type of damage it received.
    *
    * @param bow the bow with which this item's unit is being attacked.
    */
   void weAttackedByBow(Bow bow);
 
   /**
-   * Send a message to this item´s unit with de type of damage it received.
+   * Send a message to this item´s unit with the type of damage it received.
    *
    * @param axe the axe with which this item's unit is being attacked.
    */
