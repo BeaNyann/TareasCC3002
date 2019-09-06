@@ -126,14 +126,18 @@ public interface IUnit {
   void equipSword(Sword sword);
 
   /**
-   * @param item
-   * @return
+   * The unit receive an item, it is only received if the unit has space enough.
+   *
+   * @param   item the item to receive.
+   * @return  <code>true</code> the unit receive the object (if it has space enough), <code>false</code> otherwise.
    */
   boolean receiveObj(IEquipableItem item);
 
   /**
-   * @param unit
-   * @param item
+   * Give an item to a unit, if the unit dont have space nothing happen.
+   *
+   * @param unit  the unit to give the item.
+   * @param item  the item to give to the unit.
    */
   void giveObj(IUnit unit, IEquipableItem item);
 

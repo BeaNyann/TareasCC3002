@@ -33,10 +33,10 @@ public abstract class AbstractUnit implements IUnit {
   /**
    * Creates a new Unit.
    *
-   * @param hitPoints the maximum amount of damage a unit can sustain
-   * @param movement  the number of panels a unit can move
-   * @param location  the current position of this unit on the map
-   * @param maxItems  maximum amount of items this unit can carry
+   * @param hitPoints the maximum amount of damage a unit can sustain.
+   * @param movement  the number of panels a unit can move.
+   * @param location  the current position of this unit on the map.
+   * @param maxItems  maximum amount of items this unit can carry.
    */
   protected AbstractUnit(final int hitPoints, final int movement,
                          final Location location, final int maxItems, final IEquipableItem... items) {
@@ -208,6 +208,12 @@ public abstract class AbstractUnit implements IUnit {
   }
 
 
+  /**
+   * Give an item to a unit, if the unit dont have space nothing happen.
+   *
+   * @param unit the unit to give the item.
+   * @param item the item to give to the unit.
+   */
   @Override
   public void giveObj(IUnit unit, IEquipableItem item) {
     if (this.items.contains(item) && unit.getLocation().distanceTo(this.location) == 1) {
@@ -218,6 +224,12 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * The unit receive an item, it is only received if the unit has space enough.
+   *
+   * @param   item the item to receive.
+   * @return  <code>true</code> the unit receive the object (if it has space enough), <code>false</code> otherwise.
+   */
   @Override
   public boolean receiveObj(IEquipableItem item) {
     if (this.items.size() < this.maxItems) {
