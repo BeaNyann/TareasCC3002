@@ -299,7 +299,7 @@ public abstract class AbstractUnit implements IUnit {
             this.getEquippedItem().getMinRange() <= this.getLocation().distanceTo(unit.getLocation()) &&
             this.getLocation().distanceTo(unit.getLocation()) <= this.getEquippedItem().getMaxRange() &&
             this.getCurrentHitPoints()> 0 && unit.getCurrentHitPoints()>0) {
-      this.equippedItem.attackWith(unit); //TODO testear atacar unidades muertas?
+      this.equippedItem.attackWith(unit);
       unit.counterAttack(this);
     }
   }
@@ -423,7 +423,7 @@ public abstract class AbstractUnit implements IUnit {
    */
   @Override
   public void healedByStaff(Staff staff) {
-    this.currentHitPoints = min(this.MaxHitPoints,this.currentHitPoints+staff.getPower());//TODO testear esto
+    this.currentHitPoints = min(this.MaxHitPoints,this.currentHitPoints+staff.getPower());
   }
 
   /**

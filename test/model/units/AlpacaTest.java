@@ -133,6 +133,9 @@ public class AlpacaTest extends AbstractTestUnit {
   }
 
   @Override
+  public void testAttackDeadUnit() {}
+
+  @Override
   public void FailEquipUnequipSpearTest() {}
 
   @Override

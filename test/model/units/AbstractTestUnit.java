@@ -87,7 +87,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Test
   public void constructorTest() {
     assertEquals(50, getTestUnit().getMaxHitPoints());
-    assertEquals(getTestUnit().getMaxHitPoints(), getTestUnit().getCurrentHitPoints(),1E-6);
+    assertEquals(getTestUnit().getMaxHitPoints(), getTestUnit().getCurrentHitPoints(), 1E-6);
     assertEquals(2, getTestUnit().getMovement());
     assertEquals(new Location(0, 0), getTestUnit().getLocation());
     assertTrue(getTestUnit().getItems().isEmpty());
@@ -345,15 +345,15 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Test
   public void testMovement() {
     getTestUnit().moveTo(getField().getCell(2, 2));
-    assertEquals(field.getCell(0,0), getTestUnit().getLocation());
+    assertEquals(field.getCell(0, 0), getTestUnit().getLocation());
 
     getTestUnit().moveTo(getField().getCell(0, 2));
-    assertEquals(field.getCell(0,2), getTestUnit().getLocation());
+    assertEquals(field.getCell(0, 2), getTestUnit().getLocation());
     assertNull(getField().getCell(0, 0).getUnit());
 
     getField().getCell(0, 1).setUnit(getTargetAlpaca());
     getTestUnit().moveTo(getField().getCell(0, 1));
-    assertEquals(field.getCell(0,2), getTestUnit().getLocation());
+    assertEquals(field.getCell(0, 2), getTestUnit().getLocation());
   }
 
   /**
@@ -376,6 +376,22 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   public void testHealUnit() {
     IUnit unit = getTestUnit();
-    Cleric cleric = new Cleric(50,2,field.getCell(0,1));
+    Cleric cleric = new Cleric(50, 2, field.getCell(0, 1));
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    cleric.attack(unit);
+    assertEquals(50, unit.getCurrentHitPoints());
+    //no debería darle más vida de la que ya tiene
+    unit.setBigDamage(10);
+    //recibió 15 de daño
+    assertEquals(35, unit.getCurrentHitPoints());
+    cleric.attack(unit);
+    //recupera 10
+    assertEquals(45, unit.getCurrentHitPoints());
+    unit.setBigDamage(30);
+    //se queda sin vida
+    cleric.attack(unit);
+    assertEquals(0, unit.getCurrentHitPoints());
+    //no se puede revivir :C
   }
 }

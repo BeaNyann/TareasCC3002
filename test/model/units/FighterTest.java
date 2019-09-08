@@ -196,6 +196,18 @@ public class FighterTest extends AbstractTestUnit {
 
   @Test
   @Override
+  public void testAttackDeadUnit() {
+    Alpaca alpaca = getTargetAlpaca();
+    fighter.addItem(axe);
+    axe.equipTo(fighter);
+    alpaca.setBigDamage(50);
+    assertEquals(0,alpaca.getCurrentHitPoints());
+    fighter.attack(alpaca);
+    assertEquals(0,alpaca.getCurrentHitPoints());
+  }
+
+  @Test
+  @Override
   public void testAttackArcher() {
     Archer archer = new Archer(50, 2, field.getCell(1,1));
     fighter.attack(archer);

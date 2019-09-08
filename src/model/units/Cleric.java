@@ -57,7 +57,7 @@ public class Cleric extends AbstractUnit {
             this.getEquippedItem().getMinRange() <= this.getLocation().distanceTo(unit.getLocation()) &&
             this.getLocation().distanceTo(unit.getLocation()) <= this.getEquippedItem().getMaxRange() &&
             this.getCurrentHitPoints()> 0 && unit.getCurrentHitPoints()>0 &&
-            this.getCurrentHitPoints()<this.getMaxHitPoints() ) {
+            unit.getCurrentHitPoints()<this.getMaxHitPoints() ) {
       this.equippedItem.attackWith(unit);
     }
   }

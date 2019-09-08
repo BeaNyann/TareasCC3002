@@ -230,6 +230,18 @@ public class ArcherTest extends AbstractTestUnit {
 
   @Test
   @Override
+  public void testAttackDeadUnit() {
+    Alpaca alpaca = getTargetAlpaca();
+    archer.addItem(bow);
+    bow.equipTo(archer);
+    alpaca.setBigDamage(50);
+    assertEquals(0,alpaca.getCurrentHitPoints());
+    archer.attack(alpaca);
+    assertEquals(0,alpaca.getCurrentHitPoints());
+  }
+
+  @Test
+  @Override
   public void testAttackCleric() {
     Cleric cleric = new Cleric(50, 2, field.getCell(0,1));
     archer.attack(cleric);

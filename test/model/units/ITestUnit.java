@@ -216,6 +216,9 @@ public interface ITestUnit {
 
   @Test
   void testHealUnit();
+
+  @Test
+  void testAttackDeadUnit();
 }
 
 

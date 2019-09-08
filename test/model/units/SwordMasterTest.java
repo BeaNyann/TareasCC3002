@@ -190,6 +190,18 @@ public class SwordMasterTest extends AbstractTestUnit {
 
   @Test
   @Override
+  public void testAttackDeadUnit() {
+    Alpaca alpaca = getTargetAlpaca();
+    swordMaster.addItem(sword);
+    sword.equipTo(swordMaster);
+    alpaca.setBigDamage(50);
+    assertEquals(0,alpaca.getCurrentHitPoints());
+    swordMaster.attack(alpaca);
+    assertEquals(0,alpaca.getCurrentHitPoints());
+  }
+
+  @Test
+  @Override
   public void testAttackArcher() {
     Archer archer = new Archer(50,2,field.getCell(1,1));
     swordMaster.attack(archer);

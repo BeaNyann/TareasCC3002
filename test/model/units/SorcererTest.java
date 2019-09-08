@@ -232,6 +232,18 @@ public class SorcererTest extends AbstractTestUnit {
         assertEquals(50,hero.getCurrentHitPoints(),1E-6);
     }
 
+    @Test
+    @Override
+    public void testAttackDeadUnit() {
+        Alpaca alpaca = getTargetAlpaca();
+        sorcerer.addItem(darkMagicBook);
+        darkMagicBook.equipTo(sorcerer);
+        alpaca.setBigDamage(50);
+        assertEquals(0,alpaca.getCurrentHitPoints());
+        sorcerer.attack(alpaca);
+        assertEquals(0,alpaca.getCurrentHitPoints());
+    }
+
     @Override
     public void testAttackArcher() {
         testAttackArcherDark();
