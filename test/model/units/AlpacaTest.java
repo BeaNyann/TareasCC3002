@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Test set for the alpaca unit
+ * Test set for the Alpaca unit.
  *
  * @author Beatriz Graboloza
  * @since 1.0

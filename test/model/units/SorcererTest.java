@@ -9,7 +9,10 @@ import model.items.SpiritMagicBook;
 import org.junit.jupiter.api.Test;
 
 /**
+ * Test set for the Sorcerer unit.
+ *
  * @author Beatriz Graboloza
+ * @since 1.0
  */
 public class SorcererTest extends AbstractTestUnit {
 

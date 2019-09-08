@@ -42,7 +42,9 @@ public class Staff extends AbstractItem {
    * @param unit the unit that is going to be attacked.
    */
   @Override
-  public void attackWith(IUnit unit) {}
+  public void attackWith(IUnit unit) {
+    unit.healedByStaff(this);
+  }
 
   /**
    * Send a message to this staff´s unit with the big damage it received.

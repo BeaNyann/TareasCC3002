@@ -17,7 +17,7 @@ public class ArcherTest extends AbstractTestUnit {
   private Archer archer;
 
   /**
-   * Set up the main unit that's going to be tested in the test set
+   * Set up the main unit that's going to be tested in the test set.
    */
   @Override
   public void setTestUnit() {
@@ -25,7 +25,7 @@ public class ArcherTest extends AbstractTestUnit {
   }
 
   /**
-   * @return the current unit being tested
+   * @return the current unit being tested.
    */
   @Override
   public IUnit getTestUnit() {

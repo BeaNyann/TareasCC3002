@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Defines some common methods for all the unit tests.
+ *
  * @author Beatriz Graboloza
  * @since 1.0
  */
@@ -368,5 +370,12 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   public Alpaca getTargetAlpaca() {
     return targetAlpaca;
+  }
+
+  @Test
+  @Override
+  public void testHealUnit() {
+    IUnit unit = getTestUnit();
+    Cleric cleric = new Cleric(50,2,field.getCell(0,1));
   }
 }

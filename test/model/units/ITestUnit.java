@@ -6,7 +6,7 @@ import model.map.Field;
 import org.junit.jupiter.api.Test;
 
 /**
- * Interface that defines the common behaviour of all the test for the units classes
+ * Interface that defines the common behaviour of all the test for the units classes.
  *
  * @author Beatriz Graboloza
  * @since 1.0
@@ -14,12 +14,12 @@ import org.junit.jupiter.api.Test;
 public interface ITestUnit {
 
   /**
-   * Set up the game field
+   * Set up the game field.
    */
   void setField();
 
   /**
-   * Set up the main unit that's going to be tested in the test set
+   * Set up the main unit that's going to be tested in the test set.
    */
   void setTestUnit();
 
@@ -213,6 +213,9 @@ public interface ITestUnit {
 
   @Test
   void testAttackWithOutLife();
+
+  @Test
+  void testHealUnit();
 }
 
 

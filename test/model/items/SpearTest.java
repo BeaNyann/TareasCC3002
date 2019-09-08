@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Test set for spears
+ * Test set for the Spear item.
  *
  * @author Beatriz Graboloza
  * @since 1.0

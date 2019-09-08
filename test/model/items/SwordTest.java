@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Test set for swords
+ * Test set for the Sword item.
  *
  * @author Beatriz Graboloza
  * @since 1.0

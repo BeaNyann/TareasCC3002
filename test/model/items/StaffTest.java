@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Test set for staffs
+ * Test set for the Staff item.
  *
  * @author Beatriz Graboloza
  * @since 1.0

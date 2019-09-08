@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
+ * Test to locations.
+ *
  * @author Beatriz Graboloza
  * @since 1.0
  */
@@ -114,5 +116,12 @@ public class LocationTest {
         assertNull(locationA0.getUnit());
         locationA1.setUnit(unit);
         assertEquals(unit,locationA1.getUnit());
+    }
+
+    @Test
+    public void testOverloadedLocation(){
+        Alpaca alpaca = new Alpaca(50,2,locationA0);
+        assertEquals(unit ,locationA0.getUnit());
+        assertNull(alpaca.getLocation());
     }
 }

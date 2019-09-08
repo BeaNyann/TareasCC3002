@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
+ * Test to invalid locations.
+ *
  * @author Beatriz Graboloza
  * @since 1.0
  */

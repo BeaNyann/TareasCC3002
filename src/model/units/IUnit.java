@@ -238,5 +238,12 @@ public interface IUnit {
    * @param unit the unit that is going to receive the counter attack.
    */
   void counterAttack(IUnit unit);
+
+  /**
+   * Heal this unit with the staff received.
+   *
+   * @param staff the staff which heals the unit.
+   */
+  void healedByStaff(Staff staff);
 }
 

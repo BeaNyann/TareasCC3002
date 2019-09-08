@@ -8,6 +8,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test set for the Light Magic Book item.
+ *
+ * @author Beatriz Graboloza
+ * @since 1.0
+ */
 public class LightMagicBookTest extends AbstractTestItem{
     private LightMagicBook lightMagicBook;
     private LightMagicBook wrongLightMagicbook;

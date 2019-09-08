@@ -8,6 +8,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test set for the Dark Magic Book item.
+ *
+ * @author Beatriz Graboloza
+ * @since 1.0
+ */
 public class DarkMagicBookTest extends AbstractTestItem{
     private DarkMagicBook darkMagicBook;
     private DarkMagicBook wrongDarkMagicbook;

@@ -43,8 +43,14 @@ public abstract class AbstractUnit implements IUnit {
     this.MaxHitPoints = hitPoints;
     this.currentHitPoints = this.MaxHitPoints;
     this.movement = movement;
-    this.location = location;
-    location.setUnit(this);
+
+    if(location.getUnit()==null){
+      this.location = location;
+      location.setUnit(this);
+    }
+    else{
+      this.location = null;
+    }
     this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
     this.maxItems = maxItems;
   }
@@ -292,8 +298,8 @@ public abstract class AbstractUnit implements IUnit {
     if(this.equippedItem!=null &&
             this.getEquippedItem().getMinRange() <= this.getLocation().distanceTo(unit.getLocation()) &&
             this.getLocation().distanceTo(unit.getLocation()) <= this.getEquippedItem().getMaxRange() &&
-            this.getCurrentHitPoints()> 0) {
-      this.equippedItem.attackWith(unit);
+            this.getCurrentHitPoints()> 0 && unit.getCurrentHitPoints()>0) {
+      this.equippedItem.attackWith(unit); //TODO testear atacar unidades muertas?
       unit.counterAttack(this);
     }
   }
@@ -408,6 +414,16 @@ public abstract class AbstractUnit implements IUnit {
     else{
       this.setNormalDamage(sword.getPower());
     }
+  }
+
+  /**
+   * Heal this unit with the staff received.
+   *
+   * @param staff the staff which heals the unit.
+   */
+  @Override
+  public void healedByStaff(Staff staff) {
+    this.currentHitPoints = min(this.MaxHitPoints,this.currentHitPoints+staff.getPower());//TODO testear esto
   }
 
   /**

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Defines some common methods for all the items tests
+ * Defines some common methods for all the items tests.
  *
  * @author Beatriz Graboloza
  * @since 1.0
@@ -32,7 +32,7 @@ public abstract class AbstractTestItem {
   }
 
   /**
-   * Sets up a correctly implemented item that's going to be tested
+   * Sets up a correctly implemented item that's going to be tested.
    */
   public abstract void setTestItem();
 
@@ -55,10 +55,13 @@ public abstract class AbstractTestItem {
     assertTrue(getWrongTestItem().getMaxRange() >= getWrongTestItem().getMinRange());
   }
 
+  /**
+   * @return a wrong item to test.
+   */
   public abstract IEquipableItem getWrongTestItem();
 
   /**
-   * Tests that the constructor for the tested item works properly
+   * Tests that the constructor for the tested item works properly.
    */
   @Test
   public void constructorTest() {
@@ -69,40 +72,40 @@ public abstract class AbstractTestItem {
   }
 
   /**
-   * @return the expected name of the item
+   * @return the expected name of the item.
    */
   public String getExpectedName() {
     return expectedName;
   }
 
   /**
-   * @return the item being tested
+   * @return the item being tested.
    */
   public abstract IEquipableItem getTestItem();
 
   /**
-   * @return the expected power of the Item
+   * @return the expected power of the Item.
    */
   public int getExpectedBasePower() {
     return expectedPower;
   }
 
   /**
-   * @return the expected minimum range of the item
+   * @return the expected minimum range of the item.
    */
   public int getExpectedMinRange() {
     return expectedMinRange;
   }
 
   /**
-   * @return the expected maximum range of the item
+   * @return the expected maximum range of the item.
    */
   public int getExpectedMaxRange() {
     return expectedMaxRange;
   }
 
   /**
-   * Checks that the Item can be correctly equipped to a unit
+   * Checks that the Item can be correctly equipped to a unit.
    */
   @Test
   public void equippedToTest() {
@@ -113,11 +116,14 @@ public abstract class AbstractTestItem {
     assertEquals(unit, getTestItem().getUser());
   }
 
+  /**
+   * Test that one unit cant equip another unit´s item.
+   */
   @Test
   public void equippedToOverloadTest(){}
 
   /**
-   * @return a unit that can equip the item being tested
+   * @return a unit that can equip the item being tested.
    */
   public abstract IUnit getTestUnit();
 

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test set for bows
+ * Test set for the Bow item.
  *
  * @author Beatriz Graboloza
  * @since 1.0

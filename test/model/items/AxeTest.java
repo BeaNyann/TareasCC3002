@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test set for Axes
+ * Test set for the Axe item.
  *
  * @author Beatriz Graboloza
  * @since 1.0
@@ -20,6 +20,9 @@ class AxeTest extends AbstractTestItem {
   private Axe wrongAxe;
   private Fighter fighter;
 
+  /**
+   * Sets up a correctly implemented axe that's going to be tested.
+   */
   @Override
   public void setTestItem() {
     expectedName = "Common axe";
@@ -30,7 +33,7 @@ class AxeTest extends AbstractTestItem {
   }
 
   /**
-   * Sets up an item with wrong ranges setted.
+   * Sets up an axe with wrong ranges setted.
    */
   @Override
   public void setWrongRangeItem() {
@@ -38,25 +41,31 @@ class AxeTest extends AbstractTestItem {
   }
 
   /**
-   * Sets the unit that will be equipped with the test item
+   * Sets the unit that will be equipped with the test axe.
    */
   @Override
   public void setTestUnit() {
     fighter = new Fighter(10, 5, new Location(0, 0));
   }
 
+  /**
+   * @return a wrong axe to test.
+   */
   @Override
   public IEquipableItem getWrongTestItem() {
     return wrongAxe;
   }
 
+  /**
+   * @return the item being tested.
+   */
   @Override
   public IEquipableItem getTestItem() {
     return axe;
   }
 
   /**
-   * @return a unit that can equip the item being tested
+   * @return a unit that can equip the item being tested.
    */
   @Override
   public IUnit getTestUnit() {

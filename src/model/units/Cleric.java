@@ -47,10 +47,18 @@ public class Cleric extends AbstractUnit {
   }
 
   /**
-   * The cleric cannot attack other units.
+   * The cleric cannot attack other units, it send a message to the cleric´s staff to heal other unit.
    *
    * @param unit the unit that is going to be attacked.
    */
   @Override
-  public void attack(IUnit unit) {}
+  public void attack(IUnit unit) {
+    if(this.equippedItem!=null &&
+            this.getEquippedItem().getMinRange() <= this.getLocation().distanceTo(unit.getLocation()) &&
+            this.getLocation().distanceTo(unit.getLocation()) <= this.getEquippedItem().getMaxRange() &&
+            this.getCurrentHitPoints()> 0 && unit.getCurrentHitPoints()>0 &&
+            this.getCurrentHitPoints()<this.getMaxHitPoints() ) {
+      this.equippedItem.attackWith(unit);
+    }
+  }
 }

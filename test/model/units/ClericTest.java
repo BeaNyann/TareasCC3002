@@ -7,7 +7,10 @@ import model.items.Staff;
 import org.junit.jupiter.api.Test;
 
 /**
+ * Test set for the Cleric unit.
+ *
  * @author Beatriz Graboloza
+ * @since 1.0
  */
 public class ClericTest extends AbstractTestUnit {
 

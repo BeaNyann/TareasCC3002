@@ -7,7 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
+ * Test set for the Sword Master unit.
+ *
  * @author Beatriz Graboloza
+ * @since 1.0
  */
 public class SwordMasterTest extends AbstractTestUnit {
 

@@ -8,7 +8,10 @@ import model.items.Spear;
 import org.junit.jupiter.api.Test;
 
 /**
+ * Test set for the Fighter unit.
+ *
  * @author Beatriz Graboloza
+ * @since 1.0
  */
 public class FighterTest extends AbstractTestUnit {
 
