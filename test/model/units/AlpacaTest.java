@@ -112,8 +112,7 @@ public class AlpacaTest extends AbstractTestUnit {
   @Test
   @Override
   public void testAttackFarArcher() {
-    Archer archer = new Archer(50, 2, field.getCell(1,0));
-    archer.moveTo(field.getCell(1,1));
+    Archer archer = new Archer(50, 2, field.getCell(1,1));
     archer.moveTo(field.getCell(2,2));
     alpaca.attack(archer);
     assertEquals(50, archer.getCurrentHitPoints(),1E-6);
@@ -123,8 +122,8 @@ public class AlpacaTest extends AbstractTestUnit {
   @Test
   @Override
   public void testAttackWithOutLife() {
-    Alpaca alpaca = new Alpaca(5,2,field.getCell(0,0));
-    Hero hero = new Hero(50,2,field.getCell(1,0));
+    Alpaca alpaca = new Alpaca(5,2,field.getCell(1,1));
+    Hero hero = new Hero(50,2,field.getCell(2,1));
     hero.addItem(spear);
     spear.equipTo(hero);
     hero.attack(alpaca);

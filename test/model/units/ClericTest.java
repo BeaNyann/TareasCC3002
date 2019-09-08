@@ -180,8 +180,8 @@ public class ClericTest extends AbstractTestUnit {
   @Test
   @Override
   public void testAttackWithOutLife() {
-    Cleric cleric = new Cleric(5,2,field.getCell(0,0));
-    Hero hero = new Hero(50,2,field.getCell(1,0));
+    Cleric cleric = new Cleric(5,2,field.getCell(1,1));
+    Hero hero = new Hero(50,2,field.getCell(2,1));
     hero.addItem(spear);
     spear.equipTo(hero);
     cleric.addItem(staff);

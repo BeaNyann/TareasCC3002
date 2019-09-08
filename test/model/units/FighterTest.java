@@ -182,8 +182,8 @@ public class FighterTest extends AbstractTestUnit {
   @Test
   @Override
   public void testAttackWithOutLife() {
-    Fighter fighter = new Fighter(5,2,field.getCell(0,0));
-    Archer archer = new Archer(50,2,field.getCell(1,1));
+    Fighter fighter = new Fighter(5,2,field.getCell(1,1));
+    Archer archer = new Archer(50,2,field.getCell(2,2));
     archer.addItem(bow);
     bow.equipTo(archer);
     fighter.addItem(axe);
@@ -197,7 +197,7 @@ public class FighterTest extends AbstractTestUnit {
   @Test
   @Override
   public void testAttackArcher() {
-    Archer archer = new Archer(50, 2, field.getCell(1,0));
+    Archer archer = new Archer(50, 2, field.getCell(1,1));
     fighter.attack(archer);
     assertEquals(50, archer.getCurrentHitPoints(),1E-6);
     fighter.addItem(axe);
@@ -216,7 +216,7 @@ public class FighterTest extends AbstractTestUnit {
   @Test
   @Override
   public void testAttackCleric() {
-    Cleric cleric = new Cleric(50, 2, field.getCell(1,0));
+    Cleric cleric = new Cleric(50, 2, field.getCell(1,1));
     fighter.attack(cleric);
     assertEquals(50, cleric.getCurrentHitPoints(),1E-6);
     fighter.addItem(axe);
@@ -228,7 +228,7 @@ public class FighterTest extends AbstractTestUnit {
   @Test
   @Override
   public void testAttackFighter() {
-    Fighter fighter2 = new Fighter(50, 2, field.getCell(1,0));
+    Fighter fighter2 = new Fighter(50, 2, field.getCell(1,1));
     fighter.attack(fighter2);
     assertEquals(50, fighter2.getCurrentHitPoints(),1E-6);
     fighter.addItem(axe);
@@ -246,7 +246,7 @@ public class FighterTest extends AbstractTestUnit {
   @Test
   @Override
   public void testAttackHero() {
-    Hero hero = new Hero(50, 2, field.getCell(1,0));
+    Hero hero = new Hero(50, 2, field.getCell(1,1));
     fighter.attack(hero);
     assertEquals(50, hero.getCurrentHitPoints(),1E-6);
     fighter.addItem(axe);
@@ -269,7 +269,7 @@ public class FighterTest extends AbstractTestUnit {
   @Test
   @Override
   public void testAttackDarkSorcerer() {
-    Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,0));
+    Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,1));
     fighter.attack(sorcerer);
     assertEquals(50, sorcerer.getCurrentHitPoints(),1E-6);
     fighter.addItem(axe);
@@ -290,7 +290,7 @@ public class FighterTest extends AbstractTestUnit {
   @Test
   @Override
   public void testAttackLightSorcerer() {
-    Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,0));
+    Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,1));
     fighter.attack(sorcerer);
     assertEquals(50, sorcerer.getCurrentHitPoints(),1E-6);
     fighter.addItem(axe);
@@ -312,7 +312,7 @@ public class FighterTest extends AbstractTestUnit {
   @Test
   @Override
   public void testAttackSpiritSorcerer() {
-    Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,0));
+    Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,1));
     fighter.attack(sorcerer);
     assertEquals(50, sorcerer.getCurrentHitPoints(),1E-6);
     fighter.addItem(axe);
@@ -335,7 +335,7 @@ public class FighterTest extends AbstractTestUnit {
   @Test
   @Override
   public void testAttackSwordMaster() {
-    SwordMaster swordMaster = new SwordMaster(50, 2, field.getCell(1,0));
+    SwordMaster swordMaster = new SwordMaster(50, 2, field.getCell(1,1));
     fighter.attack(swordMaster);
     assertEquals(50, swordMaster.getCurrentHitPoints(),1E-6);
     fighter.addItem(axe);

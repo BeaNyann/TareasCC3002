@@ -339,21 +339,21 @@ public abstract class AbstractTestUnit implements ITestUnit {
   }
 
   /**
-   * Checks if the unit moves correctly
+   * Checks if the unit moves correctly.
    */
   @Override
   @Test
   public void testMovement() {
     getTestUnit().moveTo(getField().getCell(2, 2));
-    assertEquals(new Location(0, 0), getTestUnit().getLocation());
+    assertEquals(field.getCell(0,0), getTestUnit().getLocation());
 
     getTestUnit().moveTo(getField().getCell(0, 2));
-    assertEquals(new Location(0, 2), getTestUnit().getLocation());
+    assertEquals(field.getCell(0,2), getTestUnit().getLocation());
     assertNull(getField().getCell(0, 0).getUnit());
 
     getField().getCell(0, 1).setUnit(getTargetAlpaca());
     getTestUnit().moveTo(getField().getCell(0, 1));
-    assertEquals(new Location(0, 2), getTestUnit().getLocation());
+    assertEquals(field.getCell(0,2), getTestUnit().getLocation());
   }
 
   /**
