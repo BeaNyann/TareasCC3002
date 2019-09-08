@@ -212,6 +212,18 @@ public interface ITestUnit {
   void testAttackFarArcher();
 
   @Test
+  void testAttackFarFighter();
+
+  @Test
+  void testAttackFarHero();
+
+  @Test
+  void testAttackFarSorcerer();
+
+  @Test
+  void testAttackFarSwordMaster();
+
+  @Test
   void testAttackWithOutLife();
 
   @Test

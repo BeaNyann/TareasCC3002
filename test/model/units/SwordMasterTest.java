@@ -1,6 +1,6 @@
 package model.units;
 
-import model.items.Sword;
+import model.items.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,6 +31,7 @@ public class SwordMasterTest extends AbstractTestUnit {
   public IUnit getTestUnit() {
     return swordMaster;
   }
+
   @Test
   @Override
   public void equipUnequipSwordTest() {
@@ -87,6 +88,7 @@ public class SwordMasterTest extends AbstractTestUnit {
     assertNull(swordMaster.getEquippedItem());
   }
 
+  @Test
   @Override
   public void testRemoveEquippedObj() {
     swordMaster.addItem(sword);
@@ -161,23 +163,121 @@ public class SwordMasterTest extends AbstractTestUnit {
     assertEquals(40, alpaca.getCurrentHitPoints(),1E-6);
   }
 
+  @Test
   @Override
   public void testAttackFarArcher() {
-    Archer archer = new Archer(50, 2, field.getCell(1,0));
-    Sword sword2 = new Sword("Sword2",10,1,4);
+    Archer archer = new Archer(50, 2, field.getCell(1,1));
+    swordMaster.addItem(sword);
+    sword.equipTo(swordMaster);
+    Bow bow = new Bow("Bow",10,2,3);
+    archer.addItem(bow);
+    bow.equipTo(archer);
+    swordMaster.attack(archer);
+    //por el contraataque
+    assertEquals(40,archer.getCurrentHitPoints(),1E-6);
+    assertEquals(40,swordMaster.getCurrentHitPoints(),1E-6);
+    Sword sword2 = new Sword("sword2",10,2,4);
     swordMaster.addItem(sword2);
     sword2.equipTo(swordMaster);
-    archer.moveTo(field.getCell(1,1));
     archer.moveTo(field.getCell(2,2));
     swordMaster.attack(archer);
-    assertEquals(40, archer.getCurrentHitPoints(),1E-6);
-    assertEquals(50, swordMaster.getCurrentHitPoints(),1E-6);
+    assertEquals(30,archer.getCurrentHitPoints(),1E-6);
+    assertEquals(40,swordMaster.getCurrentHitPoints(),1E-6);
   }
 
+  @Test
+  @Override
+  public void testAttackFarFighter() {
+    Fighter fighter = new Fighter(50, 2, field.getCell(1,1));
+    swordMaster.addItem(sword);
+    sword.equipTo(swordMaster);
+    Axe axe = new Axe("Axe",40,2,3);
+    fighter.addItem(axe);
+    axe.equipTo(fighter);
+    swordMaster.attack(fighter);
+    //por el contraataque
+    assertEquals(35,fighter.getCurrentHitPoints(),1E-6);
+    assertEquals(30,swordMaster.getCurrentHitPoints(),1E-6);
+    Sword sword2 = new Sword("sword2",10,2,4);
+    swordMaster.addItem(sword2);
+    sword2.equipTo(swordMaster);
+    fighter.moveTo(field.getCell(2,2));
+    swordMaster.attack(fighter);
+    assertEquals(20,fighter.getCurrentHitPoints(),1E-6);
+    assertEquals(30,swordMaster.getCurrentHitPoints(),1E-6);
+  }
+
+  @Test
+  @Override
+  public void testAttackFarHero() {
+    Hero hero = new Hero(50, 2, field.getCell(1,1));
+    swordMaster.addItem(sword);
+    sword.equipTo(swordMaster);
+    Spear spear = new Spear("Spear",10,2,3);
+    hero.addItem(spear);
+    spear.equipTo(hero);
+    swordMaster.attack(hero);
+    //por el contraataque
+    assertEquals(50,hero.getCurrentHitPoints(),1E-6);
+    assertEquals(35,swordMaster.getCurrentHitPoints(),1E-6);
+    Sword sword2 = new Sword("sword2",40,2,4);
+    swordMaster.addItem(sword2);
+    sword2.equipTo(swordMaster);
+    hero.moveTo(field.getCell(2,2));
+    swordMaster.attack(hero);
+    assertEquals(30,hero.getCurrentHitPoints(),1E-6);
+    assertEquals(35,swordMaster.getCurrentHitPoints(),1E-6);
+  }
+
+  @Test
+  @Override
+  public void testAttackFarSorcerer() {
+    Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,1));
+    swordMaster.addItem(sword);
+    sword.equipTo(swordMaster);
+    DarkMagicBook darkMagicBook = new DarkMagicBook("Dark Magic Book",10,2,3);
+    sorcerer.addItem(darkMagicBook);
+    darkMagicBook.equipTo(sorcerer);
+    swordMaster.attack(sorcerer);
+    //por el contraataque
+    assertEquals(35,sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(35,swordMaster.getCurrentHitPoints(),1E-6);
+    Sword sword2 = new Sword("sword2",10,2,4);
+    swordMaster.addItem(sword2);
+    sword2.equipTo(swordMaster);
+    sorcerer.moveTo(field.getCell(2,2));
+    swordMaster.attack(sorcerer);
+    assertEquals(20,sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(35,swordMaster.getCurrentHitPoints(),1E-6);
+  }
+
+  @Test
+  @Override
+  public void testAttackFarSwordMaster() {
+    SwordMaster swordMaster2 = new SwordMaster(50, 2, field.getCell(1,1));
+    swordMaster.addItem(sword);
+    sword.equipTo(swordMaster);
+    Sword sword3 = new Sword("Sword3",10,2,3);
+    swordMaster2.addItem(sword3);
+    sword3.equipTo(swordMaster2);
+    swordMaster.attack(swordMaster2);
+    //por el contraataque
+    assertEquals(40,swordMaster2.getCurrentHitPoints(),1E-6);
+    assertEquals(40,swordMaster.getCurrentHitPoints(),1E-6);
+    Sword sword2 = new Sword("sword2",10,2,4);
+    swordMaster.addItem(sword2);
+    sword2.equipTo(swordMaster);
+    swordMaster2.moveTo(field.getCell(2,2));
+    swordMaster.attack(swordMaster2);
+    assertEquals(30,swordMaster2.getCurrentHitPoints(),1E-6);
+    assertEquals(40,swordMaster.getCurrentHitPoints(),1E-6);
+  }
+
+  @Test
   @Override
   public void testAttackWithOutLife() {
-    SwordMaster swordMaster = new SwordMaster(5,2,field.getCell(0,0));
-    Archer archer = new Archer(50,2,field.getCell(1,1));
+    SwordMaster swordMaster = new SwordMaster(5,2,field.getCell(1,1));
+    Archer archer = new Archer(50,2,field.getCell(2,2));
     archer.addItem(bow);
     bow.equipTo(archer);
     swordMaster.addItem(axe);

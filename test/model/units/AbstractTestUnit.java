@@ -385,6 +385,10 @@ public abstract class AbstractTestUnit implements ITestUnit {
     unit.setBigDamage(10);
     //recibió 15 de daño
     assertEquals(35, unit.getCurrentHitPoints());
+    cleric.moveTo(field.getCell(1,2));
+    cleric.attack(unit);
+    assertEquals(35, unit.getCurrentHitPoints());
+    cleric.moveTo(field.getCell(0,1));
     cleric.attack(unit);
     //recupera 10
     assertEquals(45, unit.getCurrentHitPoints());
@@ -394,4 +398,4 @@ public abstract class AbstractTestUnit implements ITestUnit {
     assertEquals(0, unit.getCurrentHitPoints());
     //no se puede revivir :C
   }
-}
+}//TODO fail counter attack

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import model.items.Staff;
+import model.items.Sword;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -168,6 +169,7 @@ public class ClericTest extends AbstractTestUnit {
     assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
 
+  @Test
   @Override
   public void testAttackFarArcher() {
     Archer archer = new Archer(50,2,field.getCell(1, 1));
@@ -177,6 +179,51 @@ public class ClericTest extends AbstractTestUnit {
     assertEquals(50,archer.getCurrentHitPoints(),1E-6);
     assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
+
+  @Test
+  @Override
+  public void testAttackFarFighter() {
+    Fighter fighter = new Fighter(50,2,field.getCell(1, 1));
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    cleric.attack(fighter);
+    assertEquals(50,fighter.getCurrentHitPoints(),1E-6);
+    assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
+  }
+
+  @Test
+  @Override
+  public void testAttackFarHero() {
+    Hero hero = new Hero(50,2,field.getCell(1, 1));
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    cleric.attack(hero);
+    assertEquals(50,hero.getCurrentHitPoints(),1E-6);
+    assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
+  }
+
+  @Test
+  @Override
+  public void testAttackFarSorcerer() {
+    Sorcerer sorcerer = new Sorcerer(50,2,field.getCell(1, 1));
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    cleric.attack(sorcerer);
+    assertEquals(50,sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
+  }
+
+  @Test
+  @Override
+  public void testAttackFarSwordMaster() {
+    SwordMaster swordMaster = new SwordMaster(50,2,field.getCell(1, 1));
+    cleric.addItem(staff);
+    staff.equipTo(cleric);
+    cleric.attack(swordMaster);
+    assertEquals(50,swordMaster.getCurrentHitPoints(),1E-6);
+    assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
+  }
+
   @Test
   @Override
   public void testAttackWithOutLife() {
@@ -187,9 +234,10 @@ public class ClericTest extends AbstractTestUnit {
     cleric.addItem(staff);
     staff.equipTo(cleric);
     hero.attack(cleric);
+    hero.setNormalDamage(10);
     assertEquals(0,cleric.getCurrentHitPoints(),1E-6);
     cleric.attack(hero);
-    assertEquals(50,hero.getCurrentHitPoints(),1E-6);
+    assertEquals(40,hero.getCurrentHitPoints(),1E-6);
   }
 
   @Test
@@ -235,6 +283,7 @@ public class ClericTest extends AbstractTestUnit {
     assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
 
+  @Test
   @Override
   public void testAttackHero() {
     Hero hero = new Hero(50,2,field.getCell(0, 1));
@@ -257,6 +306,7 @@ public class ClericTest extends AbstractTestUnit {
     assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
 
+  @Test
   @Override
   public void testAttackLightSorcerer() {
     Sorcerer sorcerer = new Sorcerer(50,2,field.getCell(0, 1));
@@ -269,6 +319,7 @@ public class ClericTest extends AbstractTestUnit {
     assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
 
+  @Test
   @Override
   public void testAttackSpiritSorcerer() {
     Sorcerer sorcerer = new Sorcerer(50,2,field.getCell(0, 1));
@@ -281,6 +332,7 @@ public class ClericTest extends AbstractTestUnit {
     assertEquals(50,cleric.getCurrentHitPoints(),1E-6);
   }
 
+  @Test
   @Override
   public void testAttackSwordMaster() {
     SwordMaster swordMaster = new SwordMaster(50,2,field.getCell(0, 1));

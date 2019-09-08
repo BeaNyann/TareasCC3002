@@ -121,6 +121,46 @@ public class AlpacaTest extends AbstractTestUnit {
 
   @Test
   @Override
+  public void testAttackFarFighter() {
+    Fighter fighter = new Fighter(50, 2, field.getCell(1,1));
+    fighter.moveTo(field.getCell(2,2));
+    alpaca.attack(fighter);
+    assertEquals(50, fighter.getCurrentHitPoints(),1E-6);
+    assertEquals(50, alpaca.getCurrentHitPoints(),1E-6);
+  }
+
+  @Test
+  @Override
+  public void testAttackFarHero() {
+    Hero hero = new Hero(50, 2, field.getCell(1,1));
+    hero.moveTo(field.getCell(2,2));
+    alpaca.attack(hero);
+    assertEquals(50, hero.getCurrentHitPoints(),1E-6);
+    assertEquals(50, alpaca.getCurrentHitPoints(),1E-6);
+  }
+
+  @Test
+  @Override
+  public void testAttackFarSorcerer() {
+    Sorcerer sorcerer = new Sorcerer(50, 2, field.getCell(1,1));
+    sorcerer.moveTo(field.getCell(2,2));
+    alpaca.attack(sorcerer);
+    assertEquals(50, sorcerer.getCurrentHitPoints(),1E-6);
+    assertEquals(50, alpaca.getCurrentHitPoints(),1E-6);
+  }
+
+  @Test
+  @Override
+  public void testAttackFarSwordMaster() {
+    SwordMaster swordMaster = new SwordMaster(50, 2, field.getCell(1,1));
+    swordMaster.moveTo(field.getCell(2,2));
+    alpaca.attack(swordMaster);
+    assertEquals(50, swordMaster.getCurrentHitPoints(),1E-6);
+    assertEquals(50, alpaca.getCurrentHitPoints(),1E-6);
+  }
+
+  @Test
+  @Override
   public void testAttackWithOutLife() {
     Alpaca alpaca = new Alpaca(5,2,field.getCell(1,1));
     Hero hero = new Hero(50,2,field.getCell(2,1));
