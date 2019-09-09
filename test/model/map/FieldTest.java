@@ -16,13 +16,14 @@ import org.junit.jupiter.api.Test;
 class FieldTest {
 
   private Field map;
+  private Field field2;
 
   @BeforeEach
   void setUp() {
     map = new Field();
     map.addCells(true, new Location(0, 0), new Location(0, 1), new Location(0, 2),
-        new Location(1, 0), new Location(1, 1), new Location(1, 2), new Location(2, 0),
-        new Location(2, 1), new Location(2, 2));
+            new Location(1, 0), new Location(1, 1), new Location(1, 2), new Location(2, 0),
+            new Location(2, 1), new Location(2, 2));
   }
 
   /**
@@ -47,9 +48,9 @@ class FieldTest {
    */
   private void checkConnections(final int row, final int col) {
     Location[] neighbours = new Location[]{new Location(row - 1, col), new Location(row + 1, col),
-        new Location(row, col - 1), new Location(row, col + 1)};
+            new Location(row, col - 1), new Location(row, col + 1)};
     for (Location neighbour :
-        neighbours) {
+            neighbours) {
       final String key = neighbour.toString();
       if (map.getMap().containsKey(key)) {
         assertTrue(map.getCell(row, col).isNeighbour(map.getMap().get(key)));
@@ -74,8 +75,8 @@ class FieldTest {
     for (int i = 0; i < 50; i++) {
       Field randomField = new Field();
       randomField.addCells(false, new Location(0, 0), new Location(0, 1), new Location(0, 2),
-          new Location(1, 0), new Location(1, 1), new Location(1, 2), new Location(2, 0),
-          new Location(2, 1), new Location(2, 2));
+              new Location(1, 0), new Location(1, 1), new Location(1, 2), new Location(2, 0),
+              new Location(2, 1), new Location(2, 2));
       assertTrue(randomField.isConnected());
     }
   }
@@ -98,9 +99,9 @@ class FieldTest {
   @Test
   public void testRemoveConnection() {
     Location
-        cell00 = map.getCell(0, 0),
-        cell01 = map.getCell(0, 1),
-        cell10 = map.getCell(1, 0);
+            cell00 = map.getCell(0, 0),
+            cell01 = map.getCell(0, 1),
+            cell10 = map.getCell(1, 0);
     assertTrue(map.checkConnection(cell00, cell01));
     assertTrue(map.checkConnection(cell00, cell10));
     assertFalse(map.checkConnection(cell01, cell10));
@@ -114,5 +115,12 @@ class FieldTest {
     assertFalse(map.checkConnection(cell00, cell01));
     assertTrue(map.checkConnection(cell00, cell10));
     assertFalse(map.checkConnection(cell01, cell10));
+  }
+
+  @Test
+  public void testNoConnection() {
+    field2 = new Field();
+    field2.addCells(false, new Location(0, 0), new Location(2, 2));
+    assertFalse(field2.isConnected());
   }
 }
