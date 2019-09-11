@@ -61,4 +61,8 @@ public class Cleric extends AbstractUnit {
       this.equippedItem.attackWith(unit);
     }
   }
+  @Override
+  public void counterAttack(IUnit unit) {
+    //Purposely left empty.
+  }
 }

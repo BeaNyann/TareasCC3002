@@ -120,7 +120,7 @@ public abstract class AbstractTestItem {
    * Test that one unit cant equip another unit´s item.
    */
   @Test
-  public void equippedToOverloadTest(){}
+  public abstract void equippedToOverloadTest();
 
   /**
    * @return a unit that can equip the item being tested.

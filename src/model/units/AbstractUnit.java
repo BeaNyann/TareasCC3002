@@ -148,6 +148,7 @@ public abstract class AbstractUnit implements IUnit {
    */
   @Override
   public void equipAxe(Axe axe) {
+    //Purposely left empty.
   }
 
   /**
@@ -157,6 +158,7 @@ public abstract class AbstractUnit implements IUnit {
    */
   @Override
   public void equipBow(Bow bow) {
+    //Purposely left empty.
   }
 
   /**
@@ -166,6 +168,7 @@ public abstract class AbstractUnit implements IUnit {
    */
   @Override
   public void equipSpear(Spear spear) {
+    //Purposely left empty.
   }
 
   /**
@@ -175,6 +178,7 @@ public abstract class AbstractUnit implements IUnit {
    */
   @Override
   public void equipStaff(Staff staff) {
+    //Purposely left empty.
   }
 
   /**
@@ -184,6 +188,7 @@ public abstract class AbstractUnit implements IUnit {
    */
   @Override
   public void equipSword(Sword sword) {
+    //Purposely left empty.
   }
 
   /**
@@ -193,6 +198,7 @@ public abstract class AbstractUnit implements IUnit {
    */
   @Override
   public void equipDarkMagicBook(DarkMagicBook darkMagicBook) {
+    //Purposely left empty.
   }
 
   /**
@@ -202,6 +208,7 @@ public abstract class AbstractUnit implements IUnit {
    */
   @Override
   public void equipLightMagicBook(LightMagicBook lightMagicBook) {
+    //Purposely left empty.
   }
 
   /**
@@ -211,6 +218,7 @@ public abstract class AbstractUnit implements IUnit {
    */
   @Override
   public void equipSpiritMagicBook(SpiritMagicBook spiritMagicBook) {
+    //Purposely left empty.
   }
 
 
