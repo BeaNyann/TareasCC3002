@@ -142,11 +142,11 @@ Luego vienen los metodos attackedBy... en donde la unidad le manda un mensaje a 
 * void healedByStadff(Staff staff): Es el unico distinto entre los "Ataques" ya que acá no se envía un mensaje al item, si no que directamente se cambian los puntos de vida de la unidad como corresponda según el poder del Staff.<br />
 <br />
 
-En la clase abstracta se implementan la mayoría de los metodos ya explicados por lo que no se explicarán de nuevo.<br />
+En la clase abstracta se implementan la mayoría de los metodos ya explicados, se le dará especial atención a los equip... ya que en la clase abstracta se encuentran todos vacíos ya que las Unidades pueden equiparse solo unos Items especificos (no todos), por lo tanto cada Unidad va a realizar Override del metodo que le corresponda y los metodos que sean para equiparse Items que no puede equiparse va a heredarlos vacíos (no se lo equipa, no hace nada) <br />
 <br />
-Por ultimo cada unidad realiza un Override al/los equip que correspondan (de los items que puedan equiparse) y se lo equipa siempre y cuando este se encuentre en su inventario.<br />
+Cada unidad realiza un Override al/los equip que correspondan (de los items que puedan equiparse) y se lo equipa siempre y cuando este se encuentre en su inventario.<br />
 <br />
-El cleric además hace override al metodo attack, para indicar no puede "atacar" si una unidad tiene la vida llena (ya que trataría de darle más vida que su máximo).<br />
+El cleric además hace override al metodo attack, para indicar no puede "atacar" si una unidad tiene la vida llena (ya que trataría de darle más vida que su máximo) y no realiza contraataque.<br />
 <br />
 La otra excepción es la Alpaca que le hace Override a recieveObj, ya que esta no tiene un limite de objetos que puede poner en su inventario.<br />
 <br />
@@ -199,10 +199,19 @@ En la clase Location tenemos:<br />
 
 * double shortestPathTo(Location otherNode,Set<Location> visited): Entrega el camino más corto para llegar la otra celda.<br />
 <br />
-Estos dos últimos metodos son muy útiles para ver las condiciones de ataque, de intercambio, entre otros.
+Estos dos últimos metodos son muy útiles para ver las condiciones de ataque, de intercambio, entre otros.<br />
+<br />
+En los tests se utiliza la misma distribución de interfaces y clases abstractas, en donde se testea cada uno de los metodos que poseen los Items, las Unidades y el Mapa.
+<br />
+Lo último a explicar, que es importante comprender, es el Double Dispatch aplicado en los metodos de ataque:<br />
+ <br />
+Primero si una unidad ataca a otra llama al metodo attack, el que manda un mensaje (attackWith) al Item que tenga esta unidad equipada para que el se encargue del trabajo (La unidad no tiene porque saber que item tiene equipado para realizar el ataque).<br />
+<br />
+Luego, el item le manda un mensaje a la unidad atacada para que esta decida que hacer al respecto (attackedBy), y la unidad atacada le envia un mensaje a su item con el arma que los está atacando, para que este (que sabe que tipo de item es) diga cuanto daño recibieron, y le indica devuelta a la unidad que tipo de daño recibió (setSmallDamage/setBigDamage/setNormalDamage).
 
 ## :beginner: **Información extra**
-
+No deberían crearse Items con el mismo nombre, ya que eso podría provocar problemas en la comparación de Items (2 Items se consideran iguales sin su poder, sus rangos y su nombre son iguales)<br />
+<br />
 Información de contacto:  <br />
 <br />
 Mail: BeaGraboloza@gmail.com<br />
