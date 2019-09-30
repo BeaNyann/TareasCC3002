@@ -8,14 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
-import model.Tactician;
+import model.tactician.Tactician;
 import model.map.Field;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  * @since v2.0
  */
 class GameControllerTest {
@@ -37,14 +37,14 @@ class GameControllerTest {
     List<Tactician> tacticians = controller.getTacticians();
     assertEquals(4, tacticians.size());
     for (int i = 0; i < tacticians.size(); i++) {
-      assertEquals("Player " + i, tacticians.get(i + 1).getName());
+      assertEquals("Player " + i, tacticians.get(i).getName());
     }
   }
 
   @Test
   void getGameMap() {
     Field gameMap = controller.getGameMap();
-    assertEquals(128, gameMap.getSize()); // getSize deben definirlo
+    assertEquals(128, gameMap.getSize());
     assertTrue(controller.getGameMap().isConnected());
     Random testRandom = new Random(randomSeed);
     // Para testear funcionalidades que dependen de valores aleatorios se hacen 2 cosas:
@@ -55,12 +55,16 @@ class GameControllerTest {
     //    resultados que van a obtener.
     //    Hay 2 formas de hacer esto en Java, le pueden pasar el seed al constructor de Random, o
     //    usar el método setSeed de Random.
-    //  ESTO ÚLTIMO NO ESTÁ IMPLEMENTADO EN EL MAPA, ASÍ QUE DEBEN AGREGARLO (!)
+    //  ESTO ÚLTIMO NO ESTÁ IMPLEMENTADO EN EL MAPA, ASÍ QUE DEBEN AGREGARLO (!)????
   }
 
   @Test
   void getTurnOwner() {
-    //  En este caso deben hacer lo mismo que para el mapa
+    String name = testTacticians.get(0);
+    Tactician tactician = new Tactician(name);
+    //ayuda
+
+
   }
 
   @Test
@@ -78,8 +82,8 @@ class GameControllerTest {
   void getMaxRounds() {
     Random randomTurnSequence = new Random();
     IntStream.range(0, 50).forEach(i -> {
-      controller.initGame(randomTurnSequence.nextInt());
-      assertEquals(randomTurnSequence.nextInt(), controller.getMaxRounds());
+      controller.initGame(randomTurnSequence.nextInt()); //un numero aleatorio
+      assertEquals(randomTurnSequence.nextInt(), controller.getMaxRounds()); //el mismo numero aleatorio(?) xd
     });
     controller.initEndlessGame();
     assertEquals(-1, controller.getMaxRounds());
@@ -89,7 +93,7 @@ class GameControllerTest {
   void endTurn() {
     Tactician firstPlayer = controller.getTurnOwner();
     // Nuevamente, para determinar el orden de los jugadores se debe usar una semilla
-    Tactician secondPlayer = new Tactician(); // <- Deben cambiar esto (!)
+    Tactician secondPlayer = new Tactician("Player 1"); // <- Deben cambiar esto (!)
     assertNotEquals(secondPlayer.getName(), firstPlayer.getName());
 
     controller.endTurn();
@@ -131,7 +135,7 @@ class GameControllerTest {
     IntStream.range(0, 2).forEach(i -> controller.endTurn());
     List<String> winners = controller.getWinners();
     assertEquals(2, winners.size());
-    assertTrue(List.of("Player 1", "Player 2").containsAll(winners));
+    assertTrue(List.of("Player 1", "Player 3").containsAll(winners));
 
     controller.initEndlessGame();
     for (int i = 0; i < 3; i++) {

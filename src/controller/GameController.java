@@ -1,7 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
-import model.Tactician;
+import model.tactician.Tactician;
 import model.items.IEquipableItem;
 import model.map.Field;
 import model.units.IUnit;
@@ -10,29 +11,41 @@ import model.units.IUnit;
  * Controller of the game.
  * The controller manages all the input received from de game's GUI.
  *
- * @author Ignacio Slater Muñoz
+ * @author Beatriz Graboloza
  * @version 2.0
- * @since 2.0
+ * @since v2.0
  */
 public class GameController {
+
+  private final int numberOfPlayers;
+  private final int mapSize;
+  private int currentTurn;
+  private int roundNumber;
+  private int MaxRounds;
 
   /**
    * Creates the controller for a new game.
    *
-   * @param numberOfPlayers
-   *     the number of players for this game
-   * @param mapSize
-   *     the dimensions of the map, for simplicity, all maps are squares
+   * @param numberOfPlayers   the number of players for this game
+   * @param mapSize           the dimensions of the map, for simplicity, all maps are squares
    */
   public GameController(int numberOfPlayers, int mapSize) {
-
+    this.numberOfPlayers = numberOfPlayers;
+    this.mapSize = mapSize;
+    this.currentTurn = 0; //ayuda
+    this.roundNumber = 0;
   }
 
   /**
    * @return the list of all the tacticians participating in the game.
    */
   public List<Tactician> getTacticians() {
-    return null;
+    List<Tactician> tacticians = new ArrayList<>();
+    for(int i=0; i < this.numberOfPlayers; i++){
+      Tactician tactician = new Tactician("Player"+i);
+      tacticians.add(tactician);
+    }
+    return tacticians;
   }
 
   /**
@@ -53,14 +66,14 @@ public class GameController {
    * @return the number of rounds since the start of the game.
    */
   public int getRoundNumber() {
-    return 0;
+    return this.roundNumber;
   }
 
   /**
    * @return the maximum number of rounds a match can last
    */
   public int getMaxRounds() {
-    return 0;
+    return this.MaxRounds;
   }
 
   /**
@@ -73,8 +86,7 @@ public class GameController {
   /**
    * Removes a tactician and all of it's units from the game.
    *
-   * @param tactician
-   *     the player to be removed
+   * @param tactician   the player to be removed
    */
   public void removeTactician(String tactician) {
 
@@ -82,18 +94,19 @@ public class GameController {
 
   /**
    * Starts the game.
-   * @param maxTurns
-   *  the maximum number of turns the game can last
+   * @param maxRounds   the maximum number of rounds the game can last
    */
-  public void initGame(final int maxTurns) {
-
+  public void initGame(final int maxRounds) {
+    this.MaxRounds = maxRounds;
+    //ayuda
   }
 
   /**
    * Starts a game without a limit of turns.
    */
   public void initEndlessGame() {
-
+    this.MaxRounds = -1;
+    //aaaaaaaaa
   }
 
   /**
