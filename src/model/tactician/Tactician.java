@@ -14,6 +14,6 @@ public class Tactician {
     }
 
     public String getName() {
-        return "";
+        return name;
     }
 }

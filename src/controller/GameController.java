@@ -2,6 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 import model.tactician.Tactician;
 import model.items.IEquipableItem;
 import model.map.Field;
@@ -19,7 +21,9 @@ public class GameController {
 
   private final int numberOfPlayers;
   private final int mapSize;
+  private List<Tactician> currentOrder;
   private int currentTurn;
+  private Tactician lastPlayer;
   private int roundNumber;
   private int MaxRounds;
 
@@ -32,7 +36,6 @@ public class GameController {
   public GameController(int numberOfPlayers, int mapSize) {
     this.numberOfPlayers = numberOfPlayers;
     this.mapSize = mapSize;
-    this.currentTurn = 0; //ayuda
     this.roundNumber = 0;
   }
 
@@ -42,7 +45,7 @@ public class GameController {
   public List<Tactician> getTacticians() {
     List<Tactician> tacticians = new ArrayList<>();
     for(int i=0; i < this.numberOfPlayers; i++){
-      Tactician tactician = new Tactician("Player"+i);
+      Tactician tactician = new Tactician("Player "+i);
       tacticians.add(tactician);
     }
     return tacticians;
@@ -75,12 +78,36 @@ public class GameController {
   public int getMaxRounds() {
     return this.MaxRounds;
   }
-
+  public void newRound(){
+      //eligo el orden culiao y le digo al jugador que empiece su turno culiao
+  }
+  /**
+   * Select the round´s order
+   */
+  public void reorderTurns(){
+      Random randomTurnSequence = new Random();
+      List<Tactician> tacticians = getTacticians();
+      List<Tactician> newturns = new ArrayList<>();
+      int i = 0;
+      while(i<this.numberOfPlayers){
+          int next = randomTurnSequence.nextInt()%this.numberOfPlayers;
+          if(!newturns.contains(tacticians.get(next))){
+              newturns.add(tacticians.get(next));
+              i++;
+          }
+      }
+      if(this.currentOrder.get(currentOrder.size()-1).equals(newturns.get(0))){ //cuando esta vacío que pasa si geteo algo?
+          reorderTurns();
+      }
+      else{
+          this.currentOrder = newturns;
+      }
+  }
   /**
    * Finishes the current player's turn.
    */
   public void endTurn() {
-
+      //pregunto si es el ultimo si es el ultimo empiezo una new rounddd
   }
 
   /**

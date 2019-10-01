@@ -81,9 +81,11 @@ class GameControllerTest {
   @Test
   void getMaxRounds() {
     Random randomTurnSequence = new Random();
-    IntStream.range(0, 50).forEach(i -> {
-      controller.initGame(randomTurnSequence.nextInt()); //un numero aleatorio
-      assertEquals(randomTurnSequence.nextInt(), controller.getMaxRounds()); //el mismo numero aleatorio(?) xd
+    IntStream.range(0, 50).map(i -> randomTurnSequence.nextInt() & Integer.MAX_VALUE).forEach(nextInt -> {
+      controller.initGame(nextInt);
+      //System.out.println(nextInt);
+      assertEquals(nextInt, controller.getMaxRounds());
+      //System.out.println(nextInt);
     });
     controller.initEndlessGame();
     assertEquals(-1, controller.getMaxRounds());
