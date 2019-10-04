@@ -9,6 +9,8 @@ import model.items.IEquipableItem;
 import model.map.Field;
 import model.units.IUnit;
 
+import static java.lang.Math.abs;
+
 /**
  * Controller of the game.
  * The controller manages all the input received from de game's GUI.
@@ -21,9 +23,9 @@ public class GameController {
 
   private final int numberOfPlayers;
   private final int mapSize;
-  private List<Tactician> currentOrder;
+  private List<Tactician> currentOrder = new ArrayList<>();
   private int currentTurn;
-  private Tactician lastPlayer;
+  private Tactician turnOwner;
   private int roundNumber;
   private int MaxRounds;
 
@@ -37,6 +39,9 @@ public class GameController {
     this.numberOfPlayers = numberOfPlayers;
     this.mapSize = mapSize;
     this.roundNumber = 0;
+    for(int i = 0; i<numberOfPlayers;i++){
+      this.currentOrder.add(null);
+    }
   }
 
   /**
@@ -52,17 +57,29 @@ public class GameController {
   }
 
   /**
-   * @return the map of the current game
+   * @return the map of the current game.
    */
   public Field getGameMap() {
     return null;
   }
 
   /**
-   * @return the tactician that's currently playing
+   * @return the tactician that's currently playing.
    */
   public Tactician getTurnOwner() {
-    return null;
+    return this.turnOwner;
+  }
+  /**
+   * @return the index of the tactician that's currently playing.
+   */
+  public int getCurrentTurn(){
+    return this.currentTurn;
+  }
+  /**
+   * @return the list of tactician in order to play.
+   */
+  public List<Tactician> getCurrentOrder(){
+    return this.currentOrder;
   }
 
   /**
@@ -78,36 +95,66 @@ public class GameController {
   public int getMaxRounds() {
     return this.MaxRounds;
   }
+
+  /**
+   * Start a new round.
+   */
   public void newRound(){
-      //eligo el orden culiao y le digo al jugador que empiece su turno culiao
+    if(this.roundNumber < this.MaxRounds) {
+      reorderTurns();
+      Tactician tactician = this.currentOrder.get(0);
+      this.roundNumber++;
+      this.currentTurn = 0;
+      startTurn(tactician);
+    }
+    else{
+      //end game??
+    }
   }
   /**
-   * Select the round´s order
+   * Select the round´s order.
    */
   public void reorderTurns(){
-      Random randomTurnSequence = new Random();
-      List<Tactician> tacticians = getTacticians();
-      List<Tactician> newturns = new ArrayList<>();
-      int i = 0;
-      while(i<this.numberOfPlayers){
-          int next = randomTurnSequence.nextInt()%this.numberOfPlayers;
-          if(!newturns.contains(tacticians.get(next))){
-              newturns.add(tacticians.get(next));
-              i++;
-          }
-      }
-      if(this.currentOrder.get(currentOrder.size()-1).equals(newturns.get(0))){ //cuando esta vacío que pasa si geteo algo?
-          reorderTurns();
-      }
-      else{
-          this.currentOrder = newturns;
-      }
+    Random randomTurnSequence = new Random();
+    List<Tactician> tacticians = getTacticians();
+    List<Tactician> newturns = new ArrayList<>();
+    int i = 0;
+    while(i<this.numberOfPlayers){
+        int next = abs(randomTurnSequence.nextInt()%this.numberOfPlayers);
+        if(!newturns.contains(tacticians.get(next))){
+            newturns.add(tacticians.get(next));
+            i++;
+        }
+    }
+    if(newturns.get(0).equals(this.currentOrder.get(currentOrder.size()-1))){ //cuando esta vacío que pasa si geteo algo?
+        reorderTurns();
+    }
+    else{
+        this.currentOrder = newturns;
+    }
   }
+  /**
+   * Starts the current player's turn.
+   */
+  public void startTurn(Tactician tactician){
+    this.turnOwner = tactician;
+    //nose que más
+    //endTurn();
+    // el tactician avisa que terminó
+  }
+
   /**
    * Finishes the current player's turn.
    */
   public void endTurn() {
-      //pregunto si es el ultimo si es el ultimo empiezo una new rounddd
+    if(this.currentOrder.get(this.currentOrder.size()-1).equals(this.turnOwner)){
+      newRound();
+    }
+    else {
+      this.currentTurn++;
+      Tactician nextTactician = this.currentOrder.get(this.currentTurn);
+      startTurn(nextTactician);
+    }
   }
 
   /**
@@ -116,6 +163,16 @@ public class GameController {
    * @param tactician   the player to be removed
    */
   public void removeTactician(String tactician) {
+      List<Tactician> tacticians = getTacticians();
+      units = tactician.getUnits();
+      for(IUnit unit: units){
+          tactician.removeUnit(unit);
+      }
+      tacticians.remove(tactician);
+      //elimina esta unidad, le dices a la unidad eliminate
+      //removeUnits(tactician)
+      //TODO agregar esos metodos
+
 
   }
 

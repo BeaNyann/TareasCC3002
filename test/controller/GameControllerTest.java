@@ -93,9 +93,12 @@ class GameControllerTest {
 
   @Test
   void endTurn() {
+    controller.initGame(4);
+    controller.newRound();
     Tactician firstPlayer = controller.getTurnOwner();
     // Nuevamente, para determinar el orden de los jugadores se debe usar una semilla
-    Tactician secondPlayer = new Tactician("Player 1"); // <- Deben cambiar esto (!)
+    int pos = controller.getCurrentTurn();
+    Tactician secondPlayer = controller.getCurrentOrder().get(pos+1);
     assertNotEquals(secondPlayer.getName(), firstPlayer.getName());
 
     controller.endTurn();
@@ -111,7 +114,7 @@ class GameControllerTest {
 
     controller.removeTactician("Player 0");
     assertEquals(3, controller.getTacticians().size());
-    controller.getTacticians().forEach(tactician -> assertNotEquals("Player 1", tactician));
+    controller.getTacticians().forEach(tactician -> assertNotEquals("Player 0", tactician));
     controller.getTacticians()
         .forEach(tactician -> Assertions.assertTrue(testTacticians.contains(tactician.getName())));
 
@@ -120,6 +123,8 @@ class GameControllerTest {
     controller.getTacticians()
         .forEach(tactician -> Assertions.assertTrue(testTacticians.contains(tactician.getName())));
   }
+
+  //TODO agregar el test para que tbm se eliminen las unidades
 
   @Test
   void getWinners() {
