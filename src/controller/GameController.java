@@ -1,5 +1,7 @@
 package controller;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -19,11 +21,12 @@ import static java.lang.Math.abs;
  * @version 2.0
  * @since v2.0
  */
-public class GameController {
+public class GameController implements PropertyChangeListener {
 
-  private final int numberOfPlayers;
+  private int numberOfPlayers;
   private final int mapSize;
   private List<Tactician> currentOrder = new ArrayList<>();
+  private List<Tactician> tacticians = new ArrayList<>();
   private int currentTurn;
   private Tactician turnOwner;
   private int roundNumber;
@@ -48,12 +51,14 @@ public class GameController {
    * @return the list of all the tacticians participating in the game.
    */
   public List<Tactician> getTacticians() {
-    List<Tactician> tacticians = new ArrayList<>();
-    for(int i=0; i < this.numberOfPlayers; i++){
-      Tactician tactician = new Tactician("Player "+i);
-      tacticians.add(tactician);
+    if(this.tacticians.size() == 0 && this.roundNumber==0) { //si es que ya empezo la partida no va a haber ninguno null
+      for (int i = 0; i < this.numberOfPlayers; i++) {
+        Tactician tactician = new Tactician("Player " + i);
+        this.tacticians.add(tactician);
+      }
     }
-    return tacticians;
+    return this.tacticians;
+    //TODO si eliminan al 0 dsps se van a volver a crear con esos nombres al preguntar por ellos?:C
   }
 
   /**
@@ -152,8 +157,6 @@ public class GameController {
     }
     else {
       this.currentTurn++;
-      Tactician nextTactician = this.currentOrder.get(this.currentTurn);
-      startTurn(nextTactician);
     }
   }
 
@@ -163,14 +166,15 @@ public class GameController {
    * @param tactician   the player to be removed
    */
   public void removeTactician(String tactician) {
-      List<Tactician> tacticians = getTacticians();
-      units = tactician.getUnits();
-      for(IUnit unit: units){
-          tactician.removeUnit(unit);
-      }
-      tacticians.remove(tactician);
+      //units = tactician.getUnits();
+      //for(IUnit unit: units){
+      //    tactician.removeUnit(unit);
+      //}
+      Tactician ripTactician = new Tactician(tactician);//TODO ayuda pq no se elimina
+      this.tacticians.remove(ripTactician);
+      this.numberOfPlayers--; //TODO debería disminuirlo o debería dejarlo como final?
       //elimina esta unidad, le dices a la unidad eliminate
-      //removeUnits(tactician)
+
       //TODO agregar esos metodos
 
 
@@ -182,6 +186,7 @@ public class GameController {
    */
   public void initGame(final int maxRounds) {
     this.MaxRounds = maxRounds;
+    newRound();
     //ayuda
   }
 
@@ -268,5 +273,13 @@ public class GameController {
    */
   public void giveItemTo(int x, int y) {
 
+  }
+
+  @Override
+  public void propertyChange(PropertyChangeEvent evt) {
+    if (evt.getNewValue() != null) {
+      Tactician nextTactician = this.currentOrder.get(this.currentTurn);
+      startTurn(nextTactician);
+    }
   }
 }

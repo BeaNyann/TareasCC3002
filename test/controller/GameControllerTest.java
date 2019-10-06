@@ -60,9 +60,10 @@ class GameControllerTest {
 
   @Test
   void getTurnOwner() {
+      //  En este caso deben hacer lo mismo que para el mapa... que cosa???? no entiendo los seed >:C
     String name = testTacticians.get(0);
     Tactician tactician = new Tactician(name);
-    //ayuda
+    controller.startTurn(tactician);
 
 
   }
