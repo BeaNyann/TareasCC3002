@@ -1,15 +1,26 @@
 package model.tactician;
 
 import controller.GameController;
+import model.units.IUnit;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Tactician {
 
     private final String name;
     private PropertyChangeSupport endTurn;
+    private List<IUnit> units = new ArrayList<>();
+    //private UnitFactory unitFactory;
+    //TODO esto
+    //el jugador indica que quiere crear? una sola factory, envia el matodo a la factory
+    //una gran factory que puede hacer de too
+    //el tactician tendria todos los metodos de crear distintas weas
+
+
 
     /**
      * Constructor for a default Tactician.
@@ -23,6 +34,10 @@ public class Tactician {
 
     public String getName() {
         return name;
+    }
+
+    public List<IUnit> getUnits(){
+        return this.units;
     }
 
     @Override

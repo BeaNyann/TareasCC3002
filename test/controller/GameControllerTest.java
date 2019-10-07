@@ -28,7 +28,7 @@ class GameControllerTest {
   void setUp() {
     // Se define la semilla como un número aleatorio para generar variedad en los tests
     randomSeed = new Random().nextLong();
-    controller = new GameController(4, 128);
+    controller = new GameController(4, 2);
     testTacticians = List.of("Player 0", "Player 1", "Player 2", "Player 3");
   }
 
@@ -123,6 +123,15 @@ class GameControllerTest {
     assertEquals(3, controller.getTacticians().size());
     controller.getTacticians()
         .forEach(tactician -> Assertions.assertTrue(testTacticians.contains(tactician.getName())));
+  }
+
+  @Test
+  void removeTacticianUnits(){
+      Tactician tactician = controller.getTacticians().get(0);
+      //tactician.getUnits();
+      //TODO como obtengo las unidades del tactician?:C o como se las asigno = factory?, testear el getUnits es cosa del TActician test que no existe
+      controller.removeTactician("Player 0");
+      assertTrue(tactician.getUnits().size()==0); //o equals con una lista vacia, recien creada
   }
 
   //TODO agregar el test para que tbm se eliminen las unidades

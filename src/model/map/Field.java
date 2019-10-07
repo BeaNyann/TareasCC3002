@@ -148,8 +148,8 @@ public class Field {
     return cell1.isNeighbour(cell2);
   }
 
-  public int getSize() {
-    int size = map.size();
-    return size;
+  public double getSize() {
+    double size = map.size();
+    return Math.sqrt(size); //aunque no se unan todas, con el doble for se van a crear si o si las nxn
   }
 }
