@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.stream.IntStream;
 import model.tactician.Tactician;
 import model.map.Field;
-import model.units.Alpaca;
+import model.units.*;
 import model.map.Location;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,29 +39,35 @@ public class TacticianTest {
 
     @Test
     public void getUnits(){
-        tactician.setUnit();
-        //assertEquals(? el tactician elige que units mete auxilio);
-        //TODO AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        Location locationA = new Location(0,0);
+        tactician.setAlpaca(locationA);
+        assertTrue(tactician.getUnits().contains(new Alpaca(20, 2, locationA)));
+        //es exactamente igual al otro? pruebo ambos a la vez al hacer eso?
+        //TODO AAAAAAAAAAAA
     }
 
     @Test
     public void setUnits(){
-        Location location = new Location(0,0);
-        tactician.setAlpaca(location);
-        assertTrue(tactician.getUnits().contains(new Alpaca(20, 2, location)));
-        tactician.setArcher(location);
-        assertTrue(tactician.getUnits().contains(new Archer(20, 2, location)));
-        tactician.setCleric(location);
-        assertTrue(tactician.getUnits().contains(new Cleric(20, 2, location)));
-        tactician.setFighter(location);
-        assertTrue(tactician.getUnits().contains(new Fighter(20, 2, location)));
-        tactician.setHero(location);
-        assertTrue(tactician.getUnits().contains(new Hero(20, 2, location)));
-        tactician.setSorcerer(location);
-        assertTrue(tactician.getUnits().contains(new Sorcerer(20, 2, location)));
-        tactician.setSwordMaster(location);
-        assertTrue(tactician.getUnits().contains(new SwordMaster(20, 2, location)));
-
-
+        Location locationA = new Location(0,0); //puedo chantarlos en locations que no estan en el mapa?xd
+        tactician.setAlpaca(locationA);
+        assertTrue(tactician.getUnits().contains(new Alpaca(20, 2, locationA)));
+        Location locationAr = new Location(1,1);
+        tactician.setArcher(locationAr);
+        assertTrue(tactician.getUnits().contains(new Archer(20, 2, locationAr)));
+        Location locationC = new Location(2,2);
+        tactician.setCleric(locationC);
+        assertTrue(tactician.getUnits().contains(new Cleric(20, 2, locationC)));
+        Location locationF = new Location(3,3);
+        tactician.setFighter(locationF);
+        assertTrue(tactician.getUnits().contains(new Fighter(20, 2, locationF)));
+        Location locationH = new Location(4,4);
+        tactician.setHero(locationH);
+        assertTrue(tactician.getUnits().contains(new Hero(20, 2, locationH)));
+        Location locationS = new Location(5,5);
+        tactician.setSorcerer(locationS);
+        assertTrue(tactician.getUnits().contains(new Sorcerer(20, 2, locationS)));
+        Location locationSw = new Location(6,6);
+        tactician.setSwordMaster(locationSw);
+        assertTrue(tactician.getUnits().contains(new SwordMaster(20, 2, locationSw)));
     }
 }

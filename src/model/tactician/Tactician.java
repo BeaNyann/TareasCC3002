@@ -1,6 +1,7 @@
 package model.tactician;
 
 import controller.GameController;
+import model.map.Location;
 import model.units.IUnit;
 
 import java.beans.PropertyChangeEvent;
@@ -14,7 +15,7 @@ public class Tactician {
     private final String name;
     private PropertyChangeSupport endTurn;
     private List<IUnit> units = new ArrayList<>();
-    //private UnitFactory unitFactory;
+    private UnitFactory unitFactory;
     //TODO esto
     //el jugador indica que quiere crear? una sola factory, envia el matodo a la factory
     //una gran factory que puede hacer de too
@@ -56,5 +57,39 @@ public class Tactician {
         endTurn.firePropertyChange(new PropertyChangeEvent(this, "endTurn",null,true));
             }
 
+    public void setAlpaca(Location location) {
+        unitFactory.setLocation(location);
+        unitFactory.createAlpaca();
+    }
+
+    public void setArcher(Location location) {
+        unitFactory.setLocation(location);
+        unitFactory.createArcher();
+    }
+
+    public void setCleric(Location location) {
+        unitFactory.setLocation(location);
+        unitFactory.createCleric();
+    }
+
+    public void setFighter(Location location) {
+        unitFactory.setLocation(location);
+        unitFactory.createFighter();
+    }
+
+    public void setHero(Location location) {
+        unitFactory.setLocation(location);
+        unitFactory.createHero();
+    }
+
+    public void setSorcerer(Location location) {
+        unitFactory.setLocation(location);
+        unitFactory.createSorcerer();
+    }
+
+    public void setSwordMaster(Location location) {
+        unitFactory.setLocation(location);
+        unitFactory.createSwordMaster();
+    }
 }
 

@@ -210,7 +210,10 @@ public class GameController implements PropertyChangeListener {
      */
     public void initEndlessGame() {
         this.MaxRounds = -1;
-        //aaaaaaaaa
+        //TODO esto
+        //deberia resetear los jugadores o guardar unos jugadores globales y que una copia sea la que usemos en cada juego
+        //para no perder la referencia al jjugador cuando pierda o crear nuevos tacticians? es like malo
+        // es como si fueran controles conectados
     }
 
     /**
