@@ -1,5 +1,7 @@
 package model.tactician;
 
+import controller.GameController;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeSupport;
 
@@ -31,13 +33,13 @@ public class Tactician {
         return false;
     }
 
-    public void addObserver(ModuleLayer.Controller resp) {
-        endTurn.addPropertyChangeListener(resp); //TODO ayuda
+    public void addObserver(GameController resp) {
+        endTurn.addPropertyChangeListener(resp); //TODO buscar ej de observer implementados
     }
 
     public void setEndTurn() {
         endTurn.firePropertyChange(new PropertyChangeEvent(this, "endTurn",null,true));
             }
 
-    }
 }
+

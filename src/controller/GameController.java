@@ -170,7 +170,7 @@ public class GameController implements PropertyChangeListener {
       //for(IUnit unit: units){
       //    tactician.removeUnit(unit);
       //}
-      Tactician ripTactician = new Tactician(tactician);//TODO ayuda pq no se elimina
+      Tactician ripTactician = new Tactician(tactician);
       this.tacticians.remove(ripTactician);
       this.numberOfPlayers--; //TODO debería disminuirlo o debería dejarlo como final?
       //elimina esta unidad, le dices a la unidad eliminate
