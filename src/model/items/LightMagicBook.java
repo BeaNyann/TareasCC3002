@@ -19,7 +19,7 @@ public class LightMagicBook extends AbstractItem{
      * @param minRange the minimum range of the LightMagicBook.
      * @param maxRange the maximum range of the LightMagicBook.
      */
-    public LightMagicBook(String name, double power, int minRange, int maxRange) {
+    public LightMagicBook(String name, final double power, int minRange, int maxRange) {
         super(name, power, minRange, maxRange);
         this.minRange = Math.max(minRange, 0);
         this.maxRange = Math.max(maxRange, this.minRange);

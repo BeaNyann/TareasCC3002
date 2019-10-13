@@ -15,7 +15,7 @@ import java.util.*;
 public class Field {
 
   private Map<String, Location> map = new HashMap<>();
-  private Random random = new Random();
+  private Random random = new Random(); //TODO esta es la seed que hay que setear para el add cells
   private StringBuilder builder = new StringBuilder();
 
   /**
@@ -151,5 +151,9 @@ public class Field {
   public double getSize() {
     double size = map.size();
     return Math.sqrt(size); //aunque no se unan todas, con el doble for se van a crear si o si las nxn
+  }
+
+  public void setSeed(long seed) {
+    this.random.setSeed(seed);
   }
 }

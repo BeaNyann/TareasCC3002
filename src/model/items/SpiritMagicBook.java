@@ -19,7 +19,7 @@ public class SpiritMagicBook extends AbstractItem {
      * @param minRange the minimum range of the SpiritMagicBook.
      * @param maxRange the maximum range of the SpiritMagicBook.
      */
-    public SpiritMagicBook(String name, double power, int minRange, int maxRange) {
+    public SpiritMagicBook(String name, final double power, int minRange, int maxRange) {
         super(name, power, minRange, maxRange);
         this.minRange = Math.max(minRange, 0);
         this.maxRange = Math.max(maxRange, this.minRange);

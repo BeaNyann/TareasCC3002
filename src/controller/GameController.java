@@ -6,10 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import model.factories.items.*;
+import model.factories.units.*;
+import model.items.DarkMagicBook;
+import model.items.LightMagicBook;
 import model.map.Location;
 import model.tactician.Tactician;
 import model.items.IEquipableItem;
 import model.map.Field;
+import model.units.Alpaca;
 import model.units.IUnit;
 
 import static java.lang.Math.abs;
@@ -33,6 +38,24 @@ public class GameController implements PropertyChangeListener {
     private int roundNumber;
     private int MaxRounds;
     private Field mapField = new Field();
+
+    private AlpacaFactory alpacaFactory = new AlpacaFactory();
+    private ArcherFactory archerFactory = new ArcherFactory();
+    private ClericFactory clericFactory = new ClericFactory();
+    private FighterFactory fighterFactory = new FighterFactory();
+    private HeroFactory heroFactory = new HeroFactory();
+    private SorcererFactory sorcererFactory = new SorcererFactory();
+    private SwordMasterFactory swordMasterFactory = new SwordMasterFactory();
+
+    private AxeFactory axeFactory = new AxeFactory();
+    private BowFactory bowFactory = new BowFactory();
+    private DarkMagicBookFactory darkMagicBookFactory = new DarkMagicBookFactory();
+    private LightMagicBookFactory lightMagicBookFactory = new LightMagicBookFactory();
+    private SpearFactory spearFactory = new SpearFactory();
+    private SpiritMagicBookFactory spiritMagicBookFactory = new SpiritMagicBookFactory();
+    private StaffFactory staffFactory = new StaffFactory();
+    private SwordFactory swordFactory = new SwordFactory();
+
 
     /**
      * Creates the controller for a new game.
@@ -73,6 +96,9 @@ public class GameController implements PropertyChangeListener {
                 this.mapField.addCells(false, new Location(i,j));
             }
         }
+    }
+    public void setSeed(long seed){
+        this.mapField.setSeed(seed);
     }
     /**
      * @return the map of the current game.

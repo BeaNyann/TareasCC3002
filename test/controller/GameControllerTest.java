@@ -28,8 +28,10 @@ class GameControllerTest {
   void setUp() {
     // Se define la semilla como un número aleatorio para generar variedad en los tests
     randomSeed = new Random().nextLong();
-    controller = new GameController(4, 2);
+    controller = new GameController(4, 7);
+    controller.setSeed(randomSeed);
     testTacticians = List.of("Player 0", "Player 1", "Player 2", "Player 3");
+    controller.setGameMap();
   }
 
   @Test
@@ -43,19 +45,22 @@ class GameControllerTest {
 
   @Test
   void getGameMap() {
-    Field gameMap = controller.getGameMap();
-    assertEquals(128, gameMap.getSize());
-    assertTrue(controller.getGameMap().isConnected());
-    Random testRandom = new Random(randomSeed);
-    // Para testear funcionalidades que dependen de valores aleatorios se hacen 2 cosas:
-    //  - Comprobar las invariantes de las estructuras que se crean (en este caso que el mapa tenga
-    //    las dimensiones definidas y que sea conexo.
-    //  - Setear una semilla para el generador de números aleatorios. Hacer esto hace que la
-    //    secuencia de números generada sea siempre la misma, así pueden predecir los
-    //    resultados que van a obtener.
-    //    Hay 2 formas de hacer esto en Java, le pueden pasar el seed al constructor de Random, o
-    //    usar el método setSeed de Random.
-    //  ESTO ÚLTIMO NO ESTÁ IMPLEMENTADO EN EL MAPA, ASÍ QUE DEBEN AGREGARLO (!)????
+      Field gameMap = controller.getGameMap();
+      assertEquals(7, gameMap.getSize());
+      assertTrue(controller.getGameMap().isConnected());
+      Random testRandom = new Random(randomSeed);
+      //assertEquals(caca);
+      //assertEquals(new Field().setSeed(randomSeed););
+
+      // Para testear funcionalidades que dependen de valores aleatorios se hacen 2 cosas:
+      //  - Comprobar las invariantes de las estructuras que se crean (en este caso que el mapa tenga
+      //    las dimensiones definidas y que sea conexo.
+      //  - Setear una semilla para el generador de números aleatorios. Hacer esto hace que la
+      //    secuencia de números generada sea siempre la misma, así pueden predecir los
+      //    resultados que van a obtener.
+      //    Hay 2 formas de hacer esto en Java, le pueden pasar el seed al constructor de Random, o
+      //    usar el método setSeed de Random.
+      //  ESTO ÚLTIMO NO ESTÁ IMPLEMENTADO EN EL MAPA, ASÍ QUE DEBEN AGREGARLO (!)????
   }
 
   @Test

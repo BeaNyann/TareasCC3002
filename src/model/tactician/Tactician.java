@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Tactician {
+public class Tactician{
 
     private final String name;
     private PropertyChangeSupport endTurn;
     private List<IUnit> units = new ArrayList<>();
-    private UnitFactory unitFactory;
+    private ArcherFactory archerFactory;
     //TODO esto
     //el jugador indica que quiere crear? una sola factory, envia el matodo a la factory
     //una gran factory que puede hacer de too
@@ -58,38 +58,38 @@ public class Tactician {
             }
 
     public void setAlpaca(Location location) {
-        unitFactory.setLocation(location);
-        unitFactory.createAlpaca();
+        archerFactory.setLocation(location);
+        archerFactory.createAlpaca();
     }
 
     public void setArcher(Location location) {
-        unitFactory.setLocation(location);
-        unitFactory.createArcher();
+        archerFactory.setLocation(location);
+        archerFactory.createArcher();
     }
 
     public void setCleric(Location location) {
-        unitFactory.setLocation(location);
-        unitFactory.createCleric();
+        archerFactory.setLocation(location);
+        archerFactory.createCleric();
     }
 
     public void setFighter(Location location) {
-        unitFactory.setLocation(location);
-        unitFactory.createFighter();
+        archerFactory.setLocation(location);
+        archerFactory.createFighter();
     }
 
     public void setHero(Location location) {
-        unitFactory.setLocation(location);
-        unitFactory.createHero();
+        archerFactory.setLocation(location);
+        archerFactory.createHero();
     }
 
     public void setSorcerer(Location location) {
-        unitFactory.setLocation(location);
-        unitFactory.createSorcerer();
+        archerFactory.setLocation(location);
+        archerFactory.createSorcerer();
     }
 
     public void setSwordMaster(Location location) {
-        unitFactory.setLocation(location);
-        unitFactory.createSwordMaster();
+        archerFactory.setLocation(location);
+        archerFactory.createSwordMaster();
     }
 }
 

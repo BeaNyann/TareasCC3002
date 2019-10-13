@@ -19,7 +19,7 @@ public class DarkMagicBook extends AbstractItem {
      * @param minRange the minimum range of the DarkMagicBook.
      * @param maxRange the maximum range of the DarkMagicBook.
      */
-    public DarkMagicBook(String name, double power, int minRange, int maxRange) {
+    public DarkMagicBook(String name, final double power, int minRange, int maxRange) {
         super(name, power, minRange, maxRange);
         this.minRange = Math.max(minRange, 0);
         this.maxRange = Math.max(maxRange, this.minRange);
