@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import controller.observers.EndTurnHandler;
+import controller.observers.EquipItemHandler;
 import model.factories.items.*;
 import model.factories.units.*;
 import model.items.DarkMagicBook;
@@ -27,7 +29,7 @@ import static java.lang.Math.abs;
  * @version 2.0
  * @since v2.0
  */
-public class GameController implements PropertyChangeListener {
+public class GameController {
 
     private int numberOfPlayers;
     private final int mapSize;
@@ -55,6 +57,9 @@ public class GameController implements PropertyChangeListener {
     private SpiritMagicBookFactory spiritMagicBookFactory = new SpiritMagicBookFactory();
     private StaffFactory staffFactory = new StaffFactory();
     private SwordFactory swordFactory = new SwordFactory();
+
+    private EndTurnHandler endTurnHandler = new EndTurnHandler(this);
+    private EquipItemHandler equipItemHandler = new EquipItemHandler(this);
 
 
     /**
@@ -311,11 +316,4 @@ public class GameController implements PropertyChangeListener {
 
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getNewValue() != null) {
-            Tactician nextTactician = this.currentOrder.get(this.currentTurn);
-            startTurn(nextTactician);
-        }
-    }
 }

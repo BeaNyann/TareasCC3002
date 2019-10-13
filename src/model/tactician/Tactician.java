@@ -1,6 +1,6 @@
 package model.tactician;
 
-import controller.GameController;
+import controller.observers.EndTurnHandler;
 import model.map.Location;
 import model.units.IUnit;
 
@@ -15,7 +15,6 @@ public class Tactician{
     private final String name;
     private PropertyChangeSupport endTurn;
     private List<IUnit> units = new ArrayList<>();
-    private ArcherFactory archerFactory;
     //TODO esto
     //el jugador indica que quiere crear? una sola factory, envia el matodo a la factory
     //una gran factory que puede hacer de too
@@ -49,7 +48,7 @@ public class Tactician{
         return false;
     }
 
-    public void addObserver(GameController resp) {
+    public void addEndTurnObserver(EndTurnHandler resp) {
         endTurn.addPropertyChangeListener(resp); //TODO buscar ej de observer implementados
     }
 
@@ -57,7 +56,7 @@ public class Tactician{
         endTurn.firePropertyChange(new PropertyChangeEvent(this, "endTurn",null,true));
             }
 
-    public void setAlpaca(Location location) {
+    /**public void setAlpaca(Location location) {
         archerFactory.setLocation(location);
         archerFactory.createAlpaca();
     }
@@ -90,6 +89,6 @@ public class Tactician{
     public void setSwordMaster(Location location) {
         archerFactory.setLocation(location);
         archerFactory.createSwordMaster();
-    }
+    }*/
 }
 
