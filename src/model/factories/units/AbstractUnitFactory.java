@@ -3,9 +3,35 @@ package model.factories.units;
 import model.map.Location;
 
 public abstract class AbstractUnitFactory implements IUnitFactory{
-    private int hitPoints = 20;
-    private Location location = new Location(0,0);
-    private int movement = 2;
+    private int hitPoints;
+    private Location location;
+    private int movement;
+
+    public AbstractUnitFactory(){
+        setDefault();
+    }
+
+    @Override
+    public void setDefault(){
+        setHitPoints(20);
+        setLocation(new Location(0,0));
+        setMovement(2);
+    }
+
+    @Override
+    public int getHitPoints() {
+        return hitPoints;
+    }
+
+    @Override
+    public Location getLocation() {
+        return location;
+    }
+
+    @Override
+    public int getMovement() {
+        return movement;
+    }
 
     @Override
     public void setHitPoints(int hitPoints) {

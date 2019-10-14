@@ -3,18 +3,19 @@ package model.factories.items;
 import model.items.Spear;
 
 public class SpearFactory extends AbstractItemFactory{
-    private String name = "javelin";
-    private double power = 10;
-    private int maxRange = 1;
-    private int minRange = 3;
 
     @Override
+    public void setDefault(){
+        this.setName("item");
+        this.setPower(10);
+        this.setMaxRange(1);
+        this.setMixRange(3);
+
+    }
+    @Override
     public Spear create() {
-        Spear spear = new Spear(name,power,maxRange,minRange);
-        this.name = "javelin";
-        this.power = 10;
-        this.maxRange = 1;
-        this.minRange = 3;
+        Spear spear = new Spear(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());
+        setDefault();
         return spear;
     }
 }

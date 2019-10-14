@@ -1,18 +1,13 @@
 package model.factories.units;
 
-import model.map.Location;
 import model.units.SwordMaster;
 
 public class SwordMasterFactory extends AbstractUnitFactory{
-    private int hitPoints = 20;
-    private Location location = new Location(0,0);
-    private int movement = 2;
 
+    @Override
     public SwordMaster create() {
-        SwordMaster swordMaster = new SwordMaster(hitPoints,movement,location);
-        this.hitPoints = 20;
-        this.location = new Location(0,0);
-        this.movement = 2;
+        SwordMaster swordMaster = new SwordMaster(this.getHitPoints(),this.getMovement(),this.getLocation());
+        setDefault();
         return swordMaster;
     }
 }

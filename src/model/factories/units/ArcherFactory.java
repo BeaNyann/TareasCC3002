@@ -1,18 +1,13 @@
 package model.factories.units;
 
-import model.map.Location;
-import model.units.*;
+import model.units.Archer;
 
 public class ArcherFactory extends AbstractUnitFactory{
-    private int hitPoints = 20;
-    private Location location = new Location(0,0);
-    private int movement = 2;
 
+    @Override
     public Archer create() {
-        Archer archer = new Archer(hitPoints,movement,location);
-        this.hitPoints = 20;
-        this.location = new Location(0,0);
-        this.movement = 2;
+        Archer archer = new Archer(this.getHitPoints(),this.getMovement(),this.getLocation());
+        setDefault();
         return archer;
     }
 
