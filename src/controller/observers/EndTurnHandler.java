@@ -16,7 +16,8 @@ public class EndTurnHandler implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getNewValue() != null) {
-            Tactician nextTactician = gameController.getCurrentOrder().get(gameController.getCurrentTurn());
+            int currentTurn = gameController.getCurrentOrder().indexOf(gameController.getTurnOwner());
+            Tactician nextTactician = gameController.getCurrentOrder().get(currentTurn+1);
             gameController.startTurn(nextTactician);
         }
     }

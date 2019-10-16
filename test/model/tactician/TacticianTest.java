@@ -36,7 +36,7 @@ public class TacticianTest {
     public void getName(){
         assertEquals("Player 0", tactician.getName());
     }
-
+    /**
     @Test
     public void getUnits(){
         Location locationA = new Location(0,0);
@@ -69,5 +69,5 @@ public class TacticianTest {
         Location locationSw = new Location(6,6);
         tactician.setSwordMaster(locationSw);
         assertTrue(tactician.getUnits().contains(new SwordMaster(20, 2, locationSw)));
-    }
+    }*/
 }
