@@ -12,9 +12,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
+import model.factories.items.*;
+import model.factories.units.*;
 import model.map.Location;
 import model.tactician.Tactician;
 import model.map.Field;
+import model.units.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,6 +31,23 @@ class GameControllerTest {
     private GameController controller;
     private long randomSeed;
     private List<String> testTacticians;
+
+    private AlpacaFactory alpacaFactory = new AlpacaFactory();
+    private ArcherFactory archerFactory = new ArcherFactory();
+    private ClericFactory clericFactory = new ClericFactory();
+    private FighterFactory fighterFactory = new FighterFactory();
+    private HeroFactory heroFactory = new HeroFactory();
+    private SorcererFactory sorcererFactory = new SorcererFactory();
+    private SwordMasterFactory swordMasterFactory = new SwordMasterFactory();
+
+    private AxeFactory axeFactory = new AxeFactory();
+    private BowFactory bowFactory = new BowFactory();
+    private DarkMagicBookFactory darkMagicBookFactory = new DarkMagicBookFactory();
+    private LightMagicBookFactory lightMagicBookFactory = new LightMagicBookFactory();
+    private SpearFactory spearFactory = new SpearFactory();
+    private SpiritMagicBookFactory spiritMagicBookFactory = new SpiritMagicBookFactory();
+    private StaffFactory staffFactory = new StaffFactory();
+    private SwordFactory swordFactory = new SwordFactory();
 
     @BeforeEach
     void setUp() {
@@ -202,6 +222,22 @@ class GameControllerTest {
         controller.removeTactician(secondTactician.getName());
         assertEquals(thirdTactician,controller.getTurnOwner());
         assertEquals(expectedOrder,controller.getCurrentOrder());
+
+        controller.endTurn();
+        controller.endTurn();
+
+        List<Tactician> tacticiansOrder2 = controller.getCurrentOrder();
+        Tactician secondTactician2 = tacticiansOrder2.get(1);
+        Tactician thirdTactician2 = tacticiansOrder2.get(2);
+        List<Tactician> expectedOrder2 = new ArrayList<>();
+        expectedOrder2.add(tacticiansOrder2.get(0));
+        expectedOrder2.add(thirdTactician2);
+        assertEquals(tacticiansOrder2.get(0),controller.getTurnOwner());
+        controller.removeTactician(secondTactician2.getName());
+        controller.endTurn();
+        assertEquals(thirdTactician2,controller.getTurnOwner());
+        assertEquals(expectedOrder2,controller.getCurrentOrder());
+
     }
 
     @Test
@@ -239,6 +275,32 @@ class GameControllerTest {
             controller.removeTactician("Player " + i);
         }
         assertTrue(List.of("Player 3").containsAll(controller.getWinners()));
+    }
+
+    @Test
+    void addUnits(){
+        Tactician tactician = new Tactician("yo");
+        controller.addAlpaca(tactician);
+        Alpaca alpaca = alpacaFactory.create();
+        assertTrue(tactician.getUnits().contains(alpaca));
+        controller.addArcher(tactician);
+        Archer archer = archerFactory.create();
+        assertTrue(tactician.getUnits().contains(archer));
+        controller.addCleric(tactician);
+        Cleric cleric = clericFactory.create();
+        assertTrue(tactician.getUnits().contains(cleric));
+        controller.addFighter(tactician);
+        Fighter fighter = fighterFactory.create();
+        assertTrue(tactician.getUnits().contains(fighter));
+        controller.addHero(tactician);
+        Hero hero = heroFactory.create();
+        assertTrue(tactician.getUnits().contains(hero));
+        controller.addSorcerer(tactician);
+        Sorcerer sorcerer = sorcererFactory.create();
+        assertTrue(tactician.getUnits().contains(sorcerer));
+        controller.addSwordMaster(tactician);
+        SwordMaster swordMaster = swordMasterFactory.create();
+        assertTrue(tactician.getUnits().contains(swordMaster));
     }
 
     // Desde aquí en adelante, los tests deben definirlos completamente ustedes

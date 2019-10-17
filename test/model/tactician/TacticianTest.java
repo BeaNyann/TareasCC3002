@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
+
+import model.factories.items.*;
+import model.factories.units.*;
 import model.tactician.Tactician;
 import model.map.Field;
 import model.units.*;
@@ -25,6 +28,23 @@ public class TacticianTest {
     private Tactician tactician;
     private long randomSeed;
 
+    private AlpacaFactory alpacaFactory = new AlpacaFactory();
+    private ArcherFactory archerFactory = new ArcherFactory();
+    private ClericFactory clericFactory = new ClericFactory();
+    private FighterFactory fighterFactory = new FighterFactory();
+    private HeroFactory heroFactory = new HeroFactory();
+    private SorcererFactory sorcererFactory = new SorcererFactory();
+    private SwordMasterFactory swordMasterFactory = new SwordMasterFactory();
+
+    private AxeFactory axeFactory = new AxeFactory();
+    private BowFactory bowFactory = new BowFactory();
+    private DarkMagicBookFactory darkMagicBookFactory = new DarkMagicBookFactory();
+    private LightMagicBookFactory lightMagicBookFactory = new LightMagicBookFactory();
+    private SpearFactory spearFactory = new SpearFactory();
+    private SpiritMagicBookFactory spiritMagicBookFactory = new SpiritMagicBookFactory();
+    private StaffFactory staffFactory = new StaffFactory();
+    private SwordFactory swordFactory = new SwordFactory();
+
     @BeforeEach
     void setUp() {
         // Se define la semilla como un número aleatorio para generar variedad en los tests
@@ -33,8 +53,33 @@ public class TacticianTest {
     }
 
     @Test
-    public void getName(){
+    void getName(){
         assertEquals("Player 0", tactician.getName());
+    }
+
+    @Test
+    void addUnit(){
+        Alpaca alpaca = alpacaFactory.create();
+        tactician.addUnit(alpaca);
+        assertTrue(tactician.getUnits().contains(alpaca));
+        Archer archer = archerFactory.create();
+        tactician.addUnit(alpaca);
+        assertTrue(tactician.getUnits().contains(archer));
+        Cleric cleric = clericFactory.create();
+        tactician.addUnit(alpaca);
+        assertTrue(tactician.getUnits().contains(cleric));
+        Fighter fighter = fighterFactory.create();
+        tactician.addUnit(alpaca);
+        assertTrue(tactician.getUnits().contains(fighter));
+        Hero hero = heroFactory.create();
+        tactician.addUnit(alpaca);
+        assertTrue(tactician.getUnits().contains(hero));
+        Sorcerer sorcerer = sorcererFactory.create();
+        tactician.addUnit(alpaca);
+        assertTrue(tactician.getUnits().contains(sorcerer));
+        SwordMaster swordMaster = swordMasterFactory.create();
+        tactician.addUnit(alpaca);
+        assertTrue(tactician.getUnits().contains(swordMaster)); //TODO tabai aqui no lo olvides owo
     }
     /**
     @Test

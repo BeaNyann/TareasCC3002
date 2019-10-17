@@ -16,8 +16,7 @@ import model.map.Location;
 import model.tactician.Tactician;
 import model.items.IEquipableItem;
 import model.map.Field;
-import model.units.Alpaca;
-import model.units.IUnit;
+import model.units.*;
 
 import static java.lang.Math.abs;
 
@@ -271,7 +270,6 @@ public class GameController {
                 startTurn(nextTactician);
             }
         }
-        //TODO debes termoinar el turno y asegurarte de que current turn no sea.. 3?xd si ahora quedan 4 tacticians
         //elimina esta unidad, le dices a la unidad eliminate
         //TODO agregar esos metodos
 
@@ -422,4 +420,38 @@ public class GameController {
 
     }
 
+    public void addAlpaca(Tactician tactician){
+        Alpaca alpaca = alpacaFactory.create();
+        tactician.addUnit(alpaca);
+    }
+
+    public void addArcher(Tactician tactician) {
+        Archer archer = archerFactory.create();
+        tactician.addUnit(archer);
+    }
+
+    public void addCleric(Tactician tactician) {
+        Cleric cleric = clericFactory.create();
+        tactician.addUnit(cleric);
+    }
+
+    public void addFighter(Tactician tactician) {
+        Fighter fighter = fighterFactory.create();
+        tactician.addUnit(fighter);
+    }
+
+    public void addHero(Tactician tactician) {
+        Hero hero = heroFactory.create();
+        tactician.addUnit(hero);
+    }
+
+    public void addSorcerer(Tactician tactician) {
+        Sorcerer sorcerer = sorcererFactory.create();
+        tactician.addUnit(sorcerer);
+    }
+
+    public void addSwordMaster(Tactician tactician) {
+        SwordMaster swordMaster = swordMasterFactory.create();
+        tactician.addUnit(swordMaster);
+    }
 }
