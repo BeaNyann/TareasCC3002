@@ -5,8 +5,7 @@ package model.factories.items;
  * Define the commons methods of all the item factoies.
  *
  * @author Beatriz Graboloza
- * @version 2.0
- * @since v2.0
+ * @since 2.0
  */
 public abstract class AbstractItemFactory implements IEquipableItemFactory {
     private String name;
@@ -19,14 +18,6 @@ public abstract class AbstractItemFactory implements IEquipableItemFactory {
      */
     public AbstractItemFactory(){
         this.setDefault();
-    }
-
-    @Override
-    public void setDefault(){
-        setName("item");
-        setPower(10);
-        setMixRange(1);
-        setMaxRange(2);
     }
 
     /**

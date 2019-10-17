@@ -13,7 +13,7 @@ public class SwordFactory extends AbstractItemFactory {
 
     @Override
     public void setDefault(){
-        this.setName("item");
+        this.setName("sword");
         this.setPower(10);
         this.setMaxRange(1);
         this.setMixRange(1);

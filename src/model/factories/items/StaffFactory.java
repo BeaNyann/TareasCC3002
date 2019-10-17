@@ -13,7 +13,7 @@ public class StaffFactory extends AbstractItemFactory {
 
     @Override
     public void setDefault(){
-        this.setName("item");
+        this.setName("staff");
         this.setPower(5);
         this.setMaxRange(1);
         this.setMixRange(1);

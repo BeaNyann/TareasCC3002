@@ -392,7 +392,8 @@ public class GameController {
      * @return the inventory of the currently selected unit.
      */
     public List<IEquipableItem> getItems() {
-        return null;
+        IUnit unit = this.selectedUnit;
+        return unit.getItems();
     }
 
     /**
@@ -432,6 +433,8 @@ public class GameController {
     public void giveItemTo(int x, int y) {
 
     }
+
+
 
     public void addAlpaca(Tactician tactician){
         Alpaca alpaca = alpacaFactory.create();
@@ -476,5 +479,45 @@ public class GameController {
                 i++;
             }
         }
+    }
+
+    public void addAxe(int index) {
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(axeFactory.create());
+    }
+
+    public void addBow(int index) {
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(bowFactory.create());
+    }
+
+    public void addDarkMagicBook(int index) {
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(darkMagicBookFactory.create());
+    }
+
+    public void addLightMagicBook(int index) {
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(lightMagicBookFactory.create());
+    }
+
+    public void addSpear(int index) {
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(spearFactory.create());
+    }
+
+    public void addSpiritMagicBook(int index) {
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(spiritMagicBookFactory.create());
+    }
+
+    public void addStaff(int index) {
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(staffFactory.create());
+    }
+
+    public void addSword(int index) {
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(swordFactory.create());
     }
 }

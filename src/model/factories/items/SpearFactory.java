@@ -13,7 +13,7 @@ public class SpearFactory extends AbstractItemFactory{
 
     @Override
     public void setDefault(){
-        this.setName("item");
+        this.setName("spear");
         this.setPower(10);
         this.setMaxRange(1);
         this.setMixRange(3);

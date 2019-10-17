@@ -11,6 +11,7 @@ import java.util.stream.IntStream;
 
 import model.factories.items.*;
 import model.factories.units.*;
+import model.items.*;
 import model.map.Location;
 import model.tactician.Tactician;
 import model.map.Field;
@@ -319,7 +320,41 @@ class GameControllerTest {
         }
     }
 
-    // Desde aquí en adelante, los tests deben definirlos completamente ustedes
+    @Test
+    void addItems(){
+        controller.initGame(5);
+        Tactician tactician = controller.getTurnOwner();
+        controller.addAlpaca(tactician);
+        List<Location> locations = new ArrayList<>();
+        locations.add(controller.getGameMap().getCell(0,1));
+        controller.putUnitsOn(tactician, locations);
+        controller.selectUnitIn(0,1);
+        controller.addAxe(0);
+        Axe axe = axeFactory.create();
+        assertTrue(tactician.getUnits().get(0).getItems().contains(axe));
+        controller.addBow(0);
+        Bow bow = bowFactory.create();
+        assertTrue(tactician.getUnits().get(0).getItems().contains(bow));
+        controller.addDarkMagicBook(0);
+        DarkMagicBook darkMagicBook = darkMagicBookFactory.create();
+        assertTrue(tactician.getUnits().get(0).getItems().contains(darkMagicBook));
+        controller.addLightMagicBook(0);
+        LightMagicBook lightMagicBook = lightMagicBookFactory.create();
+        assertTrue(tactician.getUnits().get(0).getItems().contains(lightMagicBook));
+        controller.addSpear(0);
+        Spear spear = spearFactory.create();
+        assertTrue(tactician.getUnits().get(0).getItems().contains(spear));
+        controller.addSpiritMagicBook(0);
+        SpiritMagicBook spiritMagicBook = spiritMagicBookFactory.create();
+        assertTrue(tactician.getUnits().get(0).getItems().contains(spiritMagicBook));
+        controller.addStaff(0);
+        Staff staff = staffFactory.create();
+        assertTrue(tactician.getUnits().get(0).getItems().contains(staff));
+        controller.addSword(0);
+        Sword sword = swordFactory.create();
+        assertTrue(tactician.getUnits().get(0).getItems().contains(sword));
+    }
+    //owo
     @Test
     void getSelectedUnit() {
         Tactician tactician = new Tactician(testTacticians.get(0));
@@ -349,7 +384,37 @@ class GameControllerTest {
 
     @Test
     void getItems() {
-
+        controller.initGame(5);
+        Tactician tactician = controller.getTurnOwner();
+        controller.addAlpaca(tactician);
+        List<Location> locations = new ArrayList<>();
+        locations.add(controller.getGameMap().getCell(0,1));
+        controller.putUnitsOn(tactician, locations);
+        controller.selectUnitIn(0,1);
+        controller.addAxe(0);
+        Axe axe = axeFactory.create();
+        assertTrue(controller.getItems().contains(axe));
+        controller.addBow(0);
+        Bow bow = bowFactory.create();
+        assertTrue(controller.getItems().contains(bow));
+        controller.addDarkMagicBook(0);
+        DarkMagicBook darkMagicBook = darkMagicBookFactory.create();
+        assertTrue(controller.getItems().contains(darkMagicBook));
+        controller.addLightMagicBook(0);
+        LightMagicBook lightMagicBook = lightMagicBookFactory.create();
+        assertTrue(controller.getItems().contains(lightMagicBook));
+        controller.addSpear(0);
+        Spear spear = spearFactory.create();
+        assertTrue(controller.getItems().contains(spear));
+        controller.addSpiritMagicBook(0);
+        SpiritMagicBook spiritMagicBook = spiritMagicBookFactory.create();
+        assertTrue(controller.getItems().contains(spiritMagicBook));
+        controller.addStaff(0);
+        Staff staff = staffFactory.create();
+        assertTrue(controller.getItems().contains(staff));
+        controller.addSword(0);
+        Sword sword = swordFactory.create();
+        assertTrue(controller.getItems().contains(sword));
     }
 
     @Test

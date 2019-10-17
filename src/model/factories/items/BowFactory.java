@@ -6,14 +6,13 @@ import model.items.Bow;
  * Create bows.
  *
  * @author Beatriz Graboloza
- * @version 2.0
- * @since v2.0
+ * @since 2.0
  */
 public class BowFactory extends AbstractItemFactory {
 
     @Override
     public void setDefault(){
-        this.setName("item");
+        this.setName("bow");
         this.setPower(8);
         this.setMaxRange(4);
         this.setMixRange(2);

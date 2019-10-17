@@ -6,10 +6,17 @@ import model.items.Axe;
  * Create axes.
  *
  * @author Beatriz Graboloza
- * @version 2.0
- * @since v2.0
+ * @since 2.0
  */
 public class AxeFactory extends AbstractItemFactory {
+
+    @Override
+    public void setDefault(){
+        setName("axe");
+        setPower(10);
+        setMixRange(1);
+        setMaxRange(2);
+    }
 
     @Override
     public Axe create() {

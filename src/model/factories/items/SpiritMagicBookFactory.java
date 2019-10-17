@@ -12,6 +12,14 @@ import model.items.SpiritMagicBook;
 public class SpiritMagicBookFactory extends AbstractItemFactory {
 
     @Override
+    public void setDefault(){
+        setName("spirit magic book");
+        setPower(10);
+        setMixRange(1);
+        setMaxRange(2);
+    }
+
+    @Override
     public SpiritMagicBook create() {
         SpiritMagicBook spiritMagicBook = new SpiritMagicBook(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());
         setDefault();

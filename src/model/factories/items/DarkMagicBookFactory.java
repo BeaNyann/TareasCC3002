@@ -6,10 +6,18 @@ import model.items.DarkMagicBook;
  * Create dark magic books.
  *
  * @author Beatriz Graboloza
- * @version 2.0
+ * @version 2.0 //TODO quitar los version xd
  * @since v2.0
  */
 public class DarkMagicBookFactory extends AbstractItemFactory {
+
+    @Override
+    public void setDefault(){
+        setName("dark magic book");
+        setPower(10);
+        setMixRange(1);
+        setMaxRange(2);
+    }
 
     @Override
     public DarkMagicBook create() {
