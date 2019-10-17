@@ -2,10 +2,7 @@ package controller;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.log;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,9 +51,10 @@ class GameControllerTest {
         // Se define la semilla como un número aleatorio para generar variedad en los tests
         randomSeed = new Random().nextLong();
         controller = new GameController(4, 7);
-        controller.setSeed(randomSeed);
         testTacticians = List.of("Player 0", "Player 1", "Player 2", "Player 3");
+        controller.setSeed(randomSeed);
         controller.setGameMap();
+
     }
 
 
@@ -177,7 +175,7 @@ class GameControllerTest {
 
     @Test
     void endTurn() {
-        controller.initGame(4);
+        controller.initGame(4);//TODO ups no me di cuenta que agregue esto D:
         controller.newRound();
         Tactician firstPlayer = controller.getTurnOwner();
         // Nuevamente, para determinar el orden de los jugadores se debe usar una semilla
@@ -303,13 +301,50 @@ class GameControllerTest {
         assertTrue(tactician.getUnits().contains(swordMaster));
     }
 
+    @Test
+    void putUnitsOn(){
+        Tactician tactician = new Tactician(testTacticians.get(0));
+        controller.addAlpaca(tactician);
+        controller.addArcher(tactician);
+        controller.addCleric(tactician);
+        List<Location> locations = new ArrayList<>();
+        locations.add(controller.getGameMap().getCell(0,1));
+        locations.add(controller.getGameMap().getCell(0,2));
+        locations.add(controller.getGameMap().getCell(1,1));
+        controller.putUnitsOn(tactician, locations);
+        int i = 0;
+        for (IUnit unit : tactician.getUnits()) {
+            assertEquals(locations.get(i),unit.getLocation());
+            i++;
+        }
+    }
+
     // Desde aquí en adelante, los tests deben definirlos completamente ustedes
     @Test
     void getSelectedUnit() {
+        Tactician tactician = new Tactician(testTacticians.get(0));
+        controller.addAlpaca(tactician);
+        List<Location> locations = new ArrayList<>();
+        locations.add(controller.getGameMap().getCell(0,1));
+        controller.putUnitsOn(tactician, locations);
+        controller.selectUnitIn(0,1);
+        assertNotNull(controller.getSelectedUnit());
+        //selecciono algo
     }
 
     @Test
     void selectUnitIn() {
+        Tactician tactician = new Tactician(testTacticians.get(0));
+        controller.addAlpaca(tactician);
+        alpacaFactory.setLocation(new Location(0,1));
+        Alpaca alpaca = alpacaFactory.create();
+        List<Location> locations = new ArrayList<>();
+        Location location = controller.getGameMap().getCell(0,1);
+        locations.add(location);
+        controller.putUnitsOn(tactician, locations);
+        controller.selectUnitIn(0,1);
+        assertEquals(alpaca,controller.getSelectedUnit());
+        //se selecciono corectamente
     }
 
     @Test

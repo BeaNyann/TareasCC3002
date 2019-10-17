@@ -15,7 +15,7 @@ import java.util.*;
 public class Field {
 
   private Map<String, Location> map = new HashMap<>();
-  private Random random = new Random(); //TODO esta es la seed que hay que setear para el add cells
+  private Random random = new Random();
   private StringBuilder builder = new StringBuilder();
 
   /**

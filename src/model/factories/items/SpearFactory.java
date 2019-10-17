@@ -1,7 +1,14 @@
 package model.factories.items;
-
 import model.items.Spear;
 
+/**
+ * Spear Factory.
+ * Create spears.
+ *
+ * @author Beatriz Graboloza
+ * @version 2.0
+ * @since v2.0
+ */
 public class SpearFactory extends AbstractItemFactory{
 
     @Override

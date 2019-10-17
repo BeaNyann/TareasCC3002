@@ -1,7 +1,14 @@
 package model.factories.items;
-
 import model.items.Staff;
 
+/**
+ * Staff Factory.
+ * Create staffs.
+ *
+ * @author Beatriz Graboloza
+ * @version 2.0
+ * @since v2.0
+ */
 public class StaffFactory extends AbstractItemFactory {
 
     @Override

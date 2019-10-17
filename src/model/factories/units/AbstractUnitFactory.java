@@ -1,7 +1,14 @@
 package model.factories.units;
-
 import model.map.Location;
 
+/**
+ * Abstract Unit Factory.
+ * Define the commons methods of all the unit factoies.
+ *
+ * @author Beatriz Graboloza
+ * @version 2.0
+ * @since v2.0
+ */
 public abstract class AbstractUnitFactory implements IUnitFactory{
     private int hitPoints;
     private Location location;

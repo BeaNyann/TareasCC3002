@@ -41,6 +41,8 @@ public class GameController {
     private int MaxRounds;
     private Field mapField = new Field();
     private Random randomTurnSequence = new Random();
+    private long randomMapSeed;
+    private IUnit selectedUnit;
 
     private AlpacaFactory alpacaFactory = new AlpacaFactory();
     private ArcherFactory archerFactory = new ArcherFactory();
@@ -66,8 +68,8 @@ public class GameController {
     /**
      * Creates the controller for a new game.
      *
-     * @param numberOfPlayers the number of players for this game
-     * @param mapSize         the dimensions of the map, for simplicity, all maps are squares
+     * @param numberOfPlayers the number of players for this game.
+     * @param mapSize         the dimensions of the map, for simplicity, all maps are squares.
      */
     public GameController(int numberOfPlayers, int mapSize) {
         this.globalNumberOfPlayers = numberOfPlayers;
@@ -77,7 +79,8 @@ public class GameController {
         for (int i = 0; i < numberOfPlayers; i++) {
             this.currentOrder.add(null);
         }
-        getTacticians();
+        reorderTurns();
+        setTacticians();
     }
 
     /**
@@ -95,6 +98,9 @@ public class GameController {
         //TODO si eliminan al 0 dsps se van a volver a crear con esos nombres al preguntar por ellos?:C
     }
 
+    /**
+     * Set the tacticians of the current game.
+     */
     public void setTacticians(){
         List<Tactician> newTacticians = new ArrayList<>();
         for (int i = 0; i < this.numberOfPlayers; i++) {
@@ -106,9 +112,11 @@ public class GameController {
     }
 
     /**
-     * set the map of the current game.
+     * Set the map of the current game.
      */
     public void setGameMap(){
+        this.mapField = new Field();
+        this.mapField.setSeed(this.randomMapSeed);
         for (int i = 0; i < this.mapSize; i++) {
             for (int j = 0; j < this.mapSize; j++) {
                 this.mapField.addCells(false, new Location(i,j));
@@ -116,7 +124,7 @@ public class GameController {
         }
     }
     public void setSeed(long seed){
-        this.mapField.setSeed(seed);
+        this.randomMapSeed = seed;
         this.randomTurnSequence.setSeed(seed);
     }
     /**
@@ -166,7 +174,6 @@ public class GameController {
      */
     public void newRound() {
         if (this.roundNumber < this.MaxRounds || this.getMaxRounds()==-1) {
-            reorderTurns();
             Tactician tactician = this.currentOrder.get(0);
             this.roundNumber++;
             //this.currentTurn = 0;
@@ -183,19 +190,19 @@ public class GameController {
      */
     public void reorderTurns() {
         List<Tactician> tacticians = getTacticians();
-        List<Tactician> newturns = new ArrayList<>();
+        List<Tactician> newTurns = new ArrayList<>();
         int i = 0;
         while (i < this.numberOfPlayers) {
             int next = abs(this.randomTurnSequence.nextInt() % this.numberOfPlayers);
-            if (!newturns.contains(tacticians.get(next))) {
-                newturns.add(tacticians.get(next));
+            if (!newTurns.contains(tacticians.get(next))) {
+                newTurns.add(tacticians.get(next));
                 i++;
             }
         }
-        if (newturns.get(0).equals(this.currentOrder.get(currentOrder.size() - 1))) { //cuando esta vacío que pasa si geteo algo?
+        if (newTurns.get(0).equals(this.currentOrder.get(currentOrder.size() - 1))) { //cuando esta vacío que pasa si geteo algo?
             reorderTurns();
         } else {
-            this.currentOrder = newturns;
+            this.currentOrder = newTurns;
         }
     }
 
@@ -214,6 +221,7 @@ public class GameController {
      */
     public void endTurn() {
         if (this.currentOrder.get(this.currentOrder.size() - 1).equals(this.turnOwner)) {
+            reorderTurns();
             newRound();
         }
         else {
@@ -286,6 +294,9 @@ public class GameController {
         this.currentOrder = resetOrder;
     }
 
+    /**
+     * Reset the current order of the game's turns.
+     */
     public void resetCurrentOrder(){
         List<Tactician> resetOrder = new ArrayList<>();
         for (int i = 0; i < numberOfPlayers; i++) {
@@ -303,6 +314,7 @@ public class GameController {
         this.numberOfPlayers = this.globalNumberOfPlayers;
         resetCurrentOrder();
         setTacticians();
+        reorderTurns();
     }
     /**
      * Starts the game.
@@ -314,7 +326,7 @@ public class GameController {
         resetGame();
         newRound();
         //TODO llame a first round o selecion round que seleccione y haga la primera ronda owowowowoo
-        //ayuda
+        //TODO no:C la first round se hace antes que el initGame
     }
 
     /**
@@ -362,7 +374,7 @@ public class GameController {
      * @return the current player's selected unit
      */
     public IUnit getSelectedUnit() {
-        return null;
+        return this.selectedUnit;
     }
 
     /**
@@ -372,7 +384,8 @@ public class GameController {
      * @param y vertical position of the unit
      */
     public void selectUnitIn(int x, int y) {
-
+        Location location = this.mapField.getCell(x,y);
+        this.selectedUnit = location.getUnit();
     }
 
     /**
@@ -453,5 +466,15 @@ public class GameController {
     public void addSwordMaster(Tactician tactician) {
         SwordMaster swordMaster = swordMasterFactory.create();
         tactician.addUnit(swordMaster);
+    }
+
+    public void putUnitsOn(Tactician tactician, List<Location> locations){
+        if(locations.size()==tactician.getUnits().size()) {
+            int i = 0;
+            for (IUnit unit : tactician.getUnits()) {
+                unit.setLocation(locations.get(i));
+                i++;
+            }
+        }
     }
 }

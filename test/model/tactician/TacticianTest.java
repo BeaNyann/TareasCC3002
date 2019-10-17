@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -63,56 +64,50 @@ public class TacticianTest {
         tactician.addUnit(alpaca);
         assertTrue(tactician.getUnits().contains(alpaca));
         Archer archer = archerFactory.create();
-        tactician.addUnit(alpaca);
+        tactician.addUnit(archer);
         assertTrue(tactician.getUnits().contains(archer));
         Cleric cleric = clericFactory.create();
-        tactician.addUnit(alpaca);
+        tactician.addUnit(cleric);
         assertTrue(tactician.getUnits().contains(cleric));
         Fighter fighter = fighterFactory.create();
-        tactician.addUnit(alpaca);
+        tactician.addUnit(fighter);
         assertTrue(tactician.getUnits().contains(fighter));
         Hero hero = heroFactory.create();
-        tactician.addUnit(alpaca);
+        tactician.addUnit(hero);
         assertTrue(tactician.getUnits().contains(hero));
         Sorcerer sorcerer = sorcererFactory.create();
-        tactician.addUnit(alpaca);
+        tactician.addUnit(sorcerer);
         assertTrue(tactician.getUnits().contains(sorcerer));
         SwordMaster swordMaster = swordMasterFactory.create();
-        tactician.addUnit(alpaca);
-        assertTrue(tactician.getUnits().contains(swordMaster)); //TODO tabai aqui no lo olvides owo
-    }
-    /**
-    @Test
-    public void getUnits(){
-        Location locationA = new Location(0,0);
-        tactician.setAlpaca(locationA);
-        assertTrue(tactician.getUnits().contains(new Alpaca(20, 2, locationA)));
-        //es exactamente igual al otro? pruebo ambos a la vez al hacer eso?
-        //TODO AAAAAAAAAAAA
+        tactician.addUnit(swordMaster);
+        assertTrue(tactician.getUnits().contains(swordMaster));
     }
 
     @Test
-    public void setUnits(){
-        Location locationA = new Location(0,0); //puedo chantarlos en locations que no estan en el mapa?xd
-        tactician.setAlpaca(locationA);
-        assertTrue(tactician.getUnits().contains(new Alpaca(20, 2, locationA)));
-        Location locationAr = new Location(1,1);
-        tactician.setArcher(locationAr);
-        assertTrue(tactician.getUnits().contains(new Archer(20, 2, locationAr)));
-        Location locationC = new Location(2,2);
-        tactician.setCleric(locationC);
-        assertTrue(tactician.getUnits().contains(new Cleric(20, 2, locationC)));
-        Location locationF = new Location(3,3);
-        tactician.setFighter(locationF);
-        assertTrue(tactician.getUnits().contains(new Fighter(20, 2, locationF)));
-        Location locationH = new Location(4,4);
-        tactician.setHero(locationH);
-        assertTrue(tactician.getUnits().contains(new Hero(20, 2, locationH)));
-        Location locationS = new Location(5,5);
-        tactician.setSorcerer(locationS);
-        assertTrue(tactician.getUnits().contains(new Sorcerer(20, 2, locationS)));
-        Location locationSw = new Location(6,6);
-        tactician.setSwordMaster(locationSw);
-        assertTrue(tactician.getUnits().contains(new SwordMaster(20, 2, locationSw)));
-    }*/
+    void getUnits(){
+
+        Alpaca alpaca = alpacaFactory.create();
+        tactician.addUnit(alpaca);
+        Archer archer = archerFactory.create();
+        tactician.addUnit(archer);
+        Cleric cleric = clericFactory.create();
+        tactician.addUnit(cleric);
+        Fighter fighter = fighterFactory.create();
+        tactician.addUnit(fighter);
+        Hero hero = heroFactory.create();
+        tactician.addUnit(hero);
+        Sorcerer sorcerer = sorcererFactory.create();
+        tactician.addUnit(sorcerer);
+        SwordMaster swordMaster = swordMasterFactory.create();
+        tactician.addUnit(swordMaster);
+        List<IUnit> units = new ArrayList<>();
+        units.add(alpaca);
+        units.add(archer);
+        units.add(cleric);
+        units.add(fighter);
+        units.add(hero);
+        units.add(sorcerer);
+        units.add(swordMaster);
+        assertEquals(units,tactician.getUnits());
+    }
 }

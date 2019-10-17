@@ -1,7 +1,14 @@
 package model.factories.items;
-
 import model.items.Bow;
 
+/**
+ * Bow Factory.
+ * Create bows.
+ *
+ * @author Beatriz Graboloza
+ * @version 2.0
+ * @since v2.0
+ */
 public class BowFactory extends AbstractItemFactory {
 
     @Override

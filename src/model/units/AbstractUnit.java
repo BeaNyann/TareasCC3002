@@ -113,7 +113,13 @@ public abstract class AbstractUnit implements IUnit {
    */
   @Override
   public void setLocation(final Location location) {
-    this.location = location;
+    if(location.getUnit()==null){
+      this.location = location;
+      location.setUnit(this);
+    }
+    else{
+      this.location = null;
+    }
   }
 
   /**
@@ -470,7 +476,7 @@ public abstract class AbstractUnit implements IUnit {
       if(((IUnit) obj).getMaxHitPoints() - this.getMaxHitPoints() <= 1E-6&&
               //((IUnit)obj).getCurrentHitPoints() - this.getCurrentHitPoints() <= 1E-6 &&
               ((IUnit)obj).getMovement() == this.getMovement() &&
-              ((IUnit)obj).getLocation() == this.getLocation()){
+              ((IUnit)obj).getLocation().equals(this.getLocation())){
         return true;
       }
     }
