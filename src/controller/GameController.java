@@ -39,6 +39,7 @@ public class GameController {
     private Random randomTurnSequence = new Random();
     private long randomMapSeed;
     private IUnit selectedUnit;
+    private IEquipableItem selectedItem;
 
     private AlpacaFactory alpacaFactory = new AlpacaFactory();
     private ArcherFactory archerFactory = new ArcherFactory();
@@ -386,7 +387,9 @@ public class GameController {
     public void equipItem(int index) {
         if (this.selectedUnit != null) {
             IUnit unit = this.selectedUnit;
-            unit.getItems().get(index).equipTo(unit);
+            if(!unit.getItems().isEmpty()) {
+                unit.getItems().get(index).equipTo(unit);
+            }
         }
     }
 
@@ -410,14 +413,19 @@ public class GameController {
      * @param index the location of the item in the inventory.
      */
     public void selectItem(int index) {
-        //TODO pq no hay getselectedItem tonc???
+        if(this.selectedUnit!=null){
+            IUnit unit = this.selectedUnit;
+            if(!unit.getItems().isEmpty()){
+                this.selectedItem = unit.getItems().get(index);
+            }
+        }
     }
 
     /**
      * @return the current player's selected unit's selected item.
      */
-    public IEquipableItem getSelectedItem(int index) {
-        return null;
+    public IEquipableItem getSelectedItem() {
+        return this.selectedItem;
     }
 
     /**
@@ -427,7 +435,12 @@ public class GameController {
      * @param y vertical position of the target.
      */
     public void giveItemTo(int x, int y) {
-
+        if (this.selectedUnit != null && this.selectedItem != null) {
+            IUnit unit = this.selectedUnit;
+            IEquipableItem item = this.selectedItem;
+            IUnit targetUnit = this.mapField.getCell(x, y).getUnit();
+            unit.giveObj(targetUnit, item);
+        }
     }
 
 
