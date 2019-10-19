@@ -10,6 +10,9 @@ import model.items.Bow;
  */
 public class BowFactory extends AbstractItemFactory {
 
+    /**
+     * Set the default values of a bow.
+     */
     @Override
     public void setDefault(){
         this.setName("bow");
@@ -18,6 +21,12 @@ public class BowFactory extends AbstractItemFactory {
         this.setMixRange(2);
 
     }
+
+    /**
+     * Creates a bow.
+     *
+     * @return the created bow.
+     */
     @Override
     public Bow create() {
         Bow bow = new Bow(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());

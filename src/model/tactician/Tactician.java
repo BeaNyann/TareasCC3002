@@ -1,9 +1,9 @@
 package model.tactician;
 
+import controller.Pair;
 import controller.observers.EndTurnHandler;
 import model.map.Location;
 import model.units.IUnit;
-import model.units.SwordMaster;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeSupport;
@@ -14,14 +14,16 @@ import java.util.List;
  * The representation of the players of the game.
  *
  * @author Beatriz Graboloza
- * @version 2.0
- * @since v2.0
+ * @since 2.0
  */
 public class Tactician{
 
     private final String name;
     private PropertyChangeSupport endTurn;
     private List<IUnit> units = new ArrayList<>();
+    private List<IUnit> globalUnits = new ArrayList<>();
+    private List<Pair> locations = new ArrayList<>();
+
     //TODO esto
     //el jugador indica que quiere crear? una sola factory, envia el matodo a la factory
     //una gran factory que puede hacer de too
@@ -50,7 +52,7 @@ public class Tactician{
      * @return the tactician's list of units.
      */
     public List<IUnit> getUnits(){
-        return this.units;
+        return this.globalUnits;
     }
 
     /**
@@ -86,7 +88,31 @@ public class Tactician{
      * @param unit the unit to add to the list of units.
      */
     public void addUnit(IUnit unit) {
-        this.units.add(unit);
+        this.globalUnits.add(unit);
+    }
+
+    /**
+     * Restore the units of this tactician.
+     */
+    public void restoreUnits(){
+        this.units = new ArrayList<>();
+        this.units.addAll(this.globalUnits);
+    }
+
+    /**
+     * @return the locations of the units of this tactician.
+     */
+    public List<Pair> getLocations(){
+        return this.locations;
+    }
+
+    public void eraseLocations(){
+        this.locations = new ArrayList<>();
+    }
+
+    public void setLocations(Location location){
+        Pair par = new Pair(location.getRow(),location.getColumn());
+        this.locations.add(par);
     }
 
 }

@@ -55,7 +55,6 @@ class GameControllerTest {
         testTacticians = List.of("Player 0", "Player 1", "Player 2", "Player 3");
         controller.setSeed(randomSeed);
         controller.setGameMap();
-
     }
 
 
@@ -120,7 +119,6 @@ class GameControllerTest {
     void getTurnOwner() {
         //  En este caso deben hacer lo mismo que para el mapa : getCurrentOrder tiene el random
         controller.initGame(2);
-        controller.newRound();
         assertEquals(controller.getCurrentOrder().get(0),controller.getTurnOwner());
         controller.endTurn();
         assertEquals(controller.getCurrentOrder().get(1),controller.getTurnOwner());
@@ -135,7 +133,7 @@ class GameControllerTest {
      void getCurrentOrder(){
          Random randomTurnSequence = new Random(randomSeed);
          controller.setSeed(randomSeed);
-         List<Tactician> tacticians = controller.getTacticians();
+         List<Tactician> tacticians = controller.getCurrentOrder();
          List<Tactician> testTurns = new ArrayList<>();
          int i = 0;
          while (i < tacticians.size()) {
@@ -147,7 +145,7 @@ class GameControllerTest {
          }
          controller.reorderTurns();
          List<Tactician> newTurns = controller.getCurrentOrder();
-         assertEquals(newTurns,testTurns);
+         assertTrue(newTurns.equals(testTurns));
      }
 
     @Test
@@ -176,8 +174,6 @@ class GameControllerTest {
 
     @Test
     void endTurn() {
-        controller.initGame(4);//TODO ups no me di cuenta que agregue esto D:
-        controller.newRound();
         Tactician firstPlayer = controller.getTurnOwner();
         // Nuevamente, para determinar el orden de los jugadores se debe usar una semilla
         int pos = controller.getCurrentOrder().indexOf(controller.getTurnOwner());
@@ -191,19 +187,19 @@ class GameControllerTest {
 
     @Test
     void removeTactician() {
-        assertEquals(4, controller.getTacticians().size());
-        controller.getTacticians()
+        assertEquals(4, controller.getCurrentOrder().size());
+        controller.getCurrentOrder()
                 .forEach(tactician -> Assertions.assertTrue(testTacticians.contains(tactician.getName())));
 
         controller.removeTactician("Player 0");
-        assertEquals(3, controller.getTacticians().size());
-        controller.getTacticians().forEach(tactician -> assertNotEquals("Player 0", tactician));
-        controller.getTacticians()
+        assertEquals(3, controller.getCurrentOrder().size());
+        controller.getCurrentOrder().forEach(tactician -> assertNotEquals("Player 0", tactician));
+        controller.getCurrentOrder()
                 .forEach(tactician -> Assertions.assertTrue(testTacticians.contains(tactician.getName())));
 
         controller.removeTactician("Player 5");
-        assertEquals(3, controller.getTacticians().size());
-        controller.getTacticians()
+        assertEquals(3, controller.getCurrentOrder().size());
+        controller.getCurrentOrder()
                 .forEach(tactician -> Assertions.assertTrue(testTacticians.contains(tactician.getName())));
     }
 
@@ -358,27 +354,11 @@ class GameControllerTest {
     }
 
     @Test
-    void failAddItem(){
-        Tactician tactician = controller.getCurrentOrder().get(0);
-        controller.addAlpaca(tactician);
-        List<Location> locations = new ArrayList<>();
-        locations.add(controller.getGameMap().getCell(0,1));
-        controller.putUnitsOn(tactician, locations);
-
-        //si no inicia el juego aun no se puede hacer esto owo
-
-        controller.addAxe(0);
-        Axe axe = axeFactory.create();
-        assertFalse(tactician.getUnits().get(0).getItems().contains(axe));
-    }
-    //owo
-    @Test
     void getSelectedUnit() {
-        Tactician tactician = new Tactician(testTacticians.get(0));
-        controller.addAlpaca(tactician);
+        controller.addAlpaca(controller.getTurnOwner());
         List<Location> locations = new ArrayList<>();
         locations.add(controller.getGameMap().getCell(0,1));
-        controller.putUnitsOn(tactician, locations);
+        controller.putUnitsOn(controller.getTurnOwner(), locations);
 
         controller.initGame(5);
 
@@ -389,14 +369,13 @@ class GameControllerTest {
 
     @Test
     void selectUnitIn() {
-        Tactician tactician = new Tactician(testTacticians.get(0));
-        controller.addAlpaca(tactician);
+        controller.addAlpaca(controller.getTurnOwner());
         alpacaFactory.setLocation(new Location(0,1));
         Alpaca alpaca = alpacaFactory.create();
         List<Location> locations = new ArrayList<>();
         Location location = controller.getGameMap().getCell(0,1);
         locations.add(location);
-        controller.putUnitsOn(tactician, locations);
+        controller.putUnitsOn(controller.getTurnOwner(), locations);
 
         controller.initGame(5);
 

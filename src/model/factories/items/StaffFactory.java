@@ -6,11 +6,13 @@ import model.items.Staff;
  * Create staffs.
  *
  * @author Beatriz Graboloza
- * @version 2.0
- * @since v2.0
+ * @since 2.0
  */
 public class StaffFactory extends AbstractItemFactory {
 
+    /**
+     * Set the default values of a staff.
+     */
     @Override
     public void setDefault(){
         this.setName("staff");
@@ -19,6 +21,10 @@ public class StaffFactory extends AbstractItemFactory {
         this.setMixRange(1);
     }
 
+    /**
+     * Creates a staff.
+     * @return the created staff.
+     */
     @Override
     public Staff create() {
         Staff staff = new Staff(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());

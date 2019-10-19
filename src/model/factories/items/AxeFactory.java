@@ -10,6 +10,9 @@ import model.items.Axe;
  */
 public class AxeFactory extends AbstractItemFactory {
 
+    /**
+     * Set the default values of an axe.
+     */
     @Override
     public void setDefault(){
         setName("axe");
@@ -18,6 +21,11 @@ public class AxeFactory extends AbstractItemFactory {
         setMaxRange(2);
     }
 
+    /**
+     * Creates an axe.
+     *
+     * @return creates an axe.
+     */
     @Override
     public Axe create() {
         Axe axe = new Axe(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());

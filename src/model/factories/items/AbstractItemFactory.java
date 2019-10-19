@@ -2,7 +2,7 @@ package model.factories.items;
 
 /**
  * Abstract Item Factory.
- * Define the commons methods of all the item factoies.
+ * Define the commons methods of all the item factories.
  *
  * @author Beatriz Graboloza
  * @since 2.0

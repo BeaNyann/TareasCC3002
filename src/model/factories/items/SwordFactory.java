@@ -6,11 +6,13 @@ import model.items.Sword;
  * Create swords.
  *
  * @author Beatriz Graboloza
- * @version 2.0
- * @since v2.0
+ * @since 2.0
  */
 public class SwordFactory extends AbstractItemFactory {
 
+    /**
+     * Set the default values of a sword.
+     */
     @Override
     public void setDefault(){
         this.setName("sword");
@@ -18,6 +20,12 @@ public class SwordFactory extends AbstractItemFactory {
         this.setMaxRange(1);
         this.setMixRange(1);
     }
+
+    /**
+     * Creates a sword.
+     *
+     * @return the created sword.
+     */
     @Override
     public Sword create() {
         Sword sword = new Sword(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());

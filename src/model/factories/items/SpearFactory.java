@@ -6,11 +6,13 @@ import model.items.Spear;
  * Create spears.
  *
  * @author Beatriz Graboloza
- * @version 2.0
- * @since v2.0
+ * @since 2.0
  */
 public class SpearFactory extends AbstractItemFactory{
 
+    /**
+     * Set the default values of a spear.
+     */
     @Override
     public void setDefault(){
         this.setName("spear");
@@ -19,6 +21,12 @@ public class SpearFactory extends AbstractItemFactory{
         this.setMixRange(3);
 
     }
+
+    /**
+     * Creates a spear.
+     *
+     * @return the created spear.
+     */
     @Override
     public Spear create() {
         Spear spear = new Spear(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());

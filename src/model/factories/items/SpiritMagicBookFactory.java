@@ -6,11 +6,13 @@ import model.items.SpiritMagicBook;
  * Create spirit magic books.
  *
  * @author Beatriz Graboloza
- * @version 2.0
- * @since v2.0
+ * @since 2.0
  */
 public class SpiritMagicBookFactory extends AbstractItemFactory {
 
+    /**
+     * Set the default values of a spirit magic book.
+     */
     @Override
     public void setDefault(){
         setName("spirit magic book");
@@ -19,6 +21,11 @@ public class SpiritMagicBookFactory extends AbstractItemFactory {
         setMaxRange(2);
     }
 
+    /**
+     * Creates a spirit magic book.
+     *
+     * @return the created spirit magic book.
+     */
     @Override
     public SpiritMagicBook create() {
         SpiritMagicBook spiritMagicBook = new SpiritMagicBook(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());

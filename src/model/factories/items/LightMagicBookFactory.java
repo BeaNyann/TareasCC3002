@@ -6,11 +6,13 @@ import model.items.LightMagicBook;
  * Create light magic books.
  *
  * @author Beatriz Graboloza
- * @version 2.0
- * @since v2.0
+ * @since 2.0
  */
 public class LightMagicBookFactory extends AbstractItemFactory {
 
+    /**
+     * Set the default values of a light magic book.
+     */
     @Override
     public void setDefault(){
         setName("light magic book");
@@ -19,6 +21,11 @@ public class LightMagicBookFactory extends AbstractItemFactory {
         setMaxRange(2);
     }
 
+    /**
+     * Creates a light magic book.
+     *
+     * @return the created light magic book.
+     */
     @Override
     public LightMagicBook create() {
         LightMagicBook lightMagicBook = new LightMagicBook(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());

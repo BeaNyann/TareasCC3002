@@ -1,7 +1,5 @@
 package controller;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,8 +8,6 @@ import controller.observers.EndTurnHandler;
 import controller.observers.EquipItemHandler;
 import model.factories.items.*;
 import model.factories.units.*;
-import model.items.DarkMagicBook;
-import model.items.LightMagicBook;
 import model.map.Location;
 import model.tactician.Tactician;
 import model.items.IEquipableItem;
@@ -77,17 +73,18 @@ public class GameController {
         this.numberOfPlayers = this.globalNumberOfPlayers;
         this.mapSize = mapSize;
         this.roundNumber = 0;
-        for (int i = 0; i < numberOfPlayers; i++) {
-            this.currentOrder.add(null);
-        }
         List<Tactician> newTacticians = new ArrayList<>();
         for (int i = 0; i < this.numberOfPlayers; i++) {
             Tactician tactician = new Tactician("Player " + i);
             newTacticians.add(tactician);
         }
         this.globalTacticians = newTacticians;
+        for (int i = 0; i < numberOfPlayers; i++) {
+            this.currentOrder.add(this.globalTacticians.get(i));
+        }
         reorderTurns();
         setTacticians();
+        this.turnOwner = this.currentOrder.get(0);
     }
 
     /**
@@ -100,7 +97,7 @@ public class GameController {
     /**
      * Set the tacticians of the current game.
      */
-    public void setTacticians(){
+    public void setTacticians() {
         List<Tactician> newTacticians = new ArrayList<>();
         for (int i = 0; i < this.numberOfPlayers; i++) {
             Tactician tactician = new Tactician("Player " + i);
@@ -113,19 +110,21 @@ public class GameController {
     /**
      * Set the map of the current game.
      */
-    public void setGameMap(){
+    public void setGameMap() {
         this.mapField = new Field();
         this.mapField.setSeed(this.randomMapSeed);
         for (int i = 0; i < this.mapSize; i++) {
             for (int j = 0; j < this.mapSize; j++) {
-                this.mapField.addCells(false, new Location(i,j));
+                this.mapField.addCells(false, new Location(i, j));
             }
         }
     }
-    public void setSeed(long seed){
+
+    public void setSeed(long seed) {
         this.randomMapSeed = seed;
         this.randomTurnSequence.setSeed(seed);
     }
+
     /**
      * @return the map of the current game.
      */
@@ -144,7 +143,7 @@ public class GameController {
      * @return the index of the tactician that's currently playing.
 
     public int getCurrentTurn() {
-        return this.currentTurn;
+    return this.currentTurn;
     }*/
 
     /**
@@ -172,7 +171,7 @@ public class GameController {
      * Start a new round.
      */
     public void newRound() {
-        if (this.roundNumber < this.MaxRounds || this.getMaxRounds()==-1) {
+        if (this.roundNumber < this.MaxRounds || this.getMaxRounds() == -1) {
             Tactician tactician = this.currentOrder.get(0);
             this.roundNumber++;
             //this.currentTurn = 0;
@@ -198,7 +197,7 @@ public class GameController {
                 i++;
             }
         }
-        if (newTurns.get(0).equals(this.currentOrder.get(currentOrder.size() - 1))) { //cuando esta vacío que pasa si geteo algo?
+        if (newTurns.get(0).equals(this.currentOrder.get(currentOrder.size() - 1))) {
             reorderTurns();
         } else {
             this.currentOrder = newTurns;
@@ -222,10 +221,9 @@ public class GameController {
         if (this.currentOrder.get(this.currentOrder.size() - 1).equals(this.turnOwner)) {
             reorderTurns();
             newRound();
-        }
-        else {
+        } else {
             int currentTurn = this.currentOrder.indexOf(this.turnOwner);
-            startTurn(this.currentOrder.get(currentTurn+1));
+            startTurn(this.currentOrder.get(currentTurn + 1));
             //mejor me encuentro en currentorder con un for, veo que indice soy, y le digo que empiece el siguiente no?
             //soy el turn owner, eso es despues de arreglar current order... nopo pq si es dsps no voy a estar :C
             //si ese arreglo retornara a que indice deberia tocarle(???) pero entonces no llama a end turn?
@@ -259,18 +257,16 @@ public class GameController {
         int currentTurn = 0;
         Tactician nextTactician = null;
 
-        if(this.turnOwner!=null){
-            currentTurn = this.currentOrder.indexOf(this.turnOwner);
-            nextTactician = this.currentOrder.get(currentTurn+1);
-            if(this.currentOrder.get(this.currentOrder.size() - 1).equals(this.turnOwner)){
-                newRound = true;
-            }
+        currentTurn = this.currentOrder.indexOf(this.turnOwner);
+        nextTactician = this.currentOrder.get(currentTurn + 1);
+        if (this.currentOrder.get(this.currentOrder.size() - 1).equals(this.turnOwner)) {
+            newRound = true;
         }
-        removeTacticianfromCurrentOrder(ripTactician);
+        removeTacticianFromCurrentOrder(ripTactician);
         this.tacticians.remove(ripTactician);
         this.numberOfPlayers--;
 
-        if(this.turnOwner!=null && this.turnOwner.getName().equals(tactician)) {
+        if (this.turnOwner.getName().equals(tactician)) {
             if (newRound) {
                 newRound();
             } else {
@@ -283,10 +279,10 @@ public class GameController {
 
     }
 
-    private void removeTacticianfromCurrentOrder(Tactician ripTactician) {
+    private void removeTacticianFromCurrentOrder(Tactician ripTactician) {
         List<Tactician> resetOrder = new ArrayList<>();
         for (int i = 0; i < numberOfPlayers; i++) {
-            if((this.currentOrder.get(i)==null)||(!(this.currentOrder.get(i).equals(ripTactician)))){
+            if ((this.currentOrder.get(i) == null) || (!(this.currentOrder.get(i).equals(ripTactician)))) {
                 resetOrder.add(this.currentOrder.get(i));
             }
         }
@@ -296,25 +292,39 @@ public class GameController {
     /**
      * Reset the current order of the game's turns.
      */
-    public void resetCurrentOrder(){
+    public void resetCurrentOrder() {
         List<Tactician> resetOrder = new ArrayList<>();
-        for (int i = 0; i < numberOfPlayers; i++) {
-            resetOrder.add(null);
+        for (int i = 0; i < globalNumberOfPlayers; i++) {
+            resetOrder.add(this.globalTacticians.get(i));
         }
         this.currentOrder = resetOrder;
     }
+
     /**
      * Reset the game.
      */
-    public void resetGame(){
+    public void resetGame() {
         //this.currentTurn = 0;
         this.roundNumber = 0;
         this.setGameMap();
+        if(this.numberOfPlayers<this.globalNumberOfPlayers) {
+            resetCurrentOrder();
+            setTacticians();
+            reorderTurns();
+        }
         this.numberOfPlayers = this.globalNumberOfPlayers;
-        resetCurrentOrder();
-        setTacticians();
-        reorderTurns();
+        for(Tactician tactician: this.getTacticians()){
+            tactician.restoreUnits();
+            List<Pair> locations = tactician.getLocations();
+            List<Location> newlocations = new ArrayList<>();
+            for(Pair par: locations){
+                Location newlocation = new Location(par.getLeft(),par.getRight());
+                newlocations.add(newlocation);
+            this.putUnitsOn(tactician, newlocations);
+            }
+        }
     }
+
     /**
      * Starts the game.
      *
@@ -348,21 +358,18 @@ public class GameController {
         //juego normal solo hay ganador(es) si acaba
         //en un endless solo termina si hay 1
         List<String> winners = new ArrayList<>();
-        if(getMaxRounds()>-1){
-            if(getRoundNumber()==(getMaxRounds())+1){
-                for (Tactician tactician: getCurrentOrder()) {
+        if (getMaxRounds() > -1) {
+            if (getRoundNumber() == (getMaxRounds()) + 1) {
+                for (Tactician tactician : getCurrentOrder()) {
                     winners.add(tactician.getName());
                 }
-            }
-            else{
+            } else {
                 return null;
             }
-        }
-        else{
-            if(getCurrentOrder().size()==1){
+        } else {
+            if (getCurrentOrder().size() == 1) {
                 winners.add(getCurrentOrder().get(0).getName());
-            }
-            else{
+            } else {
                 return null;
             }
         }
@@ -383,7 +390,7 @@ public class GameController {
      * @param y vertical position of the unit
      */
     public void selectUnitIn(int x, int y) {
-        Location location = this.mapField.getCell(x,y);
+        Location location = this.mapField.getCell(x, y);
         this.selectedUnit = location.getUnit();
     }
 
@@ -391,7 +398,7 @@ public class GameController {
      * @return the inventory of the currently selected unit.
      */
     public List<IEquipableItem> getItems() {
-        if(this.selectedUnit!=null){
+        if (this.selectedUnit != null) {
             IUnit unit = this.selectedUnit;
             return unit.getItems();
         }
@@ -404,7 +411,7 @@ public class GameController {
      * @param index the location of the item in the inventory.
      */
     public void equipItem(int index) {
-        if(this.selectedUnit!=null) {
+        if (this.selectedUnit != null) {
             IUnit unit = this.selectedUnit;
             unit.getItems().get(index).equipTo(unit);
         }
@@ -417,7 +424,7 @@ public class GameController {
      * @param y vertical position of the target
      */
     public void useItemOn(int x, int y) {
-        if(this.selectedUnit!=null) {
+        if (this.selectedUnit != null) {
             IUnit unit = this.selectedUnit;
             IUnit targetUnit = this.mapField.getCell(x, y).getUnit();
         }
@@ -451,8 +458,7 @@ public class GameController {
     }
 
 
-
-    public void addAlpaca(Tactician tactician){
+    public void addAlpaca(Tactician tactician) {
         Alpaca alpaca = alpacaFactory.create();
         tactician.addUnit(alpaca);
     }
@@ -487,69 +493,55 @@ public class GameController {
         tactician.addUnit(swordMaster);
     }
 
-    public void putUnitsOn(Tactician tactician, List<Location> locations){
-        if(locations.size()==tactician.getUnits().size()) {
+    public void putUnitsOn(Tactician tactician, List<Location> locations) {
+        if (locations.size() == tactician.getUnits().size()) {
+            tactician.eraseLocations();
             int i = 0;
             for (IUnit unit : tactician.getUnits()) {
                 unit.setLocation(locations.get(i));
+                tactician.setLocations(locations.get(i));
                 i++;
             }
         }
     }
 
     public void addAxe(int index) {
-        if(turnOwner!=null){
-            IUnit unit = this.turnOwner.getUnits().get(index);
-            unit.addItem(axeFactory.create());
-        }
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(axeFactory.create());
     }
 
     public void addBow(int index) {
-        if(turnOwner!=null) {
-            IUnit unit = this.turnOwner.getUnits().get(index);
-            unit.addItem(bowFactory.create());
-        }
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(bowFactory.create());
     }
 
     public void addDarkMagicBook(int index) {
-        if(turnOwner!=null) {
-            IUnit unit = this.turnOwner.getUnits().get(index);
-            unit.addItem(darkMagicBookFactory.create());
-        }
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(darkMagicBookFactory.create());
     }
 
     public void addLightMagicBook(int index) {
-        if(turnOwner!=null) {
-            IUnit unit = this.turnOwner.getUnits().get(index);
-            unit.addItem(lightMagicBookFactory.create());
-        }
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(lightMagicBookFactory.create());
     }
 
     public void addSpear(int index) {
-        if(turnOwner!=null) {
-            IUnit unit = this.turnOwner.getUnits().get(index);
-            unit.addItem(spearFactory.create());
-        }
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(spearFactory.create());
     }
 
     public void addSpiritMagicBook(int index) {
-        if(turnOwner!=null) {
-            IUnit unit = this.turnOwner.getUnits().get(index);
-            unit.addItem(spiritMagicBookFactory.create());
-        }
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(spiritMagicBookFactory.create());
     }
 
     public void addStaff(int index) {
-        if(turnOwner!=null) {
-            IUnit unit = this.turnOwner.getUnits().get(index);
-            unit.addItem(staffFactory.create());
-        }
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(staffFactory.create());
     }
 
     public void addSword(int index) {
-        if(turnOwner!=null) {
-            IUnit unit = this.turnOwner.getUnits().get(index);
-            unit.addItem(swordFactory.create());
-        }
+        IUnit unit = this.turnOwner.getUnits().get(index);
+        unit.addItem(swordFactory.create());
     }
 }

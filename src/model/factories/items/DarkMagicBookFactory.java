@@ -6,11 +6,13 @@ import model.items.DarkMagicBook;
  * Create dark magic books.
  *
  * @author Beatriz Graboloza
- * @version 2.0 //TODO quitar los version xd
- * @since v2.0
+ * @since 2.0
  */
 public class DarkMagicBookFactory extends AbstractItemFactory {
 
+    /**
+     * Set the default values of a dark magic book.
+     */
     @Override
     public void setDefault(){
         setName("dark magic book");
@@ -19,6 +21,11 @@ public class DarkMagicBookFactory extends AbstractItemFactory {
         setMaxRange(2);
     }
 
+    /**
+     * Creates an dark magic book.
+     *
+     * @return the created dark magic book.
+     */
     @Override
     public DarkMagicBook create() {
         DarkMagicBook darkMagicBook = new DarkMagicBook(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());
