@@ -6,10 +6,16 @@ import model.tactician.Tactician;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class EquipItemHandler implements PropertyChangeListener {
+/**
+ * A Observer who manages the event when a unit dies.
+ *
+ * @author Beatriz Graboloza
+ * @since 2.0
+ */
+public class DeadUnitHandler implements PropertyChangeListener {
     private GameController gameController;
 
-    public EquipItemHandler(GameController gameController) {
+    public DeadUnitHandler(GameController gameController) {
         this.gameController = gameController;
     }
 

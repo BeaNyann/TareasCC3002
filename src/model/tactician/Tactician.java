@@ -1,7 +1,7 @@
 package model.tactician;
 
 import controller.Pair;
-import controller.observers.EndTurnHandler;
+import controller.observers.DeadHeroHandler;
 import model.map.Location;
 import model.units.IUnit;
 
@@ -56,6 +56,13 @@ public class Tactician{
     }
 
     /**
+     * @return the tactician's list of alive units in the game.
+     */
+    public List<IUnit> getAliveUnits(){
+        return this.units;
+    }
+
+    /**
      * @return if one tactician is equals to another.
      */
     @Override
@@ -67,19 +74,19 @@ public class Tactician{
     }
 
     /**
-     * Adds a response handler to the end turn message.
+     * Adds a response handler to the dead hero message.
      *
      * @param resp the response handler.
      */
-    public void addEndTurnObserver(EndTurnHandler resp) {
+    public void addDeadHeroObserver(DeadHeroHandler resp) {
         endTurn.addPropertyChangeListener(resp); //TODO buscar ej de observer implementados
     }
 
     /**
-     * Sets a change in the end turn event.
+     * Sets a change in the dead hero event.
      */
-    public void setEndTurn() {
-        endTurn.firePropertyChange(new PropertyChangeEvent(this, "endTurn",null,true));
+    public void setDeadHero() {
+        endTurn.firePropertyChange(new PropertyChangeEvent(this, "deadHero",null,true));
             }
 
     /**
@@ -106,10 +113,18 @@ public class Tactician{
         return this.locations;
     }
 
+    /**
+     * Erase de locations of the tactician's units.
+     */
     public void eraseLocations(){
         this.locations = new ArrayList<>();
     }
 
+    /**
+     * Add a location to the tactician's units list of locations in form of pairs.
+     *
+     * @param location the locations of the tactician units.
+     */
     public void setLocations(Location location){
         Pair par = new Pair(location.getRow(),location.getColumn());
         this.locations.add(par);

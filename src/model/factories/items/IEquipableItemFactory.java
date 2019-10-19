@@ -39,9 +39,9 @@ public interface IEquipableItemFactory {
     /**
      * Set the min range of the item.
      *
-     * @param mixRange the min range of the item.
+     * @param minRange the min range of the item.
      */
-    void setMixRange(int mixRange);
+    void setMinRange(int minRange);
 
     /**
      * Creates an item.

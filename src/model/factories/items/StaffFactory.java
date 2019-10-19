@@ -18,7 +18,7 @@ public class StaffFactory extends AbstractItemFactory {
         this.setName("staff");
         this.setPower(5);
         this.setMaxRange(1);
-        this.setMixRange(1);
+        this.setMinRange(1);
     }
 
     /**
@@ -27,7 +27,7 @@ public class StaffFactory extends AbstractItemFactory {
      */
     @Override
     public Staff create() {
-        Staff staff = new Staff(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());
+        Staff staff = new Staff(this.getName(),this.getPower(),this.getMinRange(),this.getMaxRange());
         setDefault();
         return staff;
     }

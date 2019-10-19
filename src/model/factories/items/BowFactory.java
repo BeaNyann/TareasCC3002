@@ -18,7 +18,7 @@ public class BowFactory extends AbstractItemFactory {
         this.setName("bow");
         this.setPower(8);
         this.setMaxRange(4);
-        this.setMixRange(2);
+        this.setMinRange(2);
 
     }
 
@@ -29,7 +29,7 @@ public class BowFactory extends AbstractItemFactory {
      */
     @Override
     public Bow create() {
-        Bow bow = new Bow(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());
+        Bow bow = new Bow(this.getName(),this.getPower(),this.getMinRange(),this.getMaxRange());
         setDefault();
         return bow;
     }

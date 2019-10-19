@@ -18,7 +18,7 @@ public class SwordFactory extends AbstractItemFactory {
         this.setName("sword");
         this.setPower(10);
         this.setMaxRange(1);
-        this.setMixRange(1);
+        this.setMinRange(1);
     }
 
     /**
@@ -28,7 +28,7 @@ public class SwordFactory extends AbstractItemFactory {
      */
     @Override
     public Sword create() {
-        Sword sword = new Sword(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());
+        Sword sword = new Sword(this.getName(),this.getPower(),this.getMinRange(),this.getMaxRange());
         setDefault();
         return sword;
     }

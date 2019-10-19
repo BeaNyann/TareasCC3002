@@ -1,7 +1,6 @@
 package controller;
 
 import static java.lang.Math.abs;
-import static java.lang.Math.log;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;

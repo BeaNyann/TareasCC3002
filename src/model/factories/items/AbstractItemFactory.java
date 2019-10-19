@@ -1,4 +1,5 @@
 package model.factories.items;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Abstract Item Factory.
@@ -56,7 +57,7 @@ public abstract class AbstractItemFactory implements IEquipableItemFactory {
      * @param minRange the name of the item.
      */
     @Override
-    public void setMixRange(int minRange) {
+    public void setMinRange(int minRange) {
         this.minRange = minRange;
     }
 

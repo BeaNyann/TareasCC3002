@@ -17,7 +17,7 @@ public class AxeFactory extends AbstractItemFactory {
     public void setDefault(){
         setName("axe");
         setPower(10);
-        setMixRange(1);
+        setMinRange(1);
         setMaxRange(2);
     }
 
@@ -28,7 +28,7 @@ public class AxeFactory extends AbstractItemFactory {
      */
     @Override
     public Axe create() {
-        Axe axe = new Axe(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());
+        Axe axe = new Axe(this.getName(),this.getPower(),this.getMinRange(),this.getMaxRange());
         setDefault();
         return axe;
     }

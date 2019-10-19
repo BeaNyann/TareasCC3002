@@ -7,15 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 
+import controller.Pair;
 import model.factories.items.*;
 import model.factories.units.*;
-import model.tactician.Tactician;
-import model.map.Field;
 import model.units.*;
 import model.map.Location;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -110,4 +107,60 @@ public class TacticianTest {
         units.add(swordMaster);
         assertEquals(units,tactician.getUnits());
     }
+
+    @Test
+    void addDeadHeroObserver() {
+    }
+
+    @Test
+    void setDeadHero() {
+    }
+
+    @Test
+    void restoreUnits() {
+        tactician.addUnit(alpacaFactory.create());
+        Alpaca alpaca = alpacaFactory.create();
+        assertEquals(1,tactician.getUnits().size());
+        assertEquals(alpaca,tactician.getUnits().get(0));
+        assertEquals(0,tactician.getAliveUnits().size());
+        tactician.restoreUnits();
+        assertEquals(1,tactician.getAliveUnits().size());
+        assertEquals(alpaca,tactician.getAliveUnits().get(0));
+    }
+
+    @Test
+    void getAliveUnits() {
+        tactician.addUnit(alpacaFactory.create());
+        tactician.restoreUnits();
+        Alpaca alpaca = alpacaFactory.create();
+        assertEquals(1,tactician.getAliveUnits().size());
+        assertEquals(alpaca,tactician.getAliveUnits().get(0));
+    }
+
+    @Test
+    void getLocations() {
+        tactician.addUnit(alpacaFactory.create());
+        Location location = new Location(0,1);
+        tactician.setLocations(location);
+        assertEquals(1,tactician.getLocations().size());
+    }
+
+    @Test
+    void eraseLocations() {
+        tactician.addUnit(alpacaFactory.create());
+        Location location = new Location(0,1);
+        tactician.setLocations(location);
+        tactician.eraseLocations();
+        assertEquals(0,tactician.getLocations().size());
+    }
+
+    @Test
+    void setLocations() {
+        tactician.addUnit(alpacaFactory.create());
+        Location location = new Location(0,1);
+        tactician.setLocations(location);
+        Pair pair = new Pair(0,1);
+        assertEquals(pair,tactician.getLocations().get(0));
+    }
+
 }

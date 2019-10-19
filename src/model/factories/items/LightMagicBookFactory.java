@@ -17,7 +17,7 @@ public class LightMagicBookFactory extends AbstractItemFactory {
     public void setDefault(){
         setName("light magic book");
         setPower(10);
-        setMixRange(1);
+        setMinRange(1);
         setMaxRange(2);
     }
 
@@ -28,7 +28,7 @@ public class LightMagicBookFactory extends AbstractItemFactory {
      */
     @Override
     public LightMagicBook create() {
-        LightMagicBook lightMagicBook = new LightMagicBook(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());
+        LightMagicBook lightMagicBook = new LightMagicBook(this.getName(),this.getPower(),this.getMinRange(),this.getMaxRange());
         setDefault();
         return lightMagicBook;
     }

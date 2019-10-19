@@ -17,8 +17,8 @@ public class SpearFactory extends AbstractItemFactory{
     public void setDefault(){
         this.setName("spear");
         this.setPower(10);
-        this.setMaxRange(1);
-        this.setMixRange(3);
+        this.setMinRange(1);
+        this.setMaxRange(3);
 
     }
 
@@ -29,7 +29,7 @@ public class SpearFactory extends AbstractItemFactory{
      */
     @Override
     public Spear create() {
-        Spear spear = new Spear(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());
+        Spear spear = new Spear(this.getName(),this.getPower(),this.getMinRange(),this.getMaxRange());
         setDefault();
         return spear;
     }

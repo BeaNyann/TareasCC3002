@@ -17,7 +17,7 @@ public class SpiritMagicBookFactory extends AbstractItemFactory {
     public void setDefault(){
         setName("spirit magic book");
         setPower(10);
-        setMixRange(1);
+        setMinRange(1);
         setMaxRange(2);
     }
 
@@ -28,7 +28,7 @@ public class SpiritMagicBookFactory extends AbstractItemFactory {
      */
     @Override
     public SpiritMagicBook create() {
-        SpiritMagicBook spiritMagicBook = new SpiritMagicBook(this.getName(),this.getPower(),this.getMaxRange(),this.getMinRange());
+        SpiritMagicBook spiritMagicBook = new SpiritMagicBook(this.getName(),this.getPower(),this.getMinRange(),this.getMaxRange());
         setDefault();
         return spiritMagicBook;
     }

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import controller.observers.EndTurnHandler;
-import controller.observers.EquipItemHandler;
+import controller.observers.DeadHeroHandler;
+import controller.observers.DeadUnitHandler;
 import model.factories.items.*;
 import model.factories.units.*;
 import model.map.Location;
@@ -21,8 +21,7 @@ import static java.lang.Math.abs;
  * The controller manages all the input received from de game's GUI.
  *
  * @author Beatriz Graboloza
- * @version 2.0
- * @since v2.0
+ * @since 2.0
  */
 public class GameController {
 
@@ -58,8 +57,8 @@ public class GameController {
     private StaffFactory staffFactory = new StaffFactory();
     private SwordFactory swordFactory = new SwordFactory();
 
-    private EndTurnHandler endTurnHandler = new EndTurnHandler(this);
-    private EquipItemHandler equipItemHandler = new EquipItemHandler(this);
+    private DeadHeroHandler endTurnHandler = new DeadHeroHandler(this);
+    private DeadUnitHandler equipItemHandler = new DeadUnitHandler(this);
 
 
     /**
@@ -120,6 +119,11 @@ public class GameController {
         }
     }
 
+    /**
+     * Set a random seed to the map and the turn sequence.
+     *
+     * @param seed the random seed to set.
+     */
     public void setSeed(long seed) {
         this.randomMapSeed = seed;
         this.randomTurnSequence.setSeed(seed);
@@ -138,13 +142,6 @@ public class GameController {
     public Tactician getTurnOwner() {
         return this.turnOwner;
     }
-
-    /**
-     * @return the index of the tactician that's currently playing.
-
-    public int getCurrentTurn() {
-    return this.currentTurn;
-    }*/
 
     /**
      * @return the list of tactician in order to play.
@@ -279,6 +276,11 @@ public class GameController {
 
     }
 
+    /**
+     * Remove the tactician from the current order list.
+     *
+     * @param ripTactician the tactician to remove.
+     */
     private void removeTacticianFromCurrentOrder(Tactician ripTactician) {
         List<Tactician> resetOrder = new ArrayList<>();
         for (int i = 0; i < numberOfPlayers; i++) {
@@ -352,7 +354,7 @@ public class GameController {
     }
 
     /**
-     * @return the winner of this game, if the match ends in a draw returns a list of all the winners
+     * @return the winner of this game, if the match ends in a draw returns a list of all the winners.
      */
     public List<String> getWinners() {
         //juego normal solo hay ganador(es) si acaba
@@ -377,17 +379,17 @@ public class GameController {
     }
 
     /**
-     * @return the current player's selected unit
+     * @return the current player's selected unit.
      */
     public IUnit getSelectedUnit() {
         return this.selectedUnit;
     }
 
     /**
-     * Selects a unit in the game map
+     * Selects a unit in the game map.
      *
-     * @param x horizontal position of the unit
-     * @param y vertical position of the unit
+     * @param x horizontal position of the unit.
+     * @param y vertical position of the unit.
      */
     public void selectUnitIn(int x, int y) {
         Location location = this.mapField.getCell(x, y);
@@ -418,10 +420,10 @@ public class GameController {
     }
 
     /**
-     * Uses the equipped item on a target
+     * Uses the equipped item on a target.
      *
-     * @param x horizontal position of the target
-     * @param y vertical position of the target
+     * @param x horizontal position of the target.
+     * @param y vertical position of the target.
      */
     public void useItemOn(int x, int y) {
         if (this.selectedUnit != null) {
@@ -450,49 +452,90 @@ public class GameController {
     /**
      * Gives the selected item to a target unit.
      *
-     * @param x horizontal position of the target
-     * @param y vertical position of the target
+     * @param x horizontal position of the target.
+     * @param y vertical position of the target.
      */
     public void giveItemTo(int x, int y) {
 
     }
 
 
+    /**
+     * Add an alpaca to the tactician.
+     *
+     * @param tactician the tactician to add the alpaca.
+     */
     public void addAlpaca(Tactician tactician) {
         Alpaca alpaca = alpacaFactory.create();
         tactician.addUnit(alpaca);
     }
 
+    /**
+     * Add an archer to the tactician.
+     *
+     * @param tactician the tactician to add the archer.
+     */
     public void addArcher(Tactician tactician) {
         Archer archer = archerFactory.create();
         tactician.addUnit(archer);
     }
 
+    /**
+     * Add a cleric to the tactician.
+     *
+     * @param tactician the tactician to add the cleric.
+     */
     public void addCleric(Tactician tactician) {
         Cleric cleric = clericFactory.create();
         tactician.addUnit(cleric);
     }
 
+    /**
+     * Add a fighter to the tactician.
+     *
+     * @param tactician the tactician to add the fighter.
+     */
     public void addFighter(Tactician tactician) {
         Fighter fighter = fighterFactory.create();
         tactician.addUnit(fighter);
     }
 
+    /**
+     * Add a fighter to the tactician.
+     *
+     * @param tactician the tactician to add the hero.
+     */
     public void addHero(Tactician tactician) {
         Hero hero = heroFactory.create();
         tactician.addUnit(hero);
     }
 
+    /**
+     * Add a sorcerer to the tactician.
+     *
+     * @param tactician the tactician to add the sorcerer.
+     */
     public void addSorcerer(Tactician tactician) {
         Sorcerer sorcerer = sorcererFactory.create();
         tactician.addUnit(sorcerer);
     }
 
+    /**
+     * Add a sword master to the tactician.
+     *
+     * @param tactician the tactician to add the sword master.
+     */
     public void addSwordMaster(Tactician tactician) {
         SwordMaster swordMaster = swordMasterFactory.create();
         tactician.addUnit(swordMaster);
     }
 
+    /**
+     * Put all the units of the tactician on the given locations.
+     *
+     * @param tactician the tactician to put its units on the game map.
+     * @param locations the locations where to put the units.
+     */
     public void putUnitsOn(Tactician tactician, List<Location> locations) {
         if (locations.size() == tactician.getUnits().size()) {
             tactician.eraseLocations();
@@ -505,41 +548,81 @@ public class GameController {
         }
     }
 
+    /**
+     * Add an axe to the tactician's unit in that index.
+     *
+     * @param index the index of tactician's unit to add the axe.
+     */
     public void addAxe(int index) {
         IUnit unit = this.turnOwner.getUnits().get(index);
         unit.addItem(axeFactory.create());
     }
 
+    /**
+     * Add a bow to the tactician's unit in that index.
+     *
+     * @param index the index of tactician's unit to add the bow.
+     */
     public void addBow(int index) {
         IUnit unit = this.turnOwner.getUnits().get(index);
         unit.addItem(bowFactory.create());
     }
 
+    /**
+     * Add a dark magic book to the tactician's unit in that index.
+     *
+     * @param index the index of tactician's unit to add the dark magic book.
+     */
     public void addDarkMagicBook(int index) {
         IUnit unit = this.turnOwner.getUnits().get(index);
         unit.addItem(darkMagicBookFactory.create());
     }
 
+    /**
+     * Add a light magic book to the tactician's unit in that index.
+     *
+     * @param index the index of tactician's unit to add the light magic book.
+     */
     public void addLightMagicBook(int index) {
         IUnit unit = this.turnOwner.getUnits().get(index);
         unit.addItem(lightMagicBookFactory.create());
     }
 
+    /**
+     * Add a spear to the tactician's unit in that index.
+     *
+     * @param index the index of tactician's unit to add the spear.
+     */
     public void addSpear(int index) {
         IUnit unit = this.turnOwner.getUnits().get(index);
         unit.addItem(spearFactory.create());
     }
 
+    /**
+     * Add a spirit magic book to the tactician's unit in that index.
+     *
+     * @param index the index of tactician's unit to add the spirit magic book.
+     */
     public void addSpiritMagicBook(int index) {
         IUnit unit = this.turnOwner.getUnits().get(index);
         unit.addItem(spiritMagicBookFactory.create());
     }
 
+    /**
+     * Add a staff to the tactician's unit in that index.
+     *
+     * @param index the index of tactician's unit to add the staff.
+     */
     public void addStaff(int index) {
         IUnit unit = this.turnOwner.getUnits().get(index);
         unit.addItem(staffFactory.create());
     }
 
+    /**
+     * Add an sword to the tactician's unit in that index.
+     *
+     * @param index the index of tactician's unit to add the sword.
+     */
     public void addSword(int index) {
         IUnit unit = this.turnOwner.getUnits().get(index);
         unit.addItem(swordFactory.create());
