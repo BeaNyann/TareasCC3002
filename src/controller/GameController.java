@@ -98,7 +98,7 @@ public class GameController {
      */
     public void setTacticians() {
         List<Tactician> newTacticians = new ArrayList<>();
-        for (int i = 0; i < this.numberOfPlayers; i++) {
+        for (int i = 0; i < this.globalNumberOfPlayers; i++) {
             Tactician tactician = new Tactician("Player " + i);
             newTacticians.add(tactician);
         }//TODO perdieron sus unidades:C
@@ -312,6 +312,7 @@ public class GameController {
         if(this.numberOfPlayers<this.globalNumberOfPlayers) {
             resetCurrentOrder();
             setTacticians();
+            this.numberOfPlayers = this.globalNumberOfPlayers;
             reorderTurns();
         }
         this.numberOfPlayers = this.globalNumberOfPlayers;
@@ -322,8 +323,8 @@ public class GameController {
             for(Pair par: locations){
                 Location newlocation = new Location(par.getLeft(),par.getRight());
                 newlocations.add(newlocation);
-            this.putUnitsOn(tactician, newlocations);
             }
+            this.putUnitsOn(tactician, newlocations);
         }
     }
 

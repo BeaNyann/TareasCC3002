@@ -144,7 +144,7 @@ class GameControllerTest {
          }
          controller.reorderTurns();
          List<Tactician> newTurns = controller.getCurrentOrder();
-         assertTrue(newTurns.equals(testTurns));
+         assertEquals(newTurns, testTurns);
      }
 
     @Test
