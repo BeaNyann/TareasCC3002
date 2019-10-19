@@ -78,11 +78,8 @@ public class GameController {
             newTacticians.add(tactician);
         }
         this.globalTacticians = newTacticians;
-        for (int i = 0; i < numberOfPlayers; i++) {
-            this.currentOrder.add(this.globalTacticians.get(i));
-        }
-        reorderTurns();
         setTacticians();
+        reorderTurns();
         this.turnOwner = this.currentOrder.get(0);
     }
 
@@ -97,13 +94,11 @@ public class GameController {
      * Set the tacticians of the current game.
      */
     public void setTacticians() {
-        List<Tactician> newTacticians = new ArrayList<>();
-        for (int i = 0; i < this.globalNumberOfPlayers; i++) {
-            Tactician tactician = new Tactician("Player " + i);
-            newTacticians.add(tactician);
-        }//TODO perdieron sus unidades:C
-
-        this.tacticians = newTacticians;
+        this.tacticians = new ArrayList<>();
+        this.tacticians.addAll(this.globalTacticians);
+        this.currentOrder = new ArrayList<>();
+        this.currentOrder.addAll(this.globalTacticians);
+        //TODO perdieron sus unidades:C
     }
 
     /**
@@ -221,19 +216,6 @@ public class GameController {
         } else {
             int currentTurn = this.currentOrder.indexOf(this.turnOwner);
             startTurn(this.currentOrder.get(currentTurn + 1));
-            //mejor me encuentro en currentorder con un for, veo que indice soy, y le digo que empiece el siguiente no?
-            //soy el turn owner, eso es despues de arreglar current order... nopo pq si es dsps no voy a estar :C
-            //si ese arreglo retornara a que indice deberia tocarle(???) pero entonces no llama a end turn?
-            //si tengo el current turn verifico quien viene antes de eliminarme de la lista y le doy directo a start a el
-            //es como un end turn especial, no se va a sumar nada a current turn puta la wea a a a , tengo que eliminar ese numero
-            //culiao
-            //si no tengo el current turn el end turn normal deberia saber que hacer no? pico en vdd
-            //en vez de current turn le hago un get index de dd estoy y mando al siguiente, pero se arregla el current orden
-            //antes o dsps?
-            //como no se si start lo usa o no seria mejor que antes, lo arregla y dsps, pero como respaldo el indice si ya no voy a
-            //estar en current order?
-            //que el normal lo vea sin el current turn y que si tengo el turno antes de mandar que se arregle busco a quien le toca y
-            //llamo start del siguiente
         }
     }
 
@@ -292,17 +274,6 @@ public class GameController {
     }
 
     /**
-     * Reset the current order of the game's turns.
-     */
-    public void resetCurrentOrder() {
-        List<Tactician> resetOrder = new ArrayList<>();
-        for (int i = 0; i < globalNumberOfPlayers; i++) {
-            resetOrder.add(this.globalTacticians.get(i));
-        }
-        this.currentOrder = resetOrder;
-    }
-
-    /**
      * Reset the game.
      */
     public void resetGame() {
@@ -310,7 +281,6 @@ public class GameController {
         this.roundNumber = 0;
         this.setGameMap();
         if(this.numberOfPlayers<this.globalNumberOfPlayers) {
-            resetCurrentOrder();
             setTacticians();
             this.numberOfPlayers = this.globalNumberOfPlayers;
             reorderTurns();
@@ -321,7 +291,7 @@ public class GameController {
             List<Pair> locations = tactician.getLocations();
             List<Location> newlocations = new ArrayList<>();
             for(Pair par: locations){
-                Location newlocation = new Location(par.getLeft(),par.getRight());
+                Location newlocation = this.mapField.getCell(par.getLeft(),par.getRight());
                 newlocations.add(newlocation);
             }
             this.putUnitsOn(tactician, newlocations);
@@ -430,8 +400,8 @@ public class GameController {
         if (this.selectedUnit != null) {
             IUnit unit = this.selectedUnit;
             IUnit targetUnit = this.mapField.getCell(x, y).getUnit();
+            unit.attack(targetUnit);
         }
-
     }
 
     /**

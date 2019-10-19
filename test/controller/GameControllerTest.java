@@ -477,19 +477,45 @@ class GameControllerTest {
         Tactician atackingTactician = controller.getCurrentOrder().get(0);
         controller.addHero(atackingTactician);
         Tactician vistimaTactician = controller.getCurrentOrder().get(1); //se hace la vistima uwu
+        controller.addArcher(vistimaTactician);
 
         controller.putUnitsOn(atackingTactician, locationsT1);
         controller.putUnitsOn(vistimaTactician, locationsT2);
 
-        controller.addArcher(vistimaTactician);
+
         controller.initGame(5);
         controller.addSpear(0);
+        controller.selectUnitIn(0,1);
         controller.equipItem(0);
         controller.useItemOn(1,1);
 
         assertEquals(10,controller.getCurrentOrder().get(1).getUnits().get(0).getCurrentHitPoints());
     }
-//TODO test fail use item on
+
+    @Test
+    void failUseItemOn(){
+        List<Location> locationsT1 = new ArrayList<>();
+        locationsT1.add(controller.getGameMap().getCell(0, 1));
+        List<Location> locationsT2 = new ArrayList<>();
+        locationsT2.add(controller.getGameMap().getCell(1, 1));
+
+        Tactician atackingTactician = controller.getCurrentOrder().get(0);
+        controller.addHero(atackingTactician);
+        Tactician vistimaTactician = controller.getCurrentOrder().get(1); //se hace la vistima uwu
+        controller.addArcher(vistimaTactician);
+
+        controller.putUnitsOn(atackingTactician, locationsT1);
+        controller.putUnitsOn(vistimaTactician, locationsT2);
+
+
+        controller.initGame(5);
+        controller.addSpear(0);
+        //si no selecciono la unidad no sucede el ataque
+        controller.equipItem(0);
+        controller.useItemOn(1,1);
+
+        assertEquals(20,controller.getCurrentOrder().get(1).getUnits().get(0).getCurrentHitPoints());
+    }
     @Test
     void selectItem() {
     }

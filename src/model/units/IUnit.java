@@ -245,5 +245,12 @@ public interface IUnit {
    * @param staff the staff which heals the unit.
    */
   void healedByStaff(Staff staff);
+
+  /**
+   * Send a message to this unit´s item to attack the target unit.
+   *
+   * @param unit the unit that is going to be attacked.
+   */
+  void attack(IUnit unit);
 }
 
