@@ -77,4 +77,49 @@ public abstract class AbstractTestItemFactory {
         return expectedMaxRange;
     }
 
+
+    @Test
+    void setName() {
+        getTestItem().setName("uwu");
+        assertEquals("uwu",getTestItem().getName());
+    }
+
+    @Test
+    void setPower() {
+        getTestItem().setPower(100);
+        assertEquals(100,getTestItem().getPower());
+    }
+
+    @Test
+    void setMaxRange() {
+        getTestItem().setMaxRange(20);
+        assertEquals(20,getTestItem().getMaxRange());
+    }
+
+    @Test
+    void setMinRange() {
+        getTestItem().setMaxRange(20);
+        getTestItem().setMinRange(19);
+        assertEquals(19,getTestItem().getMinRange());
+    }
+
+    @Test
+    void getName() {
+        assertEquals(getExpectedName(),getTestItem().getName());
+    }
+
+    @Test
+    void getPower() {
+        assertEquals(getExpectedBasePower(),getTestItem().getPower());
+    }
+
+    @Test
+    void getMaxRange() {
+        assertEquals(getExpectedMaxRange(),getTestItem().getMaxRange());
+    }
+
+    @Test
+    void getMinRange() {
+        assertEquals(getExpectedMinRange(),getTestItem().getMinRange());
+    }
 }

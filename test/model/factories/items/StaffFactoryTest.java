@@ -32,7 +32,7 @@ public class StaffFactoryTest extends AbstractTestItemFactory{
     @Test
     void setDefault() {
         staffFactory.setMaxRange(20);
-        staffFactory.setMinRange(0);
+        staffFactory.setMinRange(19);
         staffFactory.setName("owo");
         staffFactory.setPower(91);
         staffFactory.setDefault();

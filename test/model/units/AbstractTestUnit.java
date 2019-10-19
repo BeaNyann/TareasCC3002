@@ -398,4 +398,4 @@ public abstract class AbstractTestUnit implements ITestUnit {
     assertEquals(0, unit.getCurrentHitPoints());
     //no se puede revivir :C
   }
-}//TODO fail counter attack
+}

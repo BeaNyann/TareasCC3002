@@ -32,7 +32,7 @@ public class BowFactoryTest extends AbstractTestItemFactory{
     @Test
     void setDefault() {
         bowFactory.setMaxRange(20);
-        bowFactory.setMinRange(0);
+        bowFactory.setMinRange(19);
         bowFactory.setName("owo");
         bowFactory.setPower(91);
         bowFactory.setDefault();
@@ -49,3 +49,4 @@ public class BowFactoryTest extends AbstractTestItemFactory{
         assertEquals(bow,bow2);
     }
 }
+

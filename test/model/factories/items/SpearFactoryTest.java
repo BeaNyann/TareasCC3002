@@ -32,7 +32,7 @@ public class SpearFactoryTest extends AbstractTestItemFactory{
     @Test
     void setDefault() {
         spearFactory.setMaxRange(20);
-        spearFactory.setMinRange(0);
+        spearFactory.setMinRange(19);
         spearFactory.setName("owo");
         spearFactory.setPower(91);
         spearFactory.setDefault();

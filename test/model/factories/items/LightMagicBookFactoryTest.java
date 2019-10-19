@@ -32,7 +32,7 @@ public class LightMagicBookFactoryTest extends AbstractTestItemFactory{
     @Test
     void setDefault() {
         lightMagicBookFactory.setMaxRange(20);
-        lightMagicBookFactory.setMinRange(0);
+        lightMagicBookFactory.setMinRange(19);
         lightMagicBookFactory.setName("owo");
         lightMagicBookFactory.setPower(91);
         lightMagicBookFactory.setDefault();

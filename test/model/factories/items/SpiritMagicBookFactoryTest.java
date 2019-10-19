@@ -32,7 +32,7 @@ public class SpiritMagicBookFactoryTest extends AbstractTestItemFactory{
     @Test
     void setDefault() {
         spiritMagicBookFactory.setMaxRange(20);
-        spiritMagicBookFactory.setMinRange(0);
+        spiritMagicBookFactory.setMinRange(19);
         spiritMagicBookFactory.setName("owo");
         spiritMagicBookFactory.setPower(91);
         spiritMagicBookFactory.setDefault();

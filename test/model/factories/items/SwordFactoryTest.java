@@ -32,7 +32,7 @@ public class SwordFactoryTest extends AbstractTestItemFactory{
     @Test
     void setDefault() {
         swordFactory.setMaxRange(20);
-        swordFactory.setMinRange(0);
+        swordFactory.setMinRange(19);
         swordFactory.setName("owo");
         swordFactory.setPower(91);
         swordFactory.setDefault();

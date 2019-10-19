@@ -30,7 +30,7 @@ public class AxeFactoryTest extends AbstractTestItemFactory{
     @Test
     void setDefault() {
         axeFactory.setMaxRange(20);
-        axeFactory.setMinRange(0);
+        axeFactory.setMinRange(19);
         axeFactory.setName("owo");
         axeFactory.setPower(91);
         axeFactory.setDefault();

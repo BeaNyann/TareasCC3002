@@ -32,7 +32,7 @@ public class DarkMagicBookFactoryTest extends AbstractTestItemFactory{
     @Test
     void setDefault() {
         darkMagicBookFactory.setMaxRange(20);
-        darkMagicBookFactory.setMinRange(0);
+        darkMagicBookFactory.setMinRange(19);
         darkMagicBookFactory.setName("owo");
         darkMagicBookFactory.setPower(91);
         darkMagicBookFactory.setDefault();
