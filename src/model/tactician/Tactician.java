@@ -104,7 +104,7 @@ public class Tactician{
      * Sets a change in the dead unit event.
      */
     public void setDeadUnit() {
-        deadHero.firePropertyChange(new PropertyChangeEvent(this, "deadUnit",null,this.getName()));
+        deadHero.firePropertyChange(new PropertyChangeEvent(this, "deadUnit",null,this));
     }
     /**
      * Add a unit to the tactician's list of units with its correspondent boolean.

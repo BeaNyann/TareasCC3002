@@ -22,7 +22,8 @@ public class DeadUnitHandler implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getNewValue() != null) {
-            int index = this.gameController.getCurrentOrder().indexOf(new Tactician((String)evt.getNewValue()));
+            Tactician tactician = (Tactician) evt.getNewValue();
+            //tactician.removeUnit(???);
 
         }
         //ayuda
