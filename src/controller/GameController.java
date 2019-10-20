@@ -99,7 +99,16 @@ public class GameController {
         this.tacticians.addAll(this.globalTacticians);
         this.currentOrder = new ArrayList<>();
         this.currentOrder.addAll(this.globalTacticians);
-        //TODO perdieron sus unidades:C
+        setTacticiansFields();
+    }
+
+    /**
+     * Set the field of the map to the tacticians.
+     */
+    public void setTacticiansFields(){
+        for (Tactician tactician : this.globalTacticians) {
+            tactician.setMapField(this.mapField);
+        }
     }
 
     /**
@@ -113,6 +122,7 @@ public class GameController {
                 this.mapField.addCells(false, new Location(i, j));
             }
         }
+        setTacticiansFields();
     }
 
     /**
@@ -167,13 +177,12 @@ public class GameController {
         if (this.roundNumber < this.MaxRounds || this.getMaxRounds() == -1) {
             Tactician tactician = this.currentOrder.get(0);
             this.roundNumber++;
-            //this.currentTurn = 0;
             startTurn(tactician);
-        } else {
-            this.roundNumber++;
-            //para que el winners sepa cuando termino el juego?
-            //end game??
         }
+        else{
+            this.roundNumber++;
+        }
+        //si ya nos pasamos pos no hay más rondas uwu
     }
 
     /**
@@ -226,59 +235,44 @@ public class GameController {
      * @param tactician the player to be removed
      */
     public void removeTactician(String tactician) {
-        //units = tactician.getUnits();
-        //for(IUnit unit: units){
-        //    tactician.removeUnit(unit);
-        //}
-        //TODO que llame a remove tacticianunits en vez de hacerlo aca
-        Tactician ripTactician = new Tactician(tactician);
+        int index = this.tacticians.indexOf(new Tactician(tactician));
+        if(index>=0) {
+            Tactician ripTactician = this.tacticians.get(index);
+            List<IUnit> units = ripTactician.getUnits();
+            for (IUnit unit : units) {
+                ripTactician.removeUnit(unit);
+            }
+            for (Pair par : ripTactician.getLocations()) {
+                Location location = this.mapField.getCell(par.getLeft(), par.getRight());
+                location.setUnit(null);
+            }
+            boolean newRound = false;
+            int currentTurn;
+            Tactician nextTactician;
 
-        boolean newRound = false;
-        int currentTurn = 0;
-        Tactician nextTactician = null;
+            currentTurn = this.currentOrder.indexOf(this.turnOwner);
+            nextTactician = this.currentOrder.get(currentTurn + 1);
+            if (this.currentOrder.get(this.currentOrder.size() - 1).equals(this.turnOwner)) {
+                newRound = true;
+            }
+            this.currentOrder.remove(ripTactician);
+            this.tacticians.remove(ripTactician);
+            this.numberOfPlayers--;
 
-        currentTurn = this.currentOrder.indexOf(this.turnOwner);
-        nextTactician = this.currentOrder.get(currentTurn + 1);
-        if (this.currentOrder.get(this.currentOrder.size() - 1).equals(this.turnOwner)) {
-            newRound = true;
-        }
-        removeTacticianFromCurrentOrder(ripTactician);
-        this.tacticians.remove(ripTactician);
-        this.numberOfPlayers--;
-
-        if (this.turnOwner.getName().equals(tactician)) {
-            if (newRound) {
-                newRound();
-            } else {
-                startTurn(nextTactician);
+            if (this.turnOwner.getName().equals(tactician)) {
+                if (newRound) {
+                    newRound();
+                } else {
+                    startTurn(nextTactician);
+                }
             }
         }
-        //elimina esta unidad, le dices a la unidad eliminate
-        //TODO agregar esos metodos
-
-
-    }
-
-    /**
-     * Remove the tactician from the current order list.
-     *
-     * @param ripTactician the tactician to remove.
-     */
-    private void removeTacticianFromCurrentOrder(Tactician ripTactician) {
-        List<Tactician> resetOrder = new ArrayList<>();
-        for (int i = 0; i < numberOfPlayers; i++) {
-            if ((this.currentOrder.get(i) == null) || (!(this.currentOrder.get(i).equals(ripTactician)))) {
-                resetOrder.add(this.currentOrder.get(i));
-            }
-        }
-        this.currentOrder = resetOrder;
     }
 
     /**
      * Reset the game.
      */
     public void resetGame() {
-        //this.currentTurn = 0;
         this.roundNumber = 0;
         this.setGameMap();
         if(this.numberOfPlayers<this.globalNumberOfPlayers) {
@@ -308,8 +302,6 @@ public class GameController {
         this.MaxRounds = maxRounds;
         resetGame();
         newRound();
-        //TODO llame a first round o selecion round que seleccione y haga la primera ronda owowowowoo
-        //TODO no:C la first round se hace antes que el initGame
     }
 
     /**
@@ -319,10 +311,6 @@ public class GameController {
         this.MaxRounds = -1;
         resetGame();
         newRound();
-        //TODO esto
-        //deberia resetear los jugadores o guardar unos jugadores globales y que una copia sea la que usemos en cada juego
-        //para no perder la referencia al jjugador cuando pierda o crear nuevos tacticians? es like malo
-        // es como si fueran controles conectados
     }
 
     /**
@@ -334,8 +322,16 @@ public class GameController {
         List<String> winners = new ArrayList<>();
         if (getMaxRounds() > -1) {
             if (getRoundNumber() == (getMaxRounds()) + 1) {
+                int max = 0;
                 for (Tactician tactician : getCurrentOrder()) {
-                    winners.add(tactician.getName());
+                    if(tactician.getUnits().size() > max){
+                        winners = new ArrayList<>();
+                        winners.add(tactician.getName());
+                        max = tactician.getUnits().size();
+                    }
+                    else if(tactician.getUnits().size() == max){
+                        winners.add(tactician.getName());
+                    }
                 }
             } else {
                 return null;
@@ -610,5 +606,22 @@ public class GameController {
     public void addSword(int index) {
         IUnit unit = this.turnOwner.getUnits().get(index);
         unit.addItem(swordFactory.create());
+    }
+
+    /**
+     * Moves the selected unit to the target position.
+     *
+     * @param x horizontal position where to move the unit.
+     * @param y vertical position where to move the unit.
+     */
+    public void moveTo(int x, int y) {
+        if(this.selectedUnit!=null){
+            IUnit unit = this.selectedUnit;
+            int index = this.turnOwner.getUnits().indexOf(unit);
+            if(!this.turnOwner.getMovedUnit().get(index)) {
+                this.turnOwner.setMovedUnit(index);
+                unit.moveTo(this.mapField.getCell(x, y));
+            }
+        }
     }
 }

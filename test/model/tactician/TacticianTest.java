@@ -1,8 +1,4 @@
 package model.tactician;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +7,13 @@ import java.util.Random;
 import controller.Pair;
 import model.factories.items.*;
 import model.factories.units.*;
+import model.map.Field;
 import model.units.*;
 import model.map.Location;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Beatriz Graboloza
@@ -45,7 +44,6 @@ public class TacticianTest {
 
     @BeforeEach
     void setUp() {
-        // Se define la semilla como un número aleatorio para generar variedad en los tests
         randomSeed = new Random().nextLong();
         tactician = new Tactician("Player 0");
     }
@@ -161,6 +159,54 @@ public class TacticianTest {
         tactician.setLocations(location);
         Pair pair = new Pair(0,1);
         assertEquals(pair,tactician.getLocations().get(0));
+    }
+
+    @Test
+    void removeUnit(){
+        Alpaca alpaca = alpacaFactory.create();
+        Archer archer = archerFactory.create();
+        tactician.addUnit(alpaca);
+        tactician.addUnit(archer);
+        tactician.restoreUnits();
+
+        tactician.removeUnit(alpaca);
+
+        assertEquals(1,tactician.getAliveUnits().size());
+        assertEquals(1,tactician.getMovedUnit().size());
+        assertTrue(tactician.getAliveUnits().contains(archer));
+        assertFalse(tactician.getAliveUnits().contains(alpaca));
+
+        tactician.removeUnit(archer);
+        assertEquals(0,tactician.getAliveUnits().size());
+        assertEquals(0,tactician.getMovedUnit().size());
+        assertFalse(tactician.getAliveUnits().contains(archer));
+    }
+
+    @Test
+    void setMovedUnit(){
+        Alpaca alpaca = alpacaFactory.create();
+        Archer archer = archerFactory.create();
+        tactician.addUnit(alpaca);
+        tactician.addUnit(archer);
+        tactician.restoreUnits();
+
+        tactician.setMovedUnit(1);
+        assertTrue(tactician.getMovedUnit().get(1));
+    }
+
+    @Test
+    void setMapField(){
+        Field map = new Field();
+        tactician.setMapField(map);
+        assertEquals(map,tactician.getMapField());
+    }
+
+    @Test
+    void getMapField(){
+        Field map = new Field();
+        tactician.setMapField(map);
+        assertNotNull(tactician.getMapField());
+
     }
 
 }

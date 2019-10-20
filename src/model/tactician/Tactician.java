@@ -2,6 +2,8 @@ package model.tactician;
 
 import controller.Pair;
 import controller.observers.DeadHeroHandler;
+import controller.observers.DeadUnitHandler;
+import model.map.Field;
 import model.map.Location;
 import model.units.IUnit;
 
@@ -9,6 +11,9 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 /**
  * The representation of the players of the game.
@@ -19,17 +24,14 @@ import java.util.List;
 public class Tactician{
 
     private final String name;
-    private PropertyChangeSupport endTurn;
+    private PropertyChangeSupport deadHero;
+    private PropertyChangeSupport deadUnit;
     private List<IUnit> units = new ArrayList<>();
     private List<IUnit> globalUnits = new ArrayList<>();
     private List<Pair> locations = new ArrayList<>();
-
-    //TODO esto
-    //el jugador indica que quiere crear? una sola factory, envia el matodo a la factory
-    //una gran factory que puede hacer de too
-    //el tactician tendria todos los metodos de crear distintas weas
+    private List<Boolean> movedUnit = new ArrayList<>();
+    private Field mapField;
     //TODO las units deben guardar una referencia a su tactician
-
 
     /**
      * Constructor for a default Tactician.
@@ -38,7 +40,7 @@ public class Tactician{
      */
     public Tactician(final String name) {
         this.name = name;
-        endTurn = new PropertyChangeSupport(this);
+        deadHero = new PropertyChangeSupport(this);
     }
 
     /**
@@ -79,31 +81,51 @@ public class Tactician{
      * @param resp the response handler.
      */
     public void addDeadHeroObserver(DeadHeroHandler resp) {
-        endTurn.addPropertyChangeListener(resp); //TODO buscar ej de observer implementados
+        deadHero.addPropertyChangeListener(resp);
     }
 
     /**
      * Sets a change in the dead hero event.
      */
     public void setDeadHero() {
-        endTurn.firePropertyChange(new PropertyChangeEvent(this, "deadHero",null,true));
+        deadHero.firePropertyChange(new PropertyChangeEvent(this, "deadHero",null,this.getName()));
             }
 
     /**
-     * Add a unit to the tactician's list of units.
+     * Adds a response handler to the dead unit message.
+     *
+     * @param resp the response handler.
+     */
+    public void addDeadUnitObserver(DeadUnitHandler resp) {
+        deadHero.addPropertyChangeListener(resp);
+    }
+
+    /**
+     * Sets a change in the dead unit event.
+     */
+    public void setDeadUnit() {
+        deadHero.firePropertyChange(new PropertyChangeEvent(this, "deadUnit",null,this.getName()));
+    }
+    /**
+     * Add a unit to the tactician's list of units with its correspondent boolean.
      *
      * @param unit the unit to add to the list of units.
      */
     public void addUnit(IUnit unit) {
         this.globalUnits.add(unit);
+        this.movedUnit.add(FALSE);
     }
 
     /**
-     * Restore the units of this tactician.
+     * Restore the units of this tactician and its moving boolean.
      */
     public void restoreUnits(){
         this.units = new ArrayList<>();
         this.units.addAll(this.globalUnits);
+        this.movedUnit = new ArrayList<>();
+        for(int i=0;i<this.globalUnits.size();i++){
+            movedUnit.add(FALSE);
+        }
     }
 
     /**
@@ -130,5 +152,47 @@ public class Tactician{
         this.locations.add(par);
     }
 
+    /**
+     * @return the boolean list of the moved units.
+     */
+    public List<Boolean> getMovedUnit(){
+        return this.movedUnit;
+    }
+
+    /**
+     * Set TRUE in the position of the unit that was moved.
+     *
+     * @param index the index of the unit that was moved.
+     */
+    public void setMovedUnit(int index){
+        this.movedUnit.set(index,TRUE);
+    }
+
+    /**
+     * Removes a unit from the list of alive units.
+     *
+     * @param unit the unit to remove.
+     */
+    public void removeUnit(IUnit unit) {
+        int index = this.units.indexOf(unit);
+        this.units.remove(unit);
+        this.movedUnit.remove(index);
+    }
+
+    /**
+     * Set the map of the game to the tactician.
+     *
+     * @param map the map where the tactician is going to play.
+     */
+    public void setMapField(Field map){
+        this.mapField = map;
+    }
+
+    /**
+     * @return the map where the tactician is playing.
+     */
+    public Field getMapField(){
+        return this.mapField;
+    }
 }
 

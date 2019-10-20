@@ -470,16 +470,4 @@ public abstract class AbstractUnit implements IUnit {
     this.currentHitPoints = min(max(0,this.currentHitPoints-(power-20)),this.currentHitPoints);
   }
 
-  @Override
-  public boolean equals(Object obj){
-    if(obj instanceof IUnit){
-      if(((IUnit) obj).getMaxHitPoints() - this.getMaxHitPoints() <= 1E-6&&
-              //((IUnit)obj).getCurrentHitPoints() - this.getCurrentHitPoints() <= 1E-6 &&
-              ((IUnit)obj).getMovement() == this.getMovement() &&
-              ((IUnit)obj).getLocation().equals(this.getLocation())){
-        return true;
-      }
-    }
-    return false;
-  }
 }

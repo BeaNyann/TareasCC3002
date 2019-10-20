@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * @author Beatriz Graboloza
- * @since v2.0
+ * @since 2.0
  */
 class GameControllerTest {
 
@@ -130,6 +130,8 @@ class GameControllerTest {
 
     @Test
     void getCurrentOrder() {
+        //a veces por alguna razon set seed no hace nada y falla porque usan seed distintas
+        //pero es como.. wtf? pq set seed debería... setear la seed y a veces no lo hace
         Random randomTurnSequence = new Random(randomSeed);
         controller.setSeed(randomSeed);
         List<Tactician> tacticians = controller.getCurrentOrder();
@@ -236,14 +238,28 @@ class GameControllerTest {
 
     @Test
     void removeTacticianUnits() {
-        Tactician tactician = controller.getTacticians().get(0);
-        //tactician.getUnits();
-        //TODO como obtengo las unidades del tactician?:C o como se las asigno = factory?, testear el getUnits es cosa del TActician test que no existe
-        controller.removeTactician("Player 0");
-        assertTrue(tactician.getUnits().size() == 0); //o equals con una lista vacia, recien creada
-    }
+        Tactician tactician = controller.getCurrentOrder().get(0);
+        controller.addAlpaca(tactician);
+        controller.addArcher(tactician);
+        controller.addSorcerer(tactician);
+        tactician.restoreUnits();
+        List<Location> locations = new ArrayList<>();
+        locations.add(controller.getGameMap().getCell(0,1));
+        locations.add(controller.getGameMap().getCell(1,0));
+        locations.add(controller.getGameMap().getCell(1,1));
+        controller.putUnitsOn(tactician,locations);
 
-    //TODO agregar el test para que tbm se eliminen las unidades
+        controller.initGame(5);
+
+        controller.removeTactician(tactician.getName());
+        assertEquals(0,tactician.getAliveUnits().size());
+        controller.selectUnitIn(0,1);
+        assertNull(controller.getSelectedUnit());
+        controller.selectUnitIn(1,0);
+        assertNull(controller.getSelectedUnit());
+        controller.selectUnitIn(1,1);
+        assertNull(controller.getSelectedUnit());
+    }
 
     @Test
     void getWinners() {
@@ -269,7 +285,26 @@ class GameControllerTest {
             controller.removeTactician("Player " + i);
         }
         assertTrue(List.of("Player 3").containsAll(controller.getWinners()));
-    }//TODO falta ver que gane el que tenga más unidades
+    }
+
+    @Test
+    void getWinnersByUnits(){
+        controller.addArcher(controller.getTurnOwner());
+        controller.addAlpaca(controller.getCurrentOrder().get(1));
+        Tactician tactician1 = controller.getTurnOwner();
+        Tactician tactician2 = controller.getCurrentOrder().get(1);
+        Tactician tactician3 = controller.getCurrentOrder().get(2);
+        Tactician tactician4 = controller.getCurrentOrder().get(3);
+
+        controller.initGame(2);
+
+        IntStream.range(0, 8).forEach(i -> controller.endTurn());
+        assertEquals(2, controller.getWinners().size());
+        assertTrue(controller.getWinners().contains(tactician1.getName()));
+        assertTrue(controller.getWinners().contains(tactician2.getName()));
+        assertFalse(controller.getWinners().contains(tactician3.getName()));
+        assertFalse(controller.getWinners().contains(tactician4.getName()));
+    }
 
     @Test
     void addUnits() {
@@ -634,6 +669,65 @@ class GameControllerTest {
 
         assertEquals(0, controller.getCurrentOrder().get(0).getUnits().get(0).getItems().size());
         assertEquals(0, controller.getCurrentOrder().get(0).getUnits().get(1).getItems().size());
+    }
+
+    @Test
+    void setTacticiansFields(){
+        controller.setTacticiansFields();
+        for (Tactician tactician : controller.getTacticians()) {
+            assertEquals(controller.getGameMap(),tactician.getMapField());
+        }
+    }
+
+    @Test
+    void moveUnitTo(){
+        Tactician tactician = controller.getCurrentOrder().get(0);
+        controller.addArcher(tactician);
+        List<Location> locations = new ArrayList<>();
+        locations.add(controller.getGameMap().getCell(0, 1));
+        controller.putUnitsOn(tactician, locations);
+
+        controller.initGame(5);
+
+        controller.selectUnitIn(0, 1);
+        controller.moveTo(1,1);
+        assertEquals(controller.getGameMap().getCell(1,1),tactician.getUnits().get(0).getLocation());
+    }
+
+    @Test
+    void failMoveUnitTo(){
+        Tactician tactician = controller.getCurrentOrder().get(0);
+        controller.addArcher(tactician);
+        List<Location> locations = new ArrayList<>();
+        locations.add(controller.getGameMap().getCell(0, 1));
+        controller.putUnitsOn(tactician, locations);
+
+        controller.initGame(5);
+
+        //si no selecciono unidad no se a quien mover
+        controller.moveTo(1,1);
+        assertEquals(controller.getGameMap().getCell(0,1),tactician.getUnits().get(0).getLocation());
+    }
+
+    @Test
+    void failMoveUnitTwice(){
+        Tactician tactician = controller.getCurrentOrder().get(0);
+        controller.addArcher(tactician);
+        controller.addSorcerer(tactician);
+        List<Location> locations = new ArrayList<>();
+        locations.add(controller.getGameMap().getCell(0, 1));
+        locations.add(controller.getGameMap().getCell(2,2));
+        controller.putUnitsOn(tactician, locations);
+
+        controller.initGame(5);
+
+        controller.selectUnitIn(0, 1);
+        controller.moveTo(1,1);
+        controller.moveTo(1,2);
+        assertEquals(controller.getGameMap().getCell(1,1),tactician.getUnits().get(0).getLocation());
+        controller.selectUnitIn(2,2);
+        controller.moveTo(2,3);
+        assertEquals(controller.getGameMap().getCell(2,3),tactician.getUnits().get(1).getLocation());
     }
 
 }

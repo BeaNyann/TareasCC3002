@@ -44,4 +44,16 @@ public class Fighter extends AbstractUnit {
       axe.setUser(this);
     }
   }
+
+  @Override
+  public boolean equals(Object obj){
+    if(obj instanceof Fighter){
+      if(((IUnit) obj).getMaxHitPoints() - this.getMaxHitPoints() <= 1E-6&&
+              ((IUnit)obj).getMovement() == this.getMovement() &&
+              ((IUnit)obj).getLocation().equals(this.getLocation())){
+        return true;
+      }
+    }
+    return false;
+  }
 }

@@ -38,4 +38,16 @@ public class Alpaca extends AbstractUnit {
     this.addItem(item);
     return true;
   }
+
+  @Override
+  public boolean equals(Object obj){
+    if(obj instanceof Alpaca){
+      if(((IUnit) obj).getMaxHitPoints() - this.getMaxHitPoints() <= 1E-6&&
+              ((IUnit)obj).getMovement() == this.getMovement() &&
+              ((IUnit)obj).getLocation().equals(this.getLocation())){
+        return true;
+      }
+    }
+    return false;
+  }
 }

@@ -22,7 +22,10 @@ public class DeadHeroHandler implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getNewValue() != null) {
-            //ayuda
+            //TODO si el heroe es derrotado se llama a remove tactician po, con todas sus unidades
+            //si era su turno lo termina y pierde, si no solo pierde -> eso lo hace remove tactician
+            //TODO si todas sus units mueren el controller se encarga de saber que weA?
+            gameController.removeTactician((String)evt.getNewValue());
             //int currentTurn = gameController.getCurrentOrder().indexOf(gameController.getTurnOwner());
             //Tactician nextTactician = gameController.getCurrentOrder().get(currentTurn+1);
             //gameController.startTurn(nextTactician);

@@ -21,6 +21,12 @@ public class DeadUnitHandler implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getNewValue() != null) {
+            int index = this.gameController.getCurrentOrder().indexOf(new Tactician((String)evt.getNewValue()));
+
+        }
         //ayuda
+
+        //TODO si una unit muere se saca de la celda,el controler sabe cuando mueren todas? cuando comprueba eso??
     }
 }
