@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.items.*;
 import model.map.Location;
+import model.tactician.Tactician;
 
 /**
  * This interface represents all units in the game.
@@ -252,5 +253,28 @@ public interface IUnit {
    * @param unit the unit that is going to be attacked.
    */
   void attack(IUnit unit);
+
+  /**
+   * Heal the unit.
+   */
+  void heal();
+
+  /**
+   * Set the owner of the unit.
+   *
+   * @param tactician the unit's owner.
+   */
+  void setTactician(Tactician tactician);
+
+  /**
+   * @return the unit's owner.
+   */
+  Tactician getTactician();
+
+  /**
+   * @return if this unit is a hero or not.
+   */
+  boolean isHero();
+
 }
 

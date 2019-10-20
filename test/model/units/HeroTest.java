@@ -1,10 +1,9 @@
 package model.units;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import model.items.*;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test set for the Hero unit.
@@ -464,5 +463,11 @@ public class HeroTest extends AbstractTestUnit {
     hero.attack(swordMaster); //la resta da -5
     assertEquals(0,swordMaster.getCurrentHitPoints(),1E-6);
     assertEquals(50,hero.getCurrentHitPoints(),1E-6);
+  }
+
+  @Test
+  @Override
+  public void testIsHero(){
+    assertTrue(getTestUnit().isHero());
   }
 }

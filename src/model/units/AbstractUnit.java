@@ -1,5 +1,6 @@
 package model.units;
 
+
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 import model.items.*;
 import model.map.Location;
+import model.tactician.Tactician;
 
 /**
  * This class represents an abstract unit.
@@ -29,6 +31,7 @@ public abstract class AbstractUnit implements IUnit {
   private final int movement;
   protected IEquipableItem equippedItem;
   private Location location;
+  private Tactician tactician;
 
   /**
    * Creates a new Unit.
@@ -470,4 +473,37 @@ public abstract class AbstractUnit implements IUnit {
     this.currentHitPoints = min(max(0,this.currentHitPoints-(power-20)),this.currentHitPoints);
   }
 
+  /**
+   * Heal the unit.
+   */
+  @Override
+  public void heal(){
+    this.currentHitPoints = this.MaxHitPoints;
+  }
+
+  /**
+   * Set the owner of the unit.
+   *
+   * @param tactician the unit's owner.
+   */
+  @Override
+  public void setTactician(Tactician tactician){
+    this.tactician = tactician;
+  }
+
+  /**
+   * @return the unit's owner.
+   */
+  @Override
+  public Tactician getTactician(){
+    return this.tactician;
+  }
+
+  /**
+   * @return if the unit is a Hero or not.
+   */
+  @Override
+  public boolean isHero(){
+    return false;
+  }
 }

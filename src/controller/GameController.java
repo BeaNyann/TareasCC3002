@@ -58,8 +58,8 @@ public class GameController {
     private StaffFactory staffFactory = new StaffFactory();
     private SwordFactory swordFactory = new SwordFactory();
 
-    private DeadHeroHandler endTurnHandler = new DeadHeroHandler(this);
-    private DeadUnitHandler equipItemHandler = new DeadUnitHandler(this);
+    private DeadHeroHandler deadHeroHandler = new DeadHeroHandler(this);
+    private DeadUnitHandler deadUnitHandler = new DeadUnitHandler(this);
 
 
     /**
@@ -100,6 +100,14 @@ public class GameController {
         this.currentOrder = new ArrayList<>();
         this.currentOrder.addAll(this.globalTacticians);
         setTacticiansFields();
+        setTacticiansObservers();
+    }
+
+    public void setTacticiansObservers(){
+        for (Tactician tactician : this.globalTacticians) {
+            tactician.addDeadHeroObserver(deadHeroHandler);
+            tactician.addDeadUnitObserver(deadUnitHandler);
+        }
     }
 
     /**
@@ -400,6 +408,8 @@ public class GameController {
             IUnit unit = this.selectedUnit;
             IUnit targetUnit = this.mapField.getCell(x, y).getUnit();
             unit.attack(targetUnit);
+            targetUnit.getTactician().checkUnits();
+            this.getTurnOwner().checkUnits();
         }
     }
 
@@ -447,6 +457,7 @@ public class GameController {
      */
     public void addAlpaca(Tactician tactician) {
         Alpaca alpaca = alpacaFactory.create();
+        alpaca.setTactician(tactician);
         tactician.addUnit(alpaca);
     }
 
@@ -457,6 +468,7 @@ public class GameController {
      */
     public void addArcher(Tactician tactician) {
         Archer archer = archerFactory.create();
+        archer.setTactician(tactician);
         tactician.addUnit(archer);
     }
 
@@ -467,6 +479,7 @@ public class GameController {
      */
     public void addCleric(Tactician tactician) {
         Cleric cleric = clericFactory.create();
+        cleric.setTactician(tactician);
         tactician.addUnit(cleric);
     }
 
@@ -477,6 +490,7 @@ public class GameController {
      */
     public void addFighter(Tactician tactician) {
         Fighter fighter = fighterFactory.create();
+        fighter.setTactician(tactician);
         tactician.addUnit(fighter);
     }
 
@@ -487,6 +501,7 @@ public class GameController {
      */
     public void addHero(Tactician tactician) {
         Hero hero = heroFactory.create();
+        hero.setTactician(tactician);
         tactician.addUnit(hero);
     }
 
@@ -497,6 +512,7 @@ public class GameController {
      */
     public void addSorcerer(Tactician tactician) {
         Sorcerer sorcerer = sorcererFactory.create();
+        sorcerer.setTactician(tactician);
         tactician.addUnit(sorcerer);
     }
 
@@ -507,6 +523,7 @@ public class GameController {
      */
     public void addSwordMaster(Tactician tactician) {
         SwordMaster swordMaster = swordMasterFactory.create();
+        swordMaster.setTactician(tactician);
         tactician.addUnit(swordMaster);
     }
 

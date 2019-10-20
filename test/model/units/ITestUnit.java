@@ -231,6 +231,18 @@ public interface ITestUnit {
 
   @Test
   void testAttackDeadUnit();
+
+  @Test
+  void testHeal();
+
+  @Test
+  void testSetTactician();
+
+  @Test
+  void testGetTactician();
+
+  @Test
+  void testIsHero();
 }
 
 

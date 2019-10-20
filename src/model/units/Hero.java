@@ -57,4 +57,12 @@ public class Hero extends AbstractUnit {
     }
     return false;
   }
+
+  /**
+   * @return if the unit is a Hero or not.
+   */
+  @Override
+  public boolean isHero(){
+    return true;
+  }
 }

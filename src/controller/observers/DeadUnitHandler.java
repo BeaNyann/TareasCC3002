@@ -2,6 +2,7 @@ package controller.observers;
 
 import controller.GameController;
 import model.tactician.Tactician;
+import model.units.IUnit;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -23,11 +24,15 @@ public class DeadUnitHandler implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getNewValue() != null) {
             Tactician tactician = (Tactician) evt.getNewValue();
-            //tactician.removeUnit(???);
-
+            for (IUnit unit :tactician.getUnits()) {
+                if(unit.getCurrentHitPoints() == 0){
+                    unit.getLocation().setUnit(null);
+                    tactician.removeUnit(unit);
+                }
+            }
+            if(tactician.getUnits().size() == 0){
+                gameController.removeTactician(tactician.getName());
+            }//TODO testear que pierda al morirsele toas, testear que se muere una
         }
-        //ayuda
-
-        //TODO si una unit muere se saca de la celda,el controler sabe cuando mueren todas? cuando comprueba eso??
     }
 }

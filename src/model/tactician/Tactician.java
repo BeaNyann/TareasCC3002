@@ -12,9 +12,6 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
-
 /**
  * The representation of the players of the game.
  *
@@ -24,13 +21,13 @@ import static java.lang.Boolean.TRUE;
 public class Tactician{
 
     private final String name;
-    private PropertyChangeSupport deadHero;
-    private PropertyChangeSupport deadUnit;
     private List<IUnit> units = new ArrayList<>();
     private List<IUnit> globalUnits = new ArrayList<>();
     private List<Pair> locations = new ArrayList<>();
     private List<Boolean> movedUnit = new ArrayList<>();
     private Field mapField;
+    private PropertyChangeSupport deadHero;
+    private PropertyChangeSupport deadUnit;
     //TODO las units deben guardar una referencia a su tactician
 
     /**
@@ -41,6 +38,7 @@ public class Tactician{
     public Tactician(final String name) {
         this.name = name;
         deadHero = new PropertyChangeSupport(this);
+        deadUnit = new PropertyChangeSupport(this);
     }
 
     /**
@@ -53,14 +51,14 @@ public class Tactician{
     /**
      * @return the tactician's list of units.
      */
-    public List<IUnit> getUnits(){
+    public List<IUnit> getGlobalUnits(){
         return this.globalUnits;
     }
 
     /**
      * @return the tactician's list of alive units in the game.
      */
-    public List<IUnit> getAliveUnits(){
+    public List<IUnit> getUnits(){
         return this.units;
     }
 
@@ -97,14 +95,14 @@ public class Tactician{
      * @param resp the response handler.
      */
     public void addDeadUnitObserver(DeadUnitHandler resp) {
-        deadHero.addPropertyChangeListener(resp);
+        deadUnit.addPropertyChangeListener(resp);
     }
 
     /**
      * Sets a change in the dead unit event.
      */
     public void setDeadUnit() {
-        deadHero.firePropertyChange(new PropertyChangeEvent(this, "deadUnit",null,this));
+        deadUnit.firePropertyChange(new PropertyChangeEvent(this, "deadUnit",null,this));
     }
     /**
      * Add a unit to the tactician's list of units with its correspondent boolean.
@@ -113,7 +111,7 @@ public class Tactician{
      */
     public void addUnit(IUnit unit) {
         this.globalUnits.add(unit);
-        this.movedUnit.add(FALSE);
+        this.movedUnit.add(false);
     }
 
     /**
@@ -121,10 +119,13 @@ public class Tactician{
      */
     public void restoreUnits(){
         this.units = new ArrayList<>();
+        for (IUnit unit : this.globalUnits) {
+            unit.heal();
+        }
         this.units.addAll(this.globalUnits);
         this.movedUnit = new ArrayList<>();
         for(int i=0;i<this.globalUnits.size();i++){
-            movedUnit.add(FALSE);
+            movedUnit.add(false);
         }
     }
 
@@ -160,12 +161,12 @@ public class Tactician{
     }
 
     /**
-     * Set TRUE in the position of the unit that was moved.
+     * Set true in the position of the unit that was moved.
      *
      * @param index the index of the unit that was moved.
      */
     public void setMovedUnit(int index){
-        this.movedUnit.set(index,TRUE);
+        this.movedUnit.set(index,true);
     }
 
     /**
@@ -193,6 +194,20 @@ public class Tactician{
      */
     public Field getMapField(){
         return this.mapField;
+    }
+
+    public void checkUnits() {
+        for (IUnit unit : this.getUnits()) {
+            if(unit.getCurrentHitPoints()==0){
+                if(unit.isHero()){
+                    setDeadHero();
+                }
+                else{
+                    setDeadUnit();
+                }
+            }
+        }
+
     }
 }
 

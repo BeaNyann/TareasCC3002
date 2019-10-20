@@ -252,7 +252,7 @@ class GameControllerTest {
         controller.initGame(5);
 
         controller.removeTactician(tactician.getName());
-        assertEquals(0,tactician.getAliveUnits().size());
+        assertEquals(0,tactician.getUnits().size());
         controller.selectUnitIn(0,1);
         assertNull(controller.getSelectedUnit());
         controller.selectUnitIn(1,0);
@@ -311,25 +311,25 @@ class GameControllerTest {
         Tactician tactician = new Tactician("yo");
         controller.addAlpaca(tactician);
         Alpaca alpaca = alpacaFactory.create();
-        assertTrue(tactician.getUnits().contains(alpaca));
+        assertTrue(tactician.getGlobalUnits().contains(alpaca));
         controller.addArcher(tactician);
         Archer archer = archerFactory.create();
-        assertTrue(tactician.getUnits().contains(archer));
+        assertTrue(tactician.getGlobalUnits().contains(archer));
         controller.addCleric(tactician);
         Cleric cleric = clericFactory.create();
-        assertTrue(tactician.getUnits().contains(cleric));
+        assertTrue(tactician.getGlobalUnits().contains(cleric));
         controller.addFighter(tactician);
         Fighter fighter = fighterFactory.create();
-        assertTrue(tactician.getUnits().contains(fighter));
+        assertTrue(tactician.getGlobalUnits().contains(fighter));
         controller.addHero(tactician);
         Hero hero = heroFactory.create();
-        assertTrue(tactician.getUnits().contains(hero));
+        assertTrue(tactician.getGlobalUnits().contains(hero));
         controller.addSorcerer(tactician);
         Sorcerer sorcerer = sorcererFactory.create();
-        assertTrue(tactician.getUnits().contains(sorcerer));
+        assertTrue(tactician.getGlobalUnits().contains(sorcerer));
         controller.addSwordMaster(tactician);
         SwordMaster swordMaster = swordMasterFactory.create();
-        assertTrue(tactician.getUnits().contains(swordMaster));
+        assertTrue(tactician.getGlobalUnits().contains(swordMaster));
     }
 
     @Test
@@ -338,6 +338,7 @@ class GameControllerTest {
         controller.addAlpaca(tactician);
         controller.addArcher(tactician);
         controller.addCleric(tactician);
+        tactician.restoreUnits();
         List<Location> locations = new ArrayList<>();
         locations.add(controller.getGameMap().getCell(0, 1));
         locations.add(controller.getGameMap().getCell(0, 2));
@@ -354,6 +355,7 @@ class GameControllerTest {
     void addItems() {
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addAlpaca(tactician);
+        tactician.restoreUnits();
         List<Location> locations = new ArrayList<>();
         locations.add(controller.getGameMap().getCell(0, 1));
         controller.putUnitsOn(tactician, locations);
@@ -390,6 +392,7 @@ class GameControllerTest {
     @Test
     void getSelectedUnit() {
         controller.addAlpaca(controller.getTurnOwner());
+        controller.getTurnOwner().restoreUnits();
         List<Location> locations = new ArrayList<>();
         locations.add(controller.getGameMap().getCell(0, 1));
         controller.putUnitsOn(controller.getTurnOwner(), locations);
@@ -404,6 +407,7 @@ class GameControllerTest {
     @Test
     void selectUnitIn() {
         controller.addAlpaca(controller.getTurnOwner());
+        controller.getTurnOwner().restoreUnits();
         alpacaFactory.setLocation(new Location(0, 1));
         Alpaca alpaca = alpacaFactory.create();
         List<Location> locations = new ArrayList<>();
@@ -422,6 +426,7 @@ class GameControllerTest {
     void getItems() {
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addAlpaca(tactician);
+        tactician.restoreUnits();
         List<Location> locations = new ArrayList<>();
         locations.add(controller.getGameMap().getCell(0, 1));
         controller.putUnitsOn(tactician, locations);
@@ -459,6 +464,7 @@ class GameControllerTest {
     void failGetItems() {
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addAlpaca(tactician);
+        tactician.restoreUnits();
         List<Location> locations = new ArrayList<>();
         locations.add(controller.getGameMap().getCell(0, 1));
         controller.putUnitsOn(tactician, locations);
@@ -474,6 +480,7 @@ class GameControllerTest {
     void equipItem() {
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addArcher(tactician);
+        tactician.restoreUnits();
         List<Location> locations = new ArrayList<>();
         locations.add(controller.getGameMap().getCell(0, 1));
         controller.putUnitsOn(tactician, locations);
@@ -491,6 +498,7 @@ class GameControllerTest {
     void failEquipItem() {
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addArcher(tactician);
+        tactician.restoreUnits();
         List<Location> locations = new ArrayList<>();
         locations.add(controller.getGameMap().getCell(0, 1));
         controller.putUnitsOn(tactician, locations);
@@ -507,6 +515,7 @@ class GameControllerTest {
     void failEquipNoHavingItem() {
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addArcher(tactician);
+        tactician.restoreUnits();
         List<Location> locations = new ArrayList<>();
         locations.add(controller.getGameMap().getCell(0, 1));
         controller.putUnitsOn(tactician, locations);
@@ -529,6 +538,8 @@ class GameControllerTest {
         controller.addHero(atackingTactician);
         Tactician vistimaTactician = controller.getCurrentOrder().get(1); //se hace la vistima uwu
         controller.addArcher(vistimaTactician);
+        atackingTactician.restoreUnits();
+        vistimaTactician.restoreUnits();
 
         controller.putUnitsOn(atackingTactician, locationsT1);
         controller.putUnitsOn(vistimaTactician, locationsT2);
@@ -540,7 +551,7 @@ class GameControllerTest {
         controller.equipItem(0);
         controller.useItemOn(1, 1);
 
-        assertEquals(10, controller.getCurrentOrder().get(1).getUnits().get(0).getCurrentHitPoints());
+        assertEquals(10, controller.getCurrentOrder().get(1).getGlobalUnits().get(0).getCurrentHitPoints());
     }
 
     @Test
@@ -554,6 +565,8 @@ class GameControllerTest {
         controller.addHero(atackingTactician);
         Tactician vistimaTactician = controller.getCurrentOrder().get(1); //se hace la vistima uwu
         controller.addArcher(vistimaTactician);
+        atackingTactician.restoreUnits();
+        vistimaTactician.restoreUnits();
 
         controller.putUnitsOn(atackingTactician, locationsT1);
         controller.putUnitsOn(vistimaTactician, locationsT2);
@@ -572,6 +585,7 @@ class GameControllerTest {
     void selectItem() {
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addArcher(tactician);
+        tactician.restoreUnits();
         List<Location> locations = new ArrayList<>();
         locations.add(controller.getGameMap().getCell(0, 1));
         controller.putUnitsOn(tactician, locations);
@@ -589,6 +603,7 @@ class GameControllerTest {
     void getSelectedItem() {
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addArcher(tactician);
+        tactician.restoreUnits();
         List<Location> locations = new ArrayList<>();
         locations.add(controller.getGameMap().getCell(0, 1));
         controller.putUnitsOn(tactician, locations);
@@ -610,6 +625,7 @@ class GameControllerTest {
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addHero(tactician);
         controller.addArcher(tactician);
+        tactician.restoreUnits();
 
         controller.putUnitsOn(tactician, locations);
 
@@ -634,6 +650,7 @@ class GameControllerTest {
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addHero(tactician);
         controller.addArcher(tactician);
+        tactician.restoreUnits();
 
         controller.putUnitsOn(tactician, locations);
 
@@ -658,6 +675,7 @@ class GameControllerTest {
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addHero(tactician);
         controller.addArcher(tactician);
+        tactician.restoreUnits();
 
         controller.putUnitsOn(tactician, locations);
 
@@ -683,6 +701,7 @@ class GameControllerTest {
     void moveUnitTo(){
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addArcher(tactician);
+        tactician.restoreUnits();
         List<Location> locations = new ArrayList<>();
         locations.add(controller.getGameMap().getCell(0, 1));
         controller.putUnitsOn(tactician, locations);
@@ -698,6 +717,7 @@ class GameControllerTest {
     void failMoveUnitTo(){
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addArcher(tactician);
+        tactician.restoreUnits();
         List<Location> locations = new ArrayList<>();
         locations.add(controller.getGameMap().getCell(0, 1));
         controller.putUnitsOn(tactician, locations);
@@ -714,6 +734,7 @@ class GameControllerTest {
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addArcher(tactician);
         controller.addSorcerer(tactician);
+        tactician.restoreUnits();
         List<Location> locations = new ArrayList<>();
         locations.add(controller.getGameMap().getCell(0, 1));
         locations.add(controller.getGameMap().getCell(2,2));
@@ -728,6 +749,37 @@ class GameControllerTest {
         controller.selectUnitIn(2,2);
         controller.moveTo(2,3);
         assertEquals(controller.getGameMap().getCell(2,3),tactician.getUnits().get(1).getLocation());
+    }
+
+    @Test
+    void checkUnits(){
+        Tactician tactician = controller.getCurrentOrder().get(0);
+        Tactician tactician1 = controller.getCurrentOrder().get(1);
+        controller.addHero(tactician1);
+        controller.addSorcerer(tactician);
+        tactician.restoreUnits();
+        tactician1.restoreUnits();
+
+        List<Location> locations = new ArrayList<>();
+        locations.add(controller.getGameMap().getCell(1,0));
+        List<Location> locations1 = new ArrayList<>();
+        locations1.add(controller.getGameMap().getCell(1,1));
+        controller.putUnitsOn(tactician,locations);
+        controller.putUnitsOn(tactician1,locations1);
+
+        controller.initGame(5);
+
+        controller.selectUnitIn(1,0);
+        controller.addDarkMagicBook(0);
+        controller.equipItem(0);
+        controller.useItemOn(1,1);
+        controller.useItemOn(1,1);
+
+        assertEquals(1,tactician.getUnits().size());
+        assertEquals(0,tactician1.getUnits().size());
+
+        assertFalse(controller.getCurrentOrder().contains(tactician1));
+
     }
 
 }

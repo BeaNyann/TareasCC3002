@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import controller.GameController;
 import controller.Pair;
 import model.factories.items.*;
 import model.factories.units.*;
@@ -57,25 +58,25 @@ public class TacticianTest {
     void addUnit(){
         Alpaca alpaca = alpacaFactory.create();
         tactician.addUnit(alpaca);
-        assertTrue(tactician.getUnits().contains(alpaca));
+        assertTrue(tactician.getGlobalUnits().contains(alpaca));
         Archer archer = archerFactory.create();
         tactician.addUnit(archer);
-        assertTrue(tactician.getUnits().contains(archer));
+        assertTrue(tactician.getGlobalUnits().contains(archer));
         Cleric cleric = clericFactory.create();
         tactician.addUnit(cleric);
-        assertTrue(tactician.getUnits().contains(cleric));
+        assertTrue(tactician.getGlobalUnits().contains(cleric));
         Fighter fighter = fighterFactory.create();
         tactician.addUnit(fighter);
-        assertTrue(tactician.getUnits().contains(fighter));
+        assertTrue(tactician.getGlobalUnits().contains(fighter));
         Hero hero = heroFactory.create();
         tactician.addUnit(hero);
-        assertTrue(tactician.getUnits().contains(hero));
+        assertTrue(tactician.getGlobalUnits().contains(hero));
         Sorcerer sorcerer = sorcererFactory.create();
         tactician.addUnit(sorcerer);
-        assertTrue(tactician.getUnits().contains(sorcerer));
+        assertTrue(tactician.getGlobalUnits().contains(sorcerer));
         SwordMaster swordMaster = swordMasterFactory.create();
         tactician.addUnit(swordMaster);
-        assertTrue(tactician.getUnits().contains(swordMaster));
+        assertTrue(tactician.getGlobalUnits().contains(swordMaster));
     }
 
     @Test
@@ -103,7 +104,7 @@ public class TacticianTest {
         units.add(hero);
         units.add(sorcerer);
         units.add(swordMaster);
-        assertEquals(units,tactician.getUnits());
+        assertEquals(units,tactician.getGlobalUnits());
     }
 
     @Test
@@ -118,12 +119,22 @@ public class TacticianTest {
     void restoreUnits() {
         tactician.addUnit(alpacaFactory.create());
         Alpaca alpaca = alpacaFactory.create();
+        assertEquals(1,tactician.getGlobalUnits().size());
+        assertEquals(alpaca,tactician.getGlobalUnits().get(0));
+        assertEquals(0,tactician.getUnits().size());
+        tactician.restoreUnits();
         assertEquals(1,tactician.getUnits().size());
         assertEquals(alpaca,tactician.getUnits().get(0));
-        assertEquals(0,tactician.getAliveUnits().size());
+    }
+
+    @Test
+    void restoreHarmedUnits(){
+        tactician.addUnit(alpacaFactory.create());
         tactician.restoreUnits();
-        assertEquals(1,tactician.getAliveUnits().size());
-        assertEquals(alpaca,tactician.getAliveUnits().get(0));
+        tactician.getUnits().get(0).setNormalDamage(5);
+        assertEquals(15,tactician.getUnits().get(0).getCurrentHitPoints());
+        tactician.restoreUnits();
+        assertEquals(20,tactician.getUnits().get(0).getCurrentHitPoints());
     }
 
     @Test
@@ -131,8 +142,8 @@ public class TacticianTest {
         tactician.addUnit(alpacaFactory.create());
         tactician.restoreUnits();
         Alpaca alpaca = alpacaFactory.create();
-        assertEquals(1,tactician.getAliveUnits().size());
-        assertEquals(alpaca,tactician.getAliveUnits().get(0));
+        assertEquals(1,tactician.getUnits().size());
+        assertEquals(alpaca,tactician.getUnits().get(0));
     }
 
     @Test
@@ -171,15 +182,15 @@ public class TacticianTest {
 
         tactician.removeUnit(alpaca);
 
-        assertEquals(1,tactician.getAliveUnits().size());
+        assertEquals(1,tactician.getUnits().size());
         assertEquals(1,tactician.getMovedUnit().size());
-        assertTrue(tactician.getAliveUnits().contains(archer));
-        assertFalse(tactician.getAliveUnits().contains(alpaca));
+        assertTrue(tactician.getUnits().contains(archer));
+        assertFalse(tactician.getUnits().contains(alpaca));
 
         tactician.removeUnit(archer);
-        assertEquals(0,tactician.getAliveUnits().size());
+        assertEquals(0,tactician.getUnits().size());
         assertEquals(0,tactician.getMovedUnit().size());
-        assertFalse(tactician.getAliveUnits().contains(archer));
+        assertFalse(tactician.getUnits().contains(archer));
     }
 
     @Test
@@ -206,7 +217,22 @@ public class TacticianTest {
         Field map = new Field();
         tactician.setMapField(map);
         assertNotNull(tactician.getMapField());
+    }
 
+    @Test
+    void checkUnits(){
+        GameController gameController = new GameController(4,7);
+        Tactician tactician = gameController.getCurrentOrder().get(0);
+        tactician.addUnit(alpacaFactory.create());
+        tactician.addUnit(archerFactory.create());
+        tactician.restoreUnits();
+
+        gameController.initGame(5);
+
+        tactician.getUnits().get(0).setBigDamage(50);
+        tactician.checkUnits();
+        assertEquals(1,tactician.getUnits().size());
+        assertFalse(tactician.getUnits().contains(alpacaFactory.create()));
     }
 
 }

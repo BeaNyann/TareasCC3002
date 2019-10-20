@@ -1,17 +1,16 @@
 package model.units;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import model.items.*;
 import model.map.Field;
 import model.map.Location;
+import model.tactician.Tactician;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Defines some common methods for all the unit tests.
@@ -397,5 +396,37 @@ public abstract class AbstractTestUnit implements ITestUnit {
     cleric.attack(unit);
     assertEquals(0, unit.getCurrentHitPoints());
     //no se puede revivir :C
+  }
+
+  @Test
+  @Override
+  public void testHeal() {
+    IUnit unit = getTestUnit();
+    unit.setBigDamage(50);
+    assertEquals(0, unit.getCurrentHitPoints());
+    unit.heal();
+    assertEquals(unit.getMaxHitPoints(), unit.getCurrentHitPoints());
+  }
+
+  @Test
+  @Override
+  public void testGetTactician(){
+    Tactician tactician = new Tactician("Player 0");
+    getTestUnit().setTactician(tactician);
+    assertNotNull(getTestUnit().getTactician());
+  }
+
+  @Test
+  @Override
+  public void testSetTactician(){
+    Tactician tactician = new Tactician("Player 0");
+    getTestUnit().setTactician(tactician);
+    assertEquals(tactician,getTestUnit().getTactician());
+  }
+
+  @Test
+  @Override
+  public void testIsHero(){
+    assertFalse(getTestUnit().isHero());
   }
 }
