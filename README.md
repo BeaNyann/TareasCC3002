@@ -6,6 +6,10 @@ Alpaca Emblem consiste en un juego de estrategia por turnos con distintos tipos 
 
 ## :beginner: **Información del proyecto**
 
+El juego tiene el modelo, un controlador que manejará todos los cambios que ocurran en el juego y los Tactician, que corresponden a los jugadores.<br />
+<br />
+Primero se explicará el modelo:<br />
+<br />
 El juego posee 7 tipos de unidades.<br />
 <br />
 Cada una con sus respectivos Hit Points (cantidad de daño que pueden recibir), Movement (Cantidad máxima de celdas del mapa que puede desplazarse), Location (Ubicación actual de la unidad en el mapa) e Items (Lista de objetos que porta la unidad).<br />
@@ -49,13 +53,31 @@ Si la unidad atacante tiene un objeto equipado, si la unidad que recibe el ataqu
 <br />
 Y luego de un ataque, siempre que pueda, la unidad víctima va a realizar un contraataque.
 
+El controlador posee la capacidad de acceder a todas las funcionalidades antes mencionadas.<br />
+<br />
+Tiene el poder de iniciar una partida donde debe resetear todos los valores necesarios, como por ejemplo revivir a los tacticians que perdieron la vida en la partida anterior, devolverles sus unidades, entre otros. La partida puede tener un límite de rondas o ser "infinita".<br />
+<br />
+Posee control sobre todos los Tacticians que participen en el juego, es capaz de administrar las interacciones entre sus unidades, ya sea entre las unidades del mismo tactician, como entre las unidades de diferentes tactician (para el metodo de ataque por ejemplo). Es capaz de crear a todos los tactician al principio de una partida y de crear y asignarle sus unidades.<br />
+<br />
+Tiene conocimiento de que tactician se encuentra jugando en este momento y puede mandar la instruccion para que este finalice su turno y comience el turno del siguiente.<br />
+<br />
+Es capaz de crear un mapa aleatorio para cada juego y de mantener una referencia a este durante su desarrollo, de donde puede obtener las unidades en cada celda, que celdas son vecinas entre ellas, entre otros.<br />
+<br />
+El controlador se encarga de retirar a los tactician que hayan perdido todas sus unidades o que hayan perdido su Hero, terminando su turno en caso de que sea necesario.<br />
+<br />
+Cuando todos los tactician juegan su turno, el controller se encarga de comenzar una nueva ronda cambiando el orden en que jugarán los tactician, asegurandose de que nadie tenga dos turnos seguidos.<br />
+<br />
+El controller también se encarga de decidir quienes ganaron el juego, si la partida es sin límite de rondas el ganador será el ultimo tactician en pie, si la partida tiene un máximo de rondas el ganador solo se decide al acabarse estas rondas, ganando los tactician sobrevivientes que tengan más unidades vivas.<br />
+<br />
+El tactician representa el estado de un jugador durante el juego. Este debe delegar todas las llamadas a metodos a los metodos de los objetos del modelo. Este posee conocimiento de todas sus unidades, sus respectivas ubicaciones y datos como puntos de vida, items que posee, item equipado, etc. También posee conocimiento del mapa del juego.
+
 ## :beginner: **Documentación**
 
 El juego actualmente no posee forma de ejecutarse, pero se ha comprobado la funcionalidad de todos sus metodos a travez de múltiples tests.<br />
 <br />
 Para descargarlo debes clonar este repositorio en tu propio computador y ejecutarlo en alguna IDE que reconozca el lenguaje JAVA.<br />
 <br />
-A continuación se explicarán los metodos, clases, interfaces, y la funcionalidad en general de este proyecto que parezca necesario explicar:<br />
+A continuación se explicarán los metodos, clases, interfaces, y la funcionalidad en general de este proyecto que parezca necesario explicar del modelo:<br />
 <br />
 ### **Los items:**<br />
 <br />
@@ -212,6 +234,9 @@ Luego, el item le manda un mensaje a la unidad atacada para que esta decida que 
 ## :beginner: **Información extra**
 No deberían crearse Items con el mismo nombre, ya que eso podría provocar problemas en la comparación de Items (2 Items se consideran iguales sin su poder, sus rangos y su nombre son iguales)<br />
 <br />
+Se deben hacer correcciones en el modelo:<br />
+<br />
+Se deben implementar interfaces que diferencien los items que realizan ataques y los que no, ya que de esta manera se evita código duplicado y se logra desambiguar aún más los metodos de ataque, permitiendo que los item que no tengan la capacidad de atacar no tengan que poseer un metodo ataque vacío, teniendo más claridad en el código (si items que no atacan tienen un metodo para atacar puede causasr confusión a alguien que quiera usar el código).<br />
 Información de contacto:  <br />
 <br />
 Mail: BeaGraboloza@gmail.com<br />
