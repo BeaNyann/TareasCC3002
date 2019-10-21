@@ -51,8 +51,10 @@ Las unidades pueden combatir entre ellas, la ocurrencia o no del combate depende
 <br />
 Si la unidad atacante tiene un objeto equipado, si la unidad que recibe el ataque esta en un rango válido para el item atacante, etc. <br />
 <br />
-Y luego de un ataque, siempre que pueda, la unidad víctima va a realizar un contraataque.
-
+Y luego de un ataque, siempre que pueda, la unidad víctima va a realizar un contraataque.<br />
+<br />
+A continuación se explicarán las facultades del controller y el tactician:
+<br />
 El controlador posee la capacidad de acceder a todas las funcionalidades antes mencionadas.<br />
 <br />
 Tiene el poder de iniciar una partida donde debe resetear todos los valores necesarios, como por ejemplo revivir a los tacticians que perdieron la vida en la partida anterior, devolverles sus unidades, entre otros. La partida puede tener un límite de rondas o ser "infinita".<br />
@@ -229,10 +231,23 @@ Lo último a explicar, que es importante comprender, es el Double Dispatch aplic
  <br />
 Primero si una unidad ataca a otra llama al metodo attack, el que manda un mensaje (attackWith) al Item que tenga esta unidad equipada para que el se encargue del trabajo (La unidad no tiene porque saber que item tiene equipado para realizar el ataque).<br />
 <br />
-Luego, el item le manda un mensaje a la unidad atacada para que esta decida que hacer al respecto (attackedBy), y la unidad atacada le envia un mensaje a su item con el arma que los está atacando, para que este (que sabe que tipo de item es) diga cuanto daño recibieron, y le indica devuelta a la unidad que tipo de daño recibió (setSmallDamage/setBigDamage/setNormalDamage).
+Luego, el item le manda un mensaje a la unidad atacada para que esta decida que hacer al respecto (attackedBy), y la unidad atacada le envia un mensaje a su item con el arma que los está atacando, para que este (que sabe que tipo de item es) diga cuanto daño recibieron, y le indica devuelta a la unidad que tipo de daño recibió (setSmallDamage/setBigDamage/setNormalDamage).<br />
+<br />
+A continuación se explicarán los metodos, clases, interfaces, y la funcionalidad en general de este proyecto que parezca necesario explicar del Controller y del Tactician:<br />
+### **El Controller:**<br />
+El controller posee los siguientes metodos:<br />
+* getTacticians(): Devuelve los todos los tacticians independiente de si han perdido o no.<br />
+ <br />
+* setTacticians(): Resetea los tacticians para jugar una nueva partida (devuelve a todos los que habían perdido a que esten en juego nuevamente)<br />
+ <br />
+* setTacticiansObservers(): Añade los Observers a los tacticians para que estos puedan manejar los cambios que les corresponden (Cuando muere una unidad y cuando muere un Hero)<br />
+ <br />
+* setTacticianFields(): Le manda un mensaje a los tacticians indicandole cual es el mapa del juego para que  CONTINUARA OWO
 
 ## :beginner: **Información extra**
 No deberían crearse Items con el mismo nombre, ya que eso podría provocar problemas en la comparación de Items (2 Items se consideran iguales sin su poder, sus rangos y su nombre son iguales)<br />
+<br />
+En el modelo el metodo getTactician original devolvía los tacticians actualmente en juego y lo cambié a que devuelva todos los tacticians, independiente de si este ha perdido o no. Y en sustitución, el metodo getCurrentOrder devuelve los tacticians que se encuentra actualmente en juego.<br />
 <br />
 Se deben hacer correcciones en el modelo:<br />
 <br />
