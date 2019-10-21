@@ -37,7 +37,7 @@ public class DeadUnitHandler implements PropertyChangeListener {
             }
             if(tactician.getUnits().size() == 0){
                 gameController.removeTactician(tactician.getName());
-            }//TODO testear que pierda al morirsele toas, testear que se muere una
+            }
         }
     }
 }

@@ -28,7 +28,6 @@ public class Tactician{
     private Field mapField;
     private PropertyChangeSupport deadHero;
     private PropertyChangeSupport deadUnit;
-    //TODO las units deben guardar una referencia a su tactician
 
     /**
      * Constructor for a default Tactician.
