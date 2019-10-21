@@ -25,7 +25,8 @@ public class DeadHeroHandler implements PropertyChangeListener {
             //TODO si el heroe es derrotado se llama a remove tactician po, con todas sus unidades
             //si era su turno lo termina y pierde, si no solo pierde -> eso lo hace remove tactician
             //TODO si todas sus units mueren el controller se encarga de saber que weA?
-            gameController.removeTactician((String)evt.getNewValue());
+            Tactician tactician = (Tactician) evt.getNewValue();
+            gameController.removeTactician(tactician.getName());
 
         }
     }

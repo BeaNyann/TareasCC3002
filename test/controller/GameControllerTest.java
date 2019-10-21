@@ -752,7 +752,9 @@ class GameControllerTest {
     }
 
     @Test
-    void checkUnits(){
+    void checkHero(){
+        //GameController controller = new GameController(4,3);
+        //controller.setGameMap();
         Tactician tactician = controller.getCurrentOrder().get(0);
         Tactician tactician1 = controller.getCurrentOrder().get(1);
         controller.addHero(tactician1);
@@ -779,7 +781,74 @@ class GameControllerTest {
         assertEquals(0,tactician1.getUnits().size());
 
         assertFalse(controller.getCurrentOrder().contains(tactician1));
+    }
 
+    @Test
+    void checkUnits(){
+        //GameController controller = new GameController(4,3);
+        //controller.setGameMap();
+        Tactician tactician = controller.getCurrentOrder().get(0);
+        Tactician tactician1 = controller.getCurrentOrder().get(1);
+        controller.addSorcerer(tactician1);
+        controller.addArcher(tactician1);
+        controller.addAlpaca(tactician1);
+        controller.addSorcerer(tactician);
+        tactician.restoreUnits();
+        tactician1.restoreUnits();
+
+        List<Location> locations = new ArrayList<>();
+        locations.add(controller.getGameMap().getCell(1,0));
+        List<Location> locations1 = new ArrayList<>();
+        locations1.add(controller.getGameMap().getCell(2,2));
+        locations1.add(controller.getGameMap().getCell(1,1));
+        locations1.add(controller.getGameMap().getCell(2,1));
+        controller.putUnitsOn(tactician,locations);
+        controller.putUnitsOn(tactician1,locations1);
+
+        controller.initGame(5);
+
+        controller.selectUnitIn(1,0);
+        controller.addDarkMagicBook(0);
+        controller.equipItem(0);
+        controller.useItemOn(1,1);
+        controller.useItemOn(1,1);
+
+        assertEquals(1,tactician.getUnits().size());
+        assertEquals(2,tactician1.getUnits().size());
+
+        assertFalse(tactician1.getUnits().contains(archerFactory.create()));
+    }
+
+    @Test
+    void checkNoUnits(){
+        //GameController controller = new GameController(4,3);
+        //controller.setGameMap();
+        Tactician tactician = controller.getCurrentOrder().get(0);
+        Tactician tactician1 = controller.getCurrentOrder().get(1);
+        controller.addArcher(tactician1);
+        controller.addSorcerer(tactician);
+        tactician.restoreUnits();
+        tactician1.restoreUnits();
+
+        List<Location> locations = new ArrayList<>();
+        locations.add(controller.getGameMap().getCell(1,0));
+        List<Location> locations1 = new ArrayList<>();
+        locations1.add(controller.getGameMap().getCell(1,1));
+        controller.putUnitsOn(tactician,locations);
+        controller.putUnitsOn(tactician1,locations1);
+
+        controller.initGame(5);
+
+        controller.selectUnitIn(1,0);
+        controller.addDarkMagicBook(0);
+        controller.equipItem(0);
+        controller.useItemOn(1,1);
+        controller.useItemOn(1,1);
+
+        assertEquals(1,tactician.getUnits().size());
+        assertEquals(0,tactician1.getUnits().size());
+
+        assertFalse(controller.getCurrentOrder().contains(tactician1));
     }
 
 }

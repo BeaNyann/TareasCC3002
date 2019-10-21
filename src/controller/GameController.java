@@ -247,8 +247,10 @@ public class GameController {
         if(index>=0) {
             Tactician ripTactician = this.tacticians.get(index);
             List<IUnit> units = ripTactician.getUnits();
-            for (IUnit unit : units) {
-                ripTactician.removeUnit(unit);
+            if(units.size()!=0) {
+                for (int i = 0; i < ripTactician.getGlobalUnits().size(); i++) {
+                    ripTactician.removeUnit(units.get(0)); //se van eliminando entonces siempre voy a encontrarme con la 0
+                }
             }
             for (Pair par : ripTactician.getLocations()) {
                 Location location = this.mapField.getCell(par.getLeft(), par.getRight());

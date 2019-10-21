@@ -86,7 +86,7 @@ public class Tactician{
      * Sets a change in the dead hero event.
      */
     public void setDeadHero() {
-        deadHero.firePropertyChange(new PropertyChangeEvent(this, "deadHero",null,this.getName()));
+        deadHero.firePropertyChange(new PropertyChangeEvent(this, "deadHero",null,this));
             }
 
     /**
@@ -196,11 +196,15 @@ public class Tactician{
         return this.mapField;
     }
 
+    /**
+     * Check if some of the tactician's unit is dead.
+     */
     public void checkUnits() {
-        for (IUnit unit : this.getUnits()) {
+        for (IUnit unit : this.getGlobalUnits()) {
             if(unit.getCurrentHitPoints()==0){
                 if(unit.isHero()){
                     setDeadHero();
+                    break;
                 }
                 else{
                     setDeadUnit();

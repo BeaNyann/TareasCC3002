@@ -24,10 +24,15 @@ public class DeadUnitHandler implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getNewValue() != null) {
             Tactician tactician = (Tactician) evt.getNewValue();
-            for (IUnit unit :tactician.getUnits()) {
+            int index =0;
+            for (int i = 0; i<tactician.getGlobalUnits().size();i++) {
+                IUnit unit = tactician.getUnits().get(index);
                 if(unit.getCurrentHitPoints() == 0){
                     unit.getLocation().setUnit(null);
                     tactician.removeUnit(unit);
+                }
+                else{
+                    index++;
                 }
             }
             if(tactician.getUnits().size() == 0){
