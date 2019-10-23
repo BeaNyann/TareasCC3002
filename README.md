@@ -234,15 +234,77 @@ Primero si una unidad ataca a otra llama al metodo attack, el que manda un mensa
 Luego, el item le manda un mensaje a la unidad atacada para que esta decida que hacer al respecto (attackedBy), y la unidad atacada le envia un mensaje a su item con el arma que los está atacando, para que este (que sabe que tipo de item es) diga cuanto daño recibieron, y le indica devuelta a la unidad que tipo de daño recibió (setSmallDamage/setBigDamage/setNormalDamage).<br />
 <br />
 A continuación se explicarán los metodos, clases, interfaces, y la funcionalidad en general de este proyecto que parezca necesario explicar del Controller y del Tactician:<br />
+ <br />
 ### **El Controller:**<br />
+<br />
 El controller posee los siguientes metodos:<br />
-* getTacticians(): Devuelve los todos los tacticians independiente de si han perdido o no.<br />
+* List<Tactician> getTacticians(): Devuelve los todos los tacticians independiente de si han perdido o no.<br />
  <br />
-* setTacticians(): Resetea los tacticians para jugar una nueva partida (devuelve a todos los que habían perdido a que esten en juego nuevamente)<br />
+* void setTacticians(): Resetea los tacticians para jugar una nueva partida (devuelve a todos los que habían perdido a que esten en juego nuevamente)<br />
  <br />
-* setTacticiansObservers(): Añade los Observers a los tacticians para que estos puedan manejar los cambios que les corresponden (Cuando muere una unidad y cuando muere un Hero)<br />
+* void setTacticiansObservers(): Añade los Observers a los tacticians para que estos puedan manejar los cambios que les corresponden (Cuando muere una unidad y cuando muere un Hero)<br />
  <br />
-* setTacticianFields(): Le manda un mensaje a los tacticians indicandole cual es el mapa del juego para que  CONTINUARA OWO
+* void setTacticianFields(): Le manda un mensaje a los tacticians indicandole cual es el mapa del juego para que estos guarden una referencia a el.<br />
+ <br />
+* void setGameMap(): Crea aleatoreamente el mapa del juego.<br />
+ <br />
+* void setSeed(long seed): Establece una seed que se usará en el mapa del juego y en la elección de turnos en la partida.<br />
+ <br />
+* Field getGameMap(): Entrega el mapa del juego.<br />
+ <br />
+* Tactician getTurnOwner(): Entrega al tactician que se encuentra en su turno en la partida.<br />
+ <br />
+* List<Tactician> getCurrentOrder(): Entrega el orden en que deben jugar los tacticians en la ronda actual.<br />
+ <br />
+* int getRoundNumber(): Entrega el número de ronda en que va la partida.<br />
+ <br />
+* int getMaxRounds(): Entrega el número máximo de rondas de esta partida, si se alcanza este número de rondas la partida debe terminar.<br />
+ <br />
+* void newRound(): Comienza una nueva ronda.<br />
+ <br />
+* void reorderTurns(): Reordena los turnos para la siguiente ronda, no permitiendo que un jugador tenga dos turnos seguidos.<br />
+ <br />
+* void startTurn(Tactician tactician): Comienza el turno del tactician entregado.<br />
+ <br />
+* void endTurn(): Termina el turno del tactician que se encontraba actualmente jugando e inicia el turno del siguiente, si este era el último tactician de la ronda comienza una nueva.<br />
+ <br />
+* void removeTactician(): Elimina al tactician de la lista de tacticians en juego, y elimina todas sus unidades retirandolas también del mapa.<br />
+ <br />
+* void resetGame(): Devuelve todos las variables del juego a sus valores iniciales, como por ejemplo el número de la ronda actual vuelve a 0, si murió algún tactician este regresa a la lista de tacticians en juego, entre otros.<br />
+ <br />
+* void initGame(int rondas): Inicia un juego con el número máximo de rondas entregado.<br />
+ <br />
+* void initEndlessGame(): Inicia un juego sin número máximo de rondas.<br />
+ <br />
+* List<String> getWinners(): Entrega una lista con los nombres de los tacticians que ganaron, esta lista va a ser distinta de null solo si: En un juego con máximo de rondas llegamos al final de las rondas, en donde serán ganadores los que sigan en pie y tengan más unidades vivas. En un juego sin máximo de rondas es ganador el último tactician en pie.<br />
+ <br />
+* IUnit getSelectedUnit(): Entrega la unidad que se encuentra seleccionada en estos momentos.<br />
+ <br />
+* void selectUnitIn(int x, int y): Selecciona la unidad que se encuentra en las coordenadas provistas.<br />
+ <br />
+* List<IEquipableItem> getItems(): Entrega la lista de items de la unidad seleccionada, si no hay unidad seleccionada no entrega nada.<br />
+ <br />
+* void equipItem(int index): Equipa el item que se encuentra en ese indice del inventario de la unidad seleccionada, si no hay unidad seleccionada no equipa nada.<br />
+ <br />
+* void useItemOn(int x, int y): Usa el item de la unidad seleccionada y lo usa en la unidad que se encuentra en las coordenadas provistas, luego checkea si alguna de las dos unidades murió para evaluar si el tactician de la unidad muerta ha perdido el juego o no.<br />
+ <br />
+* void selectItem(int index): Seleccionae el item que se encuentra en ese indice del inventario de la unidad seleccionada.<br />
+ <br />
+* IEquipableItem getSelectedItem(): Entrega el item que se encuentra seleccionada en estos momentos.<br />
+ <br />
+* void giveItemTo(int x, int y): Le da a la unidad que se encuentra en las coordenadas provistas el item que está actualmente seleccionado.<br />
+ <br />
+Luego se encuentran los metodos para añadir unidades a los diferentes tactician, para cada unidad hay un método distinto, a todos se les debe ingresar el tactician a cual se le quiere añadir la unidad.<br />
+ <br />
+*putUnitsOn(Tactician tactician, List<Location> locations): Posiciona todas las unidades del tactician en la lista de ubicaciones entregadas. Deben calzar las dimensiones de la lista de unidades del tactician con las de la lista de ubicaciones entregadas.<br />
+ <br />
+Luego vienen los metodos para añadir items a las distintas unidades de los tactician, para cada item hay un método distinto. El item se añade al tactician que se encuentra en su turno y se debe ingresar la posición en la lista de unidades del tactician de la unidad a la que se le quiere añadir el item.<br />
+ <br />
+* void moveTo(int x, int y): Mueve a la unidad seleccionada a las coordenadas provistas.<br />
+<br />
+### **El Tactician:**<br />
+<br /> SIGUE
+ 
 
 ## :beginner: **Información extra**
 No deberían crearse Items con el mismo nombre, ya que eso podría provocar problemas en la comparación de Items (2 Items se consideran iguales sin su poder, sus rangos y su nombre son iguales)<br />
