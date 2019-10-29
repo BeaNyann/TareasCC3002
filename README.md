@@ -419,11 +419,11 @@ El dead hero handler posee el siguiente metodo:<br />
 ## :beginner: **Información extra**
 No deberían crearse Items con el mismo nombre, ya que eso podría provocar problemas en la comparación de Items (2 Items se consideran iguales sin su poder, sus rangos y su nombre son iguales)<br />
 <br />
-Algunos tests toman mucho tiempo debido al tamaño del mapa, pero estos efectivamente funcionan, si se encuentra con poco tiempo para testear la funcionalidad de los metodos puede comentar estos, o descomentar la opción de usar un mapa más pequeño que se encuentra en estos.<br />
+Algunos tests toman mucho tiempo debido al tamaño del mapa, pero estos efectivamente funcionan, por lo que se decidió crear un mapa más pequeño para estos tests, si desea probarlos con el mismo tamaño de mapa que el resto de los test, debe comentar las primeras dos lineas del test que crean un controller con tamaño de mapa 3 y setea el mapa.<br />
 <br />
 En el modelo el metodo getTactician original devolvía los tacticians actualmente en juego y lo cambié a que devuelva todos los tacticians, independiente de si este ha perdido o no. Y en sustitución, el metodo getCurrentOrder devuelve los tacticians que se encuentra actualmente en juego.<br />
 <br />
-Hay un error conocido: A veces el test que verifica el orden de los tacticians falla debido a que no se setea correctamente la seed, considero esto un error fuera de mi alcance ya que más alla que decirle a la seed que se setee no hay mucho más que pueda hacer para asegurarme que realmente lo haga.<br />
+Hay un error conocido: A veces el test que verifica el orden de los tacticians falla debido a que no se setea correctamente la seed, considero esto un error fuera de mi alcance ya que más alla que decirle a la seed que se setee no hay mucho más que pueda hacer para asegurarme que realmente lo haga. Pero independiente de eso con otros test se puede apreciar que en cada ronda los turnos cambian correctamente.<br />
 <br />
 Se deben hacer correcciones en el modelo:<br />
 <br />
