@@ -235,4 +235,17 @@ public class TacticianTest {
         assertFalse(tactician.getUnits().contains(alpacaFactory.create()));
     }
 
+    @Test
+    void restoreMovement(){
+        Alpaca alpaca = alpacaFactory.create();
+        Archer archer = archerFactory.create();
+        tactician.addUnit(alpaca);
+        tactician.addUnit(archer);
+        tactician.restoreUnits();
+        tactician.setMovedUnit(0);
+        tactician.restoreMovement();
+        assertFalse(tactician.getMovedUnit().get(0));
+        assertFalse(tactician.getMovedUnit().get(1));
+    }
+
 }

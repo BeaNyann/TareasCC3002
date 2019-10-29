@@ -506,4 +506,15 @@ public abstract class AbstractUnit implements IUnit {
   public boolean isHero(){
     return false;
   }
+
+  public boolean equals(Object obj){
+    if(obj instanceof IUnit){
+      if(((IUnit) obj).getMaxHitPoints() - this.getMaxHitPoints() <= 1E-6&&
+              ((IUnit)obj).getMovement() == this.getMovement() &&
+              ((IUnit)obj).getLocation().equals(this.getLocation())){
+        return true;
+      }
+    }
+    return false;
+  }
 }

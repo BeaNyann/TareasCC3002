@@ -129,6 +129,16 @@ public class Tactician{
     }
 
     /**
+     * Restore the option to move of the tactician's units.
+     */
+    public void restoreMovement() {
+        this.movedUnit = new ArrayList<>();
+        for(int i=0;i<this.units.size();i++){
+            movedUnit.add(false);
+        }
+    }
+
+    /**
      * @return the locations of the units of this tactician.
      */
     public List<Pair> getLocations(){

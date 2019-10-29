@@ -529,6 +529,8 @@ class GameControllerTest {
 
     @Test
     void useItemOn() {
+        GameController controller = new GameController(4,3);
+        controller.setGameMap();
         List<Location> locationsT1 = new ArrayList<>();
         locationsT1.add(controller.getGameMap().getCell(0, 1));
         List<Location> locationsT2 = new ArrayList<>();
@@ -618,6 +620,8 @@ class GameControllerTest {
 
     @Test
     void giveItemTo() {
+        GameController controller = new GameController(4,3);
+        controller.setGameMap();
         List<Location> locations = new ArrayList<>();
         locations.add(controller.getGameMap().getCell(0, 1));
         locations.add(controller.getGameMap().getCell(1, 1));
@@ -699,6 +703,8 @@ class GameControllerTest {
 
     @Test
     void moveUnitTo(){
+        GameController controller = new GameController(4,3);
+        controller.setGameMap();
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addArcher(tactician);
         tactician.restoreUnits();
@@ -731,6 +737,8 @@ class GameControllerTest {
 
     @Test
     void failMoveUnitTwice(){
+        GameController controller = new GameController(4,3);
+        controller.setGameMap();
         Tactician tactician = controller.getCurrentOrder().get(0);
         controller.addArcher(tactician);
         controller.addSorcerer(tactician);
@@ -747,14 +755,14 @@ class GameControllerTest {
         controller.moveTo(1,2);
         assertEquals(controller.getGameMap().getCell(1,1),tactician.getUnits().get(0).getLocation());
         controller.selectUnitIn(2,2);
-        controller.moveTo(2,3);
-        assertEquals(controller.getGameMap().getCell(2,3),tactician.getUnits().get(1).getLocation());
+        controller.moveTo(2,1);
+        assertEquals(controller.getGameMap().getCell(2,1),tactician.getUnits().get(1).getLocation());
     }
 
     @Test
     void checkHero(){
-        //GameController controller = new GameController(4,3);
-        //controller.setGameMap();
+        GameController controller = new GameController(4,3);
+        controller.setGameMap();
         Tactician tactician = controller.getCurrentOrder().get(0);
         Tactician tactician1 = controller.getCurrentOrder().get(1);
         controller.addHero(tactician1);
@@ -785,8 +793,8 @@ class GameControllerTest {
 
     @Test
     void checkUnits(){
-        //GameController controller = new GameController(4,3);
-        //controller.setGameMap();
+        GameController controller = new GameController(4,3);
+        controller.setGameMap();
         Tactician tactician = controller.getCurrentOrder().get(0);
         Tactician tactician1 = controller.getCurrentOrder().get(1);
         controller.addSorcerer(tactician1);
@@ -821,8 +829,8 @@ class GameControllerTest {
 
     @Test
     void checkNoUnits(){
-        //GameController controller = new GameController(4,3);
-        //controller.setGameMap();
+        GameController controller = new GameController(4,3);
+        controller.setGameMap();
         Tactician tactician = controller.getCurrentOrder().get(0);
         Tactician tactician1 = controller.getCurrentOrder().get(1);
         controller.addArcher(tactician1);

@@ -219,9 +219,7 @@ public class GameController {
      */
     public void startTurn(Tactician tactician) {
         this.turnOwner = tactician;
-        //nose que más
-        //endTurn();
-        // el tactician avisa que terminó
+        tactician.restoreMovement();
     }
 
     /**

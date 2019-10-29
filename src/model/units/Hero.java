@@ -48,14 +48,7 @@ public class Hero extends AbstractUnit {
 
   @Override
   public boolean equals(Object obj){
-    if(obj instanceof Hero){
-      if(((IUnit) obj).getMaxHitPoints() - this.getMaxHitPoints() <= 1E-6&&
-              ((IUnit)obj).getMovement() == this.getMovement() &&
-              ((IUnit)obj).getLocation().equals(this.getLocation())){
-        return true;
-      }
-    }
-    return false;
+    return super.equals(obj) && obj instanceof Hero;
   }
 
   /**
