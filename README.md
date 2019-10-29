@@ -303,14 +303,62 @@ Luego vienen los metodos para añadir items a las distintas unidades de los tact
 * void moveTo(int x, int y): Mueve a la unidad seleccionada a las coordenadas provistas.<br />
 <br />
 ### **El Tactician:**<br />
-<br /> SIGUE
- 
-
+<br />
+* String getName(): Entrega el nombre del tactician.<br />
+ <br />
+* List<IUnit> getGlobalUnits(): Entrega la lista de unidades del tactician, esta consiste en todas las unidades independiente de si estas estan vivas o muertas en la partida actual, puede entenderse como si fuera el alma de las unidades.<br />
+ <br />
+* List<IUnit> getUnits(): Entrega la lista de unidades del tactician que se encuentran vivas en la partida actual, puede entenderse como si fuera el cuerpo de las unidades.<br />
+ <br />
+* void addDeadHeroObserver(DeadHeroHandler resp): Suscribe al Observer encargado de comprobar la muerte del Hero a este tactician.<br />
+ <br />
+* void setDeadHero(): Le avisa al observer que se le ha muerto el Hero a este tactician, entregando como nuevo valor al tactician para que el observer pueda realizar las acciones necesarias con el.<br />
+<br />
+* void addDeadUnitObserver(DeadUnitHandler resp): Suscribe al Observer encargado de comprobar la muerte de una unidad a este tactician.<br />
+ <br />
+* void setDeadUnit(): Le avisa al observer que se le ha muerto una unidad a este tactician, entregando como nuevo valor al tactician para que el observer pueda realizar las acciones necesarias con el.<br />
+ <br />
+* void addUnit(IUnit unit): Añade una unit a la lista de units globales del tactician, inicializando que esta aún no se ha movido (ya que solo se pueden mover una vez por turno).<br />
+ <br />
+* void restoreUnits(): Cura a las unidades que hayan sido dañadas y devuelve a la vida a las que hayan muerto para comenzar una nueva partida.<br />
+ <br />
+* void restoreMovement(): Devuelve a falso el indicador de si una unidad se ha movido o no para todas las unidades del tactician.<br />
+ <br />
+* List<Pair> getLocations(): Entrega una lista con los pares de coordenadas en donde estan ubicadas cada una de las unidades del tactician.<br />
+ <br />
+* void eraseLocations(): Elimina las locations de las unidades del tactician, vuelve la lista una lista vacía.<br />
+ <br />
+* void setLocations(Location location): Transforma la location entregada en un par de coordenadas y la añade a la lista de locations del tactician.<br />
+ <br />
+* List<Boolean> getMovedUnit(): Entrega la lista que indica si las unidades se han movido o no este turno.<br />
+ <br />
+* void setMovedUnit(int index): Cambia el valor que corresponde en la lista de movimiento de las unidades indicando que la unidad que se encuentra en el indice entregado ya se ha movido.<br />
+ <br />
+* void removeUnit(IUnit unit): Remueve la unidad entregada de la lista de unidades vivas.<br />
+ <br />
+* void setMapField(Field map): Establece que el mapa en el que esta jugando el tactician es el mapa entregado. <br />
+  <br />
+* Field getMapField(): Entrega el mapa en el que esta jugando el tactician. <br />
+  <br />
+* void checkUnits(): Revisa si se ha muerto alguna unidad del tactician y si es así, revisa si es un Hero o no para llamar al metodo correspondiente que informe al observer de la situación. <br />
+  <br />
+### **El DeadUnitHandler:**<br />
+<br />
+* void propertyChange(PropertyChangeEvent evt): Remueve la unidad que se le murió al tactician y si esta era su última unidad llama al metodo del controller que remueve al tactician del juego.<br />
+ <br />
+### **El DeadHeroHandler:**<br />
+<br />
+* void propertyChange(PropertyChangeEvent evt): Llama al metodo del controller que remueve un tactician para que remueva al tactician al que se le murió el hero.<br />
+ <br />
 ## :beginner: **Información extra**
 No deberían crearse Items con el mismo nombre, ya que eso podría provocar problemas en la comparación de Items (2 Items se consideran iguales sin su poder, sus rangos y su nombre son iguales)<br />
 <br />
+Algunos tests toman mucho tiempo debido al tamaño del mapa, pero estos efectivamente funcionan, si se encuentra con poco tiempo para testear la funcionalidad de los metodos puede comentar estos, o descomentar la opción de usar un mapa más pequeño que se encuentra en estos.<br />
+<br />
 En el modelo el metodo getTactician original devolvía los tacticians actualmente en juego y lo cambié a que devuelva todos los tacticians, independiente de si este ha perdido o no. Y en sustitución, el metodo getCurrentOrder devuelve los tacticians que se encuentra actualmente en juego.<br />
 <br />
+Hay un error conocido: A veces el test que verifica el orden de los tacticians falla debido a que no se setea correctamente la seed, considero esto un error fuera de mi alcance ya que más alla que decirle a la seed que se setee no hay mucho más que pueda hacer para asegurarme que realmente lo haga.<br />
+ <br />
 Se deben hacer correcciones en el modelo:<br />
 <br />
 Se deben implementar interfaces que diferencien los items que realizan ataques y los que no, ya que de esta manera se evita código duplicado y se logra desambiguar aún más los metodos de ataque, permitiendo que los item que no tengan la capacidad de atacar no tengan que poseer un metodo ataque vacío, teniendo más claridad en el código (si items que no atacan tienen un metodo para atacar puede causasr confusión a alguien que quiera usar el código).<br />
