@@ -16,10 +16,20 @@ import java.beans.PropertyChangeListener;
 public class DeadUnitHandler implements PropertyChangeListener {
     private GameController gameController;
 
+    /**
+     * Assign the game controller to this handler.
+     *
+     * @param gameController the game controller where the methods are going to be called.
+     */
     public DeadUnitHandler(GameController gameController) {
         this.gameController = gameController;
     }
 
+    /**
+     * Remove the unit that has died and remove the tactician if necessary.
+     *
+     * @param evt the event that has changed.
+     */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getNewValue() != null) {

@@ -15,10 +15,20 @@ import java.beans.PropertyChangeListener;
 public class DeadHeroHandler implements PropertyChangeListener {
     private GameController gameController;
 
+    /**
+     * Assign the game controller to this handler.
+     *
+     * @param gameController the game controller where the methods are going to be called.
+     */
     public DeadHeroHandler(GameController gameController){
         this.gameController = gameController;
     }
 
+    /**
+     * Remove the tacticians that has lost the hero.
+     *
+     * @param evt the event that has changed.
+     */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getNewValue() != null) {
